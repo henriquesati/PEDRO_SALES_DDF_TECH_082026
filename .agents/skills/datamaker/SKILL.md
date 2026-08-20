@@ -49,6 +49,8 @@ data/
 
 When requested to create or update data models and schemas:
 
+0. **Context & Consultation**:
+   - Check [data_model_specs.md](./references/data_model_specs.md) for custom business rules, domain entities, database specifications, and dirty data requirements provided for the project.
 1. **Logical Modeling (Markdown Base)**:
    - Create foundational, database-agnostic models under `data/models/logical/`.
    - Document each entity in `entities/<entity>.md` (attributes, types, descriptions, nullability).
@@ -74,8 +76,8 @@ When requested to create or update data models and schemas:
   - Maintain strict referential integrity (PK/FK constraints) and performance indexes in dedicated files or steps.
 - **Realistic Mock Datasets**:
   - Use Python scripts to generate business-accurate data (e.g., valid document IDs, realistic emails, plausible dates, coherent financial values).
-- **Resource Templates**:
-  - Reference the base SQL table template in [sql_template.sql](./resources/sql_template.sql).
+- **Resource & Reference Documents**:
+  - Consult project-specific model rules in [data_model_specs.md](./references/data_model_specs.md).
   - Reference the schema organization guide in [schema_structure.md](./resources/schema_structure.md).
 
 ---

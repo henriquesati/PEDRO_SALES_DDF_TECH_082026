@@ -1,49 +1,74 @@
-# Data Architecture & Folder Structure Guide
+# Data Architecture & Schema Structure Guide
 
-This guide defines the multi-tier data architecture used by the `datamaker` skill.
+This guide establishes the standard multi-tier data architecture and file structure used by the `datamaker` skill.
 
 ---
 
-## 1. Directory Layout
+## 1. Directory Structure
 
 ```text
 data/
 ├── models/
 │   └── logical/
-│       ├── README.md
+│       ├── README.md                # Overview of the domain & data model
 │       ├── entities/
-│       │   ├── <entity_name>.md     # Attribute specifications, types, descriptions
+│       │   ├── <entity_name>.md     # Attribute definitions, types, constraints, descriptions
 │       │   └── ...
-│       ├── relationships.md         # Entity associations (1:1, 1:N, N:M)
-│       └── business-rules.md        # Domain rules & validation constraints
+│       ├── relationships.md         # ER associations, cardinalities (1:1, 1:N, N:M), foreign keys
+│       └── business-rules.md        # Domain rules, validations, business constraints
 │
 ├── database/
 │   ├── sql/
-│   │   ├── 001_create_tables.sql    # DDL statements for tables
-│   │   ├── 002_constraints.sql      # Primary & Foreign Key constraints
-│   │   └── 003_indexes.sql          # Performance and unique indexes
-│   └── <specialization>/            # Other database targets (NoSQL, ORMs, etc.)
+│   │   ├── 001_create_tables.sql    # Core table DDL statements
+│   │   ├── 002_constraints.sql      # Primary & foreign keys, check constraints, unique rules
+│   │   └── 003_indexes.sql          # Performance, foreign key, and unique indexes
+│   └── nosql/                       # (Optional) Document/NoSQL schema definitions (e.g. MongoDB, JSON Schema)
 │
 └── mock/
     ├── generators/
-    │   ├── <entity_name>.py         # Python generator scripts
+    │   ├── <entity_name>.py         # Entity-specific Python generator scripts (Faker, random, etc.)
     │   └── ...
-    └── output/                      # Generated seed and dirty datasets
+    └── output/                      # Generated seed and dirty datasets (CSV, JSON, SQL, Parquet)
 ```
 
 ---
 
-## 2. Layers Explained
+## 2. Layer Specifications
 
 ### Layer 1: Logical Modeling (`data/models/logical/`)
-- Written in **Markdown**.
-- Database-agnostic conceptual and logical models.
-- Defines domain entities, business attributes, relationships, and business rules before technology decisions.
+- **Format**: Markdown (`.md`).
+- **Goal**: Technology-agnostic conceptual and logical modeling.
+- **Components**:
+  - `entities/<entity_name>.md`: Detailed attribute list (Name, Data Type, Nullability, Primary/Foreign key role, Default value, Description, Business constraints).
+  - `relationships.md`: Cardinality maps (e.g. Customer 1 — N Orders), deletion behaviors (CASCADE, SET NULL, RESTRICT).
+  - `business-rules.md`: Invariants, calculations, state machine transitions, edge cases.
 
 ### Layer 2: Concrete Database Implementations (`data/database/`)
-- Specializes logical models into specific DBMS DDLs (e.g. PostgreSQL, MySQL, SQLite, MongoDB schemas).
-- Uses clear numerical sequencing for execution order.
+- **Format**: SQL scripts / Schema definitions per target DBMS (PostgreSQL, MySQL, SQLite, etc.).
+- **Execution Order**:
+  - `001_create_tables.sql`: Base table definitions with data types and primary identifiers.
+  - `002_constraints.sql`: Foreign keys, check constraints, and composite unique keys.
+  - `003_indexes.sql`: B-Tree/GIN indexes, search indexes, and foreign key indexes for query optimization.
 
-### Layer 3: Mock & Dirty Data Generators (`data/mock/`)
-- Modular Python scripts per entity (`generators/<entity>.py`).
-- Produces realistic business data and purposeful dirty data (inconsistencies, missing fields, format variants) to test downstream validation and cleaning pipelines.
+### Layer 3: Mock & Dirty Data Generation (`data/mock/`)
+- **Format**: Python scripts (`generators/<entity>.py`).
+- **Goal**: Generate realistic synthetic datasets reflecting real-world business distributions and intentional dirty data.
+- **Output**: Populates `data/mock/output/` in requested formats (CSV, JSON, SQL inserts).
+
+---
+
+## 3. Dirty Data Guidelines
+
+Synthetic data generation must incorporate intentional, realistic dirty data anomalies to test downstream data engineering, cleaning, and validation pipelines:
+- **Format Inconsistencies**: Varied date formats (`YYYY-MM-DD`, `DD/MM/YYYY`), casing variations (UPPERCASE, lowercase, mixed), accented characters.
+- **Domain Edge Cases**: Out-of-range dates, boundary numbers, negative values where unexpected, expired statuses.
+- **Missing / Null Values**: Realistic missingness patterns (MCAR, MAR), empty strings vs nulls.
+- **Reference Discrepancies**: Orphan records, slightly misspelled foreign identifiers (within controllable dirty test quotas).
+- **Logical Business Violations**: Order delivery dates prior to order creation dates, discount amounts exceeding total value.
+
+---
+
+## 4. Consultation & Reference
+
+When designing or updating models, the skill should check the customized project references:
+- **Reference Specifications**: [data_model_specs.md](../references/data_model_specs.md)
