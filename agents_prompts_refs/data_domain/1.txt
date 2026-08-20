@@ -1,0 +1,11 @@
+Analise o modelo de dados para recuperação de carrinho proposto em `data_model_specs` na minha skill de datamaker.
+
+Objetivo:
+Modelar uma estrutura de dados consistente, normalizada e adequada ao domínio do case, definindo entidades, atributos, relacionamentos, chaves e regras de negócio. A modelagem deve servir como base para a 
+implementação física em SQL e para a posterior geração de dados mock e datasets para os processos de recuperação de carrinho.
+
+O modelo atual será utilizado para a construção de um case de recuperação de carrinho para um cliente Marketplace. Os dados também serão utilizados para a geração de outros insights de negócio, análises prescritivas, 
+descritivas, etc. Porém, o carro-chefe da apresentação do pitch de vendas será o case de recuperação de carrinho, por se tratar de uma fácil demonstração de valor. A modelagem deve evitar extrapolar os limites técnicos 
+do domínio, com o objetivo de garantir a entrega no prazo estipulado (em 2 dias).
+
+Analise o modelo atual e, caso identifique informações, entidades, relacionamentos ou regras necessárias que estejam faltando, proponha os ajustes antes da implementação.

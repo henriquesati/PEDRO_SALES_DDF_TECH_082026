@@ -13,6 +13,8 @@ SEED = 42
 # ─── Paths ──────────────────────────────────────────────────────────────────
 MOCK_DIR = Path(__file__).resolve().parent.parent.parent      # data/mock/
 OUTPUT_DIR = MOCK_DIR / "output"
+PARQUET_DIR = OUTPUT_DIR / "parquet"
+CSV_DIR = OUTPUT_DIR / "csv"
 
 # ─── Período temporal ───────────────────────────────────────────────────────
 TZ = pytz.timezone("America/Sao_Paulo")
@@ -20,9 +22,9 @@ PERIODO_INICIO = datetime(2026, 1, 1, tzinfo=TZ)
 PERIODO_FIM = datetime(2026, 6, 30, 23, 59, 59, tzinfo=TZ)
 
 # ─── Volumes ────────────────────────────────────────────────────────────────
-N_CLIENTES = 1_200
-N_PRODUTOS = 250
-N_CARRINHOS = 6_000
+N_CLIENTES = 1_500
+N_PRODUTOS = 300
+N_CARRINHOS = 7_500
 
 # ─── Dirty data rate ────────────────────────────────────────────────────────
 DIRTY_RATE = 0.05  # 5% base para anomalias

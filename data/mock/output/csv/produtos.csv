@@ -1,0 +1,301 @@
+produto_id,nome,categoria,subcategoria,marca,preco_atual,preco_original,em_estoque,avaliacao_media,total_avaliacoes,url_imagem,data_cadastro,ativo
+1,Apple Carregador Turbo Classic,Eletrônicos,Acessórios,Apple,1491.48,1491.48,True,5.0,563,https://cdn.marketplace.com.br/img/1.jpg,2025-01-03 03:06:00+00:00,True
+2,JBL MatePad Prime,Eletrônicos,Tablets,JBL,594.8,893.99,True,3.6,565,https://cdn.marketplace.com.br/img/2.jpg,2025-01-27 03:06:00+00:00,True
+3,JBL Película Max,Eletrônicos,Acessórios,JBL,3418.94,4551.04,True,4.0,816,https://cdn.marketplace.com.br/img/3.jpg,2025-04-06 03:06:00+00:00,True
+4,Sony Pixel Plus,Eletrônicos,Smartphones,Sony,2721.38,2721.38,True,4.5,1181,https://cdn.marketplace.com.br/img/4.jpg,2025-12-18 03:06:00+00:00,False
+5,Samsung Moto GElite,Eletrônicos,Smartphones,Samsung,77.23,77.23,True,3.6,41,https://cdn.marketplace.com.br/img/5.jpg,2025-12-05 03:06:00+00:00,True
+6,Samsung Aspire Prime,Eletrônicos,Notebooks,Samsung,1589.26,1589.26,True,3.3,961,https://cdn.marketplace.com.br/img/6.jpg,2025-05-20 03:06:00+00:00,True
+7,JBL iPhone Prime,Eletrônicos,Smartphones,JBL,3866.19,3866.19,True,2.7,96,https://cdn.marketplace.com.br/img/7.jpg,2025-05-25 03:06:00+00:00,True
+8,JBL Tab SPrime,Eletrônicos,Tablets,JBL,996.01,1484.17,True,4.6,1052,https://cdn.marketplace.com.br/img/8.jpg,2025-09-16 03:06:00+00:00,True
+9,Apple MatePad Classic,Eletrônicos,Tablets,Apple,1431.77,1624.02,True,3.8,649,https://cdn.marketplace.com.br/img/9.jpg,2025-02-18 03:06:00+00:00,True
+10,LG Capinha Neo,Eletrônicos,Acessórios,LG,1132.78,1132.78,True,,0,https://cdn.marketplace.com.br/img/10.jpg,2025-11-11 03:06:00+00:00,True
+11,Samsung Tab SPro,Eletrônicos,Tablets,Samsung,3277.67,4988.72,True,,0,https://cdn.marketplace.com.br/img/11.jpg,2025-05-23 03:06:00+00:00,True
+12,JBL Aspire Sport,Eletrônicos,Notebooks,JBL,3688.57,4928.87,True,3.6,280,https://cdn.marketplace.com.br/img/12.jpg,2025-02-11 03:06:00+00:00,True
+13,LG Tab SClassic,Eletrônicos,Tablets,LG,1535.84,1637.76,True,2.6,864,https://cdn.marketplace.com.br/img/13.jpg,2025-06-17 03:06:00+00:00,True
+14,Samsung IdeaPad Classic,Eletrônicos,Notebooks,Samsung,611.59,611.59,True,3.9,346,https://cdn.marketplace.com.br/img/14.jpg,2025-09-12 03:06:00+00:00,True
+15,Samsung Aspire Ultra,Eletrônicos,Notebooks,Samsung,4506.97,4506.97,True,4.3,587,https://cdn.marketplace.com.br/img/15.jpg,2025-09-11 03:06:00+00:00,True
+16,Sony Capinha Classic,Eletrônicos,Acessórios,Sony,3006.67,3334.23,False,4.8,1705,https://cdn.marketplace.com.br/img/16.jpg,2025-07-25 03:06:00+00:00,True
+17,LG Capinha Pro,Eletrônicos,Acessórios,LG,1574.8,1574.8,True,4.1,563,https://cdn.marketplace.com.br/img/17.jpg,2025-04-13 03:06:00+00:00,True
+18,Motorola Galaxy Ultra,Eletrônicos,Smartphones,Motorola,1189.32,1189.32,True,3.8,1196,https://cdn.marketplace.com.br/img/18.jpg,2025-05-27 03:06:00+00:00,True
+19,Motorola Tab SUltra,Eletrônicos,Tablets,Motorola,4645.08,4645.08,True,3.1,1185,https://cdn.marketplace.com.br/img/19.jpg,2025-04-21 03:06:00+00:00,True
+20,LG MacBook Sport,Eletrônicos,Notebooks,LG,4129.15,4653.48,True,2.6,490,https://cdn.marketplace.com.br/img/20.jpg,2025-04-04 03:06:00+00:00,True
+21,Apple Headset Sport,Eletrônicos,Áudio,Apple,4059.96,4059.96,True,4.3,512,https://cdn.marketplace.com.br/img/21.jpg,2025-08-13 03:06:00+00:00,True
+22,Apple Carregador Turbo Prime,Eletrônicos,Acessórios,Apple,3376.43,3376.43,True,4.7,570,https://cdn.marketplace.com.br/img/22.jpg,2025-01-25 03:06:00+00:00,False
+23,Motorola Tab SPro,Eletrônicos,Tablets,Motorola,2739.34,4147.85,True,5.0,936,https://cdn.marketplace.com.br/img/23.jpg,2025-02-28 03:06:00+00:00,True
+24,Sony IdeaPad Pro,Eletrônicos,Notebooks,Sony,2024.06,2024.06,True,3.2,1854,https://cdn.marketplace.com.br/img/24.jpg,2025-03-29 03:06:00+00:00,True
+25,Apple iPhone Pro,Eletrônicos,Smartphones,Apple,2064.49,2239.54,True,5.0,581,https://cdn.marketplace.com.br/img/25.jpg,2025-03-30 03:06:00+00:00,False
+26,Xiaomi Notebook Neo i5,Eletrônicos,Notebooks,Xiaomi,163.48,121.15,True,4.0,218,https://cdn.marketplace.com.br/img/26.jpg,2025-01-26 03:06:00+00:00,True
+27,LG Caixa de Som Sport,Eletrônicos,Áudio,LG,4748.17,4748.17,True,,0,https://cdn.marketplace.com.br/img/27.jpg,2025-08-08 03:06:00+00:00,True
+28,JBL Soundbar Elite,Eletrônicos,Áudio,JBL,4722.16,4722.16,True,4.4,1569,https://cdn.marketplace.com.br/img/28.jpg,2025-07-07 03:06:00+00:00,True
+29,Samsung iPhone Plus,Eletrônicos,Smartphones,Samsung,242.77,242.77,True,5.0,970,https://cdn.marketplace.com.br/img/29.jpg,2025-10-04 03:06:00+00:00,True
+30,Apple Cabo USB-C Plus,Eletrônicos,Acessórios,Apple,3163.17,3163.17,True,4.2,192,https://cdn.marketplace.com.br/img/30.jpg,2025-05-20 03:06:00+00:00,True
+31,Samsung IdeaPad Elite,Eletrônicos,Notebooks,Samsung,4342.13,4342.13,True,3.2,867,https://cdn.marketplace.com.br/img/31.jpg,2025-01-06 03:06:00+00:00,True
+32,Samsung Carregador Turbo Max,Eletrônicos,Acessórios,Samsung,1340.79,1976.45,True,3.9,1391,https://cdn.marketplace.com.br/img/32.jpg,2025-08-11 03:06:00+00:00,True
+33,Motorola Redmi Note Ultra,Eletrônicos,Smartphones,Motorola,3774.15,3774.15,True,,0,https://cdn.marketplace.com.br/img/33.jpg,2025-11-21 03:06:00+00:00,True
+34,JBL IdeaPad Prime,Eletrônicos,Notebooks,JBL,2752.18,2752.18,True,4.3,913,https://cdn.marketplace.com.br/img/34.jpg,2025-04-24 03:06:00+00:00,True
+35,Samsung MacBook Sport,Eletrônicos,Notebooks,Samsung,775.59,775.59,True,3.5,1351,https://cdn.marketplace.com.br/img/35.jpg,2025-05-30 03:06:00+00:00,True
+36,LG Capinha Neo,Eletrônicos,Acessórios,LG,3012.33,3540.07,True,4.2,1662,https://cdn.marketplace.com.br/img/36.jpg,2025-11-05 03:06:00+00:00,True
+37,LG Galaxy Max,Eletrônicos,Smartphones,LG,2937.58,2937.58,True,4.0,1253,https://cdn.marketplace.com.br/img/37.jpg,2025-07-22 03:06:00+00:00,True
+38,LG Notebook Pro i5,Eletrônicos,Notebooks,LG,3493.86,3493.86,True,3.8,1977,https://cdn.marketplace.com.br/img/38.jpg,2025-12-21 03:06:00+00:00,True
+39,Motorola Cabo USB-C Elite,Eletrônicos,Acessórios,Motorola,889.82,889.82,True,2.7,1947,https://cdn.marketplace.com.br/img/39.jpg,2025-08-10 03:06:00+00:00,True
+40,Motorola Soundbar Max,Eletrônicos,Áudio,Motorola,4121.46,4121.46,True,3.2,824,https://cdn.marketplace.com.br/img/40.jpg,2025-03-22 03:06:00+00:00,False
+41,Sony Galaxy Plus,Eletrônicos,Smartphones,Sony,3810.12,4936.92,True,3.7,1123,https://cdn.marketplace.com.br/img/41.jpg,2025-02-25 03:06:00+00:00,True
+42,Sony Headset Ultra,Eletrônicos,Áudio,Sony,2946.39,2946.39,True,4.8,457,https://cdn.marketplace.com.br/img/42.jpg,2026-01-01 03:06:00+00:00,True
+43,Samsung iPhone Elite,Eletrônicos,Smartphones,Samsung,159.71,159.71,True,3.3,919,https://cdn.marketplace.com.br/img/43.jpg,2025-06-09 03:06:00+00:00,True
+44,Xiaomi MatePad Neo,Eletrônicos,Tablets,Xiaomi,3105.36,3105.36,True,5.0,435,https://cdn.marketplace.com.br/img/44.jpg,2025-02-28 03:06:00+00:00,True
+45,Sony Capinha Sport,Eletrônicos,Acessórios,Sony,4318.6,4318.6,True,3.6,546,https://cdn.marketplace.com.br/img/45.jpg,2025-04-15 03:06:00+00:00,True
+46,Xiaomi MatePad Max,Eletrônicos,Tablets,Xiaomi,2709.35,2709.35,True,2.5,900,https://cdn.marketplace.com.br/img/46.jpg,2025-01-07 03:06:00+00:00,True
+47,Xiaomi Tab SPlus,Eletrônicos,Tablets,Xiaomi,2131.13,3029.48,True,5.0,524,https://cdn.marketplace.com.br/img/47.jpg,2025-01-21 03:06:00+00:00,True
+48,JBL IdeaPad Classic,Eletrônicos,Notebooks,JBL,506.74,506.74,False,5.0,48,https://cdn.marketplace.com.br/img/48.jpg,2025-11-02 03:06:00+00:00,True
+49,Xiaomi Pixel Lite,Eletrônicos,Smartphones,Xiaomi,1086.18,1086.18,True,5.0,526,https://cdn.marketplace.com.br/img/49.jpg,2025-06-29 03:06:00+00:00,True
+50,LG Tab SPlus,Eletrônicos,Tablets,LG,2264.59,2264.59,True,3.6,714,https://cdn.marketplace.com.br/img/50.jpg,2025-11-24 03:06:00+00:00,True
+51,Sony Aspire Classic,Eletrônicos,Notebooks,Sony,4458.01,4458.01,True,3.9,34,https://cdn.marketplace.com.br/img/51.jpg,2025-09-13 03:06:00+00:00,True
+52,Apple Tab SUltra,Eletrônicos,Tablets,Apple,1847.16,1847.16,False,3.1,1765,https://cdn.marketplace.com.br/img/52.jpg,2025-03-19 03:06:00+00:00,True
+53,Sony Capinha Elite,Eletrônicos,Acessórios,Sony,3558.1,4488.89,True,4.1,4,https://cdn.marketplace.com.br/img/53.jpg,2025-02-01 03:06:00+00:00,True
+54,Sony Tab SPlus,Eletrônicos,Tablets,Sony,2805.88,2805.88,True,3.7,1142,https://cdn.marketplace.com.br/img/54.jpg,2025-02-12 03:06:00+00:00,True
+55,Motorola Galaxy Sport,Eletrônicos,Smartphones,Motorola,3073.28,3850.41,True,3.2,261,https://cdn.marketplace.com.br/img/55.jpg,2025-08-17 03:06:00+00:00,True
+56,Motorola Notebook Ultra i5,Eletrônicos,Notebooks,Motorola,51.17,63.32,True,2.1,1605,https://cdn.marketplace.com.br/img/56.jpg,2025-02-18 03:06:00+00:00,True
+57,Xiaomi Fone Bluetooth Plus,Eletrônicos,Áudio,Xiaomi,689.1,947.0,True,3.3,798,https://cdn.marketplace.com.br/img/57.jpg,2025-03-17 03:06:00+00:00,True
+58,Sony iPad Lite,Eletrônicos,Tablets,Sony,1615.07,1615.07,True,4.3,800,https://cdn.marketplace.com.br/img/58.jpg,2025-07-07 03:06:00+00:00,True
+59,Samsung Galaxy Pro,Eletrônicos,Smartphones,Samsung,1987.74,1987.74,True,2.3,1203,https://cdn.marketplace.com.br/img/59.jpg,2025-11-21 03:06:00+00:00,True
+60,Samsung Soundbar Prime,Eletrônicos,Áudio,Samsung,2887.0,2887.0,True,3.2,289,https://cdn.marketplace.com.br/img/60.jpg,2025-04-23 03:06:00+00:00,True
+61,Xiaomi Caixa de Som Pro,Eletrônicos,Áudio,Xiaomi,559.33,559.33,True,5.0,1181,https://cdn.marketplace.com.br/img/61.jpg,2025-11-16 03:06:00+00:00,True
+62,LG MatePad Max,Eletrônicos,Tablets,LG,2849.17,2849.17,True,3.9,872,https://cdn.marketplace.com.br/img/62.jpg,2025-11-25 03:06:00+00:00,True
+63,Sony IdeaPad Sport,Eletrônicos,Notebooks,Sony,2951.74,2951.74,True,,0,https://cdn.marketplace.com.br/img/63.jpg,2025-02-20 03:06:00+00:00,True
+64,JBL Película Ultra,Eletrônicos,Acessórios,JBL,2759.32,3550.73,True,3.0,1429,https://cdn.marketplace.com.br/img/64.jpg,2025-01-21 03:06:00+00:00,True
+65,Samsung Redmi Note Elite,Eletrônicos,Smartphones,Samsung,3058.98,3058.98,True,3.7,1690,https://cdn.marketplace.com.br/img/65.jpg,2025-03-17 03:06:00+00:00,True
+66,Sony iPad Prime,Eletrônicos,Tablets,Sony,1767.32,1767.32,True,3.6,1991,https://cdn.marketplace.com.br/img/66.jpg,2025-07-06 03:06:00+00:00,True
+67,JBL Redmi Note Neo,Eletrônicos,Smartphones,JBL,906.32,1139.38,True,3.6,342,https://cdn.marketplace.com.br/img/67.jpg,2025-10-31 03:06:00+00:00,True
+68,JBL Redmi Note Elite,Eletrônicos,Smartphones,JBL,5462.76,4495.27,True,3.6,194,https://cdn.marketplace.com.br/img/68.jpg,2025-09-11 03:06:00+00:00,True
+69,Samsung Película Prime,Eletrônicos,Acessórios,Samsung,4733.17,4733.17,True,5.0,87,https://cdn.marketplace.com.br/img/69.jpg,2025-11-08 03:06:00+00:00,True
+70,Samsung Fone Bluetooth Prime,Eletrônicos,Áudio,Samsung,1043.16,1306.65,True,3.9,1288,https://cdn.marketplace.com.br/img/70.jpg,2025-03-17 03:06:00+00:00,True
+71,Motorola Tab SNeo,Eletrônicos,Tablets,Motorola,1149.66,1064.57,True,4.6,1405,https://cdn.marketplace.com.br/img/71.jpg,2025-11-27 03:06:00+00:00,True
+72,LG Pixel Lite,Eletrônicos,Smartphones,LG,1712.44,1712.44,True,,0,https://cdn.marketplace.com.br/img/72.jpg,2025-12-13 03:06:00+00:00,True
+73,Adidas Camiseta Max Básica,Moda,Camisetas,Adidas,570.52,570.52,True,3.9,721,https://cdn.marketplace.com.br/img/73.jpg,2025-09-09 03:06:00+00:00,True
+74,Renner Jeans Prime Slim,Moda,Calças,Renner,154.17,154.17,True,,0,https://cdn.marketplace.com.br/img/74.jpg,2025-12-04 03:06:00+00:00,True
+75,C&A Vestido Ultra Casual,Moda,Vestidos,C&A,494.48,494.48,True,3.9,588,https://cdn.marketplace.com.br/img/75.jpg,2025-10-07 03:06:00+00:00,True
+76,Nike Vestido Neo Longo,Moda,Vestidos,Nike,339.94,447.25,True,4.9,1582,https://cdn.marketplace.com.br/img/76.jpg,2025-10-30 03:06:00+00:00,True
+77,Zara Camiseta Lite Básica,Moda,Camisetas,Zara,328.02,469.36,True,3.4,744,https://cdn.marketplace.com.br/img/77.jpg,2025-05-20 03:06:00+00:00,True
+78,Nike Carteira Lite,Moda,Acessórios,Nike,235.5,337.61,True,3.4,73,https://cdn.marketplace.com.br/img/78.jpg,2025-06-15 03:06:00+00:00,True
+79,Zara Óculos Sport,Moda,Acessórios,Zara,405.39,291.92,True,,0,https://cdn.marketplace.com.br/img/79.jpg,2025-12-21 03:06:00+00:00,True
+80,Nike Vestido Pro Midi,Moda,Vestidos,Nike,571.54,571.54,True,5.0,1800,https://cdn.marketplace.com.br/img/80.jpg,2025-08-06 03:06:00+00:00,True
+81,Adidas Camiseta Sport Básica,Moda,Camisetas,Adidas,74.49,59.31,True,2.2,335,https://cdn.marketplace.com.br/img/81.jpg,2025-09-07 03:06:00+00:00,True
+82,Zara Legging Plus,Moda,Calças,Zara,369.79,454.59,True,3.6,1176,https://cdn.marketplace.com.br/img/82.jpg,2025-09-16 03:06:00+00:00,True
+83,Zara Óculos Sport,Moda,Acessórios,Zara,378.97,443.02,True,4.5,1450,https://cdn.marketplace.com.br/img/83.jpg,2025-09-16 03:06:00+00:00,False
+84,Adidas Calça Prime Cargo,Moda,Calças,Adidas,135.62,135.62,True,,0,https://cdn.marketplace.com.br/img/84.jpg,2025-03-06 03:06:00+00:00,True
+85,C&A Bolsa Classic,Moda,Acessórios,C&A,299.76,360.93,True,4.0,577,https://cdn.marketplace.com.br/img/85.jpg,2025-07-09 03:06:00+00:00,True
+86,Hering Calça Ultra Cargo,Moda,Calças,Hering,35.23,53.89,True,4.6,1326,https://cdn.marketplace.com.br/img/86.jpg,2025-01-23 03:06:00+00:00,True
+87,Hering Polo Elite,Moda,Camisetas,Hering,567.26,567.26,True,3.6,226,https://cdn.marketplace.com.br/img/87.jpg,2025-02-23 03:06:00+00:00,True
+88,C&A Vestido Ultra Midi,Moda,Vestidos,C&A,308.97,388.87,True,2.3,1169,https://cdn.marketplace.com.br/img/88.jpg,2025-05-31 03:06:00+00:00,True
+89,Renner Cinto Classic,Moda,Acessórios,Renner,367.88,367.88,True,5.0,988,https://cdn.marketplace.com.br/img/89.jpg,2025-12-04 03:06:00+00:00,True
+90,Adidas Tênis Elite Run,Moda,Calçados,Adidas,560.91,560.91,True,3.6,914,https://cdn.marketplace.com.br/img/90.jpg,2025-11-26 03:06:00+00:00,True
+91,Renner Bolsa Plus,Moda,Acessórios,Renner,312.13,312.13,True,3.9,1890,https://cdn.marketplace.com.br/img/91.jpg,2025-11-23 03:06:00+00:00,True
+92,Hering Vestido Classic Midi,Moda,Vestidos,Hering,147.81,220.29,True,4.6,426,https://cdn.marketplace.com.br/img/92.jpg,2025-07-26 03:06:00+00:00,True
+93,Hering Calça Prime Cargo,Moda,Calças,Hering,119.28,139.99,True,,0,https://cdn.marketplace.com.br/img/93.jpg,2025-01-13 03:06:00+00:00,True
+94,C&A Vestido Prime Longo,Moda,Vestidos,C&A,338.42,338.42,True,3.7,989,https://cdn.marketplace.com.br/img/94.jpg,2025-03-30 03:06:00+00:00,True
+95,Hering Legging Pro,Moda,Calças,Hering,469.36,469.36,False,,0,https://cdn.marketplace.com.br/img/95.jpg,2025-09-04 03:06:00+00:00,True
+96,Hering Óculos Max,Moda,Acessórios,Hering,368.71,368.71,True,3.3,1562,https://cdn.marketplace.com.br/img/96.jpg,2025-05-21 03:06:00+00:00,True
+97,Nike Cinto Prime,Moda,Acessórios,Nike,349.48,500.67,True,4.4,1731,https://cdn.marketplace.com.br/img/97.jpg,2025-01-30 03:06:00+00:00,False
+98,Renner Cinto Ultra,Moda,Acessórios,Renner,393.86,393.86,False,3.6,1981,https://cdn.marketplace.com.br/img/98.jpg,2025-07-23 03:06:00+00:00,True
+99,Adidas Bota Elite,Moda,Calçados,Adidas,111.34,120.67,True,4.1,199,https://cdn.marketplace.com.br/img/99.jpg,2025-01-18 03:06:00+00:00,False
+100,Adidas Bota Lite,Moda,Calçados,Adidas,483.93,483.93,True,,0,https://cdn.marketplace.com.br/img/100.jpg,2025-05-11 03:06:00+00:00,True
+101,Hering Polo Neo,Moda,Camisetas,Hering,257.02,361.62,True,3.7,1390,https://cdn.marketplace.com.br/img/101.jpg,2025-09-29 03:06:00+00:00,True
+102,Nike T-Shirt Classic Premium,Moda,Camisetas,Nike,52.48,52.48,True,3.2,1696,https://cdn.marketplace.com.br/img/102.jpg,2025-10-14 03:06:00+00:00,True
+103,Adidas T-Shirt Pro Premium,Moda,Camisetas,Adidas,350.19,325.0,True,5.0,143,https://cdn.marketplace.com.br/img/103.jpg,2025-09-18 03:06:00+00:00,True
+104,Renner Vestido Neo Longo,Moda,Vestidos,Renner,368.92,368.92,True,4.3,1864,https://cdn.marketplace.com.br/img/104.jpg,2025-07-08 03:06:00+00:00,True
+105,Zara Vestido Sport Casual,Moda,Vestidos,Zara,527.88,476.68,True,5.0,1561,https://cdn.marketplace.com.br/img/105.jpg,2025-03-07 03:06:00+00:00,True
+106,Renner Sapatênis Prime,Moda,Calçados,Renner,354.29,277.08,True,4.7,1083,https://cdn.marketplace.com.br/img/106.jpg,2025-08-24 03:06:00+00:00,True
+107,Renner Carteira Pro,Moda,Acessórios,Renner,336.81,508.96,True,4.5,956,https://cdn.marketplace.com.br/img/107.jpg,2025-08-03 03:06:00+00:00,True
+108,Hering T-Shirt Ultra Premium,Moda,Camisetas,Hering,255.34,255.34,True,4.4,755,https://cdn.marketplace.com.br/img/108.jpg,2025-06-30 03:06:00+00:00,True
+109,Adidas Óculos Ultra,Moda,Acessórios,Adidas,329.22,447.77,True,3.8,318,https://cdn.marketplace.com.br/img/109.jpg,2025-02-20 03:06:00+00:00,True
+110,Hering T-Shirt Prime Premium,Moda,Camisetas,Hering,123.11,123.11,True,4.7,1473,https://cdn.marketplace.com.br/img/110.jpg,2025-07-22 03:06:00+00:00,True
+111,Adidas Vestido Neo Longo,Moda,Vestidos,Adidas,126.66,126.66,True,4.3,513,https://cdn.marketplace.com.br/img/111.jpg,2025-02-23 03:06:00+00:00,True
+112,Zara Camiseta Ultra Básica,Moda,Camisetas,Zara,334.0,334.0,True,2.7,1926,https://cdn.marketplace.com.br/img/112.jpg,2025-09-16 03:06:00+00:00,False
+113,Nike Legging Ultra,Moda,Calças,Nike,514.93,563.77,True,3.3,490,https://cdn.marketplace.com.br/img/113.jpg,2025-04-01 03:06:00+00:00,True
+114,C&A Vestido Classic Casual,Moda,Vestidos,C&A,394.2,394.2,True,3.8,1452,https://cdn.marketplace.com.br/img/114.jpg,2025-03-14 03:06:00+00:00,False
+115,Hering Óculos Plus,Moda,Acessórios,Hering,144.96,144.96,True,,0,https://cdn.marketplace.com.br/img/115.jpg,2025-04-13 03:06:00+00:00,True
+116,Nike Legging Prime,Moda,Calças,Nike,568.33,568.33,True,3.4,1864,https://cdn.marketplace.com.br/img/116.jpg,2025-01-22 03:06:00+00:00,True
+117,C&A Vestido Ultra Midi,Moda,Vestidos,C&A,358.9,358.9,True,3.9,1185,https://cdn.marketplace.com.br/img/117.jpg,2025-07-17 03:06:00+00:00,True
+118,Renner Cinto Classic,Moda,Acessórios,Renner,92.09,92.09,True,4.4,1665,https://cdn.marketplace.com.br/img/118.jpg,2025-01-23 03:06:00+00:00,True
+119,Nike Óculos Sport,Moda,Acessórios,Nike,255.72,255.72,True,3.5,1521,https://cdn.marketplace.com.br/img/119.jpg,2025-03-17 03:06:00+00:00,True
+120,C&A Vestido Sport Casual,Moda,Vestidos,C&A,462.73,462.73,True,2.5,1764,https://cdn.marketplace.com.br/img/120.jpg,2025-04-06 03:06:00+00:00,True
+121,Hering Legging Ultra,Moda,Calças,Hering,106.93,141.49,True,3.9,1807,https://cdn.marketplace.com.br/img/121.jpg,2025-02-12 03:06:00+00:00,True
+122,C&A Jeans Lite Slim,Moda,Calças,C&A,151.2,176.26,True,5.0,1969,https://cdn.marketplace.com.br/img/122.jpg,2025-10-17 03:06:00+00:00,True
+123,Hering Vestido Prime Casual,Moda,Vestidos,Hering,329.24,329.24,True,4.4,36,https://cdn.marketplace.com.br/img/123.jpg,2025-10-10 03:06:00+00:00,True
+124,Hering Camiseta Sport Básica,Moda,Camisetas,Hering,71.24,93.91,True,3.0,1657,https://cdn.marketplace.com.br/img/124.jpg,2025-08-30 03:06:00+00:00,True
+125,Adidas Polo Ultra,Moda,Camisetas,Adidas,202.07,202.07,True,4.2,915,https://cdn.marketplace.com.br/img/125.jpg,2025-07-22 03:06:00+00:00,True
+126,Nike Cinto Plus,Moda,Acessórios,Nike,299.45,299.45,True,4.2,969,https://cdn.marketplace.com.br/img/126.jpg,2025-10-16 03:06:00+00:00,True
+127,Adidas Polo Prime,Moda,Camisetas,Adidas,426.13,426.13,True,2.8,999,https://cdn.marketplace.com.br/img/127.jpg,2025-03-28 03:06:00+00:00,True
+128,C&A Calça Prime Cargo,Moda,Calças,C&A,355.73,470.29,True,4.7,1805,https://cdn.marketplace.com.br/img/128.jpg,2025-11-14 03:06:00+00:00,True
+129,Zara Sapatênis Ultra,Moda,Calçados,Zara,184.45,184.45,False,2.6,342,https://cdn.marketplace.com.br/img/129.jpg,2025-02-10 03:06:00+00:00,True
+130,Zara T-Shirt Prime Premium,Moda,Camisetas,Zara,230.54,295.07,True,3.9,446,https://cdn.marketplace.com.br/img/130.jpg,2025-07-28 03:06:00+00:00,True
+131,Hering Polo Prime,Moda,Camisetas,Hering,167.96,257.51,True,2.7,149,https://cdn.marketplace.com.br/img/131.jpg,2025-10-10 03:06:00+00:00,True
+132,Renner T-Shirt Lite Premium,Moda,Camisetas,Renner,372.73,433.88,True,3.9,1867,https://cdn.marketplace.com.br/img/132.jpg,2025-02-13 03:06:00+00:00,True
+133,Adidas Bota Neo,Moda,Calçados,Adidas,553.95,553.95,True,4.4,1263,https://cdn.marketplace.com.br/img/133.jpg,2025-11-14 03:06:00+00:00,True
+134,C&A Vestido Neo Casual,Moda,Vestidos,C&A,77.78,110.43,True,,0,https://cdn.marketplace.com.br/img/134.jpg,2025-01-20 03:06:00+00:00,True
+135,Adidas Sapatênis Sport,Moda,Calçados,Adidas,344.81,498.71,True,3.3,899,https://cdn.marketplace.com.br/img/135.jpg,2025-12-08 03:06:00+00:00,True
+136,Etna Panela Lite,Casa & Decoração,Cozinha,Etna,258.2,258.2,True,4.2,1556,https://cdn.marketplace.com.br/img/136.jpg,2025-08-09 03:06:00+00:00,True
+137,Tramontina Frigideira Plus,Casa & Decoração,Cozinha,Tramontina,1823.6,1957.5,True,3.3,1353,https://cdn.marketplace.com.br/img/137.jpg,2025-07-30 03:06:00+00:00,True
+138,Tok&Stok Edredom Elite,Casa & Decoração,Cama & Banho,Tok&Stok,2445.53,2445.53,True,3.5,1255,https://cdn.marketplace.com.br/img/138.jpg,2025-07-08 03:06:00+00:00,True
+139,Tramontina Jogo de Talheres Neo,Casa & Decoração,Cozinha,Tramontina,2485.96,2485.96,True,,0,https://cdn.marketplace.com.br/img/139.jpg,2025-11-01 03:06:00+00:00,False
+140,Etna Jogo de Talheres Sport,Casa & Decoração,Cozinha,Etna,585.19,585.19,True,3.7,497,https://cdn.marketplace.com.br/img/140.jpg,2025-06-28 03:06:00+00:00,True
+141,Etna Frigideira Lite,Casa & Decoração,Cozinha,Etna,1959.09,2596.59,True,3.5,554,https://cdn.marketplace.com.br/img/141.jpg,2025-12-12 03:06:00+00:00,True
+142,Camicado Mesa Classic,Casa & Decoração,Móveis,Camicado,2070.54,2070.54,True,3.7,715,https://cdn.marketplace.com.br/img/142.jpg,2025-04-30 03:06:00+00:00,True
+143,Tramontina Mesa Prime,Casa & Decoração,Móveis,Tramontina,1140.35,1564.76,True,4.5,1529,https://cdn.marketplace.com.br/img/143.jpg,2025-10-07 03:06:00+00:00,True
+144,Camicado Quadro Ultra,Casa & Decoração,Decoração,Camicado,1535.47,1535.47,True,2.9,773,https://cdn.marketplace.com.br/img/144.jpg,2025-01-17 03:06:00+00:00,True
+145,Etna Spot LED Pro,Casa & Decoração,Iluminação,Etna,900.33,900.33,True,2.4,1585,https://cdn.marketplace.com.br/img/145.jpg,2025-03-16 03:06:00+00:00,True
+146,Tok&Stok Cadeira Prime,Casa & Decoração,Móveis,Tok&Stok,144.91,144.91,True,5.0,351,https://cdn.marketplace.com.br/img/146.jpg,2025-03-20 03:06:00+00:00,True
+147,Tramontina Luminária Elite,Casa & Decoração,Iluminação,Tramontina,1509.91,1803.52,True,5.0,414,https://cdn.marketplace.com.br/img/147.jpg,2025-06-03 03:06:00+00:00,True
+148,Camicado Mesa Max,Casa & Decoração,Móveis,Camicado,2020.84,2020.84,True,2.8,1662,https://cdn.marketplace.com.br/img/148.jpg,2025-03-06 03:06:00+00:00,True
+149,Camicado Edredom Neo,Casa & Decoração,Cama & Banho,Camicado,1784.65,2264.4,True,,0,https://cdn.marketplace.com.br/img/149.jpg,2025-06-03 03:06:00+00:00,True
+150,Tramontina Espelho Neo,Casa & Decoração,Decoração,Tramontina,1635.77,1635.77,True,4.3,413,https://cdn.marketplace.com.br/img/150.jpg,2025-12-03 03:06:00+00:00,True
+151,Tramontina Frigideira Sport,Casa & Decoração,Cozinha,Tramontina,34.93,47.71,True,,0,https://cdn.marketplace.com.br/img/151.jpg,2025-05-23 03:06:00+00:00,True
+152,Etna Mesa Prime,Casa & Decoração,Móveis,Etna,1852.54,1852.54,False,4.0,1036,https://cdn.marketplace.com.br/img/152.jpg,2025-06-07 03:06:00+00:00,True
+153,Tok&Stok Jogo de Talheres Max,Casa & Decoração,Cozinha,Tok&Stok,2528.97,2528.97,True,,0,https://cdn.marketplace.com.br/img/153.jpg,2025-09-13 03:06:00+00:00,True
+154,Etna Quadro Neo,Casa & Decoração,Decoração,Etna,1582.95,1249.51,True,4.0,1044,https://cdn.marketplace.com.br/img/154.jpg,2025-04-04 03:06:00+00:00,True
+155,Camicado Quadro Sport,Casa & Decoração,Decoração,Camicado,1693.12,1693.12,False,4.4,1841,https://cdn.marketplace.com.br/img/155.jpg,2025-02-17 03:06:00+00:00,True
+156,Camicado Frigideira Sport,Casa & Decoração,Cozinha,Camicado,2128.79,2128.79,True,3.4,183,https://cdn.marketplace.com.br/img/156.jpg,2025-09-11 03:06:00+00:00,True
+157,Tok&Stok Edredom Classic,Casa & Decoração,Cama & Banho,Tok&Stok,2800.58,2800.58,True,3.6,78,https://cdn.marketplace.com.br/img/157.jpg,2025-08-31 03:06:00+00:00,True
+158,Tok&Stok Panela Sport,Casa & Decoração,Cozinha,Tok&Stok,958.52,1016.74,True,3.0,1901,https://cdn.marketplace.com.br/img/158.jpg,2025-11-12 03:06:00+00:00,True
+159,Tramontina Luminária Ultra,Casa & Decoração,Iluminação,Tramontina,1453.0,1453.0,False,3.9,612,https://cdn.marketplace.com.br/img/159.jpg,2025-02-10 03:06:00+00:00,True
+160,Camicado Jogo de Cama Lite,Casa & Decoração,Cama & Banho,Camicado,1977.63,1977.63,True,,0,https://cdn.marketplace.com.br/img/160.jpg,2025-01-25 03:06:00+00:00,True
+161,Etna Toalha Neo,Casa & Decoração,Cama & Banho,Etna,1297.98,1297.98,True,3.9,1643,https://cdn.marketplace.com.br/img/161.jpg,2025-10-10 03:06:00+00:00,True
+162,Camicado Frigideira Pro,Casa & Decoração,Cozinha,Camicado,2039.23,2320.04,True,3.6,1690,https://cdn.marketplace.com.br/img/162.jpg,2025-08-13 03:06:00+00:00,True
+163,Tok&Stok Spot LED Prime,Casa & Decoração,Iluminação,Tok&Stok,610.23,610.23,True,4.5,445,https://cdn.marketplace.com.br/img/163.jpg,2025-07-25 03:06:00+00:00,True
+164,Tok&Stok Spot LED Neo,Casa & Decoração,Iluminação,Tok&Stok,1692.34,1692.34,True,3.9,529,https://cdn.marketplace.com.br/img/164.jpg,2025-09-26 03:06:00+00:00,True
+165,Etna Mesa Ultra,Casa & Decoração,Móveis,Etna,2838.08,2838.08,True,3.5,637,https://cdn.marketplace.com.br/img/165.jpg,2025-07-19 03:06:00+00:00,True
+166,Tramontina Toalha Max,Casa & Decoração,Cama & Banho,Tramontina,174.73,174.73,True,4.7,214,https://cdn.marketplace.com.br/img/166.jpg,2025-08-12 03:06:00+00:00,True
+167,Camicado Toalha Classic,Casa & Decoração,Cama & Banho,Camicado,1689.24,1689.24,True,3.2,1923,https://cdn.marketplace.com.br/img/167.jpg,2025-11-19 03:06:00+00:00,True
+168,Tramontina Jogo de Cama Plus,Casa & Decoração,Cama & Banho,Tramontina,298.26,298.26,True,4.8,485,https://cdn.marketplace.com.br/img/168.jpg,2025-10-09 03:06:00+00:00,True
+169,Etna Abajur Plus,Casa & Decoração,Iluminação,Etna,963.85,963.85,True,3.2,929,https://cdn.marketplace.com.br/img/169.jpg,2025-05-27 03:06:00+00:00,True
+170,Camicado Jogo de Talheres Ultra,Casa & Decoração,Cozinha,Camicado,1332.06,1332.06,True,4.2,575,https://cdn.marketplace.com.br/img/170.jpg,2025-09-15 03:06:00+00:00,True
+171,Etna Frigideira Sport,Casa & Decoração,Cozinha,Etna,1224.24,1293.82,False,3.8,930,https://cdn.marketplace.com.br/img/171.jpg,2025-08-01 03:06:00+00:00,True
+172,Camicado Panela Classic,Casa & Decoração,Cozinha,Camicado,2460.71,2460.71,True,3.7,725,https://cdn.marketplace.com.br/img/172.jpg,2025-05-31 03:06:00+00:00,True
+173,Etna Toalha Ultra,Casa & Decoração,Cama & Banho,Etna,261.75,356.47,True,4.8,338,https://cdn.marketplace.com.br/img/173.jpg,2025-02-22 03:06:00+00:00,True
+174,Decathlon Elástico Max,Esportes,Fitness,Decathlon,49.01,49.01,True,3.1,1684,https://cdn.marketplace.com.br/img/174.jpg,2025-08-31 03:06:00+00:00,True
+175,Puma Sunga Classic,Esportes,Natação,Puma,191.94,191.94,True,4.2,1678,https://cdn.marketplace.com.br/img/175.jpg,2025-11-24 03:06:00+00:00,True
+176,Under Armour Tênis Neo Running,Esportes,Corrida,Under Armour,544.72,544.72,True,3.9,1571,https://cdn.marketplace.com.br/img/176.jpg,2025-08-08 03:06:00+00:00,True
+177,Nike Barraca Elite,Esportes,Camping,Nike,598.33,598.33,True,4.7,947,https://cdn.marketplace.com.br/img/177.jpg,2025-04-02 03:06:00+00:00,False
+178,Under Armour Elástico Classic,Esportes,Fitness,Under Armour,243.08,243.08,True,3.6,320,https://cdn.marketplace.com.br/img/178.jpg,2025-07-25 03:06:00+00:00,True
+179,Decathlon Touca Classic,Esportes,Natação,Decathlon,351.53,257.34,True,3.5,1646,https://cdn.marketplace.com.br/img/179.jpg,2025-10-08 03:06:00+00:00,True
+180,Nike Creatina Max,Esportes,Suplementos,Nike,232.43,232.43,True,3.7,1013,https://cdn.marketplace.com.br/img/180.jpg,2025-06-15 03:06:00+00:00,True
+181,Adidas Haltere Elitekg,Esportes,Fitness,Adidas,425.92,425.92,True,2.6,1897,https://cdn.marketplace.com.br/img/181.jpg,2025-08-08 03:06:00+00:00,True
+182,Under Armour Creatina Lite,Esportes,Suplementos,Under Armour,636.22,636.22,True,,0,https://cdn.marketplace.com.br/img/182.jpg,2025-04-17 03:06:00+00:00,True
+183,Adidas Lanterna Prime,Esportes,Camping,Adidas,651.88,787.38,True,,0,https://cdn.marketplace.com.br/img/183.jpg,2025-11-02 03:06:00+00:00,False
+184,Puma Sunga Pro,Esportes,Natação,Puma,374.01,374.01,False,5.0,701,https://cdn.marketplace.com.br/img/184.jpg,2025-11-14 03:06:00+00:00,True
+185,Puma Óculos Sport Natação,Esportes,Natação,Puma,383.61,383.61,True,3.2,233,https://cdn.marketplace.com.br/img/185.jpg,2025-04-12 03:06:00+00:00,True
+186,Decathlon Elástico Prime,Esportes,Fitness,Decathlon,568.05,470.35,True,5.0,584,https://cdn.marketplace.com.br/img/186.jpg,2025-09-15 03:06:00+00:00,True
+187,Adidas BCAA Sport,Esportes,Suplementos,Adidas,759.85,583.98,True,3.2,1876,https://cdn.marketplace.com.br/img/187.jpg,2025-01-29 03:06:00+00:00,True
+188,Puma Tapete Yoga Ultra,Esportes,Fitness,Puma,118.69,118.69,True,,0,https://cdn.marketplace.com.br/img/188.jpg,2025-05-04 03:06:00+00:00,True
+189,Nike Creatina Plus,Esportes,Suplementos,Nike,713.13,713.13,True,,0,https://cdn.marketplace.com.br/img/189.jpg,2025-06-15 03:06:00+00:00,True
+190,Under Armour Barraca Plus,Esportes,Camping,Under Armour,435.64,435.64,True,1.8,1335,https://cdn.marketplace.com.br/img/190.jpg,2025-03-07 03:06:00+00:00,True
+191,Nike Elástico Elite,Esportes,Fitness,Nike,530.43,530.43,True,5.0,375,https://cdn.marketplace.com.br/img/191.jpg,2025-10-21 03:06:00+00:00,True
+192,Puma Lanterna Max,Esportes,Camping,Puma,373.75,373.75,True,,0,https://cdn.marketplace.com.br/img/192.jpg,2025-10-19 03:06:00+00:00,True
+193,Puma Haltere Elitekg,Esportes,Fitness,Puma,258.71,315.18,True,4.8,1451,https://cdn.marketplace.com.br/img/193.jpg,2025-08-29 03:06:00+00:00,True
+194,Adidas Creatina Pro,Esportes,Suplementos,Adidas,70.11,106.48,True,4.9,557,https://cdn.marketplace.com.br/img/194.jpg,2025-04-17 03:06:00+00:00,True
+195,Under Armour Sunga Max,Esportes,Natação,Under Armour,43.0,43.0,True,4.4,1732,https://cdn.marketplace.com.br/img/195.jpg,2025-04-03 03:06:00+00:00,True
+196,Under Armour BCAA Lite,Esportes,Suplementos,Under Armour,48.88,48.88,True,3.5,1933,https://cdn.marketplace.com.br/img/196.jpg,2025-07-24 03:06:00+00:00,True
+197,Under Armour Sunga Plus,Esportes,Natação,Under Armour,210.68,225.88,True,2.2,1628,https://cdn.marketplace.com.br/img/197.jpg,2025-03-28 03:06:00+00:00,True
+198,Under Armour Bermuda Pro,Esportes,Corrida,Under Armour,594.2,594.2,True,4.4,999,https://cdn.marketplace.com.br/img/198.jpg,2025-01-26 03:06:00+00:00,True
+199,Puma Creatina Max,Esportes,Suplementos,Puma,127.49,127.49,True,3.3,1208,https://cdn.marketplace.com.br/img/199.jpg,2025-12-13 03:06:00+00:00,False
+200,Under Armour Elástico Sport,Esportes,Fitness,Under Armour,785.17,785.17,True,3.9,1126,https://cdn.marketplace.com.br/img/200.jpg,2025-10-19 03:06:00+00:00,True
+201,Under Armour Óculos Max Natação,Esportes,Natação,Under Armour,472.29,472.29,True,4.1,365,https://cdn.marketplace.com.br/img/201.jpg,2025-07-23 03:06:00+00:00,True
+202,Decathlon Barraca Pro,Esportes,Camping,Decathlon,681.3,681.3,True,5.0,1037,https://cdn.marketplace.com.br/img/202.jpg,2025-06-27 03:06:00+00:00,False
+203,Under Armour BCAA Neo,Esportes,Suplementos,Under Armour,433.5,433.5,True,4.0,1758,https://cdn.marketplace.com.br/img/203.jpg,2025-03-05 03:06:00+00:00,True
+204,Nike Bermuda Prime,Esportes,Corrida,Nike,59.13,59.13,True,,0,https://cdn.marketplace.com.br/img/204.jpg,2025-08-14 03:06:00+00:00,True
+205,Nike Elástico Plus,Esportes,Fitness,Nike,105.81,105.81,True,5.0,1382,https://cdn.marketplace.com.br/img/205.jpg,2025-10-19 03:06:00+00:00,True
+206,Decathlon Barraca Plus,Esportes,Camping,Decathlon,20.42,29.62,True,,0,https://cdn.marketplace.com.br/img/206.jpg,2025-07-24 03:06:00+00:00,True
+207,Adidas Lanterna Sport,Esportes,Camping,Adidas,296.77,337.13,True,4.5,733,https://cdn.marketplace.com.br/img/207.jpg,2025-05-16 03:06:00+00:00,True
+208,Decathlon Haltere Ultrakg,Esportes,Fitness,Decathlon,191.24,191.24,True,3.6,544,https://cdn.marketplace.com.br/img/208.jpg,2025-10-20 03:06:00+00:00,True
+209,Puma Lanterna Plus,Esportes,Camping,Puma,578.21,578.21,True,4.1,1490,https://cdn.marketplace.com.br/img/209.jpg,2025-12-21 03:06:00+00:00,True
+210,Adidas Bermuda Classic,Esportes,Corrida,Adidas,743.6,605.1,True,,0,https://cdn.marketplace.com.br/img/210.jpg,2025-09-28 03:06:00+00:00,True
+211,Nike Relógio GPS Ultra,Esportes,Corrida,Nike,505.57,753.75,True,,0,https://cdn.marketplace.com.br/img/211.jpg,2025-08-18 03:06:00+00:00,True
+212,O Boticário Body Splash Max,Beleza,Perfumaria,O Boticário,181.92,181.92,True,3.4,1722,https://cdn.marketplace.com.br/img/212.jpg,2025-05-29 03:06:00+00:00,True
+213,O Boticário Protetor Solar Prime,Beleza,Skincare,O Boticário,112.78,112.78,True,4.1,1737,https://cdn.marketplace.com.br/img/213.jpg,2025-12-12 03:06:00+00:00,True
+214,O Boticário Creme Corporal Ultra,Beleza,Corpo,O Boticário,206.85,206.85,True,3.9,1792,https://cdn.marketplace.com.br/img/214.jpg,2025-05-20 03:06:00+00:00,True
+215,Dove Hidratante Ultra,Beleza,Skincare,Dove,331.44,331.44,True,3.6,621,https://cdn.marketplace.com.br/img/215.jpg,2025-01-24 03:06:00+00:00,True
+216,O Boticário Body Splash Neo,Beleza,Perfumaria,O Boticário,263.16,263.16,True,4.1,1276,https://cdn.marketplace.com.br/img/216.jpg,2025-05-12 03:06:00+00:00,True
+217,Dove Rímel Ultra,Beleza,Maquiagem,Dove,189.33,279.8,True,4.3,884,https://cdn.marketplace.com.br/img/217.jpg,2025-12-09 03:06:00+00:00,True
+218,Avon Batom Neo,Beleza,Maquiagem,Avon,308.39,308.39,True,3.6,1996,https://cdn.marketplace.com.br/img/218.jpg,2025-03-25 03:06:00+00:00,True
+219,O Boticário Sérum Neo,Beleza,Skincare,O Boticário,182.57,182.57,True,4.6,720,https://cdn.marketplace.com.br/img/219.jpg,2025-11-20 03:06:00+00:00,True
+220,MAC Perfume Elite 100ml,Beleza,Perfumaria,MAC,316.43,316.43,True,5.0,195,https://cdn.marketplace.com.br/img/220.jpg,2025-07-29 03:06:00+00:00,True
+221,Avon Colônia Lite,Beleza,Perfumaria,Avon,383.65,383.65,True,2.8,1516,https://cdn.marketplace.com.br/img/221.jpg,2025-06-17 03:06:00+00:00,True
+222,MAC Base Max,Beleza,Maquiagem,MAC,71.48,71.48,True,3.3,491,https://cdn.marketplace.com.br/img/222.jpg,2025-02-15 03:06:00+00:00,True
+223,Natura Body Splash Classic,Beleza,Perfumaria,Natura,280.55,280.55,True,3.7,422,https://cdn.marketplace.com.br/img/223.jpg,2025-05-21 03:06:00+00:00,True
+224,Dove Desodorante Neo,Beleza,Corpo,Dove,372.43,372.43,True,3.4,3,https://cdn.marketplace.com.br/img/224.jpg,2025-12-27 03:06:00+00:00,True
+225,Avon Shampoo Pro,Beleza,Cabelos,Avon,392.66,392.66,True,3.8,1163,https://cdn.marketplace.com.br/img/225.jpg,2025-01-10 03:06:00+00:00,True
+226,O Boticário Batom Lite,Beleza,Maquiagem,O Boticário,334.22,334.22,True,4.1,848,https://cdn.marketplace.com.br/img/226.jpg,2025-04-30 03:06:00+00:00,True
+227,Natura Body Splash Prime,Beleza,Perfumaria,Natura,315.72,315.72,True,4.2,1536,https://cdn.marketplace.com.br/img/227.jpg,2025-07-30 03:06:00+00:00,True
+228,Avon Rímel Plus,Beleza,Maquiagem,Avon,213.05,213.05,False,4.2,1900,https://cdn.marketplace.com.br/img/228.jpg,2025-08-14 03:06:00+00:00,True
+229,O Boticário Máscara Pro,Beleza,Cabelos,O Boticário,32.19,32.19,True,2.3,274,https://cdn.marketplace.com.br/img/229.jpg,2025-07-13 03:06:00+00:00,True
+230,O Boticário Shampoo Plus,Beleza,Cabelos,O Boticário,362.26,362.26,True,,0,https://cdn.marketplace.com.br/img/230.jpg,2025-02-21 03:06:00+00:00,False
+231,Natura Base Neo,Beleza,Maquiagem,Natura,231.78,348.61,True,4.6,99,https://cdn.marketplace.com.br/img/231.jpg,2025-10-18 03:06:00+00:00,True
+232,O Boticário Perfume Ultra 100ml,Beleza,Perfumaria,O Boticário,308.7,308.7,False,3.1,112,https://cdn.marketplace.com.br/img/232.jpg,2025-09-21 03:06:00+00:00,True
+233,Avon Condicionador Max,Beleza,Cabelos,Avon,210.06,210.06,True,3.0,994,https://cdn.marketplace.com.br/img/233.jpg,2025-12-09 03:06:00+00:00,True
+234,Natura Base Prime,Beleza,Maquiagem,Natura,21.72,32.38,True,3.3,1350,https://cdn.marketplace.com.br/img/234.jpg,2025-01-10 03:06:00+00:00,True
+235,Dove Sabonete Max,Beleza,Corpo,Dove,29.89,34.88,True,3.9,1933,https://cdn.marketplace.com.br/img/235.jpg,2025-01-24 03:06:00+00:00,True
+236,Companhia das Letras Graphic Novel Max,Livros,HQs,Companhia das Letras,35.33,35.33,True,3.3,661,https://cdn.marketplace.com.br/img/236.jpg,2025-05-06 03:06:00+00:00,True
+237,Intrínseca Mindset Plus,Livros,Não-Ficção,Intrínseca,119.19,119.19,True,,0,https://cdn.marketplace.com.br/img/237.jpg,2025-04-04 03:06:00+00:00,True
+238,Rocco O Ultra Perdido,Livros,Ficção,Rocco,24.25,24.25,True,4.9,1112,https://cdn.marketplace.com.br/img/238.jpg,2025-06-22 03:06:00+00:00,True
+239,Intrínseca Python Prime,Livros,Técnicos,Intrínseca,27.42,27.42,True,,0,https://cdn.marketplace.com.br/img/239.jpg,2025-07-17 03:06:00+00:00,True
+240,Darkside A Aventura de Max,Livros,Infantil,Darkside,26.54,26.54,True,3.7,1124,https://cdn.marketplace.com.br/img/240.jpg,2025-12-01 03:06:00+00:00,True
+241,Rocco Crônicas de Lite,Livros,Ficção,Rocco,27.31,27.31,True,2.2,728,https://cdn.marketplace.com.br/img/241.jpg,2025-02-21 03:06:00+00:00,True
+242,Companhia das Letras Crônicas de Ultra,Livros,Ficção,Companhia das Letras,80.57,80.57,True,2.1,891,https://cdn.marketplace.com.br/img/242.jpg,2025-11-20 03:06:00+00:00,True
+243,Darkside Turma do Plus,Livros,Infantil,Darkside,131.9,131.9,True,4.7,451,https://cdn.marketplace.com.br/img/243.jpg,2025-09-10 03:06:00+00:00,True
+244,Darkside Hábitos Pro,Livros,Não-Ficção,Darkside,12.67,12.67,True,4.6,1093,https://cdn.marketplace.com.br/img/244.jpg,2025-09-06 03:06:00+00:00,True
+245,Darkside Hábitos Max,Livros,Não-Ficção,Darkside,93.07,104.76,True,3.7,391,https://cdn.marketplace.com.br/img/245.jpg,2025-10-15 03:06:00+00:00,True
+246,Darkside Elite Vol. 1,Livros,HQs,Darkside,48.58,48.58,True,,0,https://cdn.marketplace.com.br/img/246.jpg,2025-07-29 03:06:00+00:00,True
+247,Companhia das Letras O Poder de Classic,Livros,Não-Ficção,Companhia das Letras,113.2,113.2,True,3.1,1369,https://cdn.marketplace.com.br/img/247.jpg,2025-03-17 03:06:00+00:00,True
+248,Intrínseca O Poder de Sport,Livros,Não-Ficção,Intrínseca,87.55,94.41,True,3.3,1132,https://cdn.marketplace.com.br/img/248.jpg,2025-10-10 03:06:00+00:00,True
+249,Intrínseca Saga Max,Livros,HQs,Intrínseca,62.16,62.16,True,2.5,258,https://cdn.marketplace.com.br/img/249.jpg,2025-10-29 03:06:00+00:00,True
+250,Rocco Graphic Novel Neo,Livros,HQs,Rocco,101.55,141.37,True,3.9,1473,https://cdn.marketplace.com.br/img/250.jpg,2025-03-07 03:06:00+00:00,True
+251,Rocco A Aventura de Sport,Livros,Infantil,Rocco,65.76,65.76,True,3.1,1531,https://cdn.marketplace.com.br/img/251.jpg,2025-01-26 03:06:00+00:00,True
+252,Companhia das Letras Turma do Classic,Livros,Infantil,Companhia das Letras,71.27,71.27,True,3.7,1970,https://cdn.marketplace.com.br/img/252.jpg,2025-06-04 03:06:00+00:00,True
+253,Rocco Graphic Novel Lite,Livros,HQs,Rocco,10.47,11.82,True,5.0,1338,https://cdn.marketplace.com.br/img/253.jpg,2025-07-25 03:06:00+00:00,True
+254,Intrínseca O Poder de Max,Livros,Não-Ficção,Intrínseca,56.4,78.99,True,3.6,603,https://cdn.marketplace.com.br/img/254.jpg,2025-05-09 03:06:00+00:00,True
+255,Companhia das Letras O Neo Perdido,Livros,Ficção,Companhia das Letras,121.86,121.86,True,4.6,123,https://cdn.marketplace.com.br/img/255.jpg,2025-06-28 03:06:00+00:00,True
+256,Darkside Mindset Ultra,Livros,Não-Ficção,Darkside,119.66,119.66,True,3.6,1229,https://cdn.marketplace.com.br/img/256.jpg,2025-04-17 03:06:00+00:00,True
+257,Intrínseca Cloud Pro,Livros,Técnicos,Intrínseca,116.92,116.92,True,4.2,455,https://cdn.marketplace.com.br/img/257.jpg,2025-09-15 03:06:00+00:00,True
+258,Companhia das Letras A Aventura de Lite,Livros,Infantil,Companhia das Letras,139.34,139.34,True,3.0,1914,https://cdn.marketplace.com.br/img/258.jpg,2025-11-11 03:06:00+00:00,True
+259,Darkside Saga Sport,Livros,HQs,Darkside,54.76,62.19,True,3.4,425,https://cdn.marketplace.com.br/img/259.jpg,2025-09-06 03:06:00+00:00,True
+260,Rocco Turma do Classic,Livros,Infantil,Rocco,9.55,11.76,True,4.6,1648,https://cdn.marketplace.com.br/img/260.jpg,2025-11-18 03:06:00+00:00,False
+261,Companhia das Letras O Poder de Plus,Livros,Não-Ficção,Companhia das Letras,51.45,51.45,True,4.7,674,https://cdn.marketplace.com.br/img/261.jpg,2025-06-15 03:06:00+00:00,True
+262,Intrínseca Cloud Elite,Livros,Técnicos,Intrínseca,96.18,96.18,True,5.0,330,https://cdn.marketplace.com.br/img/262.jpg,2025-07-11 03:06:00+00:00,True
+263,Rocco Hábitos Neo,Livros,Não-Ficção,Rocco,60.29,90.46,True,4.1,17,https://cdn.marketplace.com.br/img/263.jpg,2025-10-23 03:06:00+00:00,True
+264,Rocco Data Science Pro,Livros,Técnicos,Rocco,143.1,143.1,True,3.8,1411,https://cdn.marketplace.com.br/img/264.jpg,2025-06-09 03:06:00+00:00,True
+265,Darkside Hábitos Neo,Livros,Não-Ficção,Darkside,111.18,111.18,True,2.1,1769,https://cdn.marketplace.com.br/img/265.jpg,2025-06-17 03:06:00+00:00,True
+266,Companhia das Letras Hábitos Max,Livros,Não-Ficção,Companhia das Letras,11.77,11.77,True,,0,https://cdn.marketplace.com.br/img/266.jpg,2025-11-15 03:06:00+00:00,False
+267,Rocco A Aventura de Elite,Livros,Infantil,Rocco,109.87,145.43,True,3.7,335,https://cdn.marketplace.com.br/img/267.jpg,2025-12-13 03:06:00+00:00,True
+268,Rocco Graphic Novel Max,Livros,HQs,Rocco,58.97,58.97,False,4.5,619,https://cdn.marketplace.com.br/img/268.jpg,2025-09-28 03:06:00+00:00,True
+269,LEGO Blocos Plus,Brinquedos,Educativos,LEGO,390.85,390.85,True,4.8,1893,https://cdn.marketplace.com.br/img/269.jpg,2025-02-18 03:06:00+00:00,True
+270,Hasbro Quebra-Cabeça Max,Brinquedos,Educativos,Hasbro,317.73,317.73,True,4.1,727,https://cdn.marketplace.com.br/img/270.jpg,2025-03-31 03:06:00+00:00,True
+271,Fisher-Price Drone Sport Mini,Brinquedos,Eletrônicos,Fisher-Price,167.21,167.21,True,4.0,1849,https://cdn.marketplace.com.br/img/271.jpg,2025-11-23 03:06:00+00:00,True
+272,Mattel LEGO Technic Pro,Brinquedos,LEGO,Mattel,245.49,300.54,True,5.0,195,https://cdn.marketplace.com.br/img/272.jpg,2025-07-20 03:06:00+00:00,True
+273,Estrela Robô Sport,Brinquedos,Eletrônicos,Estrela,153.56,153.56,True,,0,https://cdn.marketplace.com.br/img/273.jpg,2025-06-09 03:06:00+00:00,True
+274,Mattel LEGO Lite,Brinquedos,LEGO,Mattel,224.42,196.71,True,,0,https://cdn.marketplace.com.br/img/274.jpg,2025-09-28 03:06:00+00:00,True
+275,LEGO LOL Elite,Brinquedos,Bonecas,LEGO,176.04,176.04,True,5.0,331,https://cdn.marketplace.com.br/img/275.jpg,2025-07-04 03:06:00+00:00,True
+276,Estrela Cartas Sport,Brinquedos,Jogos,Estrela,22.64,22.64,True,3.6,1950,https://cdn.marketplace.com.br/img/276.jpg,2025-03-04 03:06:00+00:00,False
+277,LEGO Barbie Sport,Brinquedos,Bonecas,LEGO,290.33,290.33,True,4.7,1597,https://cdn.marketplace.com.br/img/277.jpg,2025-12-04 03:06:00+00:00,True
+278,Fisher-Price Barbie Classic,Brinquedos,Bonecas,Fisher-Price,129.76,129.76,True,2.6,1587,https://cdn.marketplace.com.br/img/278.jpg,2025-08-06 03:06:00+00:00,True
+279,Mattel Kit Ciência Classic,Brinquedos,Educativos,Mattel,261.82,261.82,True,3.9,888,https://cdn.marketplace.com.br/img/279.jpg,2025-10-19 03:06:00+00:00,True
+280,Hasbro Blocos Classic,Brinquedos,Educativos,Hasbro,299.16,331.25,True,3.5,943,https://cdn.marketplace.com.br/img/280.jpg,2025-06-07 03:06:00+00:00,True
+281,Mattel LEGO Prime,Brinquedos,LEGO,Mattel,102.19,102.19,True,5.0,1180,https://cdn.marketplace.com.br/img/281.jpg,2025-07-02 03:06:00+00:00,True
+282,Fisher-Price Boneca Neo,Brinquedos,Bonecas,Fisher-Price,238.98,328.34,True,4.0,439,https://cdn.marketplace.com.br/img/282.jpg,2025-08-11 03:06:00+00:00,True
+283,Hasbro Console Elite,Brinquedos,Eletrônicos,Hasbro,114.29,114.29,True,4.4,212,https://cdn.marketplace.com.br/img/283.jpg,2025-03-15 03:06:00+00:00,True
+284,Fisher-Price Kit Ciência Lite,Brinquedos,Educativos,Fisher-Price,186.7,186.7,True,4.2,1122,https://cdn.marketplace.com.br/img/284.jpg,2025-10-23 03:06:00+00:00,True
+285,Mattel LEGO City Elite,Brinquedos,LEGO,Mattel,61.93,68.37,True,2.3,1320,https://cdn.marketplace.com.br/img/285.jpg,2025-05-11 03:06:00+00:00,True
+286,Estrela Drone Prime Mini,Brinquedos,Eletrônicos,Estrela,195.39,195.39,True,4.0,166,https://cdn.marketplace.com.br/img/286.jpg,2025-01-23 03:06:00+00:00,True
+287,Hasbro LOL Ultra,Brinquedos,Bonecas,Hasbro,249.58,249.58,True,4.0,1852,https://cdn.marketplace.com.br/img/287.jpg,2025-01-24 03:06:00+00:00,True
+288,LEGO Barbie Sport,Brinquedos,Bonecas,LEGO,155.22,155.22,True,3.9,1056,https://cdn.marketplace.com.br/img/288.jpg,2025-11-23 03:06:00+00:00,True
+289,Fisher-Price Boneca Neo,Brinquedos,Bonecas,Fisher-Price,422.25,422.25,True,3.0,1732,https://cdn.marketplace.com.br/img/289.jpg,2025-06-29 03:06:00+00:00,True
+290,Fisher-Price Robô Pro,Brinquedos,Eletrônicos,Fisher-Price,104.14,104.14,True,4.0,1817,https://cdn.marketplace.com.br/img/290.jpg,2025-02-03 03:06:00+00:00,True
+291,Fisher-Price LEGO City Max,Brinquedos,LEGO,Fisher-Price,87.7,124.88,True,2.6,72,https://cdn.marketplace.com.br/img/291.jpg,2025-02-18 03:06:00+00:00,True
+292,Mattel Cartas Pro,Brinquedos,Jogos,Mattel,370.04,370.04,True,3.9,1620,https://cdn.marketplace.com.br/img/292.jpg,2025-12-20 03:06:00+00:00,True
+293,Estrela Quebra-Cabeça Pro,Brinquedos,Educativos,Estrela,92.88,92.88,True,,0,https://cdn.marketplace.com.br/img/293.jpg,2025-11-05 03:06:00+00:00,True
+294,Mattel Cartas Prime,Brinquedos,Jogos,Mattel,22.99,22.99,True,2.5,1535,https://cdn.marketplace.com.br/img/294.jpg,2025-03-22 03:06:00+00:00,True
+295,Mattel Robô Ultra,Brinquedos,Eletrônicos,Mattel,291.89,386.09,True,3.5,384,https://cdn.marketplace.com.br/img/295.jpg,2025-07-06 03:06:00+00:00,True
+296,LEGO Blocos Plus,Brinquedos,Educativos,LEGO,123.34,123.34,True,4.1,904,https://cdn.marketplace.com.br/img/296.jpg,2025-10-22 03:06:00+00:00,True
+297,Mattel Tabuleiro Max,Brinquedos,Jogos,Mattel,273.1,380.27,False,3.7,946,https://cdn.marketplace.com.br/img/297.jpg,2025-09-22 03:06:00+00:00,True
+298,LEGO Blocos Max,Brinquedos,Educativos,LEGO,122.74,185.54,True,4.3,273,https://cdn.marketplace.com.br/img/298.jpg,2025-12-27 03:06:00+00:00,True
+299,Fisher-Price Barbie Lite,Brinquedos,Bonecas,Fisher-Price,324.27,374.65,True,,0,https://cdn.marketplace.com.br/img/299.jpg,2025-03-20 03:06:00+00:00,True
+300,Hasbro LEGO City Max,Brinquedos,LEGO,Hasbro,88.18,88.18,True,,0,https://cdn.marketplace.com.br/img/300.jpg,2025-03-04 03:06:00+00:00,True

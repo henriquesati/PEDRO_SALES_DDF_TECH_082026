@@ -173,8 +173,11 @@ def main():
     pedidos_df = pedidos.generate(carrinhos_df, clientes_df, resgate_df)
     log(f"Pedidos: {len(pedidos_df)} registros", 'OK')
 
-    # ─── Salvar Parquet ──────────────────────────────────────────────
-    log("SALVANDO PARQUET", 'HEAD')
+    # ─── Salvar Parquet & CSV ──────────────────────────────────────────
+    log("SALVANDO DADOS (PARQUET & CSV)", 'HEAD')
+
+    cfg.PARQUET_DIR.mkdir(parents=True, exist_ok=True)
+    cfg.CSV_DIR.mkdir(parents=True, exist_ok=True)
 
     datasets = {
         'clientes':         clientes_df,
@@ -188,11 +191,16 @@ def main():
 
     total_registros = 0
     for nome, df in datasets.items():
-        path = cfg.OUTPUT_DIR / f"{nome}.parquet"
-        df.to_parquet(path, index=False, engine='pyarrow')
-        tamanho = path.stat().st_size / 1024
+        parquet_path = cfg.PARQUET_DIR / f"{nome}.parquet"
+        csv_path = cfg.CSV_DIR / f"{nome}.csv"
+
+        df.to_parquet(parquet_path, index=False, engine='pyarrow')
+        df.to_csv(csv_path, index=False, encoding='utf-8')
+
+        tamanho_pq = parquet_path.stat().st_size / 1024
+        tamanho_csv = csv_path.stat().st_size / 1024
         total_registros += len(df)
-        log(f"{nome}.parquet: {len(df):>7,} registros ({tamanho:.0f} KB)", 'OK')
+        log(f"{nome}: {len(df):>7,} registros | Parquet: {tamanho_pq:.0f} KB | CSV: {tamanho_csv:.0f} KB", 'OK')
 
     log(f"TOTAL: {total_registros:,} registros", 'OK')
 
