@@ -1,0 +1,51 @@
+[
+  {
+    "entity": "clientes",
+    "id": "0327fecc-f826-48fb-bb0a-1493fe18a32c",
+    "name": "clientes",
+    "description": "### Entidade: Clientes (Dimensão Cadastral & RFM)\n**Zona Lakehouse:** Qualify (Silver) | **Localização:** CART_RECOVERY.CLIENTES | **Volumetria:** 2.000 registros\n\n**Visão de Negócio:** Consolida o perfil demográfico, canal de aquisição e segmentação RFM (Recency, Frequency, Monetary) dos clientes para campanhas personalizadas de resgate.\n\n**Dicionário de Colunas:**\n- `cliente_id` (VARCHAR, PK): Identificador UUID exclusivo do cliente.\n- `nome` (VARCHAR, PII): Nome completo do cliente (Dado Sensível LGPD).\n- `email` (VARCHAR, PII): Endereço de email primário para envio de lembretes e descontos.\n- `telefone` (VARCHAR, PII): Telefone para contato via WhatsApp/SMS.\n- `cidade` / `estado` (VARCHAR): Localização geográfica para análise de frete regional.\n- `data_cadastro` (TIMESTAMP): Data e hora de registro no e-commerce.\n- `segmento` (VARCHAR): Segmento comportamental ('premium', 'regular', 'dormant', 'novo').\n- `canal_aquisicao` (VARCHAR): Canal de origem ('organico', 'pago', 'rede_social', 'indicacao').\n- `ltv_estimado` (FLOAT): Lifetime Value estimado em R$.\n- `total_pedidos` (INTEGER): Total de compras finalizadas.\n- `ticket_medio` (FLOAT): Gasto médio por pedido.",
+    "status": "cataloged_updated"
+  },
+  {
+    "entity": "produtos",
+    "id": "65fcfa25-a6f3-4cb8-a444-7fd23df3fa84",
+    "name": "produtos",
+    "description": "### Entidade: Produtos (Catálogo & Estoque)\n**Zona Lakehouse:** Qualify (Silver) | **Localização:** CART_RECOVERY.PRODUTOS | **Volumetria:** 500 registros\n\n**Visão de Negócio:** Catálogo central de itens comercializados no marketplace com controle de estoque, faixas de preço e avaliações dos consumidores.\n\n**Dicionário de Colunas:**\n- `produto_id` (VARCHAR, PK): Identificador UUID exclusivo do produto.\n- `nome` (VARCHAR): Título descritivo do produto visível no e-commerce.\n- `categoria` (VARCHAR): Categoria macro (ex: Eletrônicos, Moda, Casa).\n- `subcategoria` (VARCHAR): Tipo detalhado do produto.\n- `preco` (FLOAT): Preço atual de venda em R$.\n- `estoque` (INTEGER): Quantidade física disponível no centro de distribuição.\n- `marca` (VARCHAR): Fabricante ou marca comercial.\n- `avaliacao_media` (FLOAT): Nota média de satisfação (0 a 5 estrelas).\n- `num_avaliacoes` (INTEGER): Volume total de reviews recebidos.\n- `ativo` (BOOLEAN): Flag indicadora de disponibilidade para venda.",
+    "status": "cataloged_updated"
+  },
+  {
+    "entity": "carrinhos",
+    "id": "e2d3b1bb-bf22-456e-bc66-4ac843deec82",
+    "name": "carrinhos",
+    "description": "### Entidade: Carrinhos (Sessões & Lifecycle de Compra)\n**Zona Lakehouse:** Qualify (Silver) | **Localização:** CART_RECOVERY.CARRINHOS | **Volumetria:** 15.000 registros\n\n**Visão de Negócio:** Tabela central do case de marketing. Registra sessões de carrinho, status de conversão/abandono e timing de inatividade para disparo de resgate.\n\n**Dicionário de Colunas:**\n- `carrinho_id` (VARCHAR, PK): Identificador UUID exclusivo da sessão de carrinho.\n- `cliente_id` (VARCHAR, FK): Referência ao cliente proprietário da sessão.\n- `criado_em` (TIMESTAMP): Data/hora de inicialização do carrinho.\n- `atualizado_em` (TIMESTAMP): Data/hora da última alteração de itens.\n- `status` (VARCHAR): Situação atual ('ativo', 'abandonado', 'recuperado', 'comprado', 'expirado').\n- `valor_total` (FLOAT): Valor monetário total dos itens em R$.\n- `num_itens` (INTEGER): Quantidade de itens físicos no carrinho.\n- `canal` (VARCHAR): Plataforma de origem ('web', 'mobile', 'app').\n- `abandono_em` (TIMESTAMP): Momento de marcação de abandono (30min inativo).\n- `tempo_ate_abandono_min` (FLOAT): Minutos decorridos até a desistência.",
+    "status": "cataloged_updated"
+  },
+  {
+    "entity": "itens_carrinho",
+    "id": "7649755a-c6e8-4b56-a092-be9eefde1dab",
+    "name": "itens_carrinho",
+    "description": "### Entidade: Itens do Carrinho (Composição do Carrinho)\n**Zona Lakehouse:** Qualify (Silver) | **Localização:** CART_RECOVERY.ITENS_CARRINHO | **Volumetria:** 22.500 registros\n\n**Visão de Negócio:** Detalha a composição de produtos adicionados em cada carrinho, snapshots de preço e descontos aplicados por item.\n\n**Dicionário de Colunas:**\n- `item_id` (VARCHAR, PK): Identificador UUID exclusivo da linha de item.\n- `carrinho_id` (VARCHAR, FK): Referência ao carrinho pai.\n- `produto_id` (VARCHAR, FK): Referência ao produto adicionado.\n- `quantidade` (INTEGER): Quantidade de unidades adicionadas.\n- `preco_unitario` (FLOAT): Preço unitário no momento da adição.\n- `subtotal` (FLOAT): Valor bruto (quantidade * preco_unitario).\n- `adicionado_em` (TIMESTAMP): Instante exato de adição ao carrinho.\n- `desconto_aplicado` (FLOAT): Valor monetário de desconto deduzido.",
+    "status": "cataloged_updated"
+  },
+  {
+    "entity": "eventos_carrinho",
+    "id": "397c3ebc-15cb-42d2-a717-a3b5d150c3ea",
+    "name": "eventos_carrinho",
+    "description": "### Entidade: Eventos de Carrinho (Telemetria & Funil de Conversão)\n**Zona Lakehouse:** Qualify (Silver) | **Localização:** CART_RECOVERY.EVENTOS_CARRINHO | **Volumetria:** 72.026 registros\n\n**Visão de Negócio:** Log de cliques, navegação e erros técnicos (gateway de pagamento) que antecedem o abandono ou conversão da compra.\n\n**Dicionário de Colunas:**\n- `evento_id` (VARCHAR, PK): Identificador UUID da ação de telemetria.\n- `carrinho_id` (VARCHAR, FK): Sessão de carrinho associada.\n- `cliente_id` (VARCHAR, FK): Cliente que executou a ação.\n- `tipo_evento` (VARCHAR): Ação ('view_produto', 'add_carrinho', 'view_checkout', 'inicio_pagamento', 'erro_pagamento', 'abandono', 'retorno').\n- `ocorrido_em` (TIMESTAMP): Data e hora precisa do evento.\n- `canal` (VARCHAR): Canal ('web', 'mobile', 'app').\n- `dispositivo` (VARCHAR): Aparelho ('desktop', 'mobile', 'tablet').\n- `sessao_id` (VARCHAR): Identificador da sessão contínua.\n- `produto_id` (VARCHAR, FK): Produto relacionado à ação (opcional).\n- `metadata` (VARIANT): Detalhes técnicos contextuais em JSON.",
+    "status": "cataloged_updated"
+  },
+  {
+    "entity": "eventos_resgate",
+    "id": "04739f6d-e8c3-4d6f-80b7-0f98c12a5798",
+    "name": "eventos_resgate",
+    "description": "### Entidade: Eventos de Resgate (Campanhas Multicanal & ROI)\n**Zona Lakehouse:** Qualify (Silver) | **Localização:** CART_RECOVERY.EVENTOS_RESGATE | **Volumetria:** 2.500 registros\n\n**Visão de Negócio:** Rastreia o funil de comunicação pós-abandono (Envio ➔ Abertura ➔ Clique ➔ Conversão), canais (Email, SMS, WhatsApp, Push) e ROI de campanhas.\n\n**Dicionário de Colunas:**\n- `resgate_id` (VARCHAR, PK): Identificador UUID do disparo de comunicação.\n- `carrinho_id` (VARCHAR, FK): Carrinho alvo da recuperação.\n- `cliente_id` (VARCHAR, FK): Destinatário da mensagem.\n- `canal_resgate` (VARCHAR): Meio utilizado ('email', 'sms', 'push_app', 'whatsapp').\n- `enviado_em` (TIMESTAMP): Data/hora do disparo da mensagem.\n- `aberto_em` (TIMESTAMP): Instante de abertura pelo cliente.\n- `clicado_em` (TIMESTAMP): Instante de clique no link de recuperação.\n- `convertido` (BOOLEAN): Se resultou em compra finalizada.\n- `convertido_em` (TIMESTAMP): Momento da conversão.\n- `valor_recuperado` (FLOAT): Valor monetário do pedido recuperado em R$.\n- `tipo_oferta` (VARCHAR): Benefício ('desconto', 'frete_gratis', 'lembrete').\n- `desconto_oferecido` (FLOAT): Percentual de desconto concedido.",
+    "status": "cataloged_updated"
+  },
+  {
+    "entity": "pedidos",
+    "id": "7f82a988-8e68-416a-b6fa-5007c4789d1a",
+    "name": "pedidos",
+    "description": "### Entidade: Pedidos (Conversões & Faturamento Final)\n**Zona Lakehouse:** Qualify (Silver) | **Localização:** CART_RECOVERY.PEDIDOS | **Volumetria:** 2.000 registros\n\n**Visão de Negócio:** Compras efetivadas no marketplace, atribuindo faturamento direto a compras espontâneas ou recuperadas via campanhas de resgate.\n\n**Dicionário de Colunas:**\n- `pedido_id` (VARCHAR, PK): Identificador UUID da compra aprovada.\n- `carrinho_id` (VARCHAR, FK): Carrinho que originou o pedido.\n- `cliente_id` (VARCHAR, FK): Comprador.\n- `criado_em` (TIMESTAMP): Data e hora da conclusão do pedido.\n- `valor_total` (FLOAT): Valor líquido pago (Subtotal - Desconto + Frete).\n- `desconto_total` (FLOAT): Total de abatimentos aplicados em R$.\n- `valor_frete` (FLOAT): Custo cobrado para entrega em R$.\n- `status` (VARCHAR): Situação ('aprovado', 'enviado', 'entregue', 'cancelado').\n- `metodo_pagamento` (VARCHAR): Forma de pagamento ('cartao', 'boleto', 'pix').\n- `num_parcelas` (INTEGER): Parcelas no cartão (1 a 12).\n- `origem_resgate` (BOOLEAN): Flag indicadora de compra vinda de campanha.\n- `resgate_id` (VARCHAR, FK): Referência à mensagem de resgate que gerou a venda.",
+    "status": "cataloged_updated"
+  }
+]

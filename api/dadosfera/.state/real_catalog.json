@@ -1,0 +1,215 @@
+{
+  "data_assets": [
+    {
+      "id": "cb5a7a46-48a3-4bc2-8d6c-bf6128d634b1",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:23:27.116Z",
+      "createdAt": "2026-08-22T19:23:27.116Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "produtos",
+      "description": "Catalogo de produtos do marketplace - 500 registros com precos e categorias",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "65fcfa25-a6f3-4cb8-a444-7fd23df3fa84",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:24:08.485Z",
+      "createdAt": "2026-08-22T19:24:08.485Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "produtos",
+      "description": "Catalogo de produtos do marketplace - 500 registros com precos e categorias",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "e88039c6-2b81-4324-a4d6-88e401ccd60a",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:23:32.169Z",
+      "createdAt": "2026-08-22T19:23:32.169Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "pedidos",
+      "description": "Pedidos convertidos - 2.000 conversoes com receita, frete e cupons aplicados",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "7f82a988-8e68-416a-b6fa-5007c4789d1a",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:24:13.536Z",
+      "createdAt": "2026-08-22T19:24:13.536Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "pedidos",
+      "description": "Pedidos convertidos - 2.000 conversoes com receita, frete e cupons aplicados",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "f6000b61-4744-4eef-8a11-8873dbcf3251",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:23:29.150Z",
+      "createdAt": "2026-08-22T19:23:29.150Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "itens_carrinho",
+      "description": "Itens incluidos em cada carrinho - 22.500 registros com quantidades e precos",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "7649755a-c6e8-4b56-a092-be9eefde1dab",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:24:10.502Z",
+      "createdAt": "2026-08-22T19:24:10.502Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "itens_carrinho",
+      "description": "Itens incluidos em cada carrinho - 22.500 registros com quantidades e precos",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "766174e0-3853-46fa-971d-43d731c4ec9d",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:23:31.166Z",
+      "createdAt": "2026-08-22T19:23:31.166Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "eventos_resgate",
+      "description": "Acoes de recuperacao e comunicacao (Email, Push, WhatsApp, SMS) - 2.500 envios",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "04739f6d-e8c3-4d6f-80b7-0f98c12a5798",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:24:12.513Z",
+      "createdAt": "2026-08-22T19:24:12.513Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "eventos_resgate",
+      "description": "Acoes de recuperacao e comunicacao (Email, Push, WhatsApp, SMS) - 2.500 envios",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "7dd16cc4-eab2-4654-b3cb-8f24119ec7bc",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:23:30.152Z",
+      "createdAt": "2026-08-22T19:23:30.152Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "eventos_carrinho",
+      "description": "Log de telemetria e interacao com carrinhos - 72.026 eventos de navegacao e checkout",
+      "data_asset_type": "dataset"
+    },
+    {
+      "id": "397c3ebc-15cb-42d2-a717-a3b5d150c3ea",
+      "user_id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+      "created_at": "2026-08-22T19:24:11.506Z",
+      "createdAt": "2026-08-22T19:24:11.506Z",
+      "users": [
+        {
+          "id": "b4f81428-e0f1-7058-0fb4-19f8f9465e2a",
+          "email": "pedrohenriquebtcc@gmail.com"
+        }
+      ],
+      "owner": "pedrohenriquebtcc@gmail.com",
+      "tags": [],
+      "roles": [],
+      "comments": [],
+      "manually": 1,
+      "is_renamed": false,
+      "display_name": "eventos_carrinho",
+      "description": "Log de telemetria e interacao com carrinhos - 72.026 eventos de navegacao e checkout",
+      "data_asset_type": "dataset"
+    }
+  ],
+  "total": 21
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "entity": "clientes",
+    "file": "C:\\Users\\pedro\\OneDrive\\Desktop\\wheels\\data\\mock\\output\\csv\\clientes.csv",
+    "status": "error",
+    "code": 403,
+    "detail": "{\"statusCode\":403,\"message\":\"Você não tem permissões suficientes para realizar essa operação\",\"error\":\"Não autorizado\",\"code\":\"AUTH.FORBIDDEN\"}"
+  },
+  {
+    "entity": "produtos",
+    "file": "C:\\Users\\pedro\\OneDrive\\Desktop\\wheels\\data\\mock\\output\\csv\\produtos.csv",
+    "status": "error",
+    "code": 403,
+    "detail": "{\"statusCode\":403,\"message\":\"Você não tem permissões suficientes para realizar essa operação\",\"error\":\"Não autorizado\",\"code\":\"AUTH.FORBIDDEN\"}"
+  },
+  {
+    "entity": "carrinhos",
+    "file": "C:\\Users\\pedro\\OneDrive\\Desktop\\wheels\\data\\mock\\output\\csv\\carrinhos.csv",
+    "status": "error",
+    "code": 403,
+    "detail": "{\"statusCode\":403,\"message\":\"Você não tem permissões suficientes para realizar essa operação\",\"error\":\"Não autorizado\",\"code\":\"AUTH.FORBIDDEN\"}"
+  },
+  {
+    "entity": "itens_carrinho",
+    "file": "C:\\Users\\pedro\\OneDrive\\Desktop\\wheels\\data\\mock\\output\\csv\\itens_carrinho.csv",
+    "status": "error",
+    "code": 403,
+    "detail": "{\"statusCode\":403,\"message\":\"Você não tem permissões suficientes para realizar essa operação\",\"error\":\"Não autorizado\",\"code\":\"AUTH.FORBIDDEN\"}"
+  },
+  {
+    "entity": "eventos_carrinho",
+    "file": "C:\\Users\\pedro\\OneDrive\\Desktop\\wheels\\data\\mock\\output\\csv\\eventos_carrinho.csv",
+    "status": "error",
+    "code": 403,
+    "detail": "{\"statusCode\":403,\"message\":\"Você não tem permissões suficientes para realizar essa operação\",\"error\":\"Não autorizado\",\"code\":\"AUTH.FORBIDDEN\"}"
+  },
+  {
+    "entity": "eventos_resgate",
+    "file": "C:\\Users\\pedro\\OneDrive\\Desktop\\wheels\\data\\mock\\output\\csv\\eventos_resgate.csv",
+    "status": "error",
+    "code": 403,
+    "detail": "{\"statusCode\":403,\"message\":\"Você não tem permissões suficientes para realizar essa operação\",\"error\":\"Não autorizado\",\"code\":\"AUTH.FORBIDDEN\"}"
+  },
+  {
+    "entity": "pedidos",
+    "file": "C:\\Users\\pedro\\OneDrive\\Desktop\\wheels\\data\\mock\\output\\csv\\pedidos.csv",
+    "status": "error",
+    "code": 403,
+    "detail": "{\"statusCode\":403,\"message\":\"Você não tem permissões suficientes para realizar essa operação\",\"error\":\"Não autorizado\",\"code\":\"AUTH.FORBIDDEN\"}"
+  }
+]
