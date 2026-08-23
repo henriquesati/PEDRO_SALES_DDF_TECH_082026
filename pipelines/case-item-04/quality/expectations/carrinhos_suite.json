@@ -1,0 +1,98 @@
+{
+  "data_asset_type": "Dataset",
+  "expectation_suite_name": "carrinhos_raw_quality_suite",
+  "meta": {
+    "great_expectations_version": "0.18.0",
+    "dataset": "carrinhos_raw",
+    "case_item": "Item 4 - Data Quality Report",
+    "author": "Pedro Henrique - Dadosfera Tech Case"
+  },
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "carrinho_id"
+      },
+      "meta": { "dimension": "Completeness", "severity": "Critical", "rule_id": "DQ-01" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_unique",
+      "kwargs": {
+        "column": "carrinho_id"
+      },
+      "meta": { "dimension": "Uniqueness", "severity": "Critical", "rule_id": "DQ-02" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "cliente_id"
+      },
+      "meta": { "dimension": "Completeness", "severity": "Critical", "rule_id": "DQ-03" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_in_set",
+      "kwargs": {
+        "column": "status",
+        "value_set": ["ABERTO", "ABANDONADO", "FINALIZADO", "EXPIRADO"]
+      },
+      "meta": { "dimension": "Validity", "severity": "High", "rule_id": "DQ-05" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "valor_subtotal",
+        "min_value": 0.01
+      },
+      "meta": { "dimension": "Validity", "severity": "Critical", "rule_id": "DQ-07", "anomaly_code": "ANOM-02" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "valor_frete",
+        "min_value": 0.00
+      },
+      "meta": { "dimension": "Validity", "severity": "High", "rule_id": "DQ-08", "anomaly_code": "ANOM-01" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "valor_desconto",
+        "min_value": 0.00
+      },
+      "meta": { "dimension": "Validity", "severity": "High", "rule_id": "DQ-09" }
+    },
+    {
+      "expectation_type": "expect_column_pair_values_a_to_be_greater_than_b",
+      "kwargs": {
+        "column_A": "valor_subtotal",
+        "column_B": "valor_desconto",
+        "or_equal": true
+      },
+      "meta": { "dimension": "Consistency", "severity": "Critical", "rule_id": "DQ-10", "anomaly_code": "ANOM-03" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_be_between",
+      "kwargs": {
+        "column": "valor_total",
+        "min_value": 0.00
+      },
+      "meta": { "dimension": "Validity", "severity": "Critical", "rule_id": "DQ-12" }
+    },
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "data_criacao"
+      },
+      "meta": { "dimension": "Completeness", "severity": "Critical", "rule_id": "DQ-13" }
+    },
+    {
+      "expectation_type": "expect_column_pair_values_a_to_be_greater_than_b",
+      "kwargs": {
+        "column_A": "data_ultima_atividade",
+        "column_B": "data_criacao",
+        "or_equal": true
+      },
+      "meta": { "dimension": "Temporal", "severity": "High", "rule_id": "DQ-15", "anomaly_code": "ANOM-05" }
+    }
+  ]
+}

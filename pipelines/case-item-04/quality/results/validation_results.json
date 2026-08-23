@@ -1,0 +1,32 @@
+{
+  "evaluation_parameters": {
+    "run_id": "20260823T001500Z_cart_recovery_eval",
+    "batch_kwargs": {
+      "data_asset_name": "carrinhos_raw",
+      "path": "data/mock/output/parquet/carrinhos.parquet"
+    }
+  },
+  "statistics": {
+    "evaluated_expectations": 18,
+    "successful_expectations": 11,
+    "unsuccessful_expectations": 7,
+    "success_percent": 61.11,
+    "evaluated_records": 115777,
+    "passed_records": 109062,
+    "failed_records": 6715,
+    "record_pass_rate_percent": 94.20
+  },
+  "anomaly_breakdown": {
+    "ANOM-01": { "name": "Frete Negativo", "records_count": 1842, "action": "SANITIZE" },
+    "ANOM-02": { "name": "Subtotal Invalido", "records_count": 487, "action": "ISOLATE" },
+    "ANOM-03": { "name": "Desconto Excessivo", "records_count": 612, "action": "ISOLATE" },
+    "ANOM-04": { "name": "Total Inconsistente", "records_count": 2145, "action": "RECALCULATE" },
+    "ANOM-05": { "name": "Inversao Temporal", "records_count": 789, "action": "ISOLATE" },
+    "ANOM-06": { "name": "Duplicidade de Sessao", "records_count": 840, "action": "DEDUPLICATE" }
+  },
+  "quarantine_routing": {
+    "carrinhos_qualify_records": 113044,
+    "carrinhos_anomalies_records": 2733
+  },
+  "success": false
+}
