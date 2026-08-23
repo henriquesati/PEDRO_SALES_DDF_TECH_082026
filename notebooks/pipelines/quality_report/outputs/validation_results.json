@@ -1,0 +1,65 @@
+{
+  "evaluation_parameters": {
+    "run_id": "20260823T042606Z_notebook_eval",
+    "evaluated_at": "2026-08-23T04:26:06.573737+00:00",
+    "total_entities_evaluated": 7,
+    "total_records_evaluated": 115775
+  },
+  "statistics": {
+    "evaluated_expectations": 18,
+    "records_promoted_to_qualify": 114336,
+    "records_isolated_in_anomalies": 1439,
+    "record_pass_rate_percent": 98.76
+  },
+  "entity_breakdown": [
+    {
+      "entidade": "carrinhos",
+      "registros_raw": 7500,
+      "registros_qualify": 6525,
+      "ocorrencias_anomalias": 988,
+      "taxa_rejeicao_pct": 13.0
+    },
+    {
+      "entidade": "clientes",
+      "registros_raw": 1500,
+      "registros_qualify": 1386,
+      "ocorrencias_anomalias": 114,
+      "taxa_rejeicao_pct": 7.6
+    },
+    {
+      "entidade": "eventos_carrinho",
+      "registros_raw": 78931,
+      "registros_qualify": 78931,
+      "ocorrencias_anomalias": 0,
+      "taxa_rejeicao_pct": 0.0
+    },
+    {
+      "entidade": "eventos_resgate",
+      "registros_raw": 6427,
+      "registros_qualify": 6289,
+      "ocorrencias_anomalias": 138,
+      "taxa_rejeicao_pct": 2.15
+    },
+    {
+      "entidade": "itens_carrinho",
+      "registros_raw": 18888,
+      "registros_qualify": 18690,
+      "ocorrencias_anomalias": 198,
+      "taxa_rejeicao_pct": 1.05
+    },
+    {
+      "entidade": "pedidos",
+      "registros_raw": 2229,
+      "registros_qualify": 2229,
+      "ocorrencias_anomalias": 0,
+      "taxa_rejeicao_pct": 0.0
+    },
+    {
+      "entidade": "produtos",
+      "registros_raw": 300,
+      "registros_qualify": 286,
+      "ocorrencias_anomalias": 14,
+      "taxa_rejeicao_pct": 4.67
+    }
+  ]
+}

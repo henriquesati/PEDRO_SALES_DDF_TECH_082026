@@ -28,11 +28,11 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
 | **1** | Base de Dados (mín. 100k) | Integrar | Gerador Python modular e declarativo com 115.777+ registros (`data/mock/output/parquet/` e `csv/`), arquitetura DAG em cascata, perfis (`standard`, `rich`, `dev`) e motor determinístico de anomalias/dirty data | ✅ Concluído |
 | **2.1** | Dadosfera - Integrar | Integrar | Scripts de carga via API Maestro e Data Lakehouse Snowflake | ⏳ Planejado |
 | **3** | Dadosfera - Explorar & Catalogar | Explorar | Dicionários de Dados das 7 entidades no Qualify (`data/catalogo/qualify/`) e mapeamento de Data Asset IDs oficiais (`assets_registry.md` / `assets_registry.json`) | ✅ Concluído |
-| **4** | Data Quality | Processar | Especificação declarativa de regras Great Expectations/Soda Core e arquitetura dead-letter com tabelas `[entidade]_anomalies` para isolamento de riscos | ✅ Concluído (Especificado) |
+| **4** | Data Quality & Anomalias | Processar | Pipeline de qualificação dual-artifact (`notebooks/pipelines/quality_report/qualification_raw.ipynb` e `pipeline_spec.md`), suíte Great Expectations (18 regras), quarentena de anomalias em Parquet e relatório gerado (`notebooks/pipelines/quality_report/outputs/data_quality_report.md`) | ✅ Concluído |
 | **5** | GenAI & LLMs | Processar | Geração de copies persuasivas e enriquecimento semântico de motivos de abandono | ⏳ Planejado |
 | **6** | Modelagem de Dados | Analisar | Modelagem lógica completa em 6 entidades sob o **Blueprint Canônico de 4 Divisões** com `## SCHEMA RULES` numerados e booleanos padronizados | ✅ Concluído |
-| **7** | Análise de Dados & Métricas | Analisar | Framework de métricas hierárquicas em % (`METRICS.md`), insights especificados em Markdown (`insights/`) para consumo no Metabase sem SQL local (DEC-004) | ⏳ Em Andamento |
-| **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver (Qualify + Anomaly) prontas para execução nos módulos de inteligência | ⏳ Planejado |
+| **7** | Análise de Dados & Métricas | Analisar | 6 visualizações de BI geradas (Série Temporal, Categorias, ROI, Heatmap, Scatter e DQ), script reproduzível (`pipelines/serving/generate_bi_charts.py`), catálogo declarativo (`chart_specs.py`), notebook (`07_bi_dashboards_visualizations.ipynb`) e task runner CLI (`notebook-gen`) | ✅ Concluído |
+| **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver (Qualify + Anomaly) e framework normativo (`data-pipeline-documentation`) | ⏳ Planejado |
 | **9** | Data Apps | Consumir | Planejamento de Data App interativo em Streamlit para simulação de recuperação de carrinhos e cálculo de ROI | ⏳ Planejado |
 | **10** | Apresentação em Vídeo | — | Roteiro de pitch ancorado em métricas de eficiência (DEC-001) e comparativo com stack legada AWS | ⏳ Planejado |
 | **Bônus**| GenAI + Data Apps | IA Generativa | Geração visual de cards de produtos e vitrines dinâmicas de resgate | ⏳ Planejado |
@@ -63,9 +63,18 @@ Todas as **6 entidades** do modelo de dados lógico foram reformuladas sob o pad
 - Dicionários de dados detalhados na camada Qualify (Silver) para todas as entidades em `data/catalogo/qualify/`.
 - Sincronização e mapeamento de Data Asset IDs oficiais da Dadosfera via API Maestro registrados em `agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md`.
 
-### ⏳ 4. Especificação de Insights & Data Quality (Itens 4 e 7)
-- Especificações em Markdown estruturado em `insights/` (01_descriptive, 02_risk, 03_prescriptive, 04_opportunity).
-- Proibição estrita de arquivos `.sql` locais (DEC-004) — queries analíticas pertencem exclusivamente à camada de execução da Dadosfera (Metabase).
+### ✅ 4. Auditoria de Data Quality & Quarentena de Anomalias (Item 4)
+- **Tripé de Entrega Implementado**:
+  - `notebooks/pipelines/quality_report/qualification_raw.ipynb`: Notebook executável e compatível com Google Colab aplicando regras sobre as 7 entidades lendo Parquet.
+  - `notebooks/pipelines/quality_report/pipeline_spec.md`: Especificação normativa e documentação técnica do pipeline.
+  - `notebooks/pipelines/quality_report/outputs/data_quality_report.md`: Relatório e evidências geradas de forma autocontida pelo notebook/pipeline.
+  - `quality/expectations/carrinhos_suite.json` e `quality/results/validation_results.json`: Suite formal e evidências estruturadas.
+- **Arquitetura Dual-Artifact (DEC-006)**: Bifurcação entre registros aprovados (`output/qualify/*.parquet` com 94.2% de conformidade) e quarentena (`output/anomalies/*.parquet` com 5.8% de registros isolados com `anomaly_reason`).
+
+### ✅ 5. Visualizações de BI, Dashboards & CLI Runner (Item 7)
+- **6 Visualizações de BI Geradas**: Série Temporal, Performance de Categorias, ROI por Canal, Heatmap RFM, Dispersão de Viabilidade e Scorecard de Data Quality salvas em `dashboards/assets/` em alta definição (300 DPI).
+- **Catálogo Declarativo (`chart_specs.py`)**: Mapeamento estruturado de cada view/gráfico permitindo seleção dinâmica via chave string.
+- **Task Runner Multiplataforma (`make.py` / `notebook-gen`)**: Automação por CLI permitindo rodar `.\notebook-gen` ou `python make.py notebook-gen [chart_key]`.
 
 ---
 
@@ -79,7 +88,8 @@ wheels/
 │   │   ├── project-context-specialist.md # Guardião técnico e memória do repo
 │   │   ├── cart-recovery-insights.md     # Especialista em insights de negócio
 │   │   ├── platform-registry-consultant.md # Guardião de Data Assets & IDs
-│   │   └── data-pipeline-documentation.md # Documentação & Lineage Medallion
+│   │   ├── data-pipeline-documentation.md # Documentação & Lineage Medallion
+│   │   └── declarative-functional-coding.md # Paradigma funcional e pipelines
 │   └── skills/
 │       ├── case-context-specialist/      # Skill: Requisitos, expectativas e specs
 │       ├── project-context-specialist/   # (Esta skill) Memória técnica & progresso
@@ -87,6 +97,7 @@ wheels/
 │       ├── data-pipeline-documentation/  # Skill: Documentação Medallion, DQ e Lineage
 │       ├── data-strategy-analyst/        # Skill: Framework analítico Dadosfera
 │       ├── datamaker/                    # Skill: Modelagem lógica e schemas
+│       ├── declarative-functional-coding/ # Skill: Paradigma funcional & tipagem
 │       ├── platform-registry-consultant/ # Skill: Mapeamento de Data Assets & IDs
 │       └── scout/                        # Skill: Mapeamento de repositório
 ├── agents_prompts_refs/

@@ -52,10 +52,10 @@ Serve como fonte de contexto para outros agentes que precisam entender **por qu�
 | 1 | Base de Dados | Integrar | Propor/gerar base de dados (mín. 100k registros) | ✅ Concluído (115.777+ registros via gerador modular declarativo em Parquet/CSV) |
 | 2.1 | Dadosfera - Integrar | Integrar | Carregar dados na plataforma Dadosfera via módulo de Coleta | ⏳ Planejado |
 | 3 | Dadosfera - Explorar | Explorar | Catalogar dataset com dicionário de dados, organizar por zonas do Data Lake | ✅ Concluído (Blueprint + Qualify + API) |
-| 4 | Data Quality | Processar | Relatório de qualidade (Great Expectations/Soda Core), dead-letter de anomalias com payload_raw | ✅ Concluído (Especificado) |
+| 4 | Data Quality | Processar | Relatório e evidências de qualidade geradas no módulo do notebook (`notebooks/pipelines/quality_report/outputs/data_quality_report.md`), notebook de qualificação (`notebooks/pipelines/quality_report/qualification_raw.ipynb`), suíte Great Expectations (18 regras) e quarentena de anomalias em Parquet | ✅ Concluído |
 | 5 | GenAI & LLMs - Processar | Processar | Transformar dados desestruturados em features usando IA | ⏳ Planejado |
 | 6 | Modelagem de Dados | Analisar | Modelagem lógica canônica (4 divisões, SCHEMA RULES numerado, TRUE/FALSE, 6 entidades) | ✅ Concluído |
-| 7 | Análise de Dados | Analisar | Dashboard com análise de categorias + série temporal. Mín. 5 visualizações, 5 tipos | ⏳ Em andamento (insights em progresso) |
+| 7 | Análise de Dados | Analisar | Dashboard com análise de categorias + série temporal. 6 visualizações de 6 tipos distintos geradas em alta resolução (`dashboards/assets/`), catálogo declarativo (`chart_specs.py`) e notebook interativo | ✅ Concluído |
 | 8 | Pipelines | Processar | Pipeline ETL/ML na Dadosfera (módulo de inteligência) | ⏳ Planejado |
 | 9 | Data Apps | Consumir | Data App com Streamlit para explorar dados | ⏳ Planejado |
 | 10 | Apresentação | — | Vídeo no YouTube: prova de conceito Dadosfera vs arquitetura atual do cliente | ⏳ Planejado |
