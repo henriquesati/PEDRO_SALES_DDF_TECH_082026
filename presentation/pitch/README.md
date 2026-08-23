@@ -5,9 +5,10 @@ Este diretório contém toda a infraestrutura documental, especificações visua
 ---
 
 ## 🧭 Documento Principal de Roteiro & Estrutura
-- 📄 **[pitch_spec.md](pitch_spec.md)**: **Documentação Canônica do Pitch**
-  - **Parte 1 — Backbone Central**: Ordem cronológica da apresentação (Blocos 1 a 5, minutagem, entregas levantadas e mensagem central).
-  - **Parte 2 — Pitch Guidelines**: Roteiro aprofundado com falas sugeridas para cada slide/tópico, dados de impacto ancorados em taxas e percentuais (DEC-001/007), contraste Dadosfera vs AWS e tratamento de objeções de C-Levels.
+- 📄 **[pitch_spec.md](pitch_spec.md)**: **Especificação do Pitch**
+  - **[1] Apresentar Plataforma Dadosfera**: O Sistema Operacional de Dados unificado, o meio estruturante para a empresa e módulos integrados.
+  - **[2] Comentar Arquitetura do Cliente e Iniciar Pitch**: Diagnóstico da stack AWS (Kinesis, Redis, S3), riscos em picos e redução de 86% no lead time.
+  - **[3] Case Carrinho (PoC)**: As 5 regras de recuperação, preservação de margem de lucro, Data Quality e Data App com GenAI.
 
 ---
 
