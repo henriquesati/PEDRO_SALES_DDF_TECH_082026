@@ -1,0 +1,100 @@
+================================================================================
+ DECISION RECORD — Métricas do Pitch de Recuperação de Carrinho
+ Data: 2026-08-20
+ Participantes: Agente (Antigravity) / Pedro (Product Owner)
+ Status: RESOLVIDO — alteração aplicada ao implementation_plan.md
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+ 1. PROPOSTA ORIGINAL (Agente)
+────────────────────────────────────────────────────────────────────────────────
+
+A abordagem inicial ancorava as métricas-alvo do case em VALORES MONETÁRIOS 
+ABSOLUTOS como argumento central do pitch:
+
+  • Receita incremental de ~R$120k–150k em 6 meses
+  • Ticket médio recuperado de ~R$180
+  • Custo total de campanhas de ~R$1.2k–1.5k
+  • ROI de email calculado como "R$0.05 vs ticket médio ~R$180"
+
+As métricas de conversão (%) existiam, mas estavam mescladas com valores em R$
+na mesma camada, sem hierarquia clara de importância.
+
+O argumento implícito era: "a plataforma gera R$150k de receita incremental".
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 2. CONTRAPROPOSTA (Pedro)
+────────────────────────────────────────────────────────────────────────────────
+
+Pedro questionou: "não seria melhor focar o valor objetivo em % de conversão e 
+métricas, e marginalmente atribuir a valor monetário? Pra não atrelar o pitch 
+ao valor do ticket médio do cliente."
+
+Argumentos centrais:
+
+  a) TRANSFERIBILIDADE — Se o pitch diz "geramos R$150k", isso só faz sentido 
+     para um cliente com ticket médio similar ao do dataset. Um cliente com 
+     ticket médio de R$50 ou R$500 não se identifica com o número.
+
+  b) DESACOPLAMENTO — O valor do case está na CAPACIDADE de recuperar carrinhos 
+     (taxa de conversão, eficiência por canal, segmentação inteligente), não no 
+     valor absoluto recuperado. O valor absoluto é consequência do volume e 
+     ticket do cliente, não da plataforma.
+
+  c) CREDIBILIDADE — Apresentar valores absolutos com dados mock pode parecer 
+     "fabricado". Taxas e ratios são mais defensáveis e verificáveis.
+
+  d) ESCALABILIDADE DO ARGUMENTO — "Recuperamos 10% dos carrinhos abandonados" 
+     funciona para qualquer cliente. "Geramos R$150k" não.
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 3. AVALIAÇÃO
+────────────────────────────────────────────────────────────────────────────────
+
+A contraproposta é CORRETA e superior à abordagem original por:
+
+  • O pitch se torna AGNÓSTICO ao ticket médio do cliente — funciona para 
+    qualquer vertical e faixa de preço
+
+  • O cliente pode INSERIR SEUS PRÓPRIOS NÚMEROS (ticket médio, volume de 
+    carrinhos) nas taxas apresentadas e calcular o valor para seu negócio — 
+    isso gera mais confiança do que receber um número pronto
+
+  • As métricas em camadas (Conversão → Canal → RFM → Operacional → Timing) 
+    criam uma narrativa  mais rica que uma tabela plana de R$
+
+  • O ROI expressado como MULTIPLICADOR (45x) em vez de valor absoluto 
+    (R$150k) é mais impactante e transferível
+
+  • Valores monetários continuam existindo nos dados para quem quiser calcular, 
+    mas não são o ARGUMENTO CENTRAL
+
+
+────────────────────────────────────────────────────────────────────────────────
+ 4. CONCLUSÃO — O QUE FOI ALTERADO
+────────────────────────────────────────────────────────────────────────────────
+
+O implementation_plan.md foi reestruturado:
+
+  ANTES (init.md):
+    - Tabela única com 15 métricas misturando % e R$
+    - "Receita incremental ~R$120k-150k" como métrica principal
+    - "Ticket médio recuperado ~R$180" como argumento
+    - ROI calculado como "R$0.05 vs ticket médio ~R$180"
+
+  DEPOIS (end.md):
+    - 5 camadas hierárquicas de métricas, TODAS em taxas e ratios
+    - Camada 1: Conversão & Recuperação (métricas primárias em %)
+    - Camada 2: Eficiência por Canal (funil envio→abertura→clique→conversão)
+    - Camada 3: Eficiência da Segmentação RFM (taxa por segmento)
+    - Camada 4: Eficiência Operacional (ROI como multiplicador, % de engajamento)
+    - Camada 5: Timing & Sequência (% de conversões por toque)
+    - Seção "Contexto Monetário" SEPARADA e marcada como SECUNDÁRIA
+    - Nota explícita: "o cliente insere seu próprio ticket médio"
+
+  Arquivos alterados:
+    - implementation_plan.md (seção de métricas e user review)
+
+================================================================================
