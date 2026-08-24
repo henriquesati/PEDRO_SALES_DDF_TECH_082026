@@ -25,10 +25,14 @@ SCRIPTS: Final[List[str]] = [
     
     # 02_risk
     os.path.join("02_risk", "01_segmentacao_risco", "generate_chart.py"),
+    os.path.join("02_risk", "02_ltv_vs_abandono", "generate_chart.py"),
+    os.path.join("02_risk", "03_viabilidade_recuperacao_carrinho", "generate_chart.py"),
     
     # 03_prescriptive
     os.path.join("03_prescriptive", "01_estrategia_resgate_segmento", "generate_chart.py"),
-    os.path.join("03_prescriptive", "02_otimizacao_timing_envio", "generate_chart.py")
+    os.path.join("03_prescriptive", "02_otimizacao_timing_envio", "generate_chart.py"),
+    os.path.join("03_prescriptive", "03_produtos_mais_abandonados", "generate_chart.py"),
+    os.path.join("03_prescriptive", "04_roi_campanhas_resgate", "generate_chart.py")
 ]
 
 def main() -> None:
