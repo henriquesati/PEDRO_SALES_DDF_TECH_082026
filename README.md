@@ -25,13 +25,13 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 |:---:|---|:---:|---|:---:|
 | **0** | Agilidade & Planejamento | — | Planejamento iterativo entidade a entidade e matriz de decisão | ✅ Concluído |
 | **1** | Base de Dados (mín. 100k) | Integrar | Gerador Python modular com 115.777+ registros em Parquet/CSV (`data/mock/`) | ✅ Concluído |
-| **2.1** | Dadosfera - Integrar | Integrar | Ingestão de 115k+ registros via Módulo de Coleta, API Maestro e mapeamento em `output-mappers/` | ✅ Concluído |
-| **3** | Dadosfera - Explorar & Catalogar | Explorar | Especificação de governança (`pipelines/case-item-03/`), Lakehouse Medallion (`pipelines/datalakes/`), dicionários (`data/catalogo/`) e Data Asset IDs oficiais | ✅ Concluído |
+| **2.1** | Integrar (Coleta & API Maestro) | Integrar | Ingestão de 115k+ registros via Módulo de Coleta, API Maestro e mapeamento em `output-mappers/` | ✅ Concluído |
+| **3** | Explorar & Catalogar | Explorar | Especificação de governança (`pipelines/case-item-03/`), Lakehouse Medallion (`pipelines/datalakes/`), dicionários (`data/catalogo/`) e Data Asset IDs oficiais | ✅ Concluído |
 | **4** | Data Quality & Anomalias | Processar | Pipeline Dual-Artifact, suíte Great Expectations (18 regras), quarentena Parquet e relatório em [`pipelines/case-item-04/outputs/data_quality_report.md`](pipelines/case-item-04/outputs/data_quality_report.md) | ✅ Concluído |
 | **5** | GenAI & LLMs | Processar | Enriquecimento semântico de motivos de abandono e gerador de copy | ⏳ Planejado |
 | **6** | Modelagem de Dados | Analisar | Modelagem lógica canônica (4 divisões) em 6 entidades (`data/data-models/logical/`) | ✅ Concluído |
 | **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI) e catálogo declarativo | ✅ Concluído |
-| **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver e Golden views na Dadosfera | ⏳ Planejado |
+| **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver e Golden views no Lakehouse | ⏳ Planejado |
 | **9** | Data Apps | Consumir | Planejamento de Data App em Streamlit para simulação de recuperação de ROI | ⏳ Planejado |
 | **10** | Apresentação em Vídeo | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
 | **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `presentation/insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
@@ -54,20 +54,20 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
     - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets higienizados e tratados (Ground Truth para BI e Pitch), organizados por formato (`parquet/` e `csv/`) com scripts de limpeza (`clean_all.py`)*
     - [`data/mock/METRICS.md`](data/mock/METRICS.md) — *Métricas de volumetria, distribuição e conformidade quantitativa*
 
-- [x] ~~**[X] [case-02.1] Dadosfera - Integrar (Módulo de Coleta & Integração API Maestro) [X]**~~
+- [x] ~~**[X] [case-02.1] Integrar (Módulo de Coleta & API Maestro) [X]**~~
   - **carga e ingestão da base de dados** (*Ingestão de 115.777+ registros nas 7 entidades canônicas, superando a meta mínima de 100k do case*)
   - **📁 Diretórios de interação com API, endpoints e mapeamento de ativos:**
-    - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Documentação técnica e base de orquestração de scripts para integração com a API Maestro da Dadosfera, mantendo a documentação próxima do ambiente de contexto e execução*
+    - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Documentação técnica e base de orquestração de scripts para integração com a API Maestro, mantendo a documentação próxima do ambiente de contexto e execução*
     - [`agents_prompts_refs/dadosfera-api/referencia/endpoints.md`](agents_prompts_refs/dadosfera-api/referencia/endpoints.md) — *Catálogo de referência completa dos endpoints Maestro (Auth, Storage Explorer, Tables e Catalog)*
-    - [`agents_prompts_refs/dadosfera-api/output-mappers/`](agents_prompts_refs/dadosfera-api/output-mappers/) — *Mapeamento oficial dos 7 Data Asset IDs, URLs da UI Dadosfera e schemas das tabelas Snowflake, serve como uma referencia em memória dos ativos e suas modificações realizadas na plataforma via API ([`assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md), [`assets_registry.json`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json))*
+    - [`agents_prompts_refs/dadosfera-api/output-mappers/`](agents_prompts_refs/dadosfera-api/output-mappers/) — *Mapeamento oficial dos 7 Data Asset IDs, URLs da UI e schemas das tabelas Snowflake, servindo como referência em memória dos ativos e suas modificações realizadas via API ([`assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md), [`assets_registry.json`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json))*
   - **🤖 Agentes e Skills desenvolvidos/utilizados nesta etapa:**
-    - [`platform-registry-consultant`](.agents/skills/platform-registry-consultant/SKILL.md) ([`.agents/agents/platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md)) — *Especialista e guardião do registro de ativos, metadados, Data Asset IDs oficiais e mapeamentos da plataforma Dadosfera no diretório `output-mappers`*
+    - [`platform-registry-consultant`](.agents/skills/platform-registry-consultant/SKILL.md) ([`.agents/agents/platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md)) — *Especialista e guardião do registro de ativos, metadados, Data Asset IDs oficiais e mapeamentos no diretório `output-mappers`*
     - [`case-context-specialist`](.agents/skills/case-context-specialist/SKILL.md) ([`.agents/agents/case-context-specialist.md`](.agents/agents/case-context-specialist.md)) — *Fonte central de contexto estratégico, validação de requisitos do case de estágio e diretrizes de autenticação e governança*
     - [`agents_prompts_refs/dadosfera-api/referencia/solved-errors.md`](agents_prompts_refs/dadosfera-api/referencia/solved-errors.md) — *Relatório documentando os erros técnicos identificados na API e soluções/workarounds aplicados (envio de token puro sem prefixo `Bearer` no header, tratamento de payload no `sign-in`, contorno de permissão `403 Forbidden` no storage via Coleta Web, prevenção de duplicatas via `PUT` no catálogo e tratamento de charset no console Windows)*
 
-- [x] ~~**[X] [case-03] Dadosfera - Explorar & Catalogar (Dicionário de Dados, Arquitetura Lakehouse & Governança) [X]**~~
-  - **exploração, carga e catalogação com governança** (*Carga e catalogação dos datasets das 7 entidades no módulo Explorar da Dadosfera, estruturação de Dicionários de Dados baseados em classe ("A é um B que C"), conformidade LGPD/PII e organização do Data Lakehouse em 4 zonas Medallion com Quarentena de Anomalias. Automação via API Maestro e vinculação direta aos 7 Data Asset IDs oficiais*)
-  - **🏛️ Arquitetura de Zonas do Data Lakehouse (Dadosfera):**
+- [x] ~~**[X] [case-03] Explorar & Catalogar (Dicionário de Dados, Arquitetura Lakehouse & Governança) [X]**~~
+  - **exploração, carga e catalogação com governança** (*Carga e catalogação dos datasets das 7 entidades no módulo Explorar, estruturação de Dicionários de Dados baseados em classe ("A é um B que C"), conformidade LGPD/PII e organização do Data Lakehouse em 4 zonas Medallion com Quarentena de Anomalias. Automação via API Maestro e vinculação direta aos 7 Data Asset IDs oficiais*)
+  - **🏛️ Arquitetura de Zonas do Data Lakehouse:**
     ```text
                       ┌──────────────────────────────────────────────┐
                       │          ZONAS DO DATA LAKEHOUSE             │
@@ -96,14 +96,14 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
     - [`pipelines/datalakes/anomaly/spec.md`](pipelines/datalakes/anomaly/spec.md) — *Diretrizes da Camada Anomaly (Silver Quarentena: Armazenamento e Diagnóstico de Anomalias DEC-006)*
     - [`pipelines/datalakes/curated/spec.md`](pipelines/datalakes/curated/spec.md) — *Diretrizes da Camada Curated (Gold: Modelagem Dimensional Kimball e Analytics)*
   - **📁 Mapeamento Oficial de Ativos & Outputs (`output-mappers/`):**
-    - [`agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md) ([`assets_registry.json`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json)) — *Mapeamento oficial dos 7 Data Asset IDs vinculados, URLs diretas e schemas sincronizados na Dadosfera*
+    - [`agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md) ([`assets_registry.json`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json)) — *Mapeamento oficial dos 7 Data Asset IDs vinculados, URLs diretas e schemas sincronizados*
     - [`pipelines/case-item-03/outputs/catalog_governance_report.md`](pipelines/case-item-03/outputs/catalog_governance_report.md) — *Inventário consolidado dos ativos e data lakes catalogados e evidências técnicas de governança*
   - **Skills e Agentes Criados nesta etapa:**
     - [`data-pipeline-documentation`](.agents/skills/data-pipeline-documentation/SKILL.md) ([`.agents/agents/data-pipeline-documentation.md`](.agents/agents/data-pipeline-documentation.md)) — *Especialista em documentação, catálogo e linhagem de pipelines no padrão Medallion (Bronze -> Silver -> Gold), contratos de dados, Data Quality e governança ágil sem over-engineering*
-    - [`platform-registry-consultant`](.agents/skills/platform-registry-consultant/SKILL.md) ([`.agents/agents/platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md)) — *Guardião do registro de ativos, metadados, Data Asset IDs oficiais da Dadosfera (`output-mappers`) e sincronização via API Maestro*
+    - [`platform-registry-consultant`](.agents/skills/platform-registry-consultant/SKILL.md) ([`.agents/agents/platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md)) — *Guardião do registro de ativos, metadados, Data Asset IDs oficiais (`output-mappers`) e sincronização via API Maestro*
 
-- [x] ~~**[X] [case-04] Dadosfera - Data Quality, Quarentena de Anomalias & Common Data Model (Great Expectations & Relatório) [X]**~~
-  - **governança de data quality, quarentena de anomalias e common data model** (*Auditoria completa de qualidade sobre 115.777+ registros em Parquet da camada Bronze, aplicação de suíte declarativa no Great Expectations com 18 expectativas em 6 dimensões fundamentais, arquitetura Dual-Artifact Silver Bifurcation com quarentena auditável de anomalias (DEC-006) e implementação do Common Data Model (CDM) canônico em 7 entidades no padrão Microsoft CDM / ODI para proteção de modelos preditivos e agentes de IA contra dados corrompidos e alucinações*)
+- [x] ~~**[X] [case-04] Data Quality, Quarentena de Anomalias & Common Data Model (Great Expectations & Relatório) [X]**~~
+  - **governança de data quality, quarentena de anomalias e common data model** (*Auditoria completa de qualidade sobre 115.777+ registros em Parquet da camada Bronze, aplicação de suíte declarativa no Great Expectations com 18 expectativas em 6 dimensões fundamentais, segregação de qualidade na camada Silver (DEC-006) e implementação do Common Data Model (CDM) canônico em 7 entidades para garantir integridade e confiabilidade nas análises de BI*)
   - **🛡️ Arquitetura Dual-Artifact & Quarentena de Anomalias (DEC-006):**
     ```text
                       ┌──────────────────────────────────────────────┐
@@ -114,7 +114,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
                                              ▼
                       ┌──────────────────────────────────────────────┐
                       │    DATA QUALITY GATE: GREAT EXPECTATIONS     │
-                      │          18 Regras em 6 Dimensões            │
+                      │       Regras Parametrizadas por Entidade     │
                       └──────────────────────┬───────────────────────┘
                                              │
                     ┌────────────────────────┴────────────────────────┐
@@ -122,42 +122,39 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
       ┌───────────────────────────┐                     ┌───────────────────────────┐
       │   SILVER QUALIFY (98.8%)  │                     │  SILVER ANOMALIES (1.2%)  │
       │  • Registros Higienizados │                     │  • Quarentena de Anomalias│
-      │  • Contratos Cumpridos    │                     │  • snapshot payload_raw   │
-      │  • Promovido para Gold    │                     │  • codigo_anomalia & risco│
+      │  • Contratos Cumpridos    │                     │  • Snapshot de Auditoria  │
+      │  • Promovido para Análise │                     │  • Log de Desvios e Riscos│
       └─────────────┬─────────────┘                     └─────────────┬─────────────┘
                     │                                                 │
                     ▼                                                 ▼
       ┌───────────────────────────┐                     ┌───────────────────────────┐
-      │  CONSUMO GOLD / IA / BI   │                     │  AUDITORIA & ENGENHARIA   │
-      │  • Metabase Dashboards    │                     │  • Diagnóstico Causa-Raiz │
-      │  • Modelos RFM & Propensão│                     │  • Ajustes no Checkout/API│
-      │  • Agentes GenAI de Copy  │                     │  • Retreinamento Seguro   │
+      │     CONSUMO ANALÍTICO     │                     │   AUDITORIA DE QUALIDADE  │
+      │  • Dashboards no Metabase │                     │  • Diagnóstico de Desvios │
+      │  • Análise de Abandono/BI │                     │  • Relatório Executivo    │
+      │  • Métricas Consolidadas  │                     │  • Rastreabilidade Silver │
       └───────────────────────────┘                     └───────────────────────────┘
     ```
-  - **📁 Especificações Normativas & Blueprints de Data Quality:**
-    - [`docs/specifications/data-quality-specification.md`](docs/specifications/data-quality-specification.md) — *Especificação normativa do Item 4 contendo contextualização, tripé de artefatos, as 6 dimensões de qualidade (Completeness, Uniqueness, Validity, Consistency, Integrity, Temporal Consistency), taxonomia detalhada de anomalias (ANOM-01 a ANOM-05), regras de roteamento (SANITIZE vs ISOLATE vs RECALCULATE) e estrutura de 13 seções do relatório*
-    - [`docs/specifications/data-platform-specification.md`](docs/specifications/data-platform-specification.md) — *Diretrizes globais de governança, arquitetura Medallion e contratos de dados da plataforma Dadosfera*
-    - [`pipelines/case-item-04/specs.md`](pipelines/case-item-04/specs.md) — *Especificação técnica formal do pipeline de Data Quality (`spec_data_quality_001` v1.1), mapeamento com requisitos oficiais da Dadosfera, matriz de 18 regras e catálogo de severidades*
+  - **📁 Especificações Normativas e Blueprints de Data Quality:**
+    - [`docs/specifications/data-quality-specification.md`](docs/specifications/data-quality-specification.md) — *Especificação normativa do Item 4 contendo contextualização, tripé de artefatos, as 6 dimensões de qualidade (Completeness, Uniqueness, Validity, Consistency, Integrity, Temporal Consistency), taxonomia detalhada de anomalias (ANOM-01 a ANOM-05) e estrutura de 13 seções do relatório*
+    - [`docs/specifications/data-platform-specification.md`](docs/specifications/data-platform-specification.md) — *Diretrizes globais de governança, arquitetura, e contratos de dados*
+    - [`pipelines/case-item-04/specs.md`](pipelines/case-item-04/specs.md) — *Especificação técnica formal do pipeline de Data Quality (`spec_data_quality_001` v1.1), mapeamento com requisitos oficiais do case, matriz de 18 regras e catálogo de severidades*
     - [`pipelines/case-item-04/implementation_plan.md`](pipelines/case-item-04/implementation_plan.md) — *Plano de implementação técnico, decomposição em fases WBS, regras de não-replicação e critérios de aceitação (Definition of Done)*
-  - **📁 Suíte Declarativa de Expectativas & Execução:**
+  - **📁 Suíte Declarativa de Expectativas e Execução:**
     - [`pipelines/case-item-04/notebooks/qualification_raw.ipynb`](pipelines/case-item-04/notebooks/qualification_raw.ipynb) — *Notebook executável aplicando as regras de validação sobre as entidades*
     - [`pipelines/case-item-04/scripts/run_quality_pipeline.py`](pipelines/case-item-04/scripts/run_quality_pipeline.py) — *Script batch automatizado (`python make.py quality-eval`)*
     - [`pipelines/case-item-04/quality/`](pipelines/case-item-04/quality/) — *Suíte declarativa de expectativas (`carrinhos_suite.json`) e log estruturado de validação*
-  - **📁 Arquitetura Estruturada de Outputs & Visualizações:**
+  - **📁 Arquitetura de Outputs & Views:**
     - [`pipelines/case-item-04/outputs/`](pipelines/case-item-04/outputs/) — *Estrutura abstrata de diretórios de saída:*
       - `outputs/qualify/[entidade]/` — *Datasets higienizados e conformes promovidos para a camada Gold*
       - `outputs/anomalies/[entidade]/[rule]/` — *Quarentena de anomalias segregada por entidade e código de anomalia*
       - `outputs/assets/` — *Gráficos gerados pelo notebook e suas respectivas regras de validação*
       - `outputs/data_quality_report.md` — *Relatório executivo consolidado de qualidade e anomalias*
       - `outputs/validation_results.json` — *Manifesto estruturado de auditoria da validação*
-    - [`presentation/pitch/06_data_quality_e_quarentena/`](presentation/pitch/06_data_quality_e_quarentena/) — *Módulo do pitch com especificação ([`spec.md`](presentation/pitch/06_data_quality_e_quarentena/spec.md)), script gerador ([`generate_chart.py`](presentation/pitch/06_data_quality_e_quarentena/generate_chart.py)) e scorecard visual ([`chart_06_scorecard_data_quality.png`](presentation/pitch/06_data_quality_e_quarentena/chart_06_scorecard_data_quality.png))*
   - **🌟 Bônus: Common Data Model (CDM) Implementado:**
-    - **Estruturação do Common Data Model (CDM)**: Padronização e unificação semântica dos dados de e-commerce e carrinho abandonado em um modelo canônico extensível baseado no padrão Microsoft CDM / Open Data Initiative (ODI), garantindo interoperabilidade entre ERPs, CRMs, Checkout e Lakehouse:
-      - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *7 entidades canônicas estruturadas no Blueprint Canônico de 4 Divisões ([`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
-      - [`data/data-models/logical/entities/blueprint-entities-archive.md`](data/data-models/logical/entities/blueprint-entities-archive.md) — *Blueprint normativo do CDM com dicionário tipado, Schema Rules numeradas, Business Rules, regras de validação funcional e linhagem Medallion*
-      - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Matriz de integridade referencial, cardinalidade e grafo ERD do CDM*
-      - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *Master Single Source of Truth (SSOT) de regras de negócio, invariantes contábeis e políticas de recuperação*
-      - [`pipelines/datalakes/`](pipelines/datalakes/) — *Data Lakehouse estruturado com as camadas Raw ([`raw/spec.md`](pipelines/datalakes/raw/spec.md)), Qualify ([`qualify/spec.md`](pipelines/datalakes/qualify/spec.md)), Anomaly Quarentena ([`anomaly/spec.md`](pipelines/datalakes/anomaly/spec.md)) e Curated ([`curated/spec.md`](pipelines/datalakes/curated/spec.md))*
+    - **Modelo de Dados Padronizado (CDM)**: Padronização das 7 entidades de e-commerce para garantir que todo o Lakehouse e os dashboards analíticos compartilhem o mesmo schema e regras:
+      - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificação das 7 entidades canônicas ([`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
+      - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Relacionamentos, cardinalidades e grafo ERD entre as tabelas*
+      - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *Regras de negócio e fórmulas contábeis unificadas*
   - **🤖 Agentes e Skills desenvolvidos/utilizados nesta etapa:**
     - [`data-pipeline-documentation`](.agents/skills/data-pipeline-documentation/SKILL.md) ([`.agents/agents/data-pipeline-documentation.md`](.agents/agents/data-pipeline-documentation.md)) — *Especialista em documentação, catálogo e linhagem de pipelines no padrão Medallion (Bronze -> Silver -> Gold), contratos de dados, Data Quality e governança ágil sem over-engineering*
     - [`declarative-functional-coding`](.agents/skills/declarative-functional-coding/SKILL.md) ([`.agents/agents/declarative-functional-coding.md`](.agents/agents/declarative-functional-coding.md)) — *Especialista na implementação de pipelines sob o paradigma funcional e declarativo, sequências de funções puras de validação/higienização (`validar_pk`, `sanitizar_frete`, etc.) e tipagem estrita*
