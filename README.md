@@ -3,8 +3,7 @@
 > **Candidato:** Pedro Henrique Sales  
 > **Identificador Oficial:** `PEDRO_SALES_DDF_TECH_082026`  
 > **Plataforma:** [Dadosfera](https://dadosfera.ai) (Coleta, Catálogo, Qualify, Pipelines, Inteligência, Metabase & Data Apps)  
-> **Domínio de Negócio:** E-commerce / Marketplace — Recuperação de Carrinho e Conversão de GMV  
-> **Target de Avaliação:** Escala **Outlier** (Itens 0 a 10 + Data Apps + GenAI + Case Bônus)  
+> **Domínio de Negócio:** E-commerce / Marketplace — Recuperação de Carrinho e Conversão de GMV   
 
 ---
 
@@ -12,14 +11,15 @@
 
 Este repositório contém a solução completa de Engenharia, Governança, Qualidade e Inteligência de Dados para o desafio de **Recuperação de Carrinho Abandonado**, demonstrando como a plataforma **Dadosfera** substitui e supera arquiteturas legadas e dispersas (AWS Glue/Athena/Sagemaker) em produtividade, governança e ROI de negócio.
 
-### 🎯 Principais Destaques:
+### 🎯 Principais Destaques em resumo:
 - **Base de Dados Sintética Modular e Declarativa:** **115.777+ registros** em Parquet e CSV com dirty data determinístico (5%) para testes de estresse de Data Quality.
-- **Arquitetura Medallion com Segregação em Quarentena:** Camada Silver bifurcada em `carrinhos_qualify` (dados conformes) e `carrinhos_anomalies` (dead-letter queue).
+- **Arquitetura Medallion com Segregação em Quarentena:** Camada Silver bifurcada em `carrinhos_qualify` (dados conformes) e `carrinhos_anomalies` (dados anômalos).
 - **Data Quality Framework (Item 4):** Suíte de **18 expectativas Great Expectations** em 6 dimensões com relatório executivo de anomalias.
 - **Dashboards & Views Analíticas (Item 7):** 6 visualizações de BI (Série Temporal, Performance de Categorias, ROI por Canal, Heatmap RFM e Matriz de Decisão) reproduzíveis via script e notebooks.
 - **Contratos e Governança de Metadados:** Alinhamento rigoroso à [Data Platform Specification](docs/specifications/data-platform-specification.md) e catálogo com Data Asset IDs mapeados.
 
 ---
+## 📋 2. Mapeamento de tarefas
 
 ## 📋 2. Mapeamento de Requisitos do Case (Dadosfera)
 
@@ -38,6 +38,27 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **10** | Apresentação em Vídeo | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
 | **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `presentation/insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
 | **Bônus**| GenAI + Data Apps | IA Generativa | Geração visual de cards de produtos e vitrines dinâmicas de resgate | ⏳ Planejado |
+
+### 🗂️ Mapeamento Detalhado de Tarefas por Entregável
+
+<div style="opacity: 0.65; color: #888888;">
+
+- [x] **[X] [case-01] Definição da base de dados**
+  - **.escolha de case carrinho** (*Recuperação de Carrinho Abandonado no Marketplace / E-commerce*)
+  - **📁 Diretórios que definem a Entidade Central & Modelagem Lógica:**
+    - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificações de entidades canônicas ([`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
+    - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Matriz de cardinalidade, integridade referencial e chaves*
+    - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *Regras de negócio, temporalidade de abandono (15 min) e status*
+  - **📁 Diretórios Relacionados (Schema SQL, DDL & Views):**
+    - [`data/database/sql/`](data/database/sql/) — *DDLs relacionais ([`001_create_tables.sql`](data/database/sql/001_create_tables.sql)), constraints ([`002_constraints.sql`](data/database/sql/002_constraints.sql)), índices ([`003_indexes.sql`](data/database/sql/003_indexes.sql)) e views analíticas ([`004_views.sql`](data/database/sql/004_views.sql))*
+  - **📁 Diretórios Relacionados (Geração & Carga de Dados Sintéticos):**
+    - [`data/mock/generators/`](data/mock/generators/) — *Geradores modulares em Python com injeção determinística de dirty data (5%)*
+    - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets finais em Parquet e CSV com +115.777 registros*
+    - [`data/mock/METRICS.md`](data/mock/METRICS.md) — *Métricas de volumetria, distribuição e conformidade quantitativa*
+  - **📁 Diretórios Relacionados (Catálogo de Metadados & Qualify):**
+    - [`data/catalogo/qualify/`](data/catalogo/qualify/) — *Dicionários de dados, contratos e schemas para ingestão na Dadosfera*
+
+</div>
 
 ---
 
