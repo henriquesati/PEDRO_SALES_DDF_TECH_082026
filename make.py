@@ -20,27 +20,24 @@ import subprocess
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 def task_notebook_gen(chart_name: str | None = None) -> None:
-    """Gera os artefatos de gráficos e views de BI."""
-    script_path = os.path.join(BASE_DIR, "notebooks", "pipelines", "serving", "generate_bi_charts.py")
-    cmd = [sys.executable, script_path]
-    
-    if chart_name:
-        cmd.extend(["--chart", chart_name])
-    else:
-        cmd.append("--all")
-        
-    print(f"\n[TASK: notebook-gen] Executando gerador de imagens de BI...")
-    res = subprocess.run(cmd, cwd=BASE_DIR)
+    """Gera os artefatos de gráficos e views analíticas de insights e BI."""
+    script_path = os.path.join(BASE_DIR, "presentation", "insights", "run_all_insights_charts.py")
+    print(f"\n[TASK: notebook-gen] Executando gerador de imagens de BI e Insights...")
+    res = subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
     if res.returncode == 0:
-        print("[TASK: notebook-gen] Imagens geradas com sucesso em dashboards/assets/ e docs/assets/charts/!\n")
+        print("[TASK: notebook-gen] Imagens geradas com sucesso em presentation/insights/!\n")
     else:
-        print("[ERRO] Falha na geracao das imagens.", file=sys.stderr)
+        print("[ERRO] Falha na geração das imagens.", file=sys.stderr)
         sys.exit(res.returncode)
 
 def task_list_charts() -> None:
-    """Lista as especificações de gráficos disponíveis."""
-    script_path = os.path.join(BASE_DIR, "notebooks", "pipelines", "serving", "generate_bi_charts.py")
-    subprocess.run([sys.executable, script_path, "--list"], cwd=BASE_DIR)
+    """Lista as categorias e módulos de gráficos de insights disponíveis."""
+    print("""
+📊 Catálogo de Gráficos de Insights Disponíveis:
+  - 01_descriptive/ (BI de Recuperação, Motivos de Abandono, Custo & ROI)
+  - 02_risk/ (Segmentação de Risco, LTV vs Abandono, Viabilidade de Recuperação)
+  - 03_prescriptive/ (Estratégia de Resgate, Otimização de Timing, Produtos Abandonados, ROI de Campanhas)
+""")
 
 def task_mock_gen(profile: str = "standard") -> None:
     """Executa a geração modular de datasets sintéticos."""
@@ -100,6 +97,30 @@ def task_push_read(commit_msg: str | None = None) -> None:
         print("[ERRO] Falha no git push.", file=sys.stderr)
         sys.exit(res_push.returncode)
 
+def task_data_app() -> None:
+    """Inicia a aplicação interativa do Data App em Streamlit (Item 9 & Bônus)."""
+    script_path = os.path.join(BASE_DIR, "pipelines", "case-item-09", "scripts", "run_app_locally.py")
+    print("\n[TASK: data-app] Iniciando Data App Streamlit (Item 9 & Bônus)...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+
+def task_data_app_assets() -> None:
+    """Gera os gráficos e imagens em 300 DPI do Data App (Item 9)."""
+    script_path = os.path.join(BASE_DIR, "pipelines", "case-item-09", "scripts", "export_app_assets.py")
+    print("\n[TASK: data-app-assets] Gerando assets visuais do Data App...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+
+def task_data_modeling() -> None:
+    """Gera o dashboard e arquitetura da Modelagem Dimensional Kimball (Item 6)."""
+    script_path = os.path.join(BASE_DIR, "pipelines", "case-item-06", "scripts", "generate_chart.py")
+    print("\n[TASK: data-modeling] Gerando artefatos dimensionais Kimball (Item 6)...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+
+def task_pipeline_run() -> None:
+    """Executa o pipeline modular de dados e machine learning (Item 8)."""
+    script_path = os.path.join(BASE_DIR, "pipelines", "case-item-08", "scripts", "run_silver_gold_pipeline.py")
+    print("\n[TASK: pipeline-run] Executando pipeline Medallion, Stepsfera e ML (Item 8)...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+
 def print_help() -> None:
     print("""
 =============================================================================
@@ -107,7 +128,11 @@ def print_help() -> None:
 =============================================================================
 Comandos disponíveis:
 
+  python make.py data-app                   Inicia o Data App Streamlit (Item 9 & Bônus)
+  python make.py data-app-assets            Gera as imagens em 300 DPI do Data App
   python make.py push-read [MSG]            Commita e envia EXCLUSIVAMENTE o README.md
+  python make.py pipeline-run               Executa o pipeline modular & ML (Item 8)
+  python make.py data-modeling              Gera a modelagem Kimball Gold DW (Item 6)
   python make.py pitch-charts               Gera todos os 8 gráficos do Pitch (Item 10)
   python make.py insights-charts            Gera os gráficos de Insights (presentation/insights/)
   python make.py notebook-gen               Gera todas as 6 imagens de BI
@@ -135,8 +160,16 @@ def main():
     command = sys.argv[1].lower().replace("-", "_")
     arg = sys.argv[2] if len(sys.argv) > 2 else None
 
-    if command in ("push_read", "pushread", "push_readme", "pushreadme"):
+    if command in ("data_app", "dataapp", "app", "streamlit"):
+        task_data_app()
+    elif command in ("data_app_assets", "dataapp_assets", "app_assets"):
+        task_data_app_assets()
+    elif command in ("push_read", "pushread", "push_readme", "pushreadme"):
         task_push_read(arg)
+    elif command in ("pipeline_run", "pipeline", "pipelinerun", "pipe", "pipeline_eval"):
+        task_pipeline_run()
+    elif command in ("data_modeling", "datamodeling", "kimball", "modeling", "case6", "case06"):
+        task_data_modeling()
     elif command in ("pitch_charts", "pitch", "pitch_gen"):
         task_pitch_charts()
     elif command in ("insights_charts", "insights", "insight_charts"):
@@ -164,3 +197,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

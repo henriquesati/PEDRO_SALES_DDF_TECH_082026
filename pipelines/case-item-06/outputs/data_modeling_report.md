@@ -109,3 +109,12 @@ O diagrama abaixo ilustra a linhagem ponta a ponta, desde as origens operacionai
 
 - **Dual-Artifact Pipeline (Item 4 / DEC-006)**: As tabelas dimensionais Gold consomem exclusivamente dados aprovados da camada Silver Qualify. As anomalias (`pipelines/case-item-04/outputs/anomalies/*.parquet` - 5.8% de desvios) permanecem isoladas na quarentena de anomalias.
 - **Relatório de Lacunas Canônicas**: O diagnóstico de transição entre os modelos relacionais transacionais (`entities/*.md`) e o modelo dimensional Gold está formalizado em [`canonical_structure_gaps_report.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/outputs/canonical_structure_gaps_report.md).
+
+---
+
+## 💻 7. Scripts e Notebooks Executáveis
+
+- 📓 **Notebook Interativo (Google Colab / Jupyter):** [`pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb)
+- 🐍 **Gerador Canônico de Artefatos:** [`pipelines/case-item-06/scripts/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/scripts/generate_chart.py)
+- 🎨 **Visualização Executiva (300 DPI):** [`pipelines/case-item-06/outputs/assets/chart_caseitem06_kimball_model.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/outputs/assets/chart_caseitem06_kimball_model.png)
+

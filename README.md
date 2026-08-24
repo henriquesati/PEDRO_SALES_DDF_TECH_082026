@@ -249,8 +249,11 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
     - [`v_recovery_roi_by_segment`](pipelines/case-item-06/specs.md#L322-L359) (*Visão Tática de Resgate e ROI: funil de CRM, custos, receita recuperada e eficiência por canal e cluster RFM*)
   - **📁 Arquitetura de Outputs e Relatórios:**
     - [`pipelines/case-item-06/outputs/`](pipelines/case-item-06/outputs/) — *Relatório técnico de modelagem dimensional, relatório de Gap Analysis e diagrama arquitetural do Data Warehouse em 300 DPI*
+  - **📁 Scripts e Notebooks Executáveis:**
+    - [`pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb`](pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb) — *Notebook interativo executável no Google Colab/Jupyter com modelagem dimensional, derivação de dimensões/fatos e visões analíticas Gold*
+    - [`pipelines/case-item-06/scripts/generate_chart.py`](pipelines/case-item-06/scripts/generate_chart.py) — *Gerador canônico dos artefatos visuais da arquitetura dimensional Kimball no padrão charts-maker (`python make.py data-modeling`)*
   - **🌟 Bônus: Diagrama das Camadas Finais do DW e Justificativa Comparativa:**
-    - **Diagrama Visual Completo (Camadas DW)**: Representação visual da linhagem ponta a ponta renderizada em alta definição em [`pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png).
+    - **Diagrama Visual Completo (Camadas DW)**: Representação visual da linhagem ponta a ponta renderizada em alta definição em [`pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png) e [`pipelines/case-item-06/outputs/assets/chart_caseitem06_kimball_model.png`](pipelines/case-item-06/outputs/assets/chart_caseitem06_kimball_model.png).
   </small>
 
 
@@ -314,6 +317,9 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 - [`pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb): Notebook executável Google Colab para extração de features desestruturadas e bônus multimodal (Item 5).
 - [`pipelines/case-item-05/specs.md`](pipelines/case-item-05/specs.md): Especificação técnica normativa (`spec_genai_llm_001` v1.0) do pipeline de GenAI & LLMs.
 - [`pipelines/case-item-05/scripts/run_genai_pipeline.py`](pipelines/case-item-05/scripts/run_genai_pipeline.py): Script batch de extração estruturada de features (`python make.py genai-extract`).
+- [`pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb`](pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb): Notebook interativo com modelagem dimensional Kimball Star Schema, 6 dimensões conformadas, 2 fatos e 2 visões analíticas Gold (Item 6).
+- [`pipelines/case-item-06/specs.md`](pipelines/case-item-06/specs.md): Especificação técnica formal (`spec_data_modeling_001`) da camada Gold DW Kimball.
+- [`pipelines/case-item-06/scripts/generate_chart.py`](pipelines/case-item-06/scripts/generate_chart.py): Script gerador do dashboard dimensional no padrão `charts-maker` (`python make.py data-modeling`).
 - [`pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb`](pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb): Notebook executável Google Colab com transformações Snowpark/PySpark e Stepsfera (Item 8).
 - [`pipelines/case-item-08/specs.md`](pipelines/case-item-08/specs.md): Especificação técnica normativa (`spec_pipeline_orchestration_001`) do pipeline Medallion e catálogo Stepsfera.
 - [`pipelines/case-item-08/scripts/run_silver_gold_pipeline.py`](pipelines/case-item-08/scripts/run_silver_gold_pipeline.py): Script batch do pipeline completo e modelo de ML (`python make.py pipeline-run`).
