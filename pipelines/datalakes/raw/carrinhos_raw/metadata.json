@@ -1,0 +1,31 @@
+{
+  "doc_id": "meta_raw_carrinhos_001",
+  "entity_name": "carrinhos_raw",
+  "dadosfera_asset_id": "e2d3b1bb-bf22-456e-bc66-4ac843deec82",
+  "direct_url": "https://app.dadosfera.ai/pt-BR/catalog/data-assets/e2d3b1bb-bf22-456e-bc66-4ac843deec82",
+  "format": "parquet",
+  "storage_path": "data/mock/output/parquet/carrinhos.parquet",
+  "classification": "Interno",
+  "owner": "Engenharia de Dados & Webstore",
+  "upstream": {
+    "source": "Webstore / E-commerce Session Collector",
+    "protocol": "Batch S3 Landing"
+  },
+  "downstream": [
+    {
+      "layer": "qualify",
+      "target": "qualify.carrinhos"
+    },
+    {
+      "layer": "anomaly",
+      "target": "anomaly.carrinhos_anomalies"
+    }
+  ],
+  "records_count": 7500,
+  "tags": [
+    "carrinho_abandonado",
+    "carrinhos",
+    "transacional",
+    "raw"
+  ]
+}

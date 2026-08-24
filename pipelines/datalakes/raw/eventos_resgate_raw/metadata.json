@@ -1,0 +1,27 @@
+{
+  "doc_id": "meta_raw_eventos_resgate_001",
+  "entity_name": "eventos_resgate_raw",
+  "dadosfera_asset_id": "04739f6d-e8c3-4d6f-80b7-0f98c12a5798",
+  "direct_url": "https://app.dadosfera.ai/pt-BR/catalog/data-assets/04739f6d-e8c3-4d6f-80b7-0f98c12a5798",
+  "format": "parquet",
+  "storage_path": "data/mock/output/parquet/eventos_resgate.parquet",
+  "classification": "Interno",
+  "owner": "Marketing & CRM Operations",
+  "upstream": {
+    "source": "CRM Dispatcher (Email, SMS, WhatsApp)",
+    "protocol": "Batch S3 Landing"
+  },
+  "downstream": [
+    {
+      "layer": "qualify",
+      "target": "qualify.eventos_resgate"
+    }
+  ],
+  "records_count": 6427,
+  "tags": [
+    "carrinho_abandonado",
+    "eventos_resgate",
+    "recuperacao",
+    "raw"
+  ]
+}

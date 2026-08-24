@@ -1,0 +1,28 @@
+{
+  "doc_id": "meta_gold_fato_resgate_001",
+  "entity_name": "fato_resgate",
+  "snowflake_table": "GOLD_KIMBALL.FATO_RESGATE",
+  "storage_path": "pipelines/case-item-08/outputs/curated/fato_resgate.parquet",
+  "classification": "Interno",
+  "upstream": {
+    "source": "qualify.eventos_resgate",
+    "process": "Step 4 Modelagem Dimensional"
+  },
+  "downstream": [
+    {
+      "consumer": "v_recovery_roi_by_channel",
+      "purpose": "ROI BI"
+    },
+    {
+      "consumer": "Step 5 ML Model",
+      "purpose": "Supervised Training"
+    }
+  ],
+  "records_count": 6427,
+  "tags": [
+    "gold",
+    "fato",
+    "resgate",
+    "roi_liquido"
+  ]
+}

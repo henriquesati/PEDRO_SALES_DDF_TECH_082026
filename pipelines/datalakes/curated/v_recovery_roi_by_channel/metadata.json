@@ -1,0 +1,14 @@
+{
+  "doc_id": "meta_gold_view_roi_001",
+  "entity_name": "v_recovery_roi_by_channel",
+  "snowflake_table": "GOLD_KIMBALL.V_RECOVERY_ROI_BY_CHANNEL",
+  "storage_path": "pipelines/case-item-08/outputs/curated/v_recovery_roi_by_channel.parquet",
+  "classification": "Interno",
+  "records_count": 4,
+  "tags": [
+    "gold",
+    "view",
+    "roi",
+    "metabase"
+  ]
+}

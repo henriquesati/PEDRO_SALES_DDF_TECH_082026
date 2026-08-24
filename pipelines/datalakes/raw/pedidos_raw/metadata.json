@@ -1,0 +1,27 @@
+{
+  "doc_id": "meta_raw_pedidos_001",
+  "entity_name": "pedidos_raw",
+  "dadosfera_asset_id": "7f82a988-8e68-416a-b6fa-5007c4789d1a",
+  "direct_url": "https://app.dadosfera.ai/pt-BR/catalog/data-assets/7f82a988-8e68-416a-b6fa-5007c4789d1a",
+  "format": "parquet",
+  "storage_path": "data/mock/output/parquet/pedidos.parquet",
+  "classification": "Interno",
+  "owner": "Financeiro & Faturamento",
+  "upstream": {
+    "source": "Gateway de Pagamentos / ERP",
+    "protocol": "Batch S3 Landing"
+  },
+  "downstream": [
+    {
+      "layer": "qualify",
+      "target": "qualify.pedidos"
+    }
+  ],
+  "records_count": 2229,
+  "tags": [
+    "carrinho_abandonado",
+    "pedidos",
+    "conversoes",
+    "raw"
+  ]
+}

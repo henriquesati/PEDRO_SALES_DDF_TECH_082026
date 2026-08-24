@@ -1,0 +1,24 @@
+{
+  "doc_id": "meta_gold_fato_abandono_001",
+  "entity_name": "fato_abandono",
+  "snowflake_table": "GOLD_KIMBALL.FATO_ABANDONO",
+  "storage_path": "pipelines/case-item-08/outputs/curated/fato_abandono.parquet",
+  "classification": "Interno",
+  "upstream": {
+    "source": "qualify.carrinhos",
+    "process": "Step 4 Modelagem Dimensional"
+  },
+  "downstream": [
+    {
+      "consumer": "v_abandonment_summary",
+      "purpose": "BI"
+    }
+  ],
+  "records_count": 5183,
+  "tags": [
+    "gold",
+    "fato",
+    "abandono",
+    "gmv_em_risco"
+  ]
+}

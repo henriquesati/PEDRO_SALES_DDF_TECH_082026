@@ -1,0 +1,52 @@
+{
+  "execution_id": "exec_pipe_1787601503",
+  "profile": "standard",
+  "total_duration_ms": 2023.5,
+  "total_raw_records": 115775,
+  "total_qualify_records": 114854,
+  "total_anomaly_records": 921,
+  "total_gold_records": 12110,
+  "ml_metrics": {
+    "model_name": "Regularized Logistic Regression (Cart Recovery Propensity)",
+    "roc_auc": 0.9478,
+    "accuracy": 0.9953,
+    "f1_score": 0.0
+  },
+  "steps": [
+    {
+      "step_id": "step_01_ingest_bronze",
+      "status": "SUCCESS",
+      "duration_ms": 144.6,
+      "records_in": 115775,
+      "records_out": 115775
+    },
+    {
+      "step_id": "step_02_validate_qualify",
+      "status": "SUCCESS",
+      "duration_ms": 410.99,
+      "records_in": 115775,
+      "records_out": 114854
+    },
+    {
+      "step_id": "step_03_enrich_genai",
+      "status": "SUCCESS",
+      "duration_ms": 4.0,
+      "records_in": 300,
+      "records_out": 300
+    },
+    {
+      "step_id": "step_04_transform_gold_kimball",
+      "status": "SUCCESS",
+      "duration_ms": 466.62,
+      "records_in": 14506,
+      "records_out": 12110
+    },
+    {
+      "step_id": "step_05_train_churn_model",
+      "status": "SUCCESS",
+      "duration_ms": 111.71,
+      "records_in": 5142,
+      "records_out": 1285
+    }
+  ]
+}

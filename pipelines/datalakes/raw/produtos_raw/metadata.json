@@ -1,0 +1,27 @@
+{
+  "doc_id": "meta_raw_produtos_001",
+  "entity_name": "produtos_raw",
+  "dadosfera_asset_id": "65fcfa25-a6f3-4cb8-a444-7fd23df3fa84",
+  "direct_url": "https://app.dadosfera.ai/pt-BR/catalog/data-assets/65fcfa25-a6f3-4cb8-a444-7fd23df3fa84",
+  "format": "parquet",
+  "storage_path": "data/mock/output/parquet/produtos.parquet",
+  "classification": "Interno",
+  "owner": "Engenharia de Dados & Catálogo",
+  "upstream": {
+    "source": "Catálogo de Produtos",
+    "protocol": "Batch S3 Landing"
+  },
+  "downstream": [
+    {
+      "layer": "qualify",
+      "target": "qualify.produtos"
+    }
+  ],
+  "records_count": 300,
+  "tags": [
+    "carrinho_abandonado",
+    "produtos",
+    "catalogo",
+    "raw"
+  ]
+}

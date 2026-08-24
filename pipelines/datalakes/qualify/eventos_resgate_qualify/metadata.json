@@ -1,0 +1,25 @@
+{
+  "doc_id": "meta_qualify_resgate_001",
+  "entity_name": "eventos_resgate_qualify",
+  "snowflake_table": "CART_RECOVERY.EVENTOS_RESGATE",
+  "dadosfera_asset_id": "04739f6d-e8c3-4d6f-80b7-0f98c12a5798",
+  "storage_path": "pipelines/case-item-08/outputs/qualify/eventos_resgate.parquet",
+  "classification": "Interno",
+  "owner": "Engenharia de Dados & CRM",
+  "upstream": {
+    "source": "raw.eventos_resgate_raw",
+    "process": "Step 2 Validação & Qualify"
+  },
+  "downstream": [
+    {
+      "layer": "curated",
+      "target": "curated.fato_resgate"
+    }
+  ],
+  "records_count": 6427,
+  "tags": [
+    "qualify",
+    "resgates",
+    "marketing"
+  ]
+}

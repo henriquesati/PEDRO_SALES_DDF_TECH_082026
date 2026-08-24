@@ -1,0 +1,28 @@
+{
+  "doc_id": "meta_raw_clientes_001",
+  "entity_name": "clientes_raw",
+  "dadosfera_asset_id": "0327fecc-f826-48fb-bb0a-1493fe18a32c",
+  "direct_url": "https://app.dadosfera.ai/pt-BR/catalog/data-assets/0327fecc-f826-48fb-bb0a-1493fe18a32c",
+  "format": "parquet",
+  "storage_path": "data/mock/output/parquet/clientes.parquet",
+  "classification": "Confidencial (PII)",
+  "owner": "Engenharia de Dados & CRM",
+  "upstream": {
+    "source": "CRM / Cadastro de Usuários",
+    "protocol": "Batch S3 Landing"
+  },
+  "downstream": [
+    {
+      "layer": "qualify",
+      "target": "qualify.clientes"
+    }
+  ],
+  "records_count": 1500,
+  "tags": [
+    "carrinho_abandonado",
+    "clientes",
+    "marketplace",
+    "raw",
+    "pii_sensivel"
+  ]
+}

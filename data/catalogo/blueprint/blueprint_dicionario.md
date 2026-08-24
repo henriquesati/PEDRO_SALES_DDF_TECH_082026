@@ -66,3 +66,57 @@ As seguintes validações do Great Expectations/Soda Core são aplicadas a este 
 - **Unicidade:** `[Regra de unicidade na chave primária]`
 - **Não-Nulidade:** `[Campos que obrigatoriamente devem ser preenchidos]`
 - **Valores Permitidos:** `[Intervalos numéricos ou lista de categorias permitidas]`
+
+---
+
+## 📦 7. Formato de Saída Estruturado (JSON Output Specification — Dadosfera API Standard)
+
+Para integração automatizada com o módulo **Explorar**, API Maestro (`https://maestro.dadosfera.ai`) e pipelines de CI/CD, todo ativo de dados e camada do Lakehouse Medallion **DEVE obrigatoriamente** gerar e manter um arquivo `metadata.json` estruturado no seguinte padrão:
+
+```json
+{
+  "doc_id": "meta_[camada]_[entidade]_[versao]",
+  "entity_name": "[nome_entidade]",
+  "dadosfera_asset_id": "[UUID_oficial_na_dadosfera]",
+  "direct_url": "https://app.dadosfera.ai/pt-BR/catalog/data-assets/[UUID]",
+  "snowflake_table": "[DATABASE].[SCHEMA].[TABELA]",
+  "format": "parquet | snowflake_table | view | csv",
+  "storage_path": "[caminho_no_datalake_ou_storage]",
+  "layer": "raw | qualify | anomaly | curated",
+  "classification": "Público | Interno | Confidencial (PII)",
+  "owner": "[Area_Responsavel]",
+  "records_count": 0,
+  "size_bytes": 0,
+  "upstream": {
+    "source": "[sistema_ou_tabela_de_origem]",
+    "protocol": "[Batch S3 | API Maestro | Step N]",
+    "process": "[Descricao_do_processamento]"
+  },
+  "downstream": [
+    {
+      "layer": "[camada_destino]",
+      "target": "[tabela_ou_dashboard_destino]",
+      "purpose": "[Finalidade_analitica_ou_consumo]"
+    }
+  ],
+  "tags": [
+    "carrinho_abandonado",
+    "[nome_entidade]",
+    "[camada]",
+    "[tag_especifica]"
+  ],
+  "schema": {
+    "[nome_coluna]": {
+      "type": "VARCHAR | INT | FLOAT | TIMESTAMP | BOOLEAN",
+      "nullable": true,
+      "null_count": 0,
+      "null_percentage": 0.0,
+      "cardinality": 0,
+      "business_role": "PK Natural | Surrogate Key | Medida / Métrica | Dimensão / Categoria | Atributo Temporal | Atributo Descritivo",
+      "is_pii": false,
+      "description": "[A coluna é um(a) B que C]",
+      "sample_value": "[Exemplo]"
+    }
+  }
+}
+```

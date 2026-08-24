@@ -1,0 +1,28 @@
+{
+  "doc_id": "meta_gold_dim_clientes_001",
+  "entity_name": "dim_clientes",
+  "snowflake_table": "GOLD_KIMBALL.DIM_CLIENTES",
+  "storage_path": "pipelines/case-item-08/outputs/curated/dim_clientes.parquet",
+  "classification": "Interno",
+  "upstream": {
+    "source": "qualify.clientes",
+    "process": "Step 4 Modelagem Dimensional"
+  },
+  "downstream": [
+    {
+      "consumer": "Metabase Dashboards",
+      "purpose": "Segmentação RFM"
+    },
+    {
+      "consumer": "ML Training Pipeline",
+      "purpose": "Propensity Features"
+    }
+  ],
+  "records_count": 1500,
+  "tags": [
+    "gold",
+    "dimensao",
+    "kimball",
+    "clientes"
+  ]
+}

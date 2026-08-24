@@ -260,7 +260,7 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 - [x] ~~**[X] [case-08] Pipelines de Dados, Stepsfera e Snowpark/Spark (Item 8) [X]**~~
   <small>
 
-  - **orquestração de pipelines e machine learning** (*Construção do pipeline Medallion funcional com catálogo Stepsfera, suíte modular de validação, modelo preditivo e processamento Snowpark*)
+  - **orquestração de pipelines e machine learning** (*Construção do pipeline Medallion funcional com catálogo Stepsfera, utilizando padrões de imutabilidade de objetos, suíte modular de validação, modelo preditivo e processamento Snowpark*)
   - **📁 Especificações Normativas e Contratos:**
     - [`pipelines/case-item-08/specs.md`](pipelines/case-item-08/specs.md) — *Especificação técnica do pipeline (`spec_pipeline_orchestration_001`), catálogo Stepsfera, DAG e governança JSON*
     - [`docs/pipelines/`](docs/pipelines/) — *Documentação de catálogo das camadas ([`silver/silver_carrinhos_qualify.md`](docs/pipelines/silver/silver_carrinhos_qualify.md), [`gold/gold_fato_recuperacao_carrinho.md`](docs/pipelines/gold/gold_fato_recuperacao_carrinho.md))*
@@ -331,68 +331,60 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 
 ---
 
-### 💻 Como Executar na CLI (Windows / Linux / macOS)
+### 💻 Manual de Execução dos Pipelines e Gráficos (Python Multiplataforma)
 
-Você pode gerar as imagens de visualização de BI através de 3 opções equivalentes:
+Todos os comandos de execução, auditoria, extração e geração visual utilizam o runner canônico em Python puro ([`make.py`](make.py)), garantindo compatibilidade total e idêntica em Windows, Linux e macOS:
 
-#### Opção 1: Atalho Direto no Windows CLI (PowerShell / Prompt de Comando)
-```powershell
-# Gera todos os 6 gráficos de BI em alta resolução (300 DPI):
-.\notebook-gen
-
-# Gera apenas um gráfico específico passando o nome da view:
-.\notebook-gen categories
-.\notebook-gen time_series
-.\notebook-gen roi_channels
-```
-
-#### Opção 2: Via Wrapper Make no Windows
-```powershell
-# Execução completa:
-.\make notebook-gen
-
-# Execução individual:
-.\make chart time_series
-```
-
-#### Opção 3: Via Python Direto (Multiplataforma)
+#### 1. Ingestão e Geração de Dados (Camada Bronze)
 ```bash
-# Gera todas as imagens de BI:
-python make.py notebook-gen
-
-# Gera um gráfico específico por chave string:
-python make.py chart categories
-
-# Lista todas as views e gráficos disponíveis no catálogo declarativo:
-python make.py list-charts
-
-# Executa o pipeline de Data Quality e gera o relatório (Item 4):
-python make.py quality-eval
-
-# Executa o pipeline de GenAI & LLMs e gera artefatos/relatório (Item 5):
-python make.py genai-extract
-
-# Gera todos os 8 gráficos de alta resolução da apresentação de Pitch:
-python make.py pitch-charts
-
-# Gera todos os gráficos da galeria de Insights de Negócio (presentation/insights):
-python make.py insights-charts
+# Gera os +115.777 registros sintéticos nas 7 entidades com injeção de dirty data:
+python make.py mock-gen
 ```
 
----
+#### 2. Qualificação, Data Quality e Quarentena (Camada Silver — Item 4)
+```bash
+# Executa a suíte de Data Quality, isola anomalias e exporta relatórios:
+python make.py quality-eval
+```
 
-### 📊 Catálogo de Chaves de Gráficos Disponíveis (`chart_specs.py`):
+#### 3. Extração Semântica e Enriquecimento GenAI (Item 5)
+```bash
+# Processa textos com Pydantic, transcrições Whisper e enriquece produtos:
+python make.py genai-extract
+```
 
-| Chave String | ID | Tipo de Gráfico | Lugar / Painel no BI | View de Origem |
-|---|:---:|---|---|---|
-| `"time_series"` | `CHART-01` | `line_dual_axis` | **Painel Executivo — Topo** | `vw_metricas_resgate_diarias` |
-| `"categories"` | `CHART-02` | `bar_horizontal` | **Painel de Catálogo & Produtos** | `vw_produtos_abandonados` |
-| `"roi_channels"` | `CHART-03` | `combo_bar_line` | **Painel Financeiro & Marketing** | `vw_performance_canais` |
-| `"rfm_heatmap"` | `CHART-04` | `heatmap_matrix` | **Painel Comportamental & CRM** | `vw_abandono_analise` |
-| `"scatter_viability"` | `CHART-05` | `scatter_bubble` | **Painel Prescritivo & Operacional** | `vw_viabilidade_recuperacao` |
-| `"data_quality"` | `CHART-06` | `donut_bar_split` | **Painel de Governança & DQ** | `vw_qualidade_auditoria` |
+#### 4. Modelagem Dimensional Kimball DW Gold (Item 6)
+```bash
+# Deriva 6 dimensões conformadas, 2 fatos e exporta o dashboard dimensional:
+python make.py data-modeling
+```
 
-> 📁 Todas as imagens geradas são salvas automaticamente em [`dashboards/assets/`](dashboards/assets/) e [`docs/assets/charts/`](docs/assets/charts/).
+#### 5. Pipelines Medallion, Stepsfera e Machine Learning (Item 8)
+```bash
+# Orquestra os 5 Steps modulares, treina o modelo ML e exporta metadados JSON:
+python make.py pipeline-run
+```
+
+#### 6. Data App Interativo em Streamlit (Item 9)
+```bash
+# Inicializa a aplicação interativa localmente:
+python make.py data-app
+
+# Exporta os gráficos analíticos e mapas semânticos em 300 DPI:
+python make.py data-app-assets
+```
+
+#### 7. Galeria de Gráficos de Insights e BI
+```bash
+# Gera a suíte completa de 12 gráficos analíticos em 300 DPI:
+python make.py notebook-gen
+```
+
+#### 8. Painéis Visuais e Gráficos do Pitch (Item 10)
+```bash
+# Gera os 4 painéis visuais executivos do Pitch em 300 DPI:
+python make.py pitch-charts
+```
 
 ---
 
@@ -547,15 +539,52 @@ python make.py mock-gen
 ```
 
 ### 3. Executar a Validação de Data Quality e Gerar Imagens de BI
-```powershell
-# No Windows:
-.\notebook-gen
-
-# Ou em qualquer SO:
+```bash
 python make.py notebook-gen
 ```
 
-### 4. Gerar os 8 Gráficos e Painéis Visuais do Pitch
+### 4. Gerar os Painéis Visuais do Pitch
 ```bash
 python make.py pitch-charts
 ```
+
+---
+
+### 📦 Atalhos e Scripts Legados (Windows CLI)
+
+<details>
+<summary>Clique para expandir os comandos e atalhos legados do Windows (.cmd)</summary>
+<br>
+
+Caso utilize o ambiente Windows CMD ou PowerShell e deseje executar via wrappers locais legados:
+
+```powershell
+# Iniciar Data App em Streamlit:
+.\make data-app
+
+# Gerar datasets sintéticos:
+.\make mock-gen
+
+# Executar suíte de Data Quality (Item 4):
+.\make quality-eval
+
+# Executar extração de GenAI (Item 5):
+.\make genai-extract
+
+# Executar modelagem dimensional Kimball (Item 6):
+.\make data-modeling
+
+# Executar pipeline Medallion Stepsfera & ML (Item 8):
+.\make pipeline-run
+
+# Gerar todos os gráficos de Insights e BI:
+.\notebook-gen
+
+# Gerar gráficos do Pitch (Item 10):
+.\make pitch-charts
+
+# Fazer commit e push exclusivamente do README.md:
+.\push-read "mensagem de commit opcional"
+```
+
+</details>

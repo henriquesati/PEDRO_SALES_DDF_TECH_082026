@@ -1,0 +1,3428 @@
+{
+  "bronze_raw": {
+    "layer_name": "bronze_raw",
+    "entities_count": 7,
+    "total_records": 115775,
+    "entities": {
+      "clientes": {
+        "entity_name": "clientes",
+        "record_count": 1500,
+        "columns_count": 15,
+        "columns": {
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1500,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "primeiro_nome": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 282,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Henry Gabriel"
+          },
+          "ultimo_nome": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 51,
+            "null_percentage": 3.4,
+            "cardinality": 102,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Alves"
+          },
+          "email": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 73,
+            "null_percentage": 4.87,
+            "cardinality": 1427,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "HeNrY GaBrIeL.AlVeS107@bOl.cOm.bR"
+          },
+          "telefone": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 131,
+            "null_percentage": 8.73,
+            "cardinality": 1369,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "+55 95 93218-1960"
+          },
+          "segmento_rfm": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "regular"
+          },
+          "data_primeira_compra": {
+            "type": "datetime64[ms]",
+            "nullable": true,
+            "null_count": 218,
+            "null_percentage": 14.53,
+            "cardinality": 524,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-08-30 00:00:00"
+          },
+          "data_ultima_compra": {
+            "type": "datetime64[ms]",
+            "nullable": true,
+            "null_count": 218,
+            "null_percentage": 14.53,
+            "cardinality": 397,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-04-16 00:00:00"
+          },
+          "total_compras": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 26,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "2"
+          },
+          "lifetime_value": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1284,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "734.03"
+          },
+          "permite_email": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "permite_sms": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "False"
+          },
+          "permite_push": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "status_ativo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "data_criacao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 650,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-07-08 00:00:00+00:00"
+          }
+        }
+      },
+      "produtos": {
+        "entity_name": "produtos",
+        "record_count": 300,
+        "columns_count": 13,
+        "columns": {
+          "produto_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "nome": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 296,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Apple Carregador Turbo Classic"
+          },
+          "categoria": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Eletrônicos"
+          },
+          "subcategoria": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 34,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Acessórios"
+          },
+          "marca": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 34,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Apple"
+          },
+          "preco_atual": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1491.48"
+          },
+          "preco_original": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1491.48"
+          },
+          "em_estoque": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          },
+          "avaliacao_media": {
+            "type": "float64",
+            "nullable": true,
+            "null_count": 52,
+            "null_percentage": 17.33,
+            "cardinality": 32,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "3.3"
+          },
+          "total_avaliacoes": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 235,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0"
+          },
+          "url_imagem": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "https://cdn.marketplace.com.br/img/1.jpg"
+          },
+          "data_cadastro": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 204,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-06-28 00:00:00+00:00"
+          },
+          "ativo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          }
+        }
+      },
+      "carrinhos": {
+        "entity_name": "carrinhos",
+        "record_count": 7500,
+        "columns_count": 19,
+        "columns": {
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7500,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1492,
+            "business_role": "Foreign Key",
+            "sample_value": "256"
+          },
+          "data_criacao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7367,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 22:51:00+00:00"
+          },
+          "data_ultima_atividade": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7334,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          },
+          "data_abandono": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 2269,
+            "null_percentage": 30.25,
+            "cardinality": 5150,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-13 21:38:00+00:00"
+          },
+          "status": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 5,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "comprado"
+          },
+          "motivo_abandono": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 2269,
+            "null_percentage": 30.25,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "preco"
+          },
+          "valor_subtotal": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7027,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "301.21"
+          },
+          "valor_frete": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3595,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "7.28"
+          },
+          "valor_desconto": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 767,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "valor_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7173,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "308.49"
+          },
+          "duracao_sessao_minutos": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 87,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "74"
+          },
+          "dispositivo": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "mobile"
+          },
+          "browser": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Samsung Internet"
+          },
+          "canal_origem": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "facebook"
+          },
+          "cliente_novo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "False"
+          },
+          "tem_conta_criada": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7367,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 22:51:00+00:00"
+          },
+          "updated_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7334,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          }
+        }
+      },
+      "itens_carrinho": {
+        "entity_name": "itens_carrinho",
+        "record_count": 18888,
+        "columns_count": 8,
+        "columns": {
+          "item_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 18888,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7360,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "produto_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Foreign Key",
+            "sample_value": "55"
+          },
+          "quantidade": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "1"
+          },
+          "preco_unitario": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3152,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "2019.18"
+          },
+          "preco_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3728,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "2019.18"
+          },
+          "data_adicao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 16809,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 23:10:00+00:00"
+          },
+          "data_remocao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 15093,
+            "null_percentage": 79.91,
+            "cardinality": 3695,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 23:44:00+00:00"
+          }
+        }
+      },
+      "eventos_carrinho": {
+        "entity_name": "eventos_carrinho",
+        "record_count": 78931,
+        "columns_count": 8,
+        "columns": {
+          "evento_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 78931,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7500,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1492,
+            "business_role": "Foreign Key",
+            "sample_value": "256"
+          },
+          "sessao_id": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 8151,
+            "business_role": "Foreign Key",
+            "sample_value": "b7b1e722-fcb"
+          },
+          "timestamp_evento": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 78483,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 22:51:00+00:00"
+          },
+          "tipo_evento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 9,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "view_produto"
+          },
+          "duracao_evento_segundos": {
+            "type": "float64",
+            "nullable": true,
+            "null_count": 5231,
+            "null_percentage": 6.63,
+            "cardinality": 118,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "70.0"
+          },
+          "dados_evento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 45579,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "{\"produto_id\": 121, \"tempo_visualizacao_s\": 20, \"scroll_depth\": 0.78}"
+          }
+        }
+      },
+      "eventos_resgate": {
+        "entity_name": "eventos_resgate",
+        "record_count": 6427,
+        "columns_count": 18,
+        "columns": {
+          "resgate_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6427,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3671,
+            "business_role": "Foreign Key",
+            "sample_value": "4"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1373,
+            "business_role": "Foreign Key",
+            "sample_value": "388"
+          },
+          "canal": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "email"
+          },
+          "tipo_comunicacao": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "lembrete_1h"
+          },
+          "data_schedule": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6324,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 13:59:00+00:00"
+          },
+          "data_envio": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6325,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 14:18:00+00:00"
+          },
+          "assunto": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 12,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Você esqueceu algo no carrinho 🛒"
+          },
+          "desconto_oferecido": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1020,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "frete_gratis_oferecido": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          },
+          "custo_envio": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.05"
+          },
+          "data_abertura": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 3609,
+            "null_percentage": 56.15,
+            "cardinality": 2792,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 14:36:00+00:00"
+          },
+          "data_primeiro_clique": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 5650,
+            "null_percentage": 87.91,
+            "cardinality": 777,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-04-05 19:22:00+00:00"
+          },
+          "link_clicado": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 5650,
+            "null_percentage": 87.91,
+            "cardinality": 736,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "https://marketplace.com.br/carrinho/7?utm_source=email&utm_campaign=recovery"
+          },
+          "data_conversao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 6383,
+            "null_percentage": 99.32,
+            "cardinality": 44,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-13 10:02:00+00:00"
+          },
+          "sucesso": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "False"
+          },
+          "valor_pedido_final": {
+            "type": "float64",
+            "nullable": true,
+            "null_count": 6383,
+            "null_percentage": 99.32,
+            "cardinality": 44,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "124.05"
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6324,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 13:59:00+00:00"
+          }
+        }
+      },
+      "pedidos": {
+        "entity_name": "pedidos",
+        "record_count": 2229,
+        "columns_count": 13,
+        "columns": {
+          "pedido_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2229,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2229,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1161,
+            "business_role": "Foreign Key",
+            "sample_value": "256"
+          },
+          "data_pedido": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2218,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          },
+          "valor_subtotal": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2153,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "301.21"
+          },
+          "valor_frete": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1656,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "7.28"
+          },
+          "valor_desconto": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 476,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "valor_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2140,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "308.49"
+          },
+          "metodo_pagamento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "pix"
+          },
+          "status_pedido": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "cancelado"
+          },
+          "origem_recuperacao": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "False"
+          },
+          "resgate_id": {
+            "type": "Int64",
+            "nullable": true,
+            "null_count": 2185,
+            "null_percentage": 98.03,
+            "cardinality": 44,
+            "business_role": "Foreign Key",
+            "sample_value": "215"
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2218,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          }
+        }
+      }
+    }
+  },
+  "silver_qualify": {
+    "layer_name": "silver_qualify",
+    "entities_count": 7,
+    "total_records": 114854,
+    "entities": {
+      "clientes": {
+        "entity_name": "clientes",
+        "record_count": 1427,
+        "columns_count": 15,
+        "columns": {
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1427,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "primeiro_nome": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 282,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Henry Gabriel"
+          },
+          "ultimo_nome": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 47,
+            "null_percentage": 3.29,
+            "cardinality": 102,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Alves"
+          },
+          "email": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1427,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "HeNrY GaBrIeL.AlVeS107@bOl.cOm.bR"
+          },
+          "telefone": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 127,
+            "null_percentage": 8.9,
+            "cardinality": 1300,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "+55 95 93218-1960"
+          },
+          "segmento_rfm": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "regular"
+          },
+          "data_primeira_compra": {
+            "type": "datetime64[ms]",
+            "nullable": true,
+            "null_count": 211,
+            "null_percentage": 14.79,
+            "cardinality": 513,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-08-30 00:00:00"
+          },
+          "data_ultima_compra": {
+            "type": "datetime64[ms]",
+            "nullable": true,
+            "null_count": 211,
+            "null_percentage": 14.79,
+            "cardinality": 390,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-04-16 00:00:00"
+          },
+          "total_compras": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 26,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "2"
+          },
+          "lifetime_value": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1218,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "734.03"
+          },
+          "permite_email": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "permite_sms": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "False"
+          },
+          "permite_push": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "status_ativo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "data_criacao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 638,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-07-08 00:00:00+00:00"
+          }
+        }
+      },
+      "produtos": {
+        "entity_name": "produtos",
+        "record_count": 300,
+        "columns_count": 13,
+        "columns": {
+          "produto_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "nome": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 296,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Apple Carregador Turbo Classic"
+          },
+          "categoria": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Eletrônicos"
+          },
+          "subcategoria": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 34,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Acessórios"
+          },
+          "marca": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 34,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Apple"
+          },
+          "preco_atual": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1491.48"
+          },
+          "preco_original": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1491.48"
+          },
+          "em_estoque": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          },
+          "avaliacao_media": {
+            "type": "float64",
+            "nullable": true,
+            "null_count": 52,
+            "null_percentage": 17.33,
+            "cardinality": 32,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "3.3"
+          },
+          "total_avaliacoes": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 235,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0"
+          },
+          "url_imagem": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "https://cdn.marketplace.com.br/img/1.jpg"
+          },
+          "data_cadastro": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 204,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-06-28 00:00:00+00:00"
+          },
+          "ativo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          }
+        }
+      },
+      "carrinhos": {
+        "entity_name": "carrinhos",
+        "record_count": 6652,
+        "columns_count": 19,
+        "columns": {
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6652,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1485,
+            "business_role": "Foreign Key",
+            "sample_value": "256"
+          },
+          "data_criacao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6549,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 22:51:00+00:00"
+          },
+          "data_ultima_atividade": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6514,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          },
+          "data_abandono": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 2036,
+            "null_percentage": 30.61,
+            "cardinality": 4546,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-13 21:38:00+00:00"
+          },
+          "status": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 5,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "comprado"
+          },
+          "motivo_abandono": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 2036,
+            "null_percentage": 30.61,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "preco"
+          },
+          "valor_subtotal": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6268,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "301.21"
+          },
+          "valor_frete": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3210,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "7.28"
+          },
+          "valor_desconto": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 538,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "valor_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6377,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "308.49"
+          },
+          "duracao_sessao_minutos": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 87,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "74"
+          },
+          "dispositivo": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "mobile"
+          },
+          "browser": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Samsung Internet"
+          },
+          "canal_origem": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "facebook"
+          },
+          "cliente_novo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "False"
+          },
+          "tem_conta_criada": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6549,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 22:51:00+00:00"
+          },
+          "updated_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6514,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          }
+        }
+      },
+      "itens_carrinho": {
+        "entity_name": "itens_carrinho",
+        "record_count": 18888,
+        "columns_count": 8,
+        "columns": {
+          "item_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 18888,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7360,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "produto_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 300,
+            "business_role": "Foreign Key",
+            "sample_value": "55"
+          },
+          "quantidade": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "1"
+          },
+          "preco_unitario": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3152,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "2019.18"
+          },
+          "preco_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3728,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "2019.18"
+          },
+          "data_adicao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 16809,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 23:10:00+00:00"
+          },
+          "data_remocao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 15093,
+            "null_percentage": 79.91,
+            "cardinality": 3695,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 23:44:00+00:00"
+          }
+        }
+      },
+      "eventos_carrinho": {
+        "entity_name": "eventos_carrinho",
+        "record_count": 78931,
+        "columns_count": 8,
+        "columns": {
+          "evento_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 78931,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7500,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1492,
+            "business_role": "Foreign Key",
+            "sample_value": "256"
+          },
+          "sessao_id": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 8151,
+            "business_role": "Foreign Key",
+            "sample_value": "b7b1e722-fcb"
+          },
+          "timestamp_evento": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 78483,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-27 22:51:00+00:00"
+          },
+          "tipo_evento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 9,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "view_produto"
+          },
+          "duracao_evento_segundos": {
+            "type": "float64",
+            "nullable": true,
+            "null_count": 5231,
+            "null_percentage": 6.63,
+            "cardinality": 118,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "70.0"
+          },
+          "dados_evento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 45579,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "{\"produto_id\": 121, \"tempo_visualizacao_s\": 20, \"scroll_depth\": 0.78}"
+          }
+        }
+      },
+      "eventos_resgate": {
+        "entity_name": "eventos_resgate",
+        "record_count": 6427,
+        "columns_count": 18,
+        "columns": {
+          "resgate_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6427,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3671,
+            "business_role": "Foreign Key",
+            "sample_value": "4"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1373,
+            "business_role": "Foreign Key",
+            "sample_value": "388"
+          },
+          "canal": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "email"
+          },
+          "tipo_comunicacao": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "lembrete_1h"
+          },
+          "data_schedule": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6324,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 13:59:00+00:00"
+          },
+          "data_envio": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6325,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 14:18:00+00:00"
+          },
+          "assunto": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 12,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Você esqueceu algo no carrinho 🛒"
+          },
+          "desconto_oferecido": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1020,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "frete_gratis_oferecido": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          },
+          "custo_envio": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.05"
+          },
+          "data_abertura": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 3609,
+            "null_percentage": 56.15,
+            "cardinality": 2792,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 14:36:00+00:00"
+          },
+          "data_primeiro_clique": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 5650,
+            "null_percentage": 87.91,
+            "cardinality": 777,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-04-05 19:22:00+00:00"
+          },
+          "link_clicado": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 5650,
+            "null_percentage": 87.91,
+            "cardinality": 736,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "https://marketplace.com.br/carrinho/7?utm_source=email&utm_campaign=recovery"
+          },
+          "data_conversao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 6383,
+            "null_percentage": 99.32,
+            "cardinality": 44,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-13 10:02:00+00:00"
+          },
+          "sucesso": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "False"
+          },
+          "valor_pedido_final": {
+            "type": "float64",
+            "nullable": true,
+            "null_count": 6383,
+            "null_percentage": 99.32,
+            "cardinality": 44,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "124.05"
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6324,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-05-25 13:59:00+00:00"
+          }
+        }
+      },
+      "pedidos": {
+        "entity_name": "pedidos",
+        "record_count": 2229,
+        "columns_count": 13,
+        "columns": {
+          "pedido_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2229,
+            "business_role": "PK Natural",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2229,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1161,
+            "business_role": "Foreign Key",
+            "sample_value": "256"
+          },
+          "data_pedido": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2218,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          },
+          "valor_subtotal": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2153,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "301.21"
+          },
+          "valor_frete": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1656,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "7.28"
+          },
+          "valor_desconto": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 476,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "valor_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2140,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "308.49"
+          },
+          "metodo_pagamento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "pix"
+          },
+          "status_pedido": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "cancelado"
+          },
+          "origem_recuperacao": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "False"
+          },
+          "resgate_id": {
+            "type": "Int64",
+            "nullable": true,
+            "null_count": 2185,
+            "null_percentage": 98.03,
+            "cardinality": 44,
+            "business_role": "Foreign Key",
+            "sample_value": "215"
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2218,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-28 00:05:00+00:00"
+          }
+        }
+      }
+    }
+  },
+  "silver_anomalies": {
+    "layer_name": "silver_anomalies",
+    "entities_count": 7,
+    "total_records": 921,
+    "entities": {
+      "clientes": {
+        "entity_name": "clientes",
+        "record_count": 73,
+        "columns_count": 15,
+        "columns": {
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 73,
+            "business_role": "PK Natural",
+            "sample_value": "15"
+          },
+          "primeiro_nome": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 64,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Danilo"
+          },
+          "ultimo_nome": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 4,
+            "null_percentage": 5.48,
+            "cardinality": 54,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "da Costa"
+          },
+          "email": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 73,
+            "null_percentage": 100.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "telefone": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 4,
+            "null_percentage": 5.48,
+            "cardinality": 69,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "+55 41 97182-2782"
+          },
+          "segmento_rfm": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "regular"
+          },
+          "data_primeira_compra": {
+            "type": "datetime64[ms]",
+            "nullable": true,
+            "null_count": 7,
+            "null_percentage": 9.59,
+            "cardinality": 61,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-07-29 00:00:00"
+          },
+          "data_ultima_compra": {
+            "type": "datetime64[ms]",
+            "nullable": true,
+            "null_count": 7,
+            "null_percentage": 9.59,
+            "cardinality": 51,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-04-23 00:00:00"
+          },
+          "total_compras": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 16,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "3"
+          },
+          "lifetime_value": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 67,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1978.48"
+          },
+          "permite_email": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "permite_sms": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "False"
+          },
+          "permite_push": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "status_ativo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "data_criacao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 70,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2025-03-15 00:00:00+00:00"
+          }
+        }
+      },
+      "produtos": {
+        "entity_name": "produtos",
+        "record_count": 0,
+        "columns_count": 13,
+        "columns": {
+          "produto_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "PK Natural",
+            "sample_value": null
+          },
+          "nome": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "categoria": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "subcategoria": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "marca": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "preco_atual": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "preco_original": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "em_estoque": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "avaliacao_media": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "total_avaliacoes": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "url_imagem": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "data_cadastro": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "ativo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          }
+        }
+      },
+      "carrinhos": {
+        "entity_name": "carrinhos",
+        "record_count": 848,
+        "columns_count": 19,
+        "columns": {
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 848,
+            "business_role": "PK Natural",
+            "sample_value": "5"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 655,
+            "business_role": "Foreign Key",
+            "sample_value": "1133"
+          },
+          "data_criacao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 848,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-08 23:51:00+00:00"
+          },
+          "data_ultima_atividade": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 847,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-09 00:00:00+00:00"
+          },
+          "data_abandono": {
+            "type": "datetime64[us, UTC]",
+            "nullable": true,
+            "null_count": 233,
+            "null_percentage": 27.48,
+            "cardinality": 614,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-09 00:00:00+00:00"
+          },
+          "status": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 5,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "abandonado"
+          },
+          "motivo_abandono": {
+            "type": "str",
+            "nullable": true,
+            "null_count": 233,
+            "null_percentage": 27.48,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "nao_informado"
+          },
+          "valor_subtotal": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 833,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "47.08"
+          },
+          "valor_frete": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 798,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "21.16"
+          },
+          "valor_desconto": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 235,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "valor_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 845,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "85.3"
+          },
+          "duracao_sessao_minutos": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 82,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "12"
+          },
+          "dispositivo": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "mobile"
+          },
+          "browser": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Safari Mobile"
+          },
+          "canal_origem": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "email"
+          },
+          "cliente_novo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "False"
+          },
+          "tem_conta_criada": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "True"
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 848,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-08 23:51:00+00:00"
+          },
+          "updated_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 847,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-09 00:00:00+00:00"
+          }
+        }
+      },
+      "itens_carrinho": {
+        "entity_name": "itens_carrinho",
+        "record_count": 0,
+        "columns_count": 8,
+        "columns": {
+          "item_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "produto_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "quantidade": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "preco_unitario": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "preco_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "data_adicao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "data_remocao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          }
+        }
+      },
+      "eventos_carrinho": {
+        "entity_name": "eventos_carrinho",
+        "record_count": 0,
+        "columns_count": 8,
+        "columns": {
+          "evento_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "sessao_id": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "timestamp_evento": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "tipo_evento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "duracao_evento_segundos": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "dados_evento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          }
+        }
+      },
+      "eventos_resgate": {
+        "entity_name": "eventos_resgate",
+        "record_count": 0,
+        "columns_count": 18,
+        "columns": {
+          "resgate_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "canal": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": null
+          },
+          "tipo_comunicacao": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "data_schedule": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "data_envio": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "assunto": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "desconto_oferecido": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "frete_gratis_oferecido": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "custo_envio": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "data_abertura": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "data_primeiro_clique": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "link_clicado": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "data_conversao": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "sucesso": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": null
+          },
+          "valor_pedido_final": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          }
+        }
+      },
+      "pedidos": {
+        "entity_name": "pedidos",
+        "record_count": 0,
+        "columns_count": 13,
+        "columns": {
+          "pedido_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "PK Natural",
+            "sample_value": null
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "data_pedido": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          },
+          "valor_subtotal": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "valor_frete": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "valor_desconto": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "valor_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": null
+          },
+          "metodo_pagamento": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "status_pedido": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": null
+          },
+          "origem_recuperacao": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Descritivo",
+            "sample_value": null
+          },
+          "resgate_id": {
+            "type": "Int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Foreign Key",
+            "sample_value": null
+          },
+          "created_at": {
+            "type": "datetime64[us, UTC]",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 0,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": null
+          }
+        }
+      }
+    }
+  },
+  "gold_kimball": {
+    "layer_name": "gold_kimball",
+    "entities_count": 8,
+    "total_records": 12110,
+    "entities": {
+      "dim_clientes": {
+        "entity_name": "dim_clientes",
+        "record_count": 1427,
+        "columns_count": 12,
+        "columns": {
+          "cliente_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1427,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "1"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1427,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "email": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1427,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "HeNrY GaBrIeL.AlVeS107@bOl.cOm.bR"
+          },
+          "segmento_rfm": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "regular"
+          },
+          "status_ativo": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "permite_email": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "permite_sms": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "False"
+          },
+          "permite_push": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "True"
+          },
+          "recencia_dias": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 390,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "74.0"
+          },
+          "frequencia_compras": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 26,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "2.0"
+          },
+          "valor_monetario_ltv": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1218,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "734.03"
+          },
+          "churn_risk_score": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 247,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "69.33"
+          }
+        }
+      },
+      "dim_tempo": {
+        "entity_name": "dim_tempo",
+        "record_count": 168,
+        "columns_count": 8,
+        "columns": {
+          "data_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 168,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "20260101"
+          },
+          "data": {
+            "type": "object",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 168,
+            "business_role": "Atributo Temporal / Timestamp",
+            "sample_value": "2026-01-01"
+          },
+          "ano": {
+            "type": "int32",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "2026"
+          },
+          "mes": {
+            "type": "int32",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1"
+          },
+          "trimestre": {
+            "type": "int32",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1"
+          },
+          "ano_mes": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "2026-01"
+          },
+          "dia_semana_nome": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 7,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Thursday"
+          },
+          "eh_fim_semana": {
+            "type": "bool",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "False"
+          }
+        }
+      },
+      "dim_dispositivo": {
+        "entity_name": "dim_dispositivo",
+        "record_count": 3,
+        "columns_count": 4,
+        "columns": {
+          "dispositivo_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "1"
+          },
+          "dispositivo": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "mobile"
+          },
+          "fator_friccao_checkout": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "1.35"
+          },
+          "complexidade_checkout": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "Alta"
+          }
+        }
+      },
+      "dim_canal_resgate": {
+        "entity_name": "dim_canal_resgate",
+        "record_count": 4,
+        "columns_count": 5,
+        "columns": {
+          "canal_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "1"
+          },
+          "canal": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "email"
+          },
+          "custo_unitario_envio": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.05"
+          },
+          "taxa_abertura_benchmark": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "0.22"
+          },
+          "taxa_conversao_benchmark": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "0.03"
+          }
+        }
+      },
+      "fato_abandono": {
+        "entity_name": "fato_abandono",
+        "record_count": 4053,
+        "columns_count": 12,
+        "columns": {
+          "fato_abandono_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4053,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4053,
+            "business_role": "Foreign Key",
+            "sample_value": "4"
+          },
+          "cliente_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1332,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "375"
+          },
+          "dispositivo_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "1"
+          },
+          "data_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 168,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "20260525"
+          },
+          "status": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "abandonado"
+          },
+          "motivo_abandono": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "frete"
+          },
+          "valor_subtotal": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3888,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "439.97"
+          },
+          "valor_frete": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2512,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "17.32"
+          },
+          "valor_desconto": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "valor_total_em_risco": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3946,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "457.29"
+          },
+          "duracao_sessao_minutos": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 42,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "24"
+          }
+        }
+      },
+      "fato_resgate": {
+        "entity_name": "fato_resgate",
+        "record_count": 6427,
+        "columns_count": 14,
+        "columns": {
+          "fato_resgate_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6427,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "1"
+          },
+          "resgate_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6427,
+            "business_role": "Foreign Key",
+            "sample_value": "1"
+          },
+          "carrinho_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3671,
+            "business_role": "Foreign Key",
+            "sample_value": "4"
+          },
+          "cliente_id": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 1373,
+            "business_role": "Foreign Key",
+            "sample_value": "388"
+          },
+          "canal_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "1"
+          },
+          "data_sk": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 181,
+            "business_role": "Surrogate Key (PK/FK Dimensional)",
+            "sample_value": "20260525"
+          },
+          "canal": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "email"
+          },
+          "flag_aberto": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "1"
+          },
+          "flag_clicado": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "0"
+          },
+          "flag_convertido": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "0"
+          },
+          "custo_envio": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.05"
+          },
+          "valor_carrinho_atribuido": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3164,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "457.29"
+          },
+          "receita_recuperada": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 45,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "0.0"
+          },
+          "roi_liquido_disparo": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 48,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "-0.05"
+          }
+        }
+      },
+      "v_abandonment_summary": {
+        "entity_name": "v_abandonment_summary",
+        "record_count": 24,
+        "columns_count": 7,
+        "columns": {
+          "motivo_abandono": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 6,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "preco"
+          },
+          "segmento_rfm": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "regular"
+          },
+          "total_carrinhos_abandonados": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 23,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "388"
+          },
+          "gmv_total_em_risco": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 24,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "152938.97"
+          },
+          "ticket_medio_em_risco": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 24,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "394.1726030927835"
+          },
+          "churn_risk_medio": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 14,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "43.20440721649485"
+          },
+          "representatividade_gmv_pct": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 24,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "10.7"
+          }
+        }
+      },
+      "v_recovery_roi_by_channel": {
+        "entity_name": "v_recovery_roi_by_channel",
+        "record_count": 4,
+        "columns_count": 11,
+        "columns": {
+          "canal": {
+            "type": "str",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Dimensão / Categoria / Flag",
+            "sample_value": "email"
+          },
+          "total_disparos": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "5815"
+          },
+          "total_aberturas": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "2525"
+          },
+          "total_cliques": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 3,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "704"
+          },
+          "total_conversoes": {
+            "type": "int64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "44"
+          },
+          "custo_total_campanha": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "290.75"
+          },
+          "receita_total_recuperada": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "12051.97"
+          },
+          "roi_liquido_total": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "11761.22"
+          },
+          "taxa_abertura_pct": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 4,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "43.42"
+          },
+          "taxa_conversao_pct": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Atributo Descritivo",
+            "sample_value": "0.76"
+          },
+          "roi_multiplicador": {
+            "type": "float64",
+            "nullable": false,
+            "null_count": 0,
+            "null_percentage": 0.0,
+            "cardinality": 2,
+            "business_role": "Medida / Métrica Quantitativa",
+            "sample_value": "41.45"
+          }
+        }
+      }
+    }
+  }
+}

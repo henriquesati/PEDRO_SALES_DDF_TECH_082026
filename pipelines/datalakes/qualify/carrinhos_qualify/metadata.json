@@ -1,0 +1,25 @@
+{
+  "doc_id": "meta_qualify_carrinhos_001",
+  "entity_name": "carrinhos_qualify",
+  "snowflake_table": "CART_RECOVERY.CARRINHOS",
+  "dadosfera_asset_id": "e2d3b1bb-bf22-456e-bc66-4ac843deec82",
+  "storage_path": "pipelines/case-item-08/outputs/qualify/carrinhos.parquet",
+  "classification": "Interno",
+  "owner": "Engenharia de Dados",
+  "upstream": {
+    "source": "raw.carrinhos_raw",
+    "process": "Step 2 Validação & Qualify"
+  },
+  "downstream": [
+    {
+      "layer": "curated",
+      "target": "curated.fato_abandono"
+    }
+  ],
+  "records_count": 7443,
+  "tags": [
+    "qualify",
+    "carrinhos",
+    "conforme"
+  ]
+}

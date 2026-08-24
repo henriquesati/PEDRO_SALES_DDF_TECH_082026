@@ -19,50 +19,53 @@ Este documento estabelece as diretrizes normativas de arquitetura, classificaç�
 
 ---
 
-# 2. Padrão Arquitetural: Diretório por Entidade
+# 2. Padrão Arquitetural: Diretório por Entidade & Dual-Metadata (MD + JSON)
 
 Para garantir máxima modularidade, desacoplamento e aderência às melhores práticas de engenharia de dados e governança de catálogo, cada camada do Data Lakehouse adota a convenção de **um diretório dedicado por entidade**.
 
-Em cada pasta de entidade (`pipelines/datalakes/[camada]/[entidade]_[camada]/`), coabitam o dataset físico da camada e o seu respectivo arquivo de especificação e catálogo (`metadata.md`). Esse documento de metadados consolida a identificação do ativo na Dadosfera, a granularidade, a linhagem de dados (*lineage upstream/downstream*), os proprietários (*owners*) e as diretrizes de qualidade, referenciando formalmente as **validações declaradas no corpo da entidade** para evitar qualquer duplicação redundante de definições técnicas.
+Em cada pasta de entidade (`pipelines/datalakes/[camada]/[entidade]_[camada]/`), coabitam o dataset físico da camada e o seu respectivo arquivo de especificação e catálogo nos formatos **Dual-Metadata**:
+1. **`metadata.md` (Human-Readable):** Visão executiva em Markdown com cabeçalho YAML Frontmatter, links clicáveis na Dadosfera e linhagem.
+2. **`metadata.json` (Machine-Readable):** Formato estruturado nativo consumido pela API Maestro da Dadosfera (`https://maestro.dadosfera.ai`), contendo schema de colunas, tipagem, granularidade, upstream e downstream.
 
 ```text
 pipelines/datalakes/
 ├── raw/                                # Zona Bronze (Landing & Preservação)
 │   ├── spec.md                         # Diretrizes gerais da camada Raw
-│   ├── carrinhos_raw/                  # carrinhos_raw + metadata.md
-│   ├── pedidos_raw/                    # pedidos_raw + metadata.md
-│   ├── clientes_raw/                   # clientes_raw + metadata.md
-│   ├── produtos_raw/                   # produtos_raw + metadata.md
-│   ├── itens_carrinho_raw/             # itens_carrinho_raw + metadata.md
-│   ├── eventos_carrinho_raw/           # eventos_carrinho_raw + metadata.md
-│   └── eventos_resgate_raw/            # eventos_resgate_raw + metadata.md
+│   ├── carrinhos_raw/                  # carrinhos_raw.parquet + metadata.md + metadata.json
+│   ├── pedidos_raw/                    # pedidos_raw.parquet + metadata.md + metadata.json
+│   ├── clientes_raw/                   # clientes_raw.parquet + metadata.md + metadata.json
+│   ├── produtos_raw/                   # produtos_raw.parquet + metadata.md + metadata.json
+│   ├── itens_carrinho_raw/             # itens_carrinho_raw.parquet + metadata.md + metadata.json
+│   ├── eventos_carrinho_raw/           # eventos_carrinho_raw.parquet + metadata.md + metadata.json
+│   └── eventos_resgate_raw/            # eventos_resgate_raw.parquet + metadata.md + metadata.json
 ├── qualify/                            # Zona Silver (Validação & Conformidade)
 │   ├── spec.md                         # Diretrizes gerais da camada Qualify
-│   ├── carrinhos_qualify/              # carrinhos_qualify + metadata.md
-│   ├── pedidos_qualify/                # pedidos_qualify + metadata.md
-│   ├── clientes_qualify/               # clientes_qualify + metadata.md
-│   ├── produtos_qualify/               # produtos_qualify + metadata.md
-│   ├── itens_carrinho_qualify/         # itens_carrinho_qualify + metadata.md
-│   ├── eventos_carrinho_qualify/       # eventos_carrinho_qualify + metadata.md
-│   └── eventos_resgate_qualify/        # eventos_resgate_qualify + metadata.md
+│   ├── carrinhos_qualify/              # carrinhos_qualify.parquet + metadata.md + metadata.json
+│   ├── pedidos_qualify/                # pedidos_qualify.parquet + metadata.md + metadata.json
+│   ├── clientes_qualify/               # clientes_qualify.parquet + metadata.md + metadata.json
+│   ├── produtos_qualify/               # produtos_qualify.parquet + metadata.md + metadata.json
+│   ├── itens_carrinho_qualify/         # itens_carrinho_qualify.parquet + metadata.md + metadata.json
+│   ├── eventos_carrinho_qualify/       # eventos_carrinho_qualify.parquet + metadata.md + metadata.json
+│   └── eventos_resgate_qualify/        # eventos_resgate_qualify.parquet + metadata.md + metadata.json
 ├── anomaly/                            # Zona Silver Quarentena (Anomalias DEC-006)
 │   ├── spec.md                         # Diretrizes gerais da camada Anomaly
-│   ├── carrinhos_anomalies/            # carrinhos_anomalies + metadata.md
-│   ├── pedidos_anomalies/              # pedidos_anomalies + metadata.md
-│   ├── clientes_anomalies/             # clientes_anomalies + metadata.md
-│   ├── produtos_anomalies/             # produtos_anomalies + metadata.md
-│   ├── itens_carrinho_anomalies/       # itens_carrinho_anomalies + metadata.md
-│   ├── eventos_carrinho_anomalies/     # eventos_carrinho_anomalies + metadata.md
-│   └── eventos_resgate_anomalies/      # eventos_resgate_anomalies + metadata.md
+│   ├── carrinhos_anomalies/            # carrinhos_anomalies.parquet + metadata.md + metadata.json
+│   ├── pedidos_anomalies/              # pedidos_anomalies.parquet + metadata.md + metadata.json
+│   ├── clientes_anomalies/             # clientes_anomalies.parquet + metadata.md + metadata.json
+│   ├── produtos_anomalies/             # produtos_anomalies.parquet + metadata.md + metadata.json
+│   ├── itens_carrinho_anomalies/       # itens_carrinho_anomalies.parquet + metadata.md + metadata.json
+│   ├── eventos_carrinho_anomalies/     # eventos_carrinho_anomalies.parquet + metadata.md + metadata.json
+│   └── eventos_resgate_anomalies/      # eventos_resgate_anomalies.parquet + metadata.md + metadata.json
 └── curated/                            # Zona Gold (Kimball Dimensional & Analytics)
     ├── spec.md                         # Diretrizes gerais da camada Curated
-    ├── carrinhos_curated/              # carrinhos_curated + metadata.md
-    ├── pedidos_curated/                # pedidos_curated + metadata.md
-    ├── clientes_curated/               # clientes_curated + metadata.md
-    ├── produtos_curated/               # produtos_curated + metadata.md
-    ├── itens_carrinho_curated/         # itens_carrinho_curated + metadata.md
-    ├── eventos_carrinho_curated/       # eventos_carrinho_curated + metadata.md
-    └── eventos_resgate_curated/        # eventos_resgate_curated + metadata.md
+    ├── dim_clientes/                   # dim_clientes.parquet + metadata.md + metadata.json
+    ├── dim_tempo/                      # dim_tempo.parquet + metadata.md + metadata.json
+    ├── dim_dispositivo/                # dim_dispositivo.parquet + metadata.md + metadata.json
+    ├── dim_canal_resgate/              # dim_canal_resgate.parquet + metadata.md + metadata.json
+    ├── fato_abandono/                  # fato_abandono.parquet + metadata.md + metadata.json
+    ├── fato_resgate/                   # fato_resgate.parquet + metadata.md + metadata.json
+    ├── v_abandonment_summary/          # v_abandonment_summary.parquet + metadata.md + metadata.json
+    └── v_recovery_roi_by_channel/      # v_recovery_roi_by_channel.parquet + metadata.md + metadata.json
 ```
 
 ---

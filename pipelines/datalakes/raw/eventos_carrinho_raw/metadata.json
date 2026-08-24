@@ -1,0 +1,27 @@
+{
+  "doc_id": "meta_raw_eventos_carrinho_001",
+  "entity_name": "eventos_carrinho_raw",
+  "dadosfera_asset_id": "397c3ebc-15cb-42d2-a717-a3b5d150c3ea",
+  "direct_url": "https://app.dadosfera.ai/pt-BR/catalog/data-assets/397c3ebc-15cb-42d2-a717-a3b5d150c3ea",
+  "format": "parquet",
+  "storage_path": "data/mock/output/parquet/eventos_carrinho.parquet",
+  "classification": "Interno",
+  "owner": "Engenharia de Dados & Telemetria",
+  "upstream": {
+    "source": "Clickstream Analytics",
+    "protocol": "Batch S3 Landing"
+  },
+  "downstream": [
+    {
+      "layer": "qualify",
+      "target": "qualify.eventos_carrinho"
+    }
+  ],
+  "records_count": 78931,
+  "tags": [
+    "carrinho_abandonado",
+    "eventos_carrinho",
+    "telemetria",
+    "raw"
+  ]
+}

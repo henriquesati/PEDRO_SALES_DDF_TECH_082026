@@ -1,0 +1,13 @@
+{
+  "doc_id": "meta_gold_dim_dispositivo_001",
+  "entity_name": "dim_dispositivo",
+  "snowflake_table": "GOLD_KIMBALL.DIM_DISPOSITIVO",
+  "storage_path": "pipelines/case-item-08/outputs/curated/dim_dispositivo.parquet",
+  "classification": "Interno",
+  "records_count": 3,
+  "tags": [
+    "gold",
+    "dimensao",
+    "dispositivo"
+  ]
+}
