@@ -76,7 +76,7 @@ Qual razão de abandono causa a maior perda de receita na plataforma e como esse
    - Calcular contagem de carrinhos, soma do `valor_total` e média do `valor_frete`.
 4. **Visualizações Oficiais (Source of Truth)**:
    - **Artefato 1 (Treemap Proporcional)**: Treemap hierárquico onde a área de cada retângulo representa a fatia exata de cada motivo de abandono (25% Preço, 23,1% Frete, 20% Indecisão, etc.) com rótulos humanizados simples, sem poluição de cifras financeiras (`chart_02_treemap_motivos_abandono.png`).
-   - **Artefato 2 (Perda Financeira Separada)**: Gráfico de barras horizontais detalhando a receita total represada em R$ por causa-raiz (R$ 1.845,0k total) e ticket médio unitário (`chart_02_perda_financeira_motivos.png`).
+   - **Artefato 2 (Perda Financeira por Faixa de Ticket & Resgate)**: Gráfico de painel duplo lado a lado detalhando a perda financeira bruta por faixa de ticket em R$ e o impacto do resgate Dadosfera com montante recuperado (+R$ 173,7k / 498 pedidos) vs perda residual (`chart_02_perda_financeira_motivos.png`).
 
 
 ---

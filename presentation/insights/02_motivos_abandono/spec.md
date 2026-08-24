@@ -32,12 +32,20 @@
   - `Estoque Indisponível`: 4,3% (224 carrinhos abandonados por falta de estoque)
 - **Estrutura de Rótulos**: Título do motivo + `% do abandono` + `X carrinhos abandonados por [motivo]`. Sem poluição de cifras monetárias.
 
-### Artefato 2: Gráfico Separado de Impacto Financeiro Represado (R$)
+### Artefato 2: Gráfico Separado de Impacto Financeiro por Faixa de Ticket (Lado a Lado)
 - **Arquivo**: [`chart_02_perda_financeira_motivos.png`](chart_02_perda_financeira_motivos.png)
-- **Tipo de Gráfico**: **Barras Horizontais Executivas com Ticket Médio**
-- **Eixo Y**: Causa-Raiz de Abandono.
-- **Eixo X**: Receita Total Represada em R$ Milhares (Total: R$ 1.845,0k).
-- **Badges**: Percentual da perda financeira total e Ticket Médio unitário.
+- **Tipo de Gráfico**: **Painel Duplo Executivo (Lado a Lado)**
+- **Painel 1 (Perda Bruta por Faixa de Ticket - Unicolor Rose `#E11D48`)**:
+  - `Ticket Alto (> R$ 500)`: R$ 1.017,1k (52,3% da perda | 1.388 carrinhos)
+  - `Ticket Médio-Alto (R$ 250–500)`: R$ 606,5k (31,2% da perda | 1.676 carrinhos)
+  - `Ticket Médio-Baixo (R$ 100–250)`: R$ 283,2k (14,6% da perda | 1.606 carrinhos)
+  - `Ticket Baixo (< R$ 100)`: R$ 38,2k (2,0% da perda | 561 carrinhos)
+- **Painel 2 (Impacto do Resgate Dadosfera - Verde Esmeralda `#059669` vs Residual `#E11D48`)**:
+  - `Ticket Alto`: Resgate de **+R$ 82,8k** (8,1% / 116 pedidos convertidos) | Residual R$ 934,2k
+  - `Ticket Médio-Alto`: Resgate de **+R$ 57,2k** (9,4% / 158 pedidos convertidos) | Residual R$ 549,4k
+  - `Ticket Médio-Baixo`: Resgate de **+R$ 29,5k** (10,4% / 167 pedidos convertidos) | Residual R$ 253,7k
+  - `Ticket Baixo`: Resgate de **+R$ 4,2k** (11,1% / 57 pedidos convertidos) | Residual R$ 34,0k
+  - **Total Resgatado**: **+R$ 173,7k** (498 pedidos convertidos) de um total de R$ 1.945,0k represados.
 
 ---
 
