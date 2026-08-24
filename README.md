@@ -29,13 +29,25 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **3** | Explorar & Catalogar | Explorar | Especificação de governança (`pipelines/case-item-03/`), Lakehouse Medallion (`pipelines/datalakes/`), dicionários (`data/catalogo/`) e Data Asset IDs oficiais | ✅ Concluído |
 | **4** | Data Quality & Anomalias | Processar | Pipeline Dual-Artifact, suíte Great Expectations (18 regras), quarentena Parquet e relatório em [`pipelines/case-item-04/outputs/data_quality_report.md`](pipelines/case-item-04/outputs/data_quality_report.md) | ✅ Concluído |
 | **5** | GenAI & LLMs | Processar | Enriquecimento semântico de motivos de abandono e gerador de copy | ⏳ Planejado |
-| **6** | Modelagem de Dados | Analisar | Modelagem lógica canônica (4 divisões) em 6 entidades (`data/data-models/logical/`) | ✅ Concluído |
+| **6** | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos, 2 visões analíticas Gold e diagrama DW Medallion) | ✅ Concluído |
 | **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI) e catálogo declarativo | ✅ Concluído |
 | **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver e Golden views no Lakehouse | ⏳ Planejado |
 | **9** | Data Apps | Consumir | Planejamento de Data App em Streamlit para simulação de recuperação de ROI | ⏳ Planejado |
 | **10** | Apresentação em Vídeo | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
 | **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `presentation/insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
-| **Bônus**| GenAI + Data Apps | IA Generativa | Geração visual de cards de produtos e vitrines dinâmicas de resgate | ⏳ Planejado |
+<!-- temporary-agent-instructions
+PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
+
+4. Tópicos Padronizados:
+   - 📁 Especificações Normativas e Blueprints criados com propósito de execução (sempre agrupados pelo diretório pai: `[`caminho/do/diretorio/`](caminho/do/diretorio/) — *Descrição com sub-arquivos ([`arquivo1.md`](...), [`arquivo2.md`](...))*`)
+   - 📁 Suíte Declarativa de Expectativas e Execução (scripts, notebooks, suites) (se houver)
+   - 📁 Arquitetura de Outputs & Views (estrutura abstrata: outputs/[camada]/[entidade]/[rule]/) (se houver)
+   - 🌟 Bônus / Diferencial de Engenharia (se houver, direto e sem jargões)
+   - 🤖 Agentes e Skills criados na etapa
+5. Diretrizes de Redação:
+   - Foco estrito em Engenharia e Análise de Dados (sem overengineering ou regras de aplicação).
+   - Texto conciso, modular, com arquivos agrupados por diretório pai e sem duplicação de diagramas ou esquemas já presentes nos artefatos.
+-->
 
 ### 🗂️ Mapeamento Detalhado de Tarefas por Entregável
 
@@ -60,7 +72,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
     - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Documentação técnica e base de orquestração de scripts para integração com a API Maestro, mantendo a documentação próxima do ambiente de contexto e execução*
     - [`agents_prompts_refs/dadosfera-api/referencia/endpoints.md`](agents_prompts_refs/dadosfera-api/referencia/endpoints.md) — *Catálogo de referência completa dos endpoints Maestro (Auth, Storage Explorer, Tables e Catalog)*
     - [`agents_prompts_refs/dadosfera-api/output-mappers/`](agents_prompts_refs/dadosfera-api/output-mappers/) — *Mapeamento oficial dos 7 Data Asset IDs, URLs da UI e schemas das tabelas Snowflake, servindo como referência em memória dos ativos e suas modificações realizadas via API ([`assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md), [`assets_registry.json`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json))*
-  - **🤖 Agentes e Skills desenvolvidos/utilizados nesta etapa:**
+  - **🤖 Agentes e Skills criados nesta etapa:**
     - [`platform-registry-consultant`](.agents/skills/platform-registry-consultant/SKILL.md) ([`.agents/agents/platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md)) — *Especialista e guardião do registro de ativos, metadados, Data Asset IDs oficiais e mapeamentos no diretório `output-mappers`*
     - [`case-context-specialist`](.agents/skills/case-context-specialist/SKILL.md) ([`.agents/agents/case-context-specialist.md`](.agents/agents/case-context-specialist.md)) — *Fonte central de contexto estratégico, validação de requisitos do case de estágio e diretrizes de autenticação e governança*
     - [`agents_prompts_refs/dadosfera-api/referencia/solved-errors.md`](agents_prompts_refs/dadosfera-api/referencia/solved-errors.md) — *Relatório documentando os erros técnicos identificados na API e soluções/workarounds aplicados (envio de token puro sem prefixo `Bearer` no header, tratamento de payload no `sign-in`, contorno de permissão `403 Forbidden` no storage via Coleta Web, prevenção de duplicatas via `PUT` no catálogo e tratamento de charset no console Windows)*
@@ -98,9 +110,8 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
   - **📁 Mapeamento Oficial de Ativos & Outputs (`output-mappers/`):**
     - [`agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md) ([`assets_registry.json`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json)) — *Mapeamento oficial dos 7 Data Asset IDs vinculados, URLs diretas e schemas sincronizados*
     - [`pipelines/case-item-03/outputs/catalog_governance_report.md`](pipelines/case-item-03/outputs/catalog_governance_report.md) — *Inventário consolidado dos ativos e data lakes catalogados e evidências técnicas de governança*
-  - **Skills e Agentes Criados nesta etapa:**
+  - **🤖 Agentes e Skills criados nesta etapa:**
     - [`data-pipeline-documentation`](.agents/skills/data-pipeline-documentation/SKILL.md) ([`.agents/agents/data-pipeline-documentation.md`](.agents/agents/data-pipeline-documentation.md)) — *Especialista em documentação, catálogo e linhagem de pipelines no padrão Medallion (Bronze -> Silver -> Gold), contratos de dados, Data Quality e governança ágil sem over-engineering*
-    - [`platform-registry-consultant`](.agents/skills/platform-registry-consultant/SKILL.md) ([`.agents/agents/platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md)) — *Guardião do registro de ativos, metadados, Data Asset IDs oficiais (`output-mappers`) e sincronização via API Maestro*
 
 - [x] ~~**[X] [case-04] Data Quality, Quarentena de Anomalias & Common Data Model (Great Expectations & Relatório) [X]**~~
   - **governança de data quality, quarentena de anomalias e common data model** (*Auditoria completa de qualidade sobre 115.777+ registros em Parquet da camada Bronze, aplicação de suíte declarativa no Great Expectations com 18 expectativas em 6 dimensões fundamentais, segregação de qualidade na camada Silver (DEC-006) e implementação do Common Data Model (CDM) canônico em 7 entidades para garantir integridade e confiabilidade nas análises de BI*)
@@ -135,10 +146,8 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
       └───────────────────────────┘                     └───────────────────────────┘
     ```
   - **📁 Especificações Normativas e Blueprints de Data Quality:**
-    - [`docs/specifications/data-quality-specification.md`](docs/specifications/data-quality-specification.md) — *Especificação normativa do Item 4 contendo contextualização, tripé de artefatos, as 6 dimensões de qualidade (Completeness, Uniqueness, Validity, Consistency, Integrity, Temporal Consistency), taxonomia detalhada de anomalias (ANOM-01 a ANOM-05) e estrutura de 13 seções do relatório*
-    - [`docs/specifications/data-platform-specification.md`](docs/specifications/data-platform-specification.md) — *Diretrizes globais de governança, arquitetura, e contratos de dados*
-    - [`pipelines/case-item-04/specs.md`](pipelines/case-item-04/specs.md) — *Especificação técnica formal do pipeline de Data Quality (`spec_data_quality_001` v1.1), mapeamento com requisitos oficiais do case, matriz de 18 regras e catálogo de severidades*
-    - [`pipelines/case-item-04/implementation_plan.md`](pipelines/case-item-04/implementation_plan.md) — *Plano de implementação técnico, decomposição em fases WBS, regras de não-replicação e critérios de aceitação (Definition of Done)*
+    - [`docs/specifications/`](docs/specifications/) — *Especificações normativas de qualidade e plataforma ([`data-quality-specification.md`](docs/specifications/data-quality-specification.md), [`data-platform-specification.md`](docs/specifications/data-platform-specification.md))*
+    - [`pipelines/case-item-04/`](pipelines/case-item-04/) — *Especificação técnica formal do pipeline ([`specs.md`](pipelines/case-item-04/specs.md)) e plano de execução WBS ([`implementation_plan.md`](pipelines/case-item-04/implementation_plan.md))*
   - **📁 Suíte Declarativa de Expectativas e Execução:**
     - [`pipelines/case-item-04/notebooks/qualification_raw.ipynb`](pipelines/case-item-04/notebooks/qualification_raw.ipynb) — *Notebook executável aplicando as regras de validação sobre as entidades*
     - [`pipelines/case-item-04/scripts/run_quality_pipeline.py`](pipelines/case-item-04/scripts/run_quality_pipeline.py) — *Script batch automatizado (`python make.py quality-eval`)*
@@ -155,13 +164,30 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
       - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificação das 7 entidades canônicas ([`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
       - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Relacionamentos, cardinalidades e grafo ERD entre as tabelas*
       - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *Regras de negócio e fórmulas contábeis unificadas*
-  - **🤖 Agentes e Skills desenvolvidos/utilizados nesta etapa:**
-    - [`data-pipeline-documentation`](.agents/skills/data-pipeline-documentation/SKILL.md) ([`.agents/agents/data-pipeline-documentation.md`](.agents/agents/data-pipeline-documentation.md)) — *Especialista em documentação, catálogo e linhagem de pipelines no padrão Medallion (Bronze -> Silver -> Gold), contratos de dados, Data Quality e governança ágil sem over-engineering*
+  - **🤖 Agentes e Skills criados nesta etapa:**
     - [`declarative-functional-coding`](.agents/skills/declarative-functional-coding/SKILL.md) ([`.agents/agents/declarative-functional-coding.md`](.agents/agents/declarative-functional-coding.md)) — *Especialista na implementação de pipelines sob o paradigma funcional e declarativo, sequências de funções puras de validação/higienização (`validar_pk`, `sanitizar_frete`, etc.) e tipagem estrita*
-    - [`datamaker`](.agents/skills/datamaker/SKILL.md) — *Especialista em modelagem lógica de dados, Common Data Model (CDM), schemas relacionais e injeção determinística de dirty data no mock engine*
     - [`charts-maker`](.agents/skills/charts-maker/SKILL.md) — *Especialista na geração de gráficos analíticos e visualizações com rigor absoluto de Ground Truth e preservação de evidências em 300 DPI*
-    - [`case-context-specialist`](.agents/skills/case-context-specialist/SKILL.md) ([`.agents/agents/case-context-specialist.md`](.agents/agents/case-context-specialist.md)) — *Fonte central de contexto estratégico, validação de requisitos do case de estágio e diretrizes de autenticação e governança*
-    - [`project-context-specialist`](.agents/skills/project-context-specialist/SKILL.md) ([`.agents/agents/project-context-specialist.md`](.agents/agents/project-context-specialist.md)) — *Guardião da memória técnica, arquitetura dual-artifact (DEC-006) e rastreabilidade de artefatos do repositório*
+
+- [x] ~~**[X] [case-06] Modelagem de Dados Dimensional (Kimball Star Schema, Visões Analíticas Gold & Diagrama DW) [X]**~~
+  - **modelagem de dados dimensional e arquitetura dw** (*Proposta e implementação de modelagem dimensional segundo os princípios de Ralph Kimball (Star Schema) para a camada Gold/Curated, integrando 6 dimensões conformadas com chaves surrogate (`_sk`) e 2 tabelas de fatos granulares baseadas nos dados qualificados da Silver Qualify (DEC-006 / DEC-008). Justificativa técnica formal contra Data Vault 2.0 e Inmon 3NF, especificação de 2 visões analíticas de negócio e diagrama arquitetural completo das camadas do Data Warehouse*)
+  - **📁 Especificações Normativas & Blueprints de Modelagem:**
+    - [`pipelines/case-item-06/`](pipelines/case-item-06/) — *Documentação técnica formal ([`specs.md`](pipelines/case-item-06/specs.md)), justificativa arquitetural detalhada (Kimball vs Data Vault vs Inmon), declaração de grão, schemas dimensionais e plano executivo de implementação ([`implementation_plan.md`](pipelines/case-item-06/implementation_plan.md))*
+    - [`pipelines/datalakes/curated/`](pipelines/datalakes/curated/) — *Diretrizes normativas da Camada Curated / Gold no Lakehouse Medallion ([`spec.md`](pipelines/datalakes/curated/spec.md)) e metadados estruturados por entidade (`[entidade]_curated/metadata.md`)*
+    - [`data/catalogo/`](data/catalogo/) — *Diretrizes de governança do Catálogo de Dados ([`business-catalog-classification.md`](data/catalogo/business-catalog-classification.md)), blueprint normativo ([`blueprint/blueprint_dicionario.md`](data/catalogo/blueprint/blueprint_dicionario.md)) e dicionários de dados detalhados das entidades ([`data/catalogo/qualify/`](data/catalogo/qualify/))*
+    - [`data/data-models/logical/`](data/data-models/logical/) — *Especificações relacionais canônicas ([`entities/`](data/data-models/logical/entities/)), integridade referencial ([`relationships.md`](data/data-models/logical/relationships.md)) e SSOT de regras de negócio ([`business-rules.md`](data/data-models/logical/business-rules.md))*
+  - **📁 Estrutura do Modelo Dimensional (Gold Layer):**
+    - **6 Dimensões Conformadas:** [`dim_clientes`](pipelines/case-item-06/specs.md#L94-L127) (*surrogate key, opt-ins LGPD, scores RFM e SCD Type 2 ready*), [`dim_tempo`](pipelines/case-item-06/specs.md#L129-L150) (*calendário analítico diário 2023/2024*), [`dim_dispositivo`](pipelines/case-item-06/specs.md#L152-L165) (*mobile, desktop, tablet e fricção de checkout*), [`dim_motivo_abandono`](pipelines/case-item-06/specs.md#L167-L181) (*taxonomia de 5 causas e estratégias de resgate*), [`dim_canal_resgate`](pipelines/case-item-06/specs.md#L183-L197) (*email, sms, push_app, whatsapp, custos e benchmarks*) e [`dim_segmento_rfm`](pipelines/case-item-06/specs.md#L199-L214) (*clusters RFM e prioridades de atendimento*)
+    - **2 Tabelas de Fatos Granulares:** [`fato_abandono`](pipelines/case-item-06/specs.md#L219-L248) (*6.525 registros conformes, grão atômico de 1 carrinho abandonado, FKs para dimensões, medidas de valor em risco, frete, descontos e duração*) e [`fato_resgate`](pipelines/case-item-06/specs.md#L250-L279) (*6.289 registros conformes, grão atômico de 1 tentativa de resgate, funil de CRM entregue/aberto/clicado/convertido, custo, receita e ROI líquido*)
+  - **📁 Especificação das 2 Visões Analíticas Finais (Gold):**
+    - [`v_abandonment_summary`](pipelines/case-item-06/specs.md#L285-L318) (*Visão Executiva & Perfil de Risco: consolidação multidimensional de carrinhos abandonados, montante financeiro em risco, ticket médio, taxa de concentração pct e churn risk score por segmento, dispositivo e motivo*)
+    - [`v_recovery_roi_by_segment`](pipelines/case-item-06/specs.md#L322-L359) (*Visão Tática de Resgate & ROI: métricas de disparos, taxa de abertura pct, taxa de conversão pct, custo de comunicação, receita recuperada, ROI de eficiência pct e recomendação estratégica por canal e cluster RFM*)
+  - **📁 Arquitetura de Outputs & Relatórios:**
+    - [`pipelines/case-item-06/outputs/data_modeling_report.md`](pipelines/case-item-06/outputs/data_modeling_report.md) — *Relatório técnico consolidado da modelagem dimensional (Item 6), documentando o comparativo teórico, grão, medidas, schemas e aderência às regras DEC-001/008*
+    - [`pipelines/case-item-06/outputs/canonical_structure_gaps_report.md`](pipelines/case-item-06/outputs/canonical_structure_gaps_report.md) — *Relatório de Gap Analysis diagnosticando a transição entre o modelo transacional canônico e o modelo dimensional Gold*
+    - [`pipelines/case-item-06/outputs/assets/`](pipelines/case-item-06/outputs/assets/) — *Diretório de assets contendo o diagrama arquitetural do DW ([`data_warehouse_architecture.png`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png)) e sua especificação declarativa ([`data_warehouse_architecture.mmd`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.mmd))*
+  - **🌟 Bônus: Diagrama das Camadas Finais do DW & Justificativa Comparativa:**
+    - **Diagrama Visual Completo (Camadas DW)**: Representação visual da linhagem ponta a ponta (Data Sources Operacionais → Bronze Raw → Silver Qualify / Silver Anomaly Quarentena → Gold Curated Dimensional Star Schema → Views Analíticas → Downstream Consumers: Metabase, Streamlit, LLMs GenAI) renderizada em alta definição em [`pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png).
+    - **Justificativa Teórica Formal (Kimball vs Data Vault vs Inmon)**: Adoção justificada de **Kimball Star Schema** baseada em: (1) Máxima performance para queries analíticas OLAP (1-hop JOINs); (2) Aderência nativa direta para Metabase (Item 7) e Streamlit (Item 9); (3) Rápida implementação sem o over-engineering de Hubs/Links/Satellites do Data Vault 2.0 (inadequado para o escopo e agilidade exigidos no case).
 </div>
 
 ---
@@ -321,6 +347,9 @@ wheels/
 │   │   ├── quality/                    # Expectativas Great Expectations & resultados JSON
 │   │   └── outputs/                    # Relatório Markdown, datasets Parquet e gráficos 300 DPI
 │   ├── case-item-06/                   # Modelagem Dimensional Kimball DW Gold (Item 6)
+│   │   ├── specs.md                    # Especificação técnica formal e justificativa teórica
+│   │   ├── implementation_plan.md      # Plano de implementação WBS
+│   │   └── outputs/                    # Relatório de modelagem, gap analysis e diagrama DW
 │   └── datalakes/                      # Arquitetura Lakehouse Medallion (Raw, Qualify, Anomaly, Curated)
 │       ├── README.md                   # Visão geral das 4 camadas com diagrama
 │       ├── raw/                        # Bronze: spec.md + 7 pastas com metadata.md
