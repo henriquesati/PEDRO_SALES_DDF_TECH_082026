@@ -7,7 +7,6 @@
 > [!NOTE]
 > **Foco do Projeto em Proporções (%)**: O núcleo desta análise é a distribuição percentual das causas de atrito e a quebra relativa por dispositivo. O cliente pode adequar o seu próprio Ticket Médio por categoria/motivo. Os valores em R$ refletem o baseline da *Entidade Exemplo* (TM Geral ~R$ 375,00) apenas para ilustrar a perda financeira correspondente.
 
-
 ---
 
 ## 📊 Métricas & Fórmulas (Ground Truth)
@@ -15,30 +14,38 @@
 - **Distribuição Percentual por Motivo (%)**: $\frac{\text{Carrinhos com Motivo } M}{\text{Total de Carrinhos Abandonados (5.231)}} \times 100$.
 - **Receita Represada por Motivo (R$)**: Soma de `valor_total` dos carrinhos abandonados por `motivo_abandono`.
 - **Ticket Médio por Motivo (R$)**: $\frac{\text{Receita Represada do Motivo } M}{\text{Volume de Carrinhos do Motivo } M}$.
-- **Participação por Dispositivo (%)**: Distribuição relativa de cada causa de abandono entre Mobile, Desktop e Tablet.
+- **Dispersão de Carrinhos por Causa-Raiz**: Distribuição pontual de cada carrinho individual por faixa de valor (`valor_total`) cruzado com o motivo declarado/inferido e dispositivo utilizado.
 
 ---
 
-## 🎨 Diretrizes Visuais de Design
+## 🎨 Diretrizes Visuais de Design (Artefatos Separados)
 
-1. **Estrutura em Painel Duplo (Multi-Panel Executive Layout)**:
-   - **Painel Esquerdo (Distribuição & Dispositivo)**: Gráfico de barras horizontais empilhadas/agrupadas exibindo o volume absoluto e percentual de cada motivo decomposto por dispositivo (Mobile `#2563EB`, Desktop `#059669`, Tablet `#F59E0B`).
-   - **Painel Direito (Impacto Financeiro)**: Gráfico de barras com a Receita Represada Total em R$ por motivo e o respectivo ticket médio destacado.
-2. **Estilo Executivo**:
-   - Fundo branco puro (`#FFFFFF`), grid sutil em cinza claro (`#CBD5E1`, linestyle `--`).
-   - Tipografia limpa (`Segoe UI`, `DejaVu Sans`, `Arial`).
-   - Exportação em 300 DPI com `bbox_inches="tight"`.
+### Artefato 1: Gráfico de Dispersão de Volume por Causa-Raiz e Valor do Carrinho
+- **Arquivo**: [`chart_02_dispersao_motivos_abandono.png`](chart_02_dispersao_motivos_abandono.png)
+- **Tipo de Gráfico**: **Gráfico de Dispersão / Strip Plot com Jitter Controlado**
+- **Eixo X**: Motivos de Abandono (`Preço Alto`, `Frete Caro`, `Indecisão`, `Erro no Pagamento`, `Não Informado`, `Estoque Indisponível`) ordenados por volume.
+- **Eixo Y**: Valor do Carrinho Abandonado (`valor_total` em R$, escala 0 a 1.600).
+- **Pontos (Scatter)**: Cada ponto representa um carrinho abandonado real, colorido pelo dispositivo (`Mobile` em Azul `#2563EB`, `Desktop` em Verde `#059669`, `Tablet` em Âmbar `#F59E0B`), com jitter horizontal proporcional à densidade de volume.
+- **Anotações**: Badges superiores indicando o volume absoluto (`un`), a participação percentual (`%`) e a linha de valor mediano/médio para cada causa-raiz.
+
+### Artefato 2: Gráfico Separado de Impacto e Perda Financeira Represada (R$)
+- **Arquivo**: [`chart_02_perda_financeira_motivos.png`](chart_02_perda_financeira_motivos.png)
+- **Tipo de Gráfico**: **Gráfico Executivo de Barras Horizontais com Badges de Ticket Médio**
+- **Eixo Y**: Motivo de Abandono.
+- **Eixo X**: Receita Total Represada em R$ Milhares.
+- **Destaques**: Valor financeiro total represado (R$ 1.845,0k), ticket médio de cada grupo e participação percentual no montante total da perda.
 
 ---
 
 ## 📍 Mapeamento dos Dados Parquet
 - **Entidades Utilizadas**:
-  - `data/mock/output_cleaned/parquet/carrinhos.parquet` (`motivo_abandono`, `dispositivo`, `valor_total`, `status`)
+  - `data/mock/output_cleaned/parquet/carrinhos.parquet` (`motivo_abandono`, `dispositivo`, `valor_total`, `status`, `carrinho_id`)
   - `data/mock/output_cleaned/parquet/clientes.parquet` (`segmento_rfm`, `cliente_id`)
 - **Filtro de Escopo**: `status IN ('abandonado', 'recuperado', 'expirado')` com `motivo_abandono IS NOT NULL`.
 
 ---
 
-## 🖼️ Artefato Visual Gerado
-- **Arquivo**: [`chart_02_motivos_abandono.png`](chart_02_motivos_abandono.png)
-- **Script Gerador**: [`generate_chart.py`](generate_chart.py)
+## 🖼️ Artefatos Visuais Gerados
+- **Dispersão por Causa-Raiz**: [`chart_02_dispersao_motivos_abandono.png`](chart_02_dispersao_motivos_abandono.png)
+- **Perda Financeira Represada**: [`chart_02_perda_financeira_motivos.png`](chart_02_perda_financeira_motivos.png)
+- **Script Gerador Único**: [`generate_chart.py`](generate_chart.py)

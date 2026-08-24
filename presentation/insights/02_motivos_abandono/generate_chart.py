@@ -1,6 +1,8 @@
 """
-Gerador da visualização: Decomposição Descritiva de Motivos de Abandono e Impacto Financeiro.
-Atende à especificação de insights/01_descriptive/motivos_abandono.md.
+Gerador das visualizações do Módulo 02: Motivos de Abandono de Carrinho.
+1. Gráfico de Dispersão: Decomposição de Volume e Carrinhos Abandonados por Causa-Raiz e Dispositivo.
+2. Gráfico de Impacto Financeiro: Perda Financeira Represada (R$) e Ticket Médio por Motivo (Separado).
+Atende estritamente à especificação de presentation/insights/02_motivos_abandono/spec.md.
 Paradigma funcional e declarativo com tipagem estrita (Type Annotations).
 """
 
@@ -12,8 +14,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-OUTPUT_IMAGE_PATH: Final[str] = os.path.join(
-    os.path.dirname(__file__), "chart_02_motivos_abandono.png"
+MODULE_DIR: Final[str] = os.path.dirname(__file__)
+
+OUTPUT_DISPERSION_PATH: Final[str] = os.path.join(
+    MODULE_DIR, "chart_02_dispersao_motivos_abandono.png"
+)
+OUTPUT_FINANCIAL_PATH: Final[str] = os.path.join(
+    MODULE_DIR, "chart_02_perda_financeira_motivos.png"
+)
+# Compatibilidade com o nome anterior
+OUTPUT_LEGACY_PATH: Final[str] = os.path.join(
+    MODULE_DIR, "chart_02_motivos_abandono.png"
 )
 
 PARQUET_CARTS_PATH: Final[str] = (
@@ -23,119 +34,194 @@ PARQUET_CARTS_PATH: Final[str] = (
 )
 
 def load_data() -> pd.DataFrame:
-    """Carrega carrinhos abandonados com motivos preenchidos (Ground Truth)."""
+    """Carrega dados transacionais de carrinhos abandonados (Ground Truth)."""
     df = pd.read_parquet(PARQUET_CARTS_PATH)
     df_aband = df[df["motivo_abandono"].notna() & (df["motivo_abandono"] != "")].copy()
-    return df_aband
-
-def prepare_metrics(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Calcula agregados por motivo e quebra por dispositivo."""
+    
     label_map = {
         "preco": "Preço Alto",
         "frete": "Frete Caro",
-        "indecisao": "Indecisão / Comparação",
+        "indecisao": "Indecisão / Dúvida",
         "pagamento": "Erro no Pagamento",
         "nao_informado": "Não Informado",
         "estoque": "Estoque Indisponível"
     }
+    df_aband["motivo_label"] = df_aband["motivo_abandono"].map(label_map).fillna(df_aband["motivo_abandono"])
+    return df_aband
+
+def prepare_aggregations(df: pd.DataFrame) -> pd.DataFrame:
+    """Calcula agregados consolidados por motivo de abandono."""
+    order_motivos = [
+        "Preço Alto", "Frete Caro", "Indecisão / Dúvida",
+        "Erro no Pagamento", "Não Informado", "Estoque Indisponível"
+    ]
     
-    df["motivo_label"] = df["motivo_abandono"].map(label_map).fillna(df["motivo_abandono"])
-    
-    # 1. Agregação Geral por Motivo
-    df_motivo = df.groupby("motivo_label").agg(
+    agg = df.groupby("motivo_label").agg(
         volume=("carrinho_id", "count"),
         receita_represada=("valor_total", "sum"),
-        ticket_medio=("valor_total", "mean")
-    ).reset_index()
+        ticket_medio=("valor_total", "mean"),
+        ticket_mediano=("valor_total", "median")
+    ).reindex(order_motivos).reset_index()
     
-    total_vol = df_motivo["volume"].sum()
-    df_motivo["pct_total"] = (df_motivo["volume"] / total_vol) * 100
-    df_motivo = df_motivo.sort_values(by="volume", ascending=True).reset_index(drop=True)
+    total_vol = agg["volume"].sum()
+    total_rec = agg["receita_represada"].sum()
     
-    # 2. Decomposição por Dispositivo
-    df_dev = (
-        pd.crosstab(df["motivo_label"], df["dispositivo"], normalize="index") * 100
-    ).loc[df_motivo["motivo_label"]].reset_index()
-    
-    return df_motivo, df_dev
+    agg["pct_volume"] = (agg["volume"] / total_vol) * 100
+    agg["pct_receita"] = (agg["receita_represada"] / total_rec) * 100
+    return agg
 
-def plot_motivos_chart(df_motivo: pd.DataFrame, df_dev: pd.DataFrame) -> plt.Figure:
-    """Gera o painel duplo executivo em 300 DPI com fundo branco."""
+def plot_dispersion_chart(df: pd.DataFrame, agg: pd.DataFrame) -> plt.Figure:
+    """Gera o Gráfico de Dispersão (Scatter/Strip plot) de carrinhos abandonados por causa-raiz."""
     plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
     plt.rcParams["axes.edgecolor"] = "#CBD5E1"
-    plt.rcParams["axes.linewidth"] = 1.1
+    plt.rcParams["axes.linewidth"] = 1.2
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14.0, 6.8), gridspec_kw={"width_ratios": [1.25, 1.0]})
+    fig, ax = plt.subplots(figsize=(13.5, 7.2))
     fig.patch.set_facecolor("#FFFFFF")
+    ax.set_facecolor("#FFFFFF")
 
-    y_pos = np.arange(len(df_motivo))
-    motivos = df_motivo["motivo_label"].to_list()
-    volumes = df_motivo["volume"].to_numpy()
-    pcts = df_motivo["pct_total"].to_numpy()
-    receitas_k = df_motivo["receita_represada"].to_numpy() / 1000.0
-    tickets = df_motivo["ticket_medio"].to_numpy()
+    motivo_list = agg["motivo_label"].tolist()
+    device_colors = {
+        "mobile": "#2563EB",   # Azul
+        "desktop": "#059669",  # Verde
+        "tablet": "#F59E0B"    # Âmbar
+    }
+    device_labels = {
+        "mobile": "Mobile",
+        "desktop": "Desktop",
+        "tablet": "Tablet"
+    }
 
-    # --- PAINEL 1: Volume & Distribuição por Dispositivo ---
-    ax1.set_facecolor("#FFFFFF")
+    np.random.seed(42)  # Reprodutibilidade estrita
+
+    # Plotagem pontual dos carrinhos distribuídos por motivo
+    for idx, motivo in enumerate(motivo_list):
+        df_m = df[df["motivo_label"] == motivo]
+        vol = len(df_m)
+        pct = agg.loc[agg["motivo_label"] == motivo, "pct_volume"].values[0]
+        tm = agg.loc[agg["motivo_label"] == motivo, "ticket_medio"].values[0]
+
+        # Jitter horizontal controlado
+        jitter = np.random.normal(0, 0.14, size=len(df_m))
+        jitter = np.clip(jitter, -0.32, 0.32)
+        x_vals = idx + jitter
+        y_vals = df_m["valor_total"].to_numpy()
+
+        for dev in ["mobile", "desktop", "tablet"]:
+            mask_dev = (df_m["dispositivo"] == dev).to_numpy()
+            if np.any(mask_dev):
+                ax.scatter(
+                    x_vals[mask_dev],
+                    y_vals[mask_dev],
+                    c=device_colors[dev],
+                    s=22,
+                    alpha=0.45,
+                    edgecolors="none",
+                    label=device_labels[dev] if idx == 0 else ""
+                )
+
+        # Marcador de Média
+        ax.scatter(idx, tm, color="#0F172A", s=90, zorder=6, marker="D", edgecolors="#FFFFFF", linewidth=1.5)
+
+        # Card superior com Volumetria
+        ax.text(
+            idx, 1530,
+            f"{vol:,.0f} un\n({pct:.1f}%)",
+            ha="center", va="center",
+            fontsize=10, fontweight="bold", color="#0F172A",
+            bbox=dict(boxstyle="round,pad=0.35", facecolor="#F1F5F9", edgecolor="#CBD5E1", alpha=0.95)
+        )
+
+        # Label de Ticket Médio
+        ax.text(
+            idx, tm + 45,
+            f"TM R${tm:.0f}",
+            ha="center", va="bottom",
+            fontsize=8.5, fontweight="bold", color="#0F172A"
+        )
+
+    ax.set_xticks(range(len(motivo_list)))
+    ax.set_xticklabels(motivo_list, fontsize=11, fontweight="bold", color="#1E293B")
+    ax.set_ylabel("Valor do Carrinho Abandonado (R$)", fontsize=11.5, fontweight="bold", color="#334155")
+    ax.set_ylim(0, 1650)
+    ax.set_title("DECOMPOSIÇÃO DE VOLUME: DISPERSÃO DE CARRINHOS POR CAUSA-RAIZ & DISPOSITIVO",
+                 fontsize=14, fontweight="bold", color="#0F172A", pad=15)
     
-    # Proporções de dispositivos
-    mob_pct = df_dev["mobile"].to_numpy() / 100.0 * volumes
-    desk_pct = df_dev["desktop"].to_numpy() / 100.0 * volumes
-    tab_pct = df_dev["tablet"].to_numpy() / 100.0 * volumes
+    ax.grid(axis="y", linestyle="--", alpha=0.5, color="#CBD5E1")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
 
-    bar_height = 0.55
-    ax1.barh(y_pos, mob_pct, height=bar_height, color="#2563EB", label="Mobile", alpha=0.90, edgecolor="#1D4ED8")
-    ax1.barh(y_pos, desk_pct, height=bar_height, left=mob_pct, color="#059669", label="Desktop", alpha=0.90, edgecolor="#047857")
-    ax1.barh(y_pos, tab_pct, height=bar_height, left=mob_pct + desk_pct, color="#F59E0B", label="Tablet", alpha=0.90, edgecolor="#D97706")
-
-    for i, (vol, pct) in enumerate(zip(volumes, pcts)):
-        ax1.text(vol + 25, i, f"{vol:,.0f} un ({pct:.1f}%)", va="center", ha="left",
-                 fontsize=10, fontweight="bold", color="#0F172A")
-
-    ax1.set_yticks(y_pos)
-    ax1.set_yticklabels(motivos, fontsize=11, fontweight="bold", color="#1E293B")
-    ax1.set_xlabel("Volume de Carrinhos Abandonados (un)", fontsize=11, fontweight="bold", color="#334155")
-    ax1.set_title("Decomposição de Volume por Causa-Raiz & Dispositivo", fontsize=13, fontweight="bold", color="#0F172A", pad=12)
-    ax1.set_xlim(0, max(volumes) * 1.25)
-    ax1.grid(axis="x", linestyle="--", alpha=0.5, color="#CBD5E1")
-    ax1.legend(loc="lower right", frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5)
-    ax1.spines["top"].set_visible(False)
-    ax1.spines["right"].set_visible(False)
-
-    # --- PAINEL 2: Impacto Financeiro Represado (R$) ---
-    ax2.set_facecolor("#FFFFFF")
-    colors_rec = ["#E2E8F0", "#E2E8F0", "#CBD5E1", "#94A3B8", "#F43F5E", "#E11D48"]
-    bars2 = ax2.barh(y_pos, receitas_k, height=bar_height, color="#E11D48", alpha=0.85, edgecolor="#BE123C")
-
-    for i, (rec, tkt) in enumerate(zip(receitas_k, tickets)):
-        ax2.text(rec + 10, i, f"R$ {rec:,.1f}k\n(TM: R$ {tkt:,.0f})", va="center", ha="left",
-                 fontsize=9.5, fontweight="bold", color="#0F172A")
-
-    ax2.set_yticks(y_pos)
-    ax2.set_yticklabels([])
-    ax2.set_xlabel("Receita Represada em Abandono (R$ Milhares)", fontsize=11, fontweight="bold", color="#334155")
-    ax2.set_title("Perda Financeira Represada por Motivo (R$)", fontsize=13, fontweight="bold", color="#0F172A", pad=12)
-    ax2.set_xlim(0, max(receitas_k) * 1.30)
-    ax2.grid(axis="x", linestyle="--", alpha=0.5, color="#CBD5E1")
-    ax2.spines["top"].set_visible(False)
-    ax2.spines["right"].set_visible(False)
-
-    # Título Geral
-    fig.suptitle("ANÁLISE DESCRITIVA: CAUSAS-RAIZ DE ABANDONO & IMPACTO FINANCEIRO (DADOSFERA)",
-                 fontsize=15, fontweight="bold", color="#0F172A", y=0.98)
+    # Legenda customizada
+    handles, labels = ax.get_legend_handles_labels()
+    mean_marker = plt.Line2D([0], [0], marker="D", color="w", markerfacecolor="#0F172A", markersize=8, label="Ticket Médio (R$)")
+    handles.append(mean_marker)
+    labels.append("Ticket Médio (R$)")
     
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    ax.legend(handles=handles, labels=labels, loc="upper right", frameon=True,
+              facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5)
+
+    plt.tight_layout()
+    return fig
+
+def plot_financial_loss_chart(agg: pd.DataFrame) -> plt.Figure:
+    """Gera o Gráfico Separado de Impacto Financeiro e Perda Represada em R$ por Causa-Raiz."""
+    plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
+    plt.rcParams["axes.edgecolor"] = "#CBD5E1"
+    plt.rcParams["axes.linewidth"] = 1.2
+
+    fig, ax = plt.subplots(figsize=(12.0, 6.5))
+    fig.patch.set_facecolor("#FFFFFF")
+    ax.set_facecolor("#FFFFFF")
+
+    # Inverter para exibir o maior motivo no topo
+    agg_sorted = agg.sort_values(by="receita_represada", ascending=True).reset_index(drop=True)
+    y_pos = np.arange(len(agg_sorted))
+    motivos = agg_sorted["motivo_label"].tolist()
+    receitas_k = agg_sorted["receita_represada"].to_numpy() / 1000.0
+    pcts_rec = agg_sorted["pct_receita"].to_numpy()
+    tickets = agg_sorted["ticket_medio"].to_numpy()
+    total_k = agg_sorted["receita_represada"].sum() / 1000.0
+
+    bar_height = 0.52
+    bars = ax.barh(y_pos, receitas_k, height=bar_height, color="#E11D48", alpha=0.88, edgecolor="#9F1239")
+
+    for i, (rec, pct, tkt) in enumerate(zip(receitas_k, pcts_rec, tickets)):
+        ax.text(
+            rec + 12, i,
+            f"R$ {rec:,.1f}k  ({pct:.1f}% da perda)\nTicket Médio: R$ {tkt:,.0f} / carrinho",
+            va="center", ha="left", fontsize=10, fontweight="bold", color="#0F172A"
+        )
+
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(motivos, fontsize=11.5, fontweight="bold", color="#1E293B")
+    ax.set_xlabel("Receita Represada em Abandono (R$ Milhares)", fontsize=11.5, fontweight="bold", color="#334155")
+    ax.set_title(f"IMPACTO FINANCEIRO REPRESADO POR CAUSA-RAIZ (TOTAL: R$ {total_k:,.1f}k)",
+                 fontsize=14, fontweight="bold", color="#0F172A", pad=15)
+    ax.set_xlim(0, max(receitas_k) * 1.45)
+    ax.grid(axis="x", linestyle="--", alpha=0.5, color="#CBD5E1")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    plt.tight_layout()
     return fig
 
 def main() -> None:
     df_data = load_data()
-    df_motivo, df_dev = prepare_metrics(df_data)
-    fig = plot_motivos_chart(df_motivo, df_dev)
-    
-    os.makedirs(os.path.dirname(OUTPUT_IMAGE_PATH), exist_ok=True)
-    fig.savefig(OUTPUT_IMAGE_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
-    plt.close(fig)
-    print(f"[SUCCESS] Gráfico de Motivos de Abandono salvo em: {OUTPUT_IMAGE_PATH}")
+    agg = prepare_aggregations(df_data)
+
+    # 1. Gráfico de Dispersão
+    fig_disp = plot_dispersion_chart(df_data, agg)
+    fig_disp.savefig(OUTPUT_DISPERSION_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
+    # Salvar também como legacy para manter compatibilidade
+    fig_disp.savefig(OUTPUT_LEGACY_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
+    plt.close(fig_disp)
+    print(f"[SUCCESS] Gráfico de Dispersão de Motivos salvo em: {OUTPUT_DISPERSION_PATH}")
+
+    # 2. Gráfico Separado de Perda Financeira
+    fig_fin = plot_financial_loss_chart(agg)
+    fig_fin.savefig(OUTPUT_FINANCIAL_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
+    plt.close(fig_fin)
+    print(f"[SUCCESS] Gráfico de Perda Financeira salvo em: {OUTPUT_FINANCIAL_PATH}")
 
 if __name__ == "__main__":
     main()
