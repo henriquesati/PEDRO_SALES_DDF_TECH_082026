@@ -26,7 +26,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **0** | Agilidade & Planejamento | — | Planejamento iterativo entidade a entidade e matriz de decisão | ✅ Concluído |
 | **1** | Base de Dados (mín. 100k) | Integrar | Gerador Python modular com 115.777+ registros em Parquet/CSV (`data/mock/`) | ✅ Concluído |
 | **2.1** | Dadosfera - Integrar | Integrar | Mapeamento de carga via API Maestro e Lakehouse Snowflake | ⏳ Planejado |
-| **3** | Dadosfera - Explorar | Explorar | Dicionários de dados Qualify (`data/catalogo/qualify/`) e Data Asset IDs oficiais | ✅ Concluído |
+| **3** | Dadosfera - Explorar & Catalogar | Explorar | Especificação normativa e blueprint de catálogo de negócios (`data/catalogo/business-catalog-classification.md`) e Data Asset IDs oficiais | ✅ Concluído |
 | **4** | Data Quality & Anomalias | Processar | Suíte Great Expectations e relatório gerado (`notebooks/pipelines/quality_report/outputs/data_quality_report.md`) | ✅ Concluído |
 | **5** | GenAI & LLMs | Processar | Enriquecimento semântico de motivos de abandono e gerador de copy | ⏳ Planejado |
 | **6** | Modelagem de Dados | Analisar | Modelagem lógica canônica (4 divisões) em 6 entidades (`data/data-models/logical/`) | ✅ Concluído |
@@ -47,14 +47,14 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
     - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificações de entidades canônicas ([`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
     - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Matriz de cardinalidade, integridade referencial e chaves*
     - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *specificações de Regras de negócio, temporalidade de abandono (15 min) e status*
-  - **📁 Diretórios relacionados (Geração & Carga de Dados Sintéticos):**
-    - [`data/mock/generators/`](data/mock/generators/) — *Geradores modulares em Python com injeção determinística de dirty data (5%)*
+  - **📁 Diretórios de geração de carga e output:**
+    - [`data/mock/generators/`](data/mock/generators/) — *Geradores modulares em Python com injeção determinística de dirty data*
+    - [`data/mock/generators/parquet/config/`](data/mock/generators/parquet/config/) (`_config.py`) — *Engine central de configuração: controla parâmetros de injeção de dirty data (taxas de anomalias contábeis e de integridade) e garante métricas positivas de conversão, canais e ROI para a narrativa do Pitch*
     - [`data/mock/output/`](data/mock/output/) — *Datasets sintéticos brutos (+115.777 registros), organizados estritamente por formato de arquivo (`parquet/` e `csv/`)*
     - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets higienizados e tratados (Ground Truth para BI e Pitch), organizados por formato (`parquet/` e `csv/`) com scripts de limpeza (`clean_all.py`)*
     - [`data/mock/METRICS.md`](data/mock/METRICS.md) — *Métricas de volumetria, distribuição e conformidade quantitativa*
-  - **📁 Diretórios relacionados (Catálogo de Metadados & Qualify):**
-    - [`data/catalogo/qualify/`](data/catalogo/qualify/) — *Dicionários de dados, contratos e schemas para ingestão na Dadosfera*
-    - [`data/catalogo/business-catalog-classification.md`](data/catalogo/business-catalog-classification.md) — *Classificação e linhagem de catálogo*
+  - **📁 Especificação do Catálogo de Negócios & Arquitetura (Item 3):**
+    - [`data/catalogo/business-catalog-classification.md`](data/catalogo/business-catalog-classification.md) — *Blueprint normativo e formato padrão de governança e catálogo a ser seguido. Estrutura o Data Lakehouse em 4 zonas (Raw/Bronze, Qualify/Silver, Anomaly/Quarentena e Curated/Gold), seguindo à risca as boas práticas exigidas pelo case. Age como governança modular com diretório por entidade (`metadata.md`), dicionário de dados rico, rastreabilidade ponta a ponta de linhagem (upstream/downstream), registro de Data Asset IDs oficiais, definição de granularidade, stewardship (owners) e classificação de sensibilidade/LGPD.*
 
 </div>
 
@@ -175,10 +175,10 @@ wheels/
 │   └── assets/                         # Artefatos visuais de alta resolução (PNG / JSON)
 │
 ├── data/
-│   ├── catalogo/                       # Dicionários de dados Qualify e blueprint
+│   ├── catalogo/                       # Blueprint normativo de catálogo de negócios e arquitetura
 │   ├── data-models/logical/            # Modelagem Lógica Canônica (4 Divisões)
 │   └── mock/                           # Gerador modular e datasets gerados (Parquet/CSV)
-│       ├── generators/                 # Geradores Python com injeção de dirty data (5%)
+│       ├── generators/                 # Geradores Python e engine declarativa de configuração (config.py)
 │       ├── output/                     # Datasets sintéticos brutos por formato (csv/ e parquet/)
 │       └── output_cleaned/             # Datasets higienizados por formato (csv/ e parquet/) e scripts
 │
