@@ -193,7 +193,11 @@ wheels/
 │   │   └── curated/                      # Gold Kimball: spec.md + 7 pastas com metadata.md
 │   ├── case-item-03/                     # Catalogação e Exploração na Dadosfera
 │   ├── case-item-04/                     # Data Quality Pipeline (Notebook + Specs + Report)
-│   └── case-item-06/                     # Modelagem Dimensional Kimball (DW Gold)
+│   ├── case-item-05/                     # GenAI & LLMs Feature Extraction Pipeline (Notebook + Specs + Report)
+│   ├── case-item-06/                     # Modelagem Dimensional Kimball (DW Gold - Notebook + Specs + Report)
+│   ├── case-item-07/                     # Hub Central de Análise de Dados, BI & Metabase (Notebook + Specs + Report)
+│   ├── case-item-08/                     # Pipelines Medallion, Stepsfera & Snowpark (Notebook + Specs + Report)
+│   └── case-item-09/                     # Data App Streamlit & Bônus GenAI (Notebook + Specs + Report)
 ├── insights/
 │   ├── 01_descriptive/                   # Insights descritivos (conversão, volume)
 │   ├── 02_risk/                          # Insights de risco (abandono por atrito)

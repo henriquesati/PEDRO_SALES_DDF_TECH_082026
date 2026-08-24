@@ -3,19 +3,21 @@
 > **Case Técnico:** Recuperação de Carrinho Abandonado (Dadosfera)  
 > **Camada:** Gold (Curated Views / Metabase Dashboards)  
 > **Status:** ✅ Executado e Artefatos Gerados  
-> **Script Gerador:** [`notebooks/pipelines/serving/generate_bi_charts.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/notebooks/pipelines/serving/generate_bi_charts.py)  
-> **Notebook Reproduzível:** [`notebooks/07_bi_dashboards_visualizations.ipynb`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/notebooks/07_bi_dashboards_visualizations.ipynb)  
+> **Hub Central do Item 7:** [`pipelines/case-item-07/specs.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/specs.md)  
+> **Script Gerador:** [`pipelines/case-item-07/scripts/run_bi_analysis.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/scripts/run_bi_analysis.py)  
+> **Notebook Reproduzível:** [`pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb)  
+> **Relatório Executivo:** [`pipelines/case-item-07/outputs/bi_analysis_report.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/bi_analysis_report.md)  
 
 ---
 
 ## 1. 🎯 Visão Geral dos Artefatos de BI
 
-Este documento consolida a geração de artefatos visuais das views analíticas projetadas para a plataforma Dadosfera (Metabase) e Data Apps (Streamlit).
+Este documento consolida a geração de artefatos visuais das views analíticas projetadas para a plataforma Dadosfera (Metabase) e Data Apps (Streamlit), centralizadas no hub [`pipelines/case-item-07/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/).
 
 Foram gerados **6 tipos distintos de visualizações** a partir dos dados do lakehouse (`carrinhos`, `produtos`, `eventos_resgate`, `clientes`), cobrindo requisitos explícitos de **Série Temporal**, **Performance de Categorias**, **Rentabilidade/ROI por Canal**, **Matriz de Atrito RFM** e **Matriz de Priorização**:
 
 ```text
-dashboards/assets/
+pipelines/case-item-07/outputs/assets/ (e espelhado em dashboards/assets/)
 ├── chart_01_serie_temporal_abandono_resgate.png   # 1. Gráfico de Linha Duplo Eixo (Série Temporal)
 ├── chart_02_performance_categorias.png            # 2. Barras Horizontais (Análise de Categorias)
 ├── chart_03_roi_eficiencia_canais.png             # 3. Gráfico Combo Barras + Linha (ROI por Canal)

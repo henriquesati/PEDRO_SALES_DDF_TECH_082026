@@ -126,6 +126,12 @@ def task_pipeline_run() -> None:
     print("\n[TASK: pipeline-run] Executando pipeline Medallion, Stepsfera e ML (Item 8)...")
     subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
 
+def task_bi_analysis() -> None:
+    """Executa a geração das visualizações de BI e métricas do Item 7."""
+    script_path = os.path.join(BASE_DIR, "pipelines", "case-item-07", "scripts", "run_bi_analysis.py")
+    print("\n[TASK: bi-analysis] Executando gerador de BI e métricas (Item 7)...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+
 def print_help() -> None:
     print("""
 =============================================================================
@@ -138,9 +144,10 @@ Comandos disponíveis:
   python make.py push-read [MSG]            Commita e envia EXCLUSIVAMENTE o README.md
   python make.py pipeline-run               Executa o pipeline modular & ML (Item 8)
   python make.py data-modeling              Gera a modelagem Kimball Gold DW (Item 6)
+  python make.py bi-analysis                Gera as 6 visualizações e métricas de BI (Item 7)
   python make.py pitch-charts               Gera todos os 8 gráficos do Pitch (Item 10)
   python make.py insights-charts            Gera os gráficos de Insights (presentation/insights/)
-  python make.py notebook-gen               Gera todas as 6 imagens de BI
+  python make.py notebook-gen               Gera todas as 6 imagens de BI (Item 7)
   python make.py notebook-gen [CHART]       Gera apenas o gráfico especificado
   python make.py chart [CHART]              Atalho para gerar um gráfico específico
   python make.py list-charts                Lista todos os IDs e chaves de gráficos
@@ -175,6 +182,8 @@ def main():
         task_pipeline_run()
     elif command in ("data_modeling", "datamodeling", "kimball", "modeling", "case6", "case06"):
         task_data_modeling()
+    elif command in ("bi_analysis", "bianalysis", "bi", "case7", "case07"):
+        task_bi_analysis()
     elif command in ("pitch_charts", "pitch", "pitch_gen"):
         task_pitch_charts()
     elif command in ("insights_charts", "insights", "insight_charts"):

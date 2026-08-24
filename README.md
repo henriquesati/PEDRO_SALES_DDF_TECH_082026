@@ -30,7 +30,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **4** | Data Quality & Anomalias | Processar | Pipeline Dual-Artifact, suíte Great Expectations (18 regras), quarentena Parquet e relatório em [`pipelines/case-item-04/outputs/data_quality_report.md`](pipelines/case-item-04/outputs/data_quality_report.md) | ✅ Concluído |
 | **5** | GenAI & LLMs | Processar | Extração de features de catálogo/feedbacks com Pydantic, geração de copies e bônus multimodal de áudio em [`pipelines/case-item-05/outputs/genai_feature_extraction_report.md`](pipelines/case-item-05/outputs/genai_feature_extraction_report.md) | ✅ Concluído |
 | **6** | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos, 2 visões analíticas Gold e diagrama DW Medallion) | ✅ Concluído |
-| **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI) e catálogo declarativo | ✅ Concluído |
+| **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI), Camada Semântica (`metrics/`) e Hub em [`pipelines/case-item-07/`](pipelines/case-item-07/) | ✅ Concluído |
 | **8** | Pipelines ETL/ML & Snowpark | Processar | Pipeline Medallion funcional, catálogo Stepsfera, validação modular, modelo preditivo e processamento Snowpark | ✅ Concluído |
 | **9** | Data Apps & GenAI | Consumir | Data App Streamlit com simulador de ROI, similaridade vetorial (t-SNE) e vitrine GenAI em [`pipelines/case-item-09/`](pipelines/case-item-09/) e [`app/`](app/) | ✅ Concluído |
 | **10** | Apresentação em Vídeo | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
@@ -257,6 +257,30 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
   </small>
 
 
+- [x] ~~**[X] [case-07] Análise de Dados, Visualizações de BI (Metabase) e Camada Semântica [X]**~~
+  <small>
+
+  - **análise de dados, dashboards e governança de métricas** (*Hub central consolidando 6 visualizações analíticas de BI a partir do Lakehouse Medallion — Série Temporal, Performance de Categorias, Rentabilidade e ROI por Canal, Matriz de Atrito RFM, Matriz Prescritiva de Viabilidade e Scorecard de Data Quality. Consultas SQL canônicas para o Snowflake/Metabase, especificações completas de dashboard e Camada Semântica de Métricas com Catálogo Master de KPIs em LaTeX, Matriz Dimensional e Driver Tree*)
+  - **📁 Especificações Normativas e Hub Central:**
+    - [`pipelines/case-item-07/specs.md`](pipelines/case-item-07/specs.md) — *Especificação técnica formal (`spec_bi_visualizations_001` v1.0), catálogo das 6 visualizações de BI, queries SQL Snowflake e arquitetura de conexões do Hub*
+    - [`dashboards/dashboard_recuperacao_carrinho.md`](dashboards/dashboard_recuperacao_carrinho.md) — *Especificação de layout, filtros globais e queries do painel executivo no Metabase da Dadosfera*
+  - **📁 Camada Semântica de Métricas e Governança (`metrics/`):**
+    - [`metrics/catalogo_kpis.md`](metrics/catalogo_kpis.md) — *Catálogo Master com 13 KPIs de negócio nas 5 camadas da DEC-001 e fórmulas em LaTeX*
+    - [`metrics/matriz_metricas_dimensoes.md`](metrics/matriz_metricas_dimensoes.md) — *Matriz de fatiamento dimensional cruzando os KPIs contra as 6 Dimensões Conformadas Kimball*
+    - [`metrics/arvore_metricas_driver_tree.md`](metrics/arvore_metricas_driver_tree.md) — *Driver Tree da North Star Metric decompondo alavancas de conversão e ROI*
+    - [`metrics/metricas_data_quality_slo.md`](metrics/metricas_data_quality_slo.md) — *SLOs de qualidade, volumetria auditada e quarentena de anomalias*
+  - **📁 Scripts e Notebooks Executáveis:**
+    - [`pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb`](pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb) — *Notebook interativo executável no Google Colab/Jupyter com execução das 6 queries e renderização visual*
+    - [`pipelines/case-item-07/scripts/run_bi_analysis.py`](pipelines/case-item-07/scripts/run_bi_analysis.py) — *Script batch automatizado de geração de gráficos e métricas (`python make.py bi-analysis` ou `python make.py notebook-gen`)*
+  - **📁 Arquitetura de Outputs e Relatórios:**
+    - [`pipelines/case-item-07/outputs/bi_analysis_report.md`](pipelines/case-item-07/outputs/bi_analysis_report.md) — *Relatório executivo consolidado com evidências e diagnósticos de BI*
+    - [`pipelines/case-item-07/outputs/assets/`](pipelines/case-item-07/outputs/assets/) — *6 gráficos analíticos gerados em alta resolução (300 DPI) no padrão charts-maker*
+  - **🌟 Bônus: Camada Semântica Completa e Matriz Prescritiva:**
+    - **Governança Semântica Integrada**: Governança unificada de fórmulas matemáticas conectada bidirecionalmente aos modelos Gold DW e dashboards.
+    - **Matriz Prescritiva de Viabilidade**: Classificação em quadrante de ouro (probabilidade vs ticket) para acionamento direto em CRM e Data Apps.
+  </small>
+
+
 - [x] ~~**[X] [case-08] Pipelines de Dados, Stepsfera e Snowpark/Spark (Item 8) [X]**~~
   <small>
 
@@ -318,6 +342,7 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 | **Case 04** | Data Quality e Quarentena | [`qualification_raw.ipynb`](pipelines/case-item-04/notebooks/qualification_raw.ipynb) | [`pipelines/case-item-04/notebooks/`](pipelines/case-item-04/notebooks/) |
 | **Case 05** | GenAI, Pydantic e Whisper | [`genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) | [`pipelines/case-item-05/notebooks/`](pipelines/case-item-05/notebooks/) |
 | **Case 06** | Modelagem Dimensional Kimball | [`data_modeling_kimball.ipynb`](pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb) | [`pipelines/case-item-06/notebooks/`](pipelines/case-item-06/notebooks/) |
+| **Case 07** | Análise de Dados e BI | [`07_bi_dashboards_visualizations.ipynb`](pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb) | [`pipelines/case-item-07/notebooks/`](pipelines/case-item-07/notebooks/) |
 | **Case 08** | Pipelines, Stepsfera e Snowpark | [`pipeline_snowpark_transformation.ipynb`](pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb) | [`pipelines/case-item-08/notebooks/`](pipelines/case-item-08/notebooks/) |
 | **Case 09** | Data App e Bônus Streamlit | [`streamlit_colab_runner.ipynb`](pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb) | [`pipelines/case-item-09/notebooks/`](pipelines/case-item-09/notebooks/) |
 
@@ -332,6 +357,9 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 - [`pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb`](pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb): Notebook interativo com modelagem dimensional Kimball Star Schema, 6 dimensões conformadas, 2 fatos e 2 visões analíticas Gold (Item 6).
 - [`pipelines/case-item-06/specs.md`](pipelines/case-item-06/specs.md): Especificação técnica formal (`spec_data_modeling_001`) da camada Gold DW Kimball.
 - [`pipelines/case-item-06/scripts/generate_chart.py`](pipelines/case-item-06/scripts/generate_chart.py): Script gerador do dashboard dimensional no padrão `charts-maker` (`python make.py data-modeling`).
+- [`pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb`](pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb): Notebook interativo executável Google Colab para geração das 6 visualizações de BI, consultas Metabase e Camada Semântica (Item 7).
+- [`pipelines/case-item-07/specs.md`](pipelines/case-item-07/specs.md): Especificação técnica normativa (`spec_bi_visualizations_001` v1.0) e Hub central de análise de dados e dashboards.
+- [`pipelines/case-item-07/scripts/run_bi_analysis.py`](pipelines/case-item-07/scripts/run_bi_analysis.py): Script batch gerador das 6 visualizações analíticas e resumo JSON de métricas (`python make.py bi-analysis` ou `python make.py notebook-gen`).
 - [`pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb`](pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb): Notebook executável Google Colab com transformações Snowpark/PySpark e Stepsfera (Item 8).
 - [`pipelines/case-item-08/specs.md`](pipelines/case-item-08/specs.md): Especificação técnica normativa (`spec_pipeline_orchestration_001`) do pipeline Medallion e catálogo Stepsfera.
 - [`pipelines/case-item-08/scripts/run_silver_gold_pipeline.py`](pipelines/case-item-08/scripts/run_silver_gold_pipeline.py): Script batch do pipeline completo e modelo de ML (`python make.py pipeline-run`).

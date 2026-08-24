@@ -1,0 +1,17 @@
+{
+  "case_item": "07 - Análise de Dados & BI",
+  "total_carrinhos_auditados": 7500,
+  "total_abandonados": 4201,
+  "total_recuperados": 153,
+  "taxa_abandono_pct": 56.01,
+  "taxa_recuperacao_pct": 3.64,
+  "multiplicador_roi_global": 45.2,
+  "visualizacoes_geradas": [
+    "chart_01_serie_temporal_abandono_resgate.png",
+    "chart_02_performance_categorias.png",
+    "chart_03_roi_eficiencia_canais.png",
+    "chart_04_matriz_motivos_rfm_heatmap.png",
+    "chart_05_dispersao_viabilidade_recuperacao.png",
+    "chart_06_data_quality_anomalies_summary.png"
+  ]
+}
