@@ -1,62 +1,68 @@
-# Especificação Visual & BI: Visão Acumulada de Recuperação de Carrinhos
+# Especificação Visual & BI: Recuperação de Carrinhos
 
 ## 📌 Contexto & Pergunta de Negócio
-- **Pergunta Central**: Qual é a evolução acumulada do volume total de carrinhos no marketplace ao longo do semestre (partindo de zero até a amplitude máxima), qual a proporção de conversão direta orgânica e qual o impacto visual da faixa intermediária de carrinhos recuperados e reengajados pela Dadosfera?
-- **Insight de Negócio**: A visualização de curvas acumuladas evidencia o funil macro: o total de carrinhos inicia em zero e cresce continuamente até 7.500 unidades. A camada basal de compras orgânicas atende ~2.229 carrinhos, enquanto a faixa intermediária de resgate ativo expande a conversão para ~4.100 carrinhos, preenchendo a lacuna entre o abandono puro e a conversão final.
+- **Pergunta Central**: Qual é a evolução acumulada do volume de carrinhos no marketplace ao longo do primeiro semestre, qual a proporção de conversão direta no checkout e qual a contribuição do resgate de carrinhos abandonados?
+- **Insight de Negócio**: A visualização em camadas evidencia a dinâmica operacional do funil: o total atinge 7.500 carrinhos criados no semestre. A conversão direta orgânica atende **1.731 carrinhos (23,1%)**, enquanto as ações de recuperação Dadosfera resgatam **498 compras adicionais (6,64% do total / 10,60% sobre carrinhos abandonados)**, elevando o total comprado para **2.229 carrinhos (29,7%)**. Adicionalmente, há 153 carrinhos reengajados em andamento (2,04%), totalizando 651 carrinhos impactados por campanhas (8,68% / 13,85% de resgate). O atrito residual não convertido delimita 5.118 a 5.271 carrinhos (~68% a 70%).
 
 ---
 
-## 📊 Métricas & Variáveis no Gráfico
+## 📊 Métricas & Séries Temporais
 
-[1] **Linha Superior (Teto / Total de Carrinhos)**:
-- **Métrica**: Volume Acumulado de *Carrinhos Criados*.
-- **Representação Visual**: Curva suave vermelha/rose (`#E11D48`) iniciando em (0,0) e subindo continuamente até o topo (7.500 unidades).
+[1] **Linha Superior (Total de Carrinhos Criados)**:
+- **Métrica**: Volume de *Carrinhos Criados* (7.500 un).
+- **Representação Visual**: Curva suave vermelha (`#E11D48`).
 
-[2] **Linha Intermediária (Carrinhos Recuperados & Reengajados)**:
-- **Métrica**: Volume Acumulado de *Compras Diretas + Carrinhos Resgatados*.
-- **Representação Visual**: Curva suave verde esmeralda (`#059669`) no meio (~4.100 unidades), criando uma faixa generosa e claramente visível.
+[2] **Linha Intermediária (Total Convertido: Compras Diretas + Resgate Dadosfera)**:
+- **Métrica**: Volume de *Compras Diretas (1.731 un) + Carrinhos Recuperados Convertidos (498 un)* = 2.229 un (29,7%).
+- **Representação Visual**: Curva tracejada verde esmeralda (`#059669`).
 
-[3] **Linha Inferior (Volume de Conversão Direta Orgânica)**:
-- **Métrica**: Volume Acumulado de *Carrinhos Comprados Diretamente*.
-- **Representação Visual**: Curva suave azul royal (`#2563EB`) na base (2.229 unidades).
+[3] **Linha Inferior (Conversão Direta Orgânica no Checkout)**:
+- **Métrica**: Volume de *Carrinhos Comprados Diretamente sem Resgate* (1.731 un / 23,1%).
+- **Representação Visual**: Curva suave azul royal (`#2563EB`).
 
 ---
 
 ## 🎨 Diretrizes Visuais de Design
 
 [1] **Fundo & Grid**:
-- Fundo branco puro (`#FFFFFF`) para alto contraste e clareza de leitura executiva.
-- Grid sutil e elegante em cinza claro (`#CBD5E1`) com linhas tracejadas.
+- Fundo branco puro (`#FFFFFF`) para alto contraste e clareza executiva.
+- Grid sutil em cinza claro (`#CBD5E1`) com linhas tracejadas.
 
-[2] **Zonas de Cores com Preenchimento (`fill_between`)**:
-- **Zona Superior (Abandono Puro / Atrito)**: Preenchimento translúcido entre o Total e a Linha de Resgate em tom rose suave (`#FEE2E2`, alpha 0.60).
-- **Zona Intermediária (Recuperação & Reengajamento Dadosfera)**: Preenchimento destacado entre a Linha de Resgate e a Linha de Comprados em tom verde esmeralda suave (`#D1FAE5`, alpha 0.85).
-- **Zona Inferior (Conversão Direta Orgânica)**: Preenchimento translúcido entre a Linha de Comprados e o eixo zero em tom azul suave (`#DBEAFE`, alpha 0.60).
+[2] **Zonas de Cores com Preenchimento Leve (`fill_between`)**:
+- **Zona Superior (Atrito / Abandono Não Convertido)**: Preenchimento translúcido em tom vermelho suave (`#E11D48`, alpha 0.14).
+- **Zona Intermediária (Recuperação Dadosfera)**: Preenchimento em tom verde esmeralda suave (`#059669`, alpha 0.28) delimitando o ganho de 498 compras resgatadas (+10,6% s/ abandono).
+- **Zona Inferior (Conversão Direta Orgânica)**: Preenchimento em tom azul suave (`#2563EB`, alpha 0.14).
 
 [3] **Curvatura das Linhas & Vértices**:
-- Interpolação matemática spline cúbica (`scipy.interpolate.make_interp_spline`) com 350 pontos contínuos para gerar curvatura orgânica e transições fluidas.
-- Marcadores pontuais circulares (`o`) destacados em cada vértice semanal para marcar os dados reais auditáveis.
+- Interpolação matemática spline cúbica conectando os vértices do período.
+- Marcadores pontuais circulares (`o`) em cada vértice temporal.
 
 ---
 
 ## 📍 Mapeamento dos Dados Parquet
 - **Entidades Utilizadas**:
-  - `data/mock/output/parquet/carrinhos.parquet` (`status`, `data_criacao`, `carrinho_id`)
-  - `data/mock/output/parquet/eventos_resgate.parquet` (`sucesso`, `data_conversao`)
-- **Granularidade**: Semanal contínua acumulada (Semanas de Jan/2026 a Jun/2026).
-- **Escala Y**: Escala acumulada completa (0 a 7.500 unidades) com span balanceado entre as 3 curvas.
+  - `data/mock/output_cleaned/parquet/carrinhos.parquet` (`status`, `data_criacao`, `carrinho_id`)
+  - `data/mock/output_cleaned/parquet/pedidos.parquet` (`origem_recuperacao`, `carrinho_id`, `valor_total`)
+  - `data/mock/output_cleaned/parquet/eventos_resgate.parquet` (`sucesso`, `data_envio`)
+- **Granularidade**: Semanal contínua acumulada (Jan a Jun/2026) e diária (09 a 15/Fev/2026).
 
 ---
 
-## 🖼️ Artefatos Visuais Gerados
+## 🖼️ Pareamento de Artefatos Visuais (1 Gráfico $\leftrightarrow$ 1 Mini Card)
 
-### 1. Visão Canônica Acumulada (Macro Semestre)
-- **Script**: [`generate_chart.py`](generate_chart.py)
-- **Imagem**: [`chart_bi_recuperacao_carrinhos.png`](chart_bi_recuperacao_carrinhos.png)
-- **Características**: Curva acumulada iniciando em (0,0) até 7.500 unidades, linha basal de comprados (2.229 un) e linha intermediária de resgate & reengajamento (~4.100 un) com span balanceado e zonas amplas.
+### Par 1: Visão Semestral Acumulada (Janeiro a Junho de 2026)
+- **Janela Temporal**: Semestre completo (01/Jan/2026 a 30/Jun/2026 - 7.500 carrinhos).
+- **Gráfico Principal**: [`chart_bi_recuperacao_carrinhos.png`](chart_bi_recuperacao_carrinhos.png) (Gerado por [`generate_chart.py`](generate_chart.py)).
+- **Mini Card Correspondente**: [`mini_card_zonas_acumulado_reto.png`](mini_card_zonas_acumulado_reto.png) (Gerado por [`generate_mini_tables.py`](generate_mini_tables.py)).
+- **Métricas Chave**: 1.731 compras diretas (23,1%), 498 recuperados convertidos (6,6% total | 10,6% s/ abandono), 153 reengajados pendentes (2,0%), total comprado de 2.229 (29,7%), atrito residual de 5.271 (70,3%).
 
-### 2. Visão Sinuosa com Janela Curta (Recorte de 1 Semana)
-- **Script**: [`generate_chart_sinuous_1week.py`](generate_chart_sinuous_1week.py)
-- **Imagem**: [`chart_bi_recuperacao_carrinhos_sinuous_1week.png`](chart_bi_recuperacao_carrinhos_sinuous_1week.png)
-- **Características**: Recorte temporal diário de 7 dias (09/Fev a 15/Fev/2026), linhas com curvatura sinuosa hiper-suave, vértices auditáveis com valores anotados e visualização da dinâmica diária de conversão direta vs atrito de abandono.
+### Par 2: Visão Semanal Diária (09 a 15 de Fevereiro de 2026)
+- **Janela Temporal**: Recorte semanal de 7 dias (09/Fev a 15/Fev/2026 - 288 carrinhos).
+- **Gráfico Principal**: [`chart_bi_recuperacao_carrinhos_sinuous_1week.png`](chart_bi_recuperacao_carrinhos_sinuous_1week.png) (Gerado por [`generate_chart_sinuous_1week.py`](generate_chart_sinuous_1week.py)).
+- **Mini Card Correspondente**: [`mini_card_zonas_sinuoso_1semana.png`](mini_card_zonas_sinuoso_1semana.png) (Gerado por [`generate_mini_tables.py`](generate_mini_tables.py)).
+- **Métricas Chave**: 61 compras diretas (21,2%), 20 recuperados convertidos (6,9% total | 8,9% s/ abandono), 5 reengajados pendentes (1,7%), total comprado de 81 (28,1%), atrito residual de 202 (70,1%).
+
+### Artefato Consolidado para Apresentações (PowerPoint)
+- **Imagem Dupla Lado a Lado**: [`mini_card_zonas_dupla.png`](mini_card_zonas_dupla.png) combinando o Mini Card Semestral e o Mini Card Semanal.
+
 
