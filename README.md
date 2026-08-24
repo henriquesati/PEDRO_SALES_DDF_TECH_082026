@@ -42,16 +42,15 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 <div style="opacity: 0.60; color: #8c92a4;">
 
 - [x] **[X] [case-01] Definição da base de dados**
-  - **.escolha de case carrinho** (*Recuperação de Carrinho Abandonado no Marketplace / E-commerce*)
-  - **📁 Diretórios que definem a entidade:**
+  - **escolha de case carrinho** (*Recuperação de Carrinho Abandonado no Marketplace / E-commerce*)
+  - **📁 Definições de entidade:**
     - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificações de entidades canônicas ([`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
     - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Matriz de cardinalidade, integridade referencial e chaves*
     - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *Regras de negócio, temporalidade de abandono (15 min) e status*
-  - **📁 Diretórios relacionados (Schema SQL, DDL & Views):**
-    - [`data/database/sql/`](data/database/sql/) — *DDLs relacionais ([`001_create_tables.sql`](data/database/sql/001_create_tables.sql)), constraints ([`002_constraints.sql`](data/database/sql/002_constraints.sql)), índices ([`003_indexes.sql`](data/database/sql/003_indexes.sql)) e views analíticas ([`004_views.sql`](data/database/sql/004_views.sql))*
   - **📁 Diretórios relacionados (Geração & Carga de Dados Sintéticos):**
     - [`data/mock/generators/`](data/mock/generators/) — *Geradores modulares em Python com injeção determinística de dirty data (5%)*
-    - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets finais em Parquet e CSV com +115.777 registros*
+    - [`data/mock/output/`](data/mock/output/) — *Datasets sintéticos brutos (+115.777 registros em Parquet e CSV), contendo as partições `qualify/` (Silver Qualify) e `anomalies/` (Quarentena)*
+    - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets tratados e higienizados (Ground Truth para BI e Pitch), com pipeline de limpeza (`clean_all.py`)*
     - [`data/mock/METRICS.md`](data/mock/METRICS.md) — *Métricas de volumetria, distribuição e conformidade quantitativa*
   - **📁 Diretórios relacionados (Catálogo de Metadados & Qualify):**
     - [`data/catalogo/qualify/`](data/catalogo/qualify/) — *Dicionários de dados, contratos e schemas para ingestão na Dadosfera*
@@ -179,6 +178,9 @@ wheels/
 │   ├── catalogo/                       # Dicionários de dados Qualify e blueprint
 │   ├── data-models/logical/            # Modelagem Lógica Canônica (4 Divisões)
 │   └── mock/                           # Gerador modular e datasets gerados (Parquet/CSV)
+│       ├── generators/                 # Geradores Python com injeção de dirty data (5%)
+│       ├── output/                     # Datasets sintéticos brutos (parquet, csv, qualify, anomalies)
+│       └── output_cleaned/             # Datasets tratados/higienizados e scripts de limpeza
 │
 ├── docs/
 │   ├── specifications/                 # Normas da plataforma e Data Quality
