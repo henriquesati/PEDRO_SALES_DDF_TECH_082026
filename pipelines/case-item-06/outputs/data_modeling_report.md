@@ -107,5 +107,5 @@ O diagrama abaixo ilustra a linhagem ponta a ponta, desde as origens operacionai
 
 ## 🔍 6. Rastreabilidade com Data Quality & Gap Analysis
 
-- **Dual-Artifact Pipeline (Item 4 / DEC-006)**: As tabelas dimensionais Gold consomem exclusivamente dados aprovados da camada Silver Qualify. As anomalias (`data/mock/output/anomalies/*.parquet` - 5.8% de desvios) permanecem isoladas na quarentena dead-letter.
+- **Dual-Artifact Pipeline (Item 4 / DEC-006)**: As tabelas dimensionais Gold consomem exclusivamente dados aprovados da camada Silver Qualify. As anomalias (`pipelines/case-item-04/outputs/anomalies/*.parquet` - 5.8% de desvios) permanecem isoladas na quarentena dead-letter.
 - **Relatório de Lacunas Canônicas**: O diagnóstico de transição entre os modelos relacionais transacionais (`entities/*.md`) e o modelo dimensional Gold está formalizado em [`canonical_structure_gaps_report.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/outputs/canonical_structure_gaps_report.md).

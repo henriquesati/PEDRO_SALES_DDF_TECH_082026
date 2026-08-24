@@ -42,7 +42,7 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
 ## 📈 Histórico Detalhado de Etapas Concluídas
 
 ### ✅ 1. Modelagem de Dados Lógica Canônica & Dimensional Kimball (Item 6)
-- **Modelagem Lógica Canônica (4 Divisões)**: Todas as **6 entidades** do modelo de dados lógico estruturadas em `data/data-models/logical/entities/` (`carrinhos.md`, `clientes.md`, `produtos.md`, `itens_carrinho.md`, `eventos_carrinho.md`, `eventos_resgate.md`, `pedidos.md`).
+- **Modelagem Lógica Canônica (4 Divisões)**: Todas as **7 entidades** do modelo de dados lógico estruturadas em `data/data-models/logical/entities/` (`carrinhos.md`, `clientes.md`, `produtos.md`, `itens_carrinho.md`, `eventos_carrinho.md`, `eventos_resgate.md`, `pedidos.md`), integridade referencial em `relationships.md` e o documento central [`business-rules.md`](data/data-models/logical/business-rules.md) consolidado como o **Master Single Source of Truth (SSOT)** de Regras de Negócio, Invariantes Contábeis, Políticas de Automação de Resgate e Lógicas Analíticas de BI.
 - **Modelagem Dimensional Gold (Kimball Star Schema - DEC-008)**:
   - 6 Dimensões Conformadas (`dim_clientes`, `dim_tempo`, `dim_dispositivo`, `dim_motivo_abandono`, `dim_canal_resgate`, `dim_segmento_rfm`) com chaves surrogate (`_sk`).
   - 2 Tabelas de Fatos Granulares (`fato_abandono` com 6.525 linhas e `fato_resgate` com 6.289 linhas).
@@ -68,7 +68,7 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
   - `pipelines/case-item-04/specs.md` & `pipelines/case-item-04/implementation_plan.md`: Especificação normativa e documentação técnica do pipeline.
   - `pipelines/case-item-04/outputs/data_quality_report.md`: Relatório e evidências geradas de forma autocontida pelo pipeline.
   - `quality/expectations/carrinhos_suite.json` e `quality/results/validation_results.json`: Suite formal e evidências estruturadas.
-- **Arquitetura Dual-Artifact (DEC-006)**: Bifurcação entre registros aprovados (`output/qualify/*.parquet` com 94.2% de conformidade) e quarentena (`output/anomalies/*.parquet` com 5.8% de registros isolados com `anomaly_reason`).
+- **Arquitetura Dual-Artifact (DEC-006)**: Bifurcação entre registros aprovados (`pipelines/case-item-04/outputs/qualify/*.parquet` com 94.2% de conformidade) e quarentena (`pipelines/case-item-04/outputs/anomalies/*.parquet` com 5.8% de registros isolados com `anomaly_reason`).
 
 ### ✅ 5. Visualizações de BI, Dashboards & CLI Runner (Item 7)
 - **6 Visualizações de BI Geradas**: Série Temporal, Performance de Categorias, ROI por Canal, Heatmap RFM, Dispersão de Viabilidade e Scorecard de Data Quality salvas em `dashboards/assets/` em alta definição (300 DPI).
@@ -104,14 +104,15 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
   - Referência única: todas as regras de tipos, chaves e restrições são citadas como **"validações declaradas no corpo da entidade"**, eliminando duplicação de dados ou schemas.
 - **Atualização da Especificação Central do Catálogo**: [`data/catalogo/business-catalog-classification.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/catalogo/business-catalog-classification.md) evoluído para a versão 2.0 (Active).
 
-### 🔄 8. Gráficos de Insights de Negócio (`presentation/insights/`) [EM PROCESSO]
-- **Objetivo**: Fornecer visualizações analíticas focadas para os insights de negócio do case de Carrinho Abandonado (`insights/`), com estética refinada (300 DPI, fundo branco `#FFFFFF`, curvas suaves spline e preenchimento de zonas coloridas `fill_between`).
-- **Módulos**:
-  - ✅ `01_bi_recuperacao_carrinhos/` (**Concluído**): Evolução temporal acumulada (início em 0 até 7.500 no topo), linha basal de compras diretas (2.229 un) e linha intermediária de resgate & reengajamento (~4.100 un) com span balanceado e zonas nítidas.
-  - ⏳ `02_motivos_abandono/` (**Em processo / Próximo agente**): Decomposição descritiva de motivos de abandono por canal/dispositivo.
-  - ⏳ `03_segmentacao_risco/` (**Em processo / Próximo agente**): Matriz diagnóstica de atrito e risco de checkout.
-  - ⏳ `04_estrategia_resgate_segmento/` (**Em processo / Próximo agente**): Prescrição de canal por cluster RFM.
-  - ⏳ `05_otimizacao_timing_envio/` (**Em processo / Próximo agente**): Curvas de decaimento de conversão por janela temporal de disparo.
+### ✅ 8. Gráficos de Insights de Negócio (`presentation/insights/`)
+- **Objetivo**: Fornecer visualizações analíticas focadas para os insights de negócio do case de Carrinho Abandonado (`insights/`), com estética refinada (300 DPI, fundo branco `#FFFFFF`, curvas suaves spline e preenchimento de zonas coloridas `fill_between`), governadas pela **Fonte Canônica Master em `presentation/pitch/pitch_spec.md`**.
+- **Módulos Concluídos (100% Ground Truth Parquet)**:
+  - ✅ `01_descriptive/01_bi_recuperacao_carrinhos/`: Evolução temporal acumulada (início em 0 até 7.500 no topo), linha basal de compras diretas (1.731 un), resgate Dadosfera (498 un) e total comprado (2.229 un) com mini cards pareados 1-para-1.
+  - ✅ `01_descriptive/02_motivos_abandono/`: Treemap proporcional de causas-raiz (5.231 un) e painel duplo de perda financeira bruta vs resgate Dadosfera (+R$ 173,7k).
+  - ✅ `01_descriptive/03_custo_recuperacao_roi/`: Eficiência de CAC de resgate por canal (Email R$ 1,02, Push R$ 1,67, SMS R$ 3,00, WhatsApp R$ 12,00) e ROI multiplicador de ~45x.
+  - ✅ `02_risk/01_segmentacao_risco/`: Matriz diagnóstica de risco (Score de Sessão vs RFM) e distribuição de volume/receita represada.
+  - ✅ `03_prescriptive/01_estrategia_resgate_segmento/`: Simulador de viabilidade econômica líquida por canal/cluster RFM e matriz prescritiva de políticas.
+  - ✅ `03_prescriptive/02_otimizacao_timing_envio/`: Curva de decaimento temporal de conversão (Decay Curve) com ponto ótimo de disparo em até +1h.
 - **Orquestração**: Orquestrador em lote `presentation/insights/run_all_insights_charts.py` e comando integrado no Makefile `python make.py insights-charts`.
 
 ---
@@ -156,13 +157,14 @@ wheels/
 │   │   │   ├── eventos_resgate.md        # Entidade eventos_resgate
 │   │   │   └── pedidos.md                # Entidade pedidos
 │   │   ├── relationships.md              # Cardinalidades e grafo ERD
-│   │   └── business-rules.md             # Regras de negócio globais
+│   │   └── business-rules.md             # Master SSOT de Regras de Negócio, Invariantes e Lógicas de BI
 │   ├── catalogo/
 │   │   ├── business-catalog-classification.md # Especificação v2.0 do Catálogo & Lakehouse
 │   │   └── qualify/                      # Dicionários de dados da camada Qualify
 │   ├── mock/
 │   │   ├── generators/parquet/           # Gerador modular (config/, core/, modules/, run_all.py)
-│   │   ├── output/{parquet,csv}/         # Datasets com 115k+ linhas geradas
+│   │   ├── output/{parquet,csv}/         # Datasets brutos com 115k+ linhas geradas
+│   │   ├── output_cleaned/{parquet,csv}/ # Datasets higienizados e scripts de limpeza
 │   │   └── METRICS.md                    # Metadados, perfis e cotas determinísticas de anomalias
 │   └── relatorio-etapa1.md              # Relatório de entrega da Etapa 1
 ├── pipelines/

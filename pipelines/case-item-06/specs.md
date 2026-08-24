@@ -573,7 +573,7 @@ tasks:
       name: "Mapeamento dos Dados da Camada Silver Qualify"
       agent: "scout"
       checklist:
-        - "Inspecionar os schemas de data/mock/output/qualify/*.parquet"
+        - "Inspecionar os schemas de pipelines/case-item-04/outputs/qualify/*.parquet (ou data/mock/output_cleaned/parquet/*.parquet)"
         - "Confirmar integridade referencial entre clientes, carrinhos, eventos_resgate e pedidos"
         - "Validar que não existem campos nulos críticos nas chaves naturais"
 

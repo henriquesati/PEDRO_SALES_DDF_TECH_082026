@@ -32,8 +32,8 @@ Bônus: Definir e implementar um Common Data Model para os dados utilizados.
 ## 🎯 2. Arquitetura Dual-Artifact & Roteamento (DEC-006)
 
 Em conformidade com a decisão arquitetural **DEC-006**, os dados da camada Bronze (RAW Parquet) são processados por um pipeline de qualificação que bifurca os registros em dois destinos:
-1. **Silver Qualify (`data/mock/output/qualify/`):** Registros 100% íntegros e promovidos para consultas analíticas e consumo no Metabase / Data Apps.
-2. **Silver Anomalies (`data/mock/output/anomalies/`):** Dead-letter estruturada com metadados de diagnóstico (`codigo_anomalia`, `campo_afetado`, `descricao_risco`, `severidade`, `detected_at`, `payload_raw`).
+1. **Silver Qualify (`pipelines/case-item-04/outputs/qualify/`):** Registros 100% íntegros e promovidos para consultas analíticas e consumo no Metabase / Data Apps.
+2. **Silver Anomalies (`pipelines/case-item-04/outputs/anomalies/`):** Dead-letter estruturada com metadados de diagnóstico (`codigo_anomalia`, `campo_afetado`, `descricao_risco`, `severidade`, `detected_at`, `payload_raw`).
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐

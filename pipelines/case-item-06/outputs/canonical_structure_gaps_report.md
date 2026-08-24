@@ -51,4 +51,4 @@ Foram inspecionados os 7 documentos de entidades lógicas canônicas no padrão 
 
 1. **Preservação de Integridade**: Nenhuma entidade ou dimensão foi inventada fora do escopo estrito de negócio da Recuperação de Carrinho Abandonado.
 2. **Consistência de Nomes**: Todas as 6 dimensões (`dim_clientes`, `dim_tempo`, `dim_dispositivo`, `dim_motivo_abandono`, `dim_canal_resgate`, `dim_segmento_rfm`), 2 fatos (`fato_abandono`, `fato_resgate`) e 2 views analíticas (`v_abandonment_summary`, `v_recovery_roi_by_segment`) mantêm 100% de consistência semântica e tipagem com os schemas canônicos.
-3. **Observabilidade de Data Quality**: Os registros em quarentena (`data/mock/output/anomalies/*.parquet` - 5.8% de desvios detectados pelo Item 4) permanecem isolados na camada Silver, alimentando a observabilidade sem distorcer as métricas Gold.
+3. **Observabilidade de Data Quality**: Os registros em quarentena (`pipelines/case-item-04/outputs/anomalies/*.parquet` - 5.8% de desvios detectados pelo Item 4) permanecem isolados na camada Silver, alimentando a observabilidade sem distorcer as métricas Gold.

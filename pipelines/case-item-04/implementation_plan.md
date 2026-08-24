@@ -11,8 +11,8 @@
 
 1. Executar auditoria de Data Quality sobre as 7 entidades da camada Bronze (RAW Parquet).
 2. Aplicar 18 regras formais de integridade técnica, conformidade de negócio e consistência temporal.
-3. Isolar desvios em quarentena dead-letter (`output/anomalies/`) preservando o payload bruto para auditoria.
-4. Promover registros íntegros para a camada Silver (`output/qualify/`).
+3. Isolar desvios em quarentena dead-letter (`pipelines/case-item-04/outputs/anomalies/`) preservando o payload bruto para auditoria.
+4. Promover registros íntegros para a camada Silver (`pipelines/case-item-04/outputs/qualify/`).
 5. Gerar automaticamente todos os outputs (relatório markdown, gráficos 300DPI e evidências JSON) em `pipelines/case-item-04/outputs/`.
 
 ---

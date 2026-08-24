@@ -25,12 +25,12 @@ ITEM_DIR = CURRENT_DIR.parent
 BASE_DIR = ITEM_DIR.parent.parent
 
 RAW_DIR = BASE_DIR / "data" / "mock" / "output" / "parquet"
-QUALIFY_DIR = BASE_DIR / "data" / "mock" / "output" / "qualify"
-ANOMALIES_DIR = BASE_DIR / "data" / "mock" / "output" / "anomalies"
 
 # Diretórios de Output DENTRO de pipelines/case-item-04/outputs/
 OUTPUTS_DIR = ITEM_DIR / "outputs"
 OUTPUT_ASSETS_DIR = OUTPUTS_DIR / "assets"
+QUALIFY_DIR = OUTPUTS_DIR / "qualify"
+ANOMALIES_DIR = OUTPUTS_DIR / "anomalies"
 RESULTS_PATH = OUTPUTS_DIR / "validation_results.json"
 REPORT_PATH = OUTPUTS_DIR / "data_quality_report.md"
 
@@ -184,8 +184,8 @@ def generate_markdown_report(summary_data: list, total_raw: int, total_qualify: 
 
 ## 4. 🛠️ Roteamento Dual-Artifact
 
-1. **Camada Silver Qualify (`data/mock/output/qualify/`):** Registros 100% limpos e aptos para a camada analítica/Gold.
-2. **Camada Silver Anomalies (`data/mock/output/anomalies/`):** Dead-letter auditável para diagnóstico e prevenção de poluição de métricas.
+1. **Camada Silver Qualify (`pipelines/case-item-04/outputs/qualify/`):** Registros 100% limpos e aptos para a camada analítica/Gold.
+2. **Camada Silver Anomalies (`pipelines/case-item-04/outputs/anomalies/`):** Dead-letter auditável para diagnóstico e prevenção de poluição de métricas.
 """
     return md
 

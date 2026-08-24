@@ -2,7 +2,7 @@
 
 > **Módulo:** `pipelines/case-item-04/outputs/`  
 > **Status:** ✅ Validação Dual-Artifact Executada com Sucesso  
-> **Data de Avaliação:** 2026-08-23 17:32:09Z  
+> **Data de Avaliação:** 2026-08-24 15:28:21Z  
 > **Conformidade Global:** **98.76%** dos registros qualificados  
 
 ---
@@ -44,5 +44,5 @@
 
 ## 4. 🛠️ Roteamento Dual-Artifact
 
-1. **Camada Silver Qualify (`data/mock/output/qualify/`):** Registros 100% limpos e aptos para a camada analítica/Gold.
-2. **Camada Silver Anomalies (`data/mock/output/anomalies/`):** Dead-letter auditável para diagnóstico e prevenção de poluição de métricas.
+1. **Camada Silver Qualify (`pipelines/case-item-04/outputs/qualify/`):** Registros 100% limpos e aptos para a camada analítica/Gold.
+2. **Camada Silver Anomalies (`pipelines/case-item-04/outputs/anomalies/`):** Dead-letter auditável para diagnóstico e prevenção de poluição de métricas.

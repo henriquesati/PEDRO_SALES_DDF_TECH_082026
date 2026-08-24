@@ -9,7 +9,7 @@
 
 ## 🎯 1. Objetivos Técnicos do Item
 
-1. Estruturar a camada **Gold (Curated / Dimensional)** a partir dos dados validados na camada **Silver Qualify** (`data/mock/output/qualify/*.parquet`).
+1. Estruturar a camada **Gold (Curated / Dimensional)** a partir dos dados validados na camada **Silver Qualify** (`pipelines/case-item-04/outputs/qualify/*.parquet` ou `data/mock/output_cleaned/parquet/*.parquet`).
 2. Definir e documentar 6 dimensões conformadas (`dim_clientes`, `dim_tempo`, `dim_dispositivo`, `dim_motivo_abandono`, `dim_canal_resgate`, `dim_segmento_rfm`) com chaves surrogate (`_sk`) e atributos analíticos.
 3. Definir 2 tabelas de fatos granulares (`fato_abandono` e `fato_resgate`) com métricas aditivas e de funil de conversão.
 4. Especificar 2 visões analíticas Gold (`v_abandonment_summary` e `v_recovery_roi_by_segment`) com foco em taxas relativas (%) e ROI.
