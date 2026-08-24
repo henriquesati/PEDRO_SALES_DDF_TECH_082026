@@ -28,7 +28,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **2.1** | Integrar (Coleta & API Maestro) | Integrar | Ingestão de 115k+ registros via Módulo de Coleta, API Maestro e mapeamento em `output-mappers/` | ✅ Concluído |
 | **3** | Explorar & Catalogar | Explorar | Especificação de governança (`pipelines/case-item-03/`), Lakehouse Medallion (`pipelines/datalakes/`), dicionários (`data/catalogo/`) e Data Asset IDs oficiais | ✅ Concluído |
 | **4** | Data Quality & Anomalias | Processar | Pipeline Dual-Artifact, suíte Great Expectations (18 regras), quarentena Parquet e relatório em [`pipelines/case-item-04/outputs/data_quality_report.md`](pipelines/case-item-04/outputs/data_quality_report.md) | ✅ Concluído |
-| **5** | GenAI & LLMs | Processar | Enriquecimento semântico de motivos de abandono e gerador de copy | ⏳ Planejado |
+| **5** | GenAI & LLMs | Processar | Extração de features de catálogo/feedbacks com Pydantic, geração de copies e bônus multimodal de áudio em [`pipelines/case-item-05/outputs/genai_feature_extraction_report.md`](pipelines/case-item-05/outputs/genai_feature_extraction_report.md) | ✅ Concluído |
 | **6** | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos, 2 visões analíticas Gold e diagrama DW Medallion) | ✅ Concluído |
 | **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI) e catálogo declarativo | ✅ Concluído |
 | **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver e Golden views no Lakehouse | ⏳ Planejado |
@@ -168,6 +168,57 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
     - [`declarative-functional-coding`](.agents/skills/declarative-functional-coding/SKILL.md) ([`.agents/agents/declarative-functional-coding.md`](.agents/agents/declarative-functional-coding.md)) — *Especialista na implementação de pipelines sob o paradigma funcional e declarativo, sequências de funções puras de validação/higienização (`validar_pk`, `sanitizar_frete`, etc.) e tipagem estrita*
     - [`charts-maker`](.agents/skills/charts-maker/SKILL.md) — *Especialista na geração de gráficos analíticos e visualizações com rigor absoluto de Ground Truth e preservação de evidências em 300 DPI*
 
+- [x] ~~**[X] [case-05] Processamento de Dados Desestruturados com GenAI & LLMs (Extração de Features & Resgate Prescritivo) [X]**~~
+  - **processamento de dados desestruturados e inteligência de crm** (*Extração semântica de features de catálogo e feedbacks de abandono de checkout a partir de texto livre desestruturado, geração de contratos estruturados via Pydantic e JSON Schema, geração de copies persuasivas personalizadas para Email/WhatsApp e demonstração de bônus multimodal com áudio de atendimento via Whisper*)
+  - **🤖 Pipeline de Extração Semântica & Enriquecimento Silver:**
+    ```text
+                      ┌──────────────────────────────────────────────┐
+                      │         DADOS BRUTOS DESESTRUTURADOS         │
+                      │  • Catálogo Técnico de SKUs (Texto Livre)    │
+                      │  • Feedbacks e Objeções de Checkout          │
+                      │  • Áudios e Mensagens de Voz (Whisper)       │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+                      ┌──────────────────────────────────────────────┐
+                      │    ENGINE DE EXTRAÇÃO & CONTRATOS PYDANTIC   │
+                      │       Categorias, Sentimento, Copies         │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                    ┌────────────────────────┴────────────────────────┐
+                    ▼                                                 ▼
+      ┌───────────────────────────┐                     ┌───────────────────────────┐
+      │   JSON SCHEMA DE SAÍDA    │                     │   SILVER QUALIFY PARQUET  │
+      │  • Contrato de API / App  │                     │  • Dataset Enriquecido    │
+      │  • Cópias Prescritivas    │                     │  • Features para Analytics│
+      │  • Diagnóstico de Atrito  │                     │  • Consumo no Metabase    │
+      └─────────────┬─────────────┘                     └─────────────┬─────────────┘
+                    │                                                 │
+                    ▼                                                 ▼
+      ┌───────────────────────────┐                     ┌───────────────────────────┐
+      │  DATA APP STREAMLIT (IT.9)│                     │    BI METABASE (ITEM 7)   │
+      │  • Simulador de Resgate   │                     │  • Visão por Categoria    │
+      │  • Vitrine GenAI (DALL-E) │                     │  • Matriz de Viabilidade  │
+      └───────────────────────────┘                     └───────────────────────────┘
+    ```
+  - **📁 Especificações Normativas & Contratos de Dados:**
+    - [`pipelines/case-item-05/specs.md`](pipelines/case-item-05/specs.md) — *Especificação técnica normativa (`spec_genai_llm_001` v1.1), catálogo de prompts declarativos, schemas Pydantic e matriz de integração downstream*
+    - [`pipelines/case-item-05/implementation_plan.md`](pipelines/case-item-05/implementation_plan.md) — *Plano de implementação técnico WBS e critérios de aceitação DoD*
+    - [`data/catalogo/qualify/produtos_enriquecidos.md`](data/catalogo/qualify/produtos_enriquecidos.md) — *Dicionário de dados formal da entidade na Camada Qualify (Silver) com 18 atributos baseados em classe ("A é um B que C")*
+  - **📁 Arquitetura no Data Lakehouse (Silver Qualify):**
+    - [`pipelines/datalakes/qualify/produtos_enriquecidos_qualify/`](pipelines/datalakes/qualify/produtos_enriquecidos_qualify/) — *Diretório dedicado no Lakehouse Medallion contendo o dataset físico (`produtos_enriquecidos.parquet`) e seu documento de metadados ([`metadata.md`](pipelines/datalakes/qualify/produtos_enriquecidos_qualify/metadata.md))*
+  - **📁 Scripts & Notebooks Executáveis:**
+    - [`pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) — *Notebook interativo executável no Google Colab com extração de catálogo, feedbacks e bônus multimodal*
+    - [`pipelines/case-item-05/scripts/run_genai_pipeline.py`](pipelines/case-item-05/scripts/run_genai_pipeline.py) — *Script batch automatizado (`python make.py genai-extract`)*
+  - **📁 Arquitetura de Outputs & Relatórios:**
+    - [`pipelines/case-item-05/outputs/genai_feature_extraction_report.md`](pipelines/case-item-05/outputs/genai_feature_extraction_report.md) — *Relatório executivo consolidado com análises estatísticas, comprovação dos 3 insights e bônus multimodal*
+    - [`pipelines/case-item-05/outputs/genai_features_sample.json`](pipelines/case-item-05/outputs/genai_features_sample.json) — *Payload JSON estruturado validado por Pydantic*
+    - [`pipelines/case-item-05/outputs/produtos_enriquecidos_sample.parquet`](pipelines/case-item-05/outputs/produtos_enriquecidos_sample.parquet) — *Amostra tabular Silver de desenvolvimento*
+    - [`pipelines/case-item-05/outputs/audio_transcriptions_sample.json`](pipelines/case-item-05/outputs/audio_transcriptions_sample.json) — *Transcrições e diagnósticos semânticos de áudio*
+    - [`pipelines/case-item-05/outputs/assets/genai_features_overview.png`](pipelines/case-item-05/outputs/assets/genai_features_overview.png) — *Painel visual executivo (300 DPI)*
+  - **🌟 Bônus: Transcrição e Extração Multimodal (Áudio/Voz via Whisper):**
+    - **Processamento de Áudio de Atendimento**: Ingestão de mensagens de voz e ligações de clientes no checkout com transcrição via **Whisper**, classificação de intenção de compra e recomendação imediata de resolução para o operador ou bot de WhatsApp.
+
 - [x] ~~**[X] [case-06] Modelagem de Dados Dimensional (Kimball Star Schema, Visões Analíticas Gold & Diagrama DW) [X]**~~
   - **modelagem de dados dimensional e arquitetura dw** (*Proposta e implementação de modelagem dimensional segundo os princípios de Ralph Kimball (Star Schema) para a camada Gold/Curated, integrando 6 dimensões conformadas com chaves surrogate (`_sk`) e 2 tabelas de fatos granulares baseadas nos dados qualificados da Silver Qualify (DEC-006 / DEC-008). Justificativa técnica formal contra Data Vault 2.0 e Inmon 3NF, especificação de 2 visões analíticas de negócio e diagrama arquitetural completo das camadas do Data Warehouse*)
   - **📁 Especificações Normativas & Blueprints de Modelagem:**
@@ -187,7 +238,6 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
     - [`pipelines/case-item-06/outputs/assets/`](pipelines/case-item-06/outputs/assets/) — *Diretório de assets contendo o diagrama arquitetural do DW ([`data_warehouse_architecture.png`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png)) e sua especificação declarativa ([`data_warehouse_architecture.mmd`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.mmd))*
   - **🌟 Bônus: Diagrama das Camadas Finais do DW & Justificativa Comparativa:**
     - **Diagrama Visual Completo (Camadas DW)**: Representação visual da linhagem ponta a ponta (Data Sources Operacionais → Bronze Raw → Silver Qualify / Silver Anomaly Quarentena → Gold Curated Dimensional Star Schema → Views Analíticas → Downstream Consumers: Metabase, Streamlit, LLMs GenAI) renderizada em alta definição em [`pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png`](pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png).
-    - **Justificativa Teórica Formal (Kimball vs Data Vault vs Inmon)**: Adoção justificada de **Kimball Star Schema** baseada em: (1) Máxima performance para queries analíticas OLAP (1-hop JOINs); (2) Aderência nativa direta para Metabase (Item 7) e Streamlit (Item 9); (3) Rápida implementação sem o over-engineering de Hubs/Links/Satellites do Data Vault 2.0 (inadequado para o escopo e agilidade exigidos no case).
 </div>
 
 ---
@@ -200,6 +250,9 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 - [`pipelines/case-item-04/notebooks/qualification_raw.ipynb`](pipelines/case-item-04/notebooks/qualification_raw.ipynb): Notebook oficial de qualificação e auditoria de Data Quality com Great Expectations (Item 4).
 - [`pipelines/case-item-04/specs.md`](pipelines/case-item-04/specs.md): Especificação técnica normativa descrevendo o pipeline de qualidade e quarentena.
 - [`pipelines/case-item-04/scripts/run_quality_pipeline.py`](pipelines/case-item-04/scripts/run_quality_pipeline.py): Script batch de execução automatizada da auditoria de qualidade (`python make.py quality-eval`).
+- [`pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb): Notebook executável Google Colab para extração de features desestruturadas e bônus multimodal (Item 5).
+- [`pipelines/case-item-05/specs.md`](pipelines/case-item-05/specs.md): Especificação técnica normativa (`spec_genai_llm_001` v1.0) do pipeline de GenAI & LLMs.
+- [`pipelines/case-item-05/scripts/run_genai_pipeline.py`](pipelines/case-item-05/scripts/run_genai_pipeline.py): Script batch de extração estruturada de features (`python make.py genai-extract`).
 - [`presentation/pitch/run_all_pitch_charts.py`](presentation/pitch/run_all_pitch_charts.py): Orquestrador de geração dos 8 painéis e gráficos visuais do Pitch (Item 10).
 - [`presentation/insights/run_all_insights_charts.py`](presentation/insights/run_all_insights_charts.py): Orquestrador de geração de gráficos analíticos de insights de negócio.
 
@@ -242,6 +295,9 @@ python make.py list-charts
 
 # Executa o pipeline de Data Quality e gera o relatório (Item 4):
 python make.py quality-eval
+
+# Executa o pipeline de GenAI & LLMs e gera artefatos/relatório (Item 5):
+python make.py genai-extract
 
 # Gera todos os 8 gráficos de alta resolução da apresentação de Pitch:
 python make.py pitch-charts

@@ -1,0 +1,158 @@
+[
+  {
+    "produto_id": 101,
+    "nome_bruto": "Samsung Galaxy S24 Ultra 512GB Titanium Gray 5G",
+    "preco_atual": 6899.0,
+    "features_produto": {
+      "categoria_normalizada": "Eletrônicos",
+      "subcategoria": "Smartphones Flagship",
+      "marca": "Samsung",
+      "material_construcao": "Titânio e Vidro Gorilla Armor",
+      "diferencial_tecnico": "Câmera 200MP + S-Pen Embutida + Zoom 100x",
+      "faixa_posicionamento": "Luxo",
+      "requer_compatibilidade": false
+    },
+    "diagnostico_abandono": {
+      "motivo_raiz": "Frete Alto / Prazo Longo",
+      "sentimento": "Hesitante",
+      "nivel_urgencia": "Alto",
+      "sensibilidade_preco": "Media"
+    },
+    "acao_prescritiva_crm": {
+      "estrategia_recomendada": "Oferecer frete grátis expresso com gatilho de escassez e prazo garantido",
+      "gatilho_mental": "Frete Gratis",
+      "copy_resgate_email": "Seu Galaxy S24 Ultra está reservado com Frete Expresso Grátis! Finalize agora para receber em até 48h.",
+      "copy_resgate_whatsapp": "Olá! Vimos que o Galaxy S24 Ultra ficou no seu carrinho. Conseguimos Frete Grátis Expresso exclusivo para sua região. Posso gerar seu link com o benefício?"
+    }
+  },
+  {
+    "produto_id": 102,
+    "nome_bruto": "Notebook Dell XPS 13 Plus Intel Core i7 32GB RAM 1TB SSD OLED 3.5K",
+    "preco_atual": 11499.0,
+    "features_produto": {
+      "categoria_normalizada": "Informática",
+      "subcategoria": "Notebooks Ultrafinos",
+      "marca": "Dell",
+      "material_construcao": "Alumínio Usinado CNC e Vidro Háptico",
+      "diferencial_tecnico": "Tela OLED 3.5K Touch + 32GB RAM + i7 13ª Gen",
+      "faixa_posicionamento": "Luxo",
+      "requer_compatibilidade": false
+    },
+    "diagnostico_abandono": {
+      "motivo_raiz": "Condição de Pagamento / Parcelamento",
+      "sentimento": "Frustrado",
+      "nivel_urgencia": "Medio",
+      "sensibilidade_preco": "Alta"
+    },
+    "acao_prescritiva_crm": {
+      "estrategia_recomendada": "Oferecer condição especial de parcelamento em 12x sem juros ou desconto corporativo",
+      "gatilho_mental": "Desconto",
+      "copy_resgate_email": "Condição especial: Dell XPS 13 Plus liberado em até 12x sem juros no cartão corporativo!",
+      "copy_resgate_whatsapp": "Olá! Liberamos uma condição exclusiva para você faturar o Dell XPS 13 Plus em 12x sem juros. Deseja aplicar essa condição ao seu pedido?"
+    }
+  },
+  {
+    "produto_id": 103,
+    "nome_bruto": "FYY Capa Carteira de Couro com Espelho para Galaxy S24 Plus Preto Fosco",
+    "preco_atual": 149.9,
+    "features_produto": {
+      "categoria_normalizada": "Acessórios para Celular",
+      "subcategoria": "Capas e Carteiras",
+      "marca": "FYY",
+      "material_construcao": "Couro Ecológico Premium PU",
+      "diferencial_tecnico": "Bloqueio Anti-Furto RFID + Espelho Cosmético + Kickstand",
+      "faixa_posicionamento": "Intermediario",
+      "requer_compatibilidade": true
+    },
+    "diagnostico_abandono": {
+      "motivo_raiz": "Dúvida Técnica / Compatibilidade de Modelo",
+      "sentimento": "Hesitante",
+      "nivel_urgencia": "Medio",
+      "sensibilidade_preco": "Baixa"
+    },
+    "acao_prescritiva_crm": {
+      "estrategia_recomendada": "Esclarecer compatibilidade exata do modelo com suporte via WhatsApp",
+      "gatilho_mental": "Suporte",
+      "copy_resgate_email": "Dúvida sobre o tamanho da sua capa FYY? Confirmamos 100% de compatibilidade para seu Galaxy S24 Plus.",
+      "copy_resgate_whatsapp": "Olá! Notamos sua dúvida sobre a Capa FYY. Confirmamos que este modelo é exclusivo para o Galaxy S24 Plus (encaixe milimétrico). Posso te enviar o link para finalizar?"
+    }
+  },
+  {
+    "produto_id": 104,
+    "nome_bruto": "Fone de Ouvido Sony WH-1000XM5 Sem Fio com Cancelamento de Ruído Ativo",
+    "preco_atual": 2399.0,
+    "features_produto": {
+      "categoria_normalizada": "Áudio e Fones",
+      "subcategoria": "Headphones Bluetooth",
+      "marca": "Sony",
+      "material_construcao": "Plástico Reciclado de Engenharia e Almofadas de Couro Macio",
+      "diferencial_tecnico": "Cancelamento de Ruído Dual Chip V1/QN1 + Bateria 30h",
+      "faixa_posicionamento": "Premium",
+      "requer_compatibilidade": false
+    },
+    "diagnostico_abandono": {
+      "motivo_raiz": "Falha em Cupom de Desconto",
+      "sentimento": "Frustrado",
+      "nivel_urgencia": "Alto",
+      "sensibilidade_preco": "Alta"
+    },
+    "acao_prescritiva_crm": {
+      "estrategia_recomendada": "Reativar cupom especial com aplicação automática em 1 clique",
+      "gatilho_mental": "Desconto",
+      "copy_resgate_email": "Corrigimos seu cupom! 10% OFF garantido no Sony WH-1000XM5.",
+      "copy_resgate_whatsapp": "Olá! Vimos que você tentou usar um cupom no Sony XM5. Reativamos seu desconto exclusivo de 10%. Clique aqui para finalizar com desconto automático aplicado!"
+    }
+  },
+  {
+    "produto_id": 105,
+    "nome_bruto": "Smartwatch Apple Watch Ultra 2 GPS + Cellular Caixa de Titânio 49mm Pulseira Trail",
+    "preco_atual": 8499.0,
+    "features_produto": {
+      "categoria_normalizada": "Wearables / Smartwatches",
+      "subcategoria": "Smartwatches de Aventura",
+      "marca": "Apple",
+      "material_construcao": "Titânio Aeroespacial e Safira",
+      "diferencial_tecnico": "GPS Dupla Frequência + Sensor de Mergulho 40m + Sirene 86dB",
+      "faixa_posicionamento": "Luxo",
+      "requer_compatibilidade": false
+    },
+    "diagnostico_abandono": {
+      "motivo_raiz": "Comparação de Preço / Pesquisa de Mercado",
+      "sentimento": "Neutro",
+      "nivel_urgencia": "Medio",
+      "sensibilidade_preco": "Media"
+    },
+    "acao_prescritiva_crm": {
+      "estrategia_recomendada": "Gatilho de prova social + garantia estendida ou brinde de pulseira extra",
+      "gatilho_mental": "Prova Social",
+      "copy_resgate_email": "Garanta o Apple Watch Ultra 2 com Garantia Oficial Apple Brasil + Envio Imediato.",
+      "copy_resgate_whatsapp": "Olá! Seu Apple Watch Ultra 2 continua reservado com preço promocional e garantia nacional de 12 meses. Posso garantir sua unidade antes que acabe o lote?"
+    }
+  },
+  {
+    "produto_id": 106,
+    "nome_bruto": "Cafeteira Espresso Automática Oster Prima Latte II Vermelha 19 Bar 127V",
+    "preco_atual": 1199.9,
+    "features_produto": {
+      "categoria_normalizada": "Eletroportáteis",
+      "subcategoria": "Cafeteiras Espresso",
+      "marca": "Oster",
+      "material_construcao": "Aço Inoxidável e Reservatório de Acrílico",
+      "diferencial_tecnico": "Bomba Italiana 19 Bar + Espumador Automático de Leite",
+      "faixa_posicionamento": "Intermediario",
+      "requer_compatibilidade": true
+    },
+    "diagnostico_abandono": {
+      "motivo_raiz": "Dúvida de Voltagem / Tensão Elétrica",
+      "sentimento": "Hesitante",
+      "nivel_urgencia": "Medio",
+      "sensibilidade_preco": "Baixa"
+    },
+    "acao_prescritiva_crm": {
+      "estrategia_recomendada": "Esclarecimento técnico de voltagem (127V padrão) e garantia de troca sem custo",
+      "gatilho_mental": "Suporte",
+      "copy_resgate_email": "Dúvida sobre a voltagem da Cafeteira Oster? 127V é 100% compatível com a rede padrão de SP!",
+      "copy_resgate_whatsapp": "Olá! Ficou com dúvida sobre a voltagem da Oster Prima Latte? O modelo 127V é o padrão para tomadas convencionais de 110V/127V. Te ajudamos a finalizar sem risco!"
+    }
+  }
+]

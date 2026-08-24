@@ -56,6 +56,13 @@ def task_quality_eval() -> None:
     subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
     print("[TASK: quality-eval] Relatório e imagens gerados em: pipelines/case-item-04/outputs/\n")
 
+def task_genai_extract() -> None:
+    """Executa o pipeline de extração de features com GenAI & LLMs (Item 5)."""
+    script_path = os.path.join(BASE_DIR, "pipelines", "case-item-05", "scripts", "run_genai_pipeline.py")
+    print("\n[TASK: genai-extract] Executando pipeline de GenAI & LLMs (Item 5)...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+    print("[TASK: genai-extract] Artefatos e relatório gerados em: pipelines/case-item-05/outputs/\n")
+
 def task_pitch_charts() -> None:
     """Executa o orquestrador consolidado de gráficos do Pitch (Item 10)."""
     script_path = os.path.join(BASE_DIR, "presentation", "pitch", "run_all_pitch_charts.py")
@@ -109,6 +116,7 @@ Comandos disponíveis:
   python make.py list-charts                Lista todos os IDs e chaves de gráficos
   python make.py mock-gen                   Gera os 115k+ registros sintéticos
   python make.py quality-eval               Executa a suíte de Data Quality (Item 4)
+  python make.py genai-extract              Executa o pipeline de GenAI & LLMs (Item 5)
   python make.py help                       Exibe este menu de ajuda
 
 Atalhos diretos no Windows CLI:
@@ -147,6 +155,8 @@ def main():
         task_mock_gen(arg or "standard")
     elif command in ("quality_eval", "quality", "dq"):
         task_quality_eval()
+    elif command in ("genai_extract", "genai", "llm", "llms"):
+        task_genai_extract()
     else:
         print(f"[ERRO] Comando desconhecido: '{sys.argv[1]}'")
         print_help()
