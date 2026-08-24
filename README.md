@@ -475,6 +475,14 @@ wheels/
 │       ├── bi_views_report.md          # Etapa 7: Views Analíticas & BI
 │       └── pitch/decision-making/      # Decision Records e relatórios de pitch
 │
+├── metrics/                            # Camada Semântica de Métricas (Semantic Metrics Layer)
+│   ├── README.md                       # Governança semântica, taxonomia e padrões de agregação
+│   ├── catalogo_kpis.md                # Catálogo Master de KPIs de Negócio e Fórmulas LaTeX
+│   ├── matriz_metricas_dimensoes.md    # Matriz Semântica Dimensional (Kimball DW)
+│   ├── arvore_metricas_driver_tree.md  # Driver Tree da North Star Metric (Decomposição Causal)
+│   ├── metricas_data_quality_slo.md    # Métricas de Confiabilidade, Quarentena e SLOs de Dados
+│   └── metricas_ml_genai.md            # Avaliação de Modelos de ML (Item 8) e GenAI/LLM (Item 5)
+│
 ├── pipelines/
 │   ├── case-item-03/                   # Exploração & Catalogação de Ativos (Item 3)
 │   │   ├── specs.md                    # Especificação formal do módulo

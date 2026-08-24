@@ -1,131 +1,169 @@
-# Catálogo de KPIs e Métricas de Negócio
+# 📘 Catálogo Master de KPIs e Métricas de Negócio
 
-> **Domínio**: Recuperação de Carrinho Abandonado (E-commerce / Marketplace)  
-> **Status**: Consolidado com o Modelo Lógico, Generators Mock e Views SQL
+> **Domínio:** Recuperação de Carrinho Abandonado (E-commerce / Marketplace)  
+> **Status:** ✅ Consolidado com o Modelo Lógico, Star Schema Kimball (Gold Layer) e Pitch de Vendas  
+> **Framework Normativo:** [`DEC-001`](../docs/relatorios/decision-making/pitch/pitch.txt) (% e Ratios) • [`DEC-004`](../docs/specifications/data-platform-specification.md) (Sem SQL Local) • [`DEC-008`](../docs/relatorios/decision-making/dec-008-kimball-star-schema-simplicity.md) (Kimball DW)  
+> **Master Source of Truth:** [`data/data-models/logical/business-rules.md`](../data/data-models/logical/business-rules.md)
 
 ---
 
-## 📐 Hierarquia de Métricas
+## 📐 1. Hierarquia de Métricas em 5 Camadas (DEC-001)
 
-O modelo analítico do projeto está estruturado em 5 camadas hierárquicas, priorizando **taxas, proporções e eficiência** (em conformidade com a decisão estratégica DEC-001):
+Em conformidade com a decisão estratégica `DEC-001`, todas as métricas do projeto priorizam **taxas, proporções, multiplicadores e eficiência**, desacoplando o argumento analítico do ticket médio específico do cliente:
 
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  Camada 1: Conversão & Recuperação Global (Métricas Macro de Eficiência)    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Camada 2: Eficiência do Funil por Canal de Resgate (Email, WhatsApp, etc.) │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Camada 3: Eficiência da Segmentação RFM & LTV (Preservação de Margem)      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Camada 4: Eficiência Operacional & Financeira (ROI e CAC de Resgate)       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Camada 5: Timing & Cadência de Sequência (Curva de Decaimento Temporal)    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Camada Prescritiva: Score de Viabilidade de Recuperação (Triagem Dinâmica) │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  Camada 1: Conversão & Recuperação (Métricas Globais)       │
-├─────────────────────────────────────────────────────────────┤
-│  Camada 2: Eficiência por Canal de Resgate                  │
-├─────────────────────────────────────────────────────────────┤
-│  Camada 3: Eficiência por Segmento de Cliente (RFM & LTV)   │
-├─────────────────────────────────────────────────────────────┤
-│  Camada 4: Eficiência Operacional & Financeira (ROI)        │
-├─────────────────────────────────────────────────────────────┤
-│  Camada 5: Timing & Cadência de Sequência                   │
-└─────────────────────────────────────────────────────────────┘
-```
 
 ---
 
-## 1. Camada 1: Conversão & Recuperação
+## 1️⃣ Camada 1: Conversão & Recuperação Global
 
-### KPI-01: Taxa de Abandono de Carrinho
-- **Definição**: Percentual de carrinhos criados que resultaram em abandono de sessão.
-- **Fórmula**:
-  $$\text{Taxa de Abandono (\%)} = \left( \frac{\text{Total de Carrinhos com status 'abandonado'}}{\text{Total Geral de Carrinhos Criados}} \right) \times 100$$
-- **Granularidade**: Diária, Semanal, Mensal, por Dispositivo, por Canal de Origem.
-- **Target / Benchmark**: ~70.9% (Benchmark Baymard: ~69.8%).
-- **Entidades Envolvidas**: `carrinhos`.
-
-### KPI-02: Taxa de Recuperação de Carrinhos Abandonados
-- **Definição**: Percentual de carrinhos abandonados que foram convertidos em compra via campanha de resgate.
-- **Fórmula**:
-  $$\text{Taxa de Recuperação (\%)} = \left( \frac{\text{Carrinhos com status 'recuperado' / 'comprado' e origem\_recuperacao = TRUE}}{\text{Total de Carrinhos Abandonados}} \right) \times 100$$
-- **Granularidade**: Semanal, Mensal, por Canal de Resgate, por Segmento RFM.
-- **Target / Benchmark**: ~10.1% dos abandonados (Benchmark de Mercado: 5% a 15%).
-- **Entidades Envolvidas**: `carrinhos`, `eventos_resgate`, `pedidos`.
-
-### KPI-03: Lift de Conversão de Resgate
-- **Definição**: Incremento percentual de conversão gerado pelo resgate ativo em relação ao baseline de retorno orgânico.
-- **Fórmula**:
-  $$\text{Lift (\%)} = \left( \frac{\text{Taxa de Conversão com Resgate} - \text{Taxa de Retorno Orgânico}}{\text{Taxa de Retorno Orgânico}} \right) \times 100$$
-- **Target**: $+50\%$ de incremento sobre a taxa base.
+### KPI-01: Taxa de Abandono de Carrinho (`ABANDONMENT_RATE`)
+- **Definição de Negócio:** Proporção de carrinhos iniciados que permaneceram inativos por mais de 30 minutos sem confirmação de checkout.
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Taxa de Abandono (\%)} = \left( \frac{\text{COUNT}(\text{carrinhos com status = 'abandonado'})}{\text{COUNT}(\text{total geral de carrinhos criados})} \right) \times 100$$
+- **Tabelas & Grão:** `fato_abandono` / `dim_tempo` (Grão: 1 linha por sessão de carrinho).
+- **Target / Benchmark:** ~70.9% no dataset (Benchmark Baymard Institute: ~69.8%).
+- **Aditividade:** Não-Aditiva (recalcular via razão de contagens).
+- **Referência:** [`business-rules.md#91`](../data/data-models/logical/business-rules.md#91-camada-1-conversao--recuperacao-global).
 
 ---
 
-## 2. Camada 2: Eficiência por Canal de Resgate
-
-### KPI-04: Taxas do Funil de Engajamento de Resgate
-- **Fórmulas**:
-  - **Taxa de Abertura**: $\frac{\text{Total de Aberturas}}{\text{Total de Envios}} \times 100$
-  - **Taxa de Clique (CTR)**: $\frac{\text{Total de Cliques}}{\text{Total de Aberturas}} \times 100$
-  - **Taxa de Conversão Final**: $\frac{\text{Total de Pedidos Convertidos}}{\text{Total de Envios}} \times 100$
-- **Benchmarks por Canal no Dataset**:
-  | Canal | Custo/Envio | Abertura | Clique | Conversão Final |
-  |---|---|---|---|---|
-  | **Email** | R$ 0,05 | ~42% | ~28% | ~4.5% |
-  | **WhatsApp** | R$ 0,30 | ~68% | ~35% | ~2.5% |
-  | **SMS** | R$ 0,15 | ~55% | ~22% | ~1.8% |
-  | **Push App** | R$ 0,02 | ~30% | ~18% | ~1.2% |
+### KPI-02: Taxa de Recuperação de Carrinhos Abandonados (`RECOVERY_RATE`)
+- **Definição de Negócio:** Percentual de carrinhos abandonados convertidos em compra através das réguas ativas de resgate da Dadosfera.
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Taxa de Recuperação (\%)} = \left( \frac{\text{COUNT}(\text{carrinhos recuperados com pedidos.origem\_recuperacao = TRUE})}{\text{COUNT}(\text{total de carrinhos abandonados})} \right) \times 100$$
+- **Tabelas & Grão:** `fato_abandono` ↔ `fato_resgate` (Grão: carrinho abandonado).
+- **Target / Benchmark:** ~10.1% dos abandonados (Benchmark de Mercado Salesforce/Klaviyo: 5% a 15%).
+- **Impacto no Pitch:** Prova o valor da PoC e capacidade de resgate sem expansão linear de equipe.
 
 ---
 
-## 3. Camada 3: Eficiência por Segmento (RFM & LTV)
-
-### KPI-05: Taxa de Recuperação por Segmento RFM
-- **Fórmula**:
-  $$\text{Taxa Segmento (\%)} = \left( \frac{\text{Carrinhos Recuperados no Segmento}}{\text{Carrinhos Abandonados no Segmento}} \right) \times 100$$
-- **Distribuição Observada**:
-  - `Premium`: ~18% (alta responsividade, resgate imediato)
-  - `Novo`: ~12% (reatividade com cupom 1ª compra)
-  - `Regular`: ~10% (maior volume absoluto)
-  - `Dormant`: ~6% (reativação de cliente inativo)
-- **Ratio Premium / Dormant**: **3.0x** (comprova o ganho de segmentar).
-
-### KPI-06: Valor Financeiro em Risco por LTV
-- **Definição**: Montante em R$ total represado em carrinhos abandonados agrupado por faixa histórica de LTV do cliente.
-- **Fórmula**: $\sum \text{carrinhos.valor\_total}$ para `status = 'abandonado'` agrupado por `clientes.segmento_rfm`.
+### KPI-03: Lift de Conversão de Resgate (`RESCUE_CONVERSION_LIFT`)
+- **Definição de Negócio:** Incremento relativo de conversão gerado pela estratégia de CRM da Dadosfera em relação à taxa basal orgânica (sem intervenção).
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Lift (\%)} = \left( \frac{\text{Taxa de Conversão Global com Resgate} - \text{Taxa de Conversão Basal}}{\text{Taxa de Conversão Basal}} \right) \times 100$$
+- **Target:** $+50\%$ de incremento sobre a taxa base sem réguas ativas.
 
 ---
 
-## 4. Camada 4: Eficiência Operacional & Financeira (ROI)
-
-### KPI-07: Retorno sobre Investimento de Resgate (ROI)
-- **Definição**: Múltiplo financeiro líquido gerado para cada R$ 1,00 gasto em comunicação de resgate.
-- **Fórmula**:
-  $$\text{ROI} = \frac{\text{Receita dos Pedidos Recuperados} - \text{Descontos Concedidos} - \text{Custo Total de Disparos}}{\text{Custo Total de Disparos}}$$
-- **Target**: ROI Global $\ge 30\text{x}$ (Dataset atinge ~45x).
-
-### KPI-08: Custo Médio por Conversão Efetiva (CAC de Resgate)
-- **Definição**: Custo direto de comunicação necessário para gerar 1 pedido recuperado.
-- **Fórmula**: $\frac{\text{Custo Total de Disparos}}{\text{Total de Pedidos Convertidos}}$
-- **Target**: $< 1\%$ do ticket médio recuperado.
+### KPI-04: Taxa de Retenção de Receita Bruta (`REVENUE_RECOVERY_RATE`)
+- **Definição de Negócio:** Proporção do montante financeiro em risco que foi efetivamente resgatado em pedidos confirmados.
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Taxa Retenção (\%)} = \left( \frac{\sum \text{fato\_resgate.valor\_pedido\_recuperado}}{\sum \text{fato\_abandono.valor\_total\_em\_risco}} \right) \times 100$$
+- **Target / Benchmark:** ~11.5% do GMV represado recuperado.
 
 ---
 
-## 5. Camada 5: Timing & Cadência de Sequência
+## 2️⃣ Camada 2: Eficiência por Canal de Resgate
 
-### KPI-09: Distribuição de Conversões por Toque da Régua
-- **Fórmula**: $\frac{\text{Conversões no Toque } T}{\text{Total de Conversões de Resgate}} \times 100$
-- **Distribuição Alvo**:
-  - `1º Toque (lembrete_1h)`: ~35% das conversões
-  - `2º Toque (lembrete_24h)`: ~30% das conversões
-  - `3º Toque (desconto_48h)`: ~25% das conversões
-  - `4º Toque (urgencia_72h)`: ~10% das conversões
-
-### KPI-10: Tempo Médio Abandono → Conversão
-- **Definição**: Tempo médio decorrido entre a detecção do abandono e a confirmação do pedido resgatado.
-- **Target**: ~28 horas.
+### KPI-05: Taxas do Funil de Engajamento de Resgate
+- **Definições & Fórmulas ($\LaTeX$):**
+  - **Taxa de Entrega:** $\text{Taxa Entrega (\%)} = \left( \frac{\text{COUNT}(\text{flag\_entregue = TRUE})}{\text{COUNT}(\text{disparos totais})} \right) \times 100$
+  - **Taxa de Abertura:** $\text{Taxa Abertura (\%)} = \left( \frac{\text{COUNT}(\text{flag\_aberto = TRUE})}{\text{COUNT}(\text{flag\_entregue = TRUE})} \right) \times 100$
+  - **Taxa de Clique (CTR):** $\text{CTR (\%)} = \left( \frac{\text{COUNT}(\text{flag\_clicado = TRUE})}{\text{COUNT}(\text{flag\_aberto = TRUE})} \right) \times 100$
+  - **Conversão Final End-to-End:** $\text{Conv. Final (\%)} = \left( \frac{\text{COUNT}(\text{flag\_convertido = TRUE})}{\text{COUNT}(\text{disparos totais})} \right) \times 100$
+- **Benchmarks Oficiais por Canal:**
+  | Canal | Custo Unitário | Abertura | CTR (Abertura $\rightarrow$ Clique) | Conversão Final | Papel Estratégico |
+  |---|:---:|:---:|:---:|:---:|---|
+  | **Email** | **R$ 0,05** | ~42% | ~28% | **~4.5%** | Canal de tração em escala e maior ROI absoluto |
+  | **WhatsApp** | **R$ 0,30** | ~68% | ~35% | **~2.5%** | Canal VIP para carrinhos de alto valor e clientes Premium |
+  | **SMS** | **R$ 0,15** | ~55% | ~22% | **~1.8%** | Canal direto de alta visibilidade; requer opt-in rígido |
+  | **Push App** | **R$ 0,02** | ~30% | ~18% | **~1.2%** | Custo marginal zero para usuários de aplicativo |
 
 ---
 
-## 6. Métrica Prescritiva: Score de Viabilidade de Recuperação
+### KPI-06: Custo Médio por Conversão Efetiva / CAC de Resgate (`RESCUE_CAC`)
+- **Definição de Negócio:** Custo total de infraestrutura e mensageria investido para converter exatamente 1 carrinho abandonado.
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{CAC de Resgate} = \frac{\sum \text{fato\_resgate.custo\_disparo\_envio}}{\text{COUNT}(\text{fato\_resgate.flag\_convertido = TRUE})}$$
+- **Resultados Empíricos por Canal:** Email **R$ 1,02**, Push **R$ 1,67**, SMS **R$ 3,00**, WhatsApp **R$ 12,00**.
+- **Target:** Custo médio ponderado de resgate $< 1\%$ do ticket médio recuperado.
 
-### KPI-11: Score de Viabilidade por Carrinho (`RECOVERY_VIABILITY`)
-- **Fórmula**:
+---
+
+## 3️⃣ Camada 3: Eficiência por Segmento RFM & LTV
+
+### KPI-07: Taxa de Recuperação por Segmento RFM (`RECOVERY_BY_RFM`)
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Taxa Segmento (\%)} = \left( \frac{\text{COUNT}(\text{carrinhos recuperados do segmento})}{\text{COUNT}(\text{carrinhos abandonados do segmento})} \right) \times 100$$
+- **Distribuição Observada no Lakehouse:**
+  - `Premium`: **~18%** (alta propensão de compra e resposta ao suporte)
+  - `Novo`: **~12%** (reatividade com cupom de primeira compra)
+  - `Regular`: **~10%** (maior volume absoluto da base)
+  - `Dormant`: **~6%** (reativação de cliente inativo)
+
+---
+
+### KPI-08: Ratio de Eficiência Premium / Dormant (`RFM_RATIO`)
+- **Definição:** Multiplicador de responsividade entre o segmento de maior valor e o segmento inativo.
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Ratio Premium/Dormant} = \frac{\text{Taxa de Recuperação (Premium)}}{\text{Taxa de Recuperação (Dormant)}} = \frac{18\%}{6\%} = \mathbf{3.0\text{x}}$$
+- **Conclusão de Negócio:** Comprova que segmentar o resgate compensa; disparos genéricos desperdiçam orçamento e desgastam a base.
+
+---
+
+### KPI-09: Valor Financeiro em Risco por Faixa de LTV (`LTV_VALUE_AT_RISK`)
+- **Definição:** Volume bruto em R$ represado em carrinhos abandonados agrupado por faixa histórica de valor do cliente (`dim_clientes.valor_monetario_ltv`).
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{GMV em Risco (Faixa } F\text{)} = \sum_{\text{cliente} \in F} \text{fato\_abandono.valor\_total\_em\_risco}$$
+
+---
+
+## 4️⃣ Camada 4: Eficiência Operacional & Financeira (ROI)
+
+### KPI-10: Retorno sobre Investimento de Resgate (`RESCUE_ROI`)
+- **Definição de Negócio:** Múltiplo financeiro líquido gerado para cada R$ 1,00 gasto em comunicação de resgate.
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{ROI} = \frac{\sum \text{valor\_pedido\_recuperado} - \sum \text{descontos\_concedidos} - \sum \text{custo\_disparos}}{\sum \text{custo\_disparos}}$$
+- **Target / Resultado no Lakehouse:** **~45x multiplicador** (para cada R$ 1,00 em mensagens, retornam R$ 45,00 líquidos).
+
+---
+
+### KPI-11: Margem de Contribuição Preservada (`PRESERVED_MARGIN_RATE`)
+- **Definição:** Proporção de carrinhos recuperados sem concessão de cupom de desconto (aplicada na política VIP de clientes Premium).
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Margem Preservada (\%)} = \left( \frac{\text{COUNT}(\text{resgates convertidos com desconto = 0})}{\text{COUNT}(\text{total de resgates convertidos})} \right) \times 100$$
+- **Target:** $> 40\%$ das conversões realizadas com margem cheia.
+
+---
+
+## 5️⃣ Camada 5: Timing & Cadência de Sequência
+
+### KPI-12: Distribuição de Conversões por Toque da Régua
+- **Fórmula Matemática ($\LaTeX$):**
+  $$\text{Distribuição Toque } T\text{ (\%)} = \left( \frac{\text{COUNT}(\text{conversões no toque } T)}{\text{COUNT}(\text{total geral de conversões})} \right) \times 100$$
+- **Distribuição Observada:**
+  - **1º Toque (`+1h`, Lembrete Suporte):** **~86.4%** do volume acumulado de conversões (janela ótima)
+  - **2º Toque (`+24h`, Lembrete Estoque):** **~8.5%** das conversões
+  - **3º Toque (`+48h`, Desconto):** **~3.5%** das conversões
+  - **4º Toque (`+72h`, Urgência Final):** **~1.6%** das conversões
+- **Tempo Médio Abandono $\rightarrow$ Conversão:** **~28 horas**.
+
+---
+
+## 🎯 6. Métrica Prescritiva: Score de Viabilidade de Recuperação
+
+### KPI-13: Score de Viabilidade por Carrinho (`RECOVERY_VIABILITY_SCORE`)
+- **Definição:** Algoritmo determinístico de priorização em tempo real para alocação eficiente do canal de resgate no Data App Streamlit.
+- **Fórmulas Matemáticas ($\LaTeX$):**
   $$\text{P\_RECUPERACAO} = \text{P\_BASE(RFM)} \times \text{FATOR\_MOTIVO} \times \text{FATOR\_VALOR} \times \text{FATOR\_TEMPO}$$
-  $$\text{RETORNO\_ESPERADO} = \text{P\_RECUPERACAO} \times \text{valor\_total}$$
+  $$\text{RETORNO\_ESPERADO} = \text{P\_RECUPERACAO} \times \text{fato\_abandono.valor\_total\_em\_risco}$$
   $$\text{ROI\_ESPERADO} = \frac{\text{RETORNO\_ESPERADO}}{\text{CUSTO\_ESTIMADO\_CANAL}}$$
-- **Categorização**:
-  - 🟢 `ALTA`: $\text{ROI\_ESPERADO} \ge 50\text{x}$ e $\text{RETORNO\_ESPERADO} \ge \text{R\$ 10,00}$
-  - 🟡 `MEDIA`: $\text{ROI\_ESPERADO} \ge 10\text{x}$ e $\text{RETORNO\_ESPERADO} \ge \text{R\$ 2,00}$
-  - 🔴 `BAIXA`: $\text{ROI\_ESPERADO} < 10\text{x}$ ou $\text{RETORNO\_ESPERADO} < \text{R\$ 2,00}$
-- **View SQL**: `vw_viabilidade_recuperacao`
+- **Classificação Prescritiva:**
+  - 🟢 **`ALTA`**: $\text{ROI\_ESPERADO} \ge 50\text{x}$ e $\text{RETORNO\_ESPERADO} \ge \text{R\$ 10,00}$ $\rightarrow$ Disparo prioritário multicanal.
+  - 🟡 **`MEDIA`**: $\text{ROI\_ESPERADO} \ge 10\text{x}$ e $\text{RETORNO\_ESPERADO} \ge \text{R\$ 2,00}$ $\rightarrow$ Disparo padrão por Email.
+  - 🔴 **`BAIXA`**: $\text{ROI\_ESPERADO} < 10\text{x}$ ou $\text{RETORNO\_ESPERADO} < \text{R\$ 2,00}$ $\rightarrow$ Retargeting passivo (sem custo ativo de disparo).

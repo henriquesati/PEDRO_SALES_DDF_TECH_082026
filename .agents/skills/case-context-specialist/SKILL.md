@@ -180,6 +180,7 @@ Prioridade de consulta:
 | 10 | Métricas do dataset | [`METRICS.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/mock/METRICS.md) | Taxas de conversão, ROI, volumes gerados |
 | 11 | Framework analítico | [`data-strategy-analyst SKILL.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/.agents/skills/data-strategy-analyst/SKILL.md) | Template Dadosfera: descritiva, diagnóstica, preditiva, prescritiva |
 | 12 | Especificação Canônica do Pitch & Insights | [`pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md) | Fonte canônica master de governança visual, entidades, tickets de exemplo e métricas |
+| 13 | Camada Semântica de Métricas & Catálogo de KPIs | [`README.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/metrics/README.md) / [`catalogo_kpis.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/metrics/catalogo_kpis.md) | SSOT de fórmulas matemáticas, matriz dimensional Kimball, driver tree e SLOs |
 
 ---
 

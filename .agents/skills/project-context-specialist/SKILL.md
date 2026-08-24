@@ -31,7 +31,7 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
 | **4** | Data Quality & Anomalias | Processar | Pipeline de qualificação dual-artifact (`pipelines/case-item-04/notebooks/qualification_raw.ipynb` e `specs.md`), suíte Great Expectations (18 regras), quarentena de anomalias em Parquet e relatório gerado (`pipelines/case-item-04/outputs/data_quality_report.md`) | ✅ Concluído |
 | **5** | GenAI & LLMs | Processar | Pipeline de extração estruturada (Pydantic / JSON Schema), geração de copies de resgate, relatório executivo (`pipelines/case-item-05/outputs/genai_feature_extraction_report.md`) e bônus multimodal de áudio (Whisper) | ✅ Concluído |
 | **6** | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos granulares, 2 visões analíticas Gold, diagrama DW em camadas Medallion e relatório em `pipelines/case-item-06/outputs/data_modeling_report.md` sob DEC-008) | ✅ Concluído |
-| **7** | Análise de Dados & Métricas | Analisar | 6 visualizações de BI geradas (Série Temporal, Categorias, ROI, Heatmap, Scatter e DQ), script reproduzível (`pipelines/serving/generate_bi_charts.py`), catálogo declarativo (`chart_specs.py`), notebook (`07_bi_dashboards_visualizations.ipynb`) e task runner CLI (`notebook-gen`) | ✅ Concluído |
+| **7** | Análise de Dados & Métricas | Analisar | 6 visualizações de BI geradas (Série Temporal, Categorias, ROI, Heatmap, Scatter e DQ), task runner CLI (`notebook-gen`) e Camada Semântica de Métricas (`metrics/`) consolidada com Catálogo de KPIs, Matriz Dimensional Kimball, Driver Tree, DQ SLOs e Métricas de ML/GenAI | ✅ Concluído |
 | **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver (Qualify + Anomaly) e framework normativo (`data-pipeline-documentation`) | ⏳ Planejado |
 | **9** | Data Apps | Consumir | Planejamento de Data App interativo em Streamlit para simulação de recuperação de carrinhos e cálculo de ROI | ⏳ Planejado |
 | **10** | Apresentação em Vídeo | — | Infraestrutura completa de Pitch (`presentation/pitch/`), roteiro cronológico (Backbone Central & Guidelines em `pitch_spec.md`), 8 subdiretórios com specs/scripts funcionais e artefatos visuais (300 DPI) | ✅ Concluído |
@@ -115,6 +115,16 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
   - ✅ `03_prescriptive/02_otimizacao_timing_envio/`: Curva de decaimento temporal de conversão (Decay Curve) com ponto ótimo de disparo em até +1h.
 - **Orquestração**: Orquestrador em lote `presentation/insights/run_all_insights_charts.py` e comando integrado no Makefile `python make.py insights-charts`.
 
+### ✅ 9. Camada Semântica de Métricas & Governança de KPIs (`metrics/`)
+- **Papel Arquitetural**: Single Source of Truth (SSOT) de Fórmulas Matemáticas, Indicadores de Negócio, Matriz Dimensional, Confiabilidade de Dados (DQ/SLO) e Avaliação de IA/ML, amarrando 100% dos dados com referências cruzadas bidirecionais.
+- **Componentes do Módulo**:
+  - `README.md`: Governança semântica, taxonomia analítica, padrões de agregação e tipos de aditividade (Full, Semi e Non-Additive).
+  - `catalogo_kpis.md`: Catálogo Master com 13 KPIs analíticos de negócio nas 5 camadas da DEC-001 + Score Prescritivo com fórmulas em $\LaTeX$, grão, tabelas Gold (`fato_abandono` / `fato_resgate`) e benchmarks de mercado.
+  - `matriz_metricas_dimensoes.md`: Matriz de fatiamento dimensional cruzando os 13 KPIs contra as 6 Dimensões Conformadas do Kimball DW (`dim_clientes`, `dim_tempo`, `dim_dispositivo`, `dim_motivo_abandono`, `dim_canal_resgate`, `dim_segmento_rfm`).
+  - `arvore_metricas_driver_tree.md`: Driver Tree da North Star Metric (Taxa Líquida de Recuperação & ROI de 45x) decompondo drivers L1/L2 e alavancas de preservação de margem.
+  - `metricas_data_quality_slo.md`: Confiabilidade de dados com volumetria auditada (115.775 registros), 98.76% conformidade, Quarentena Silver Anomalies (1.439 registros via DEC-006) e SLOs de pipeline.
+  - `metricas_ml_genai.md`: Métricas de avaliação de IA & ML (Classificador de Churn/Propensão do Item 8 com ROC-AUC 0.9478, Acurácia 0.9953; e Pipeline GenAI do Item 5 com Pydantic Schema 100%).
+
 ---
 
 ## 🗺️ Mapa Atualizado de Artefatos do Repositório
@@ -167,6 +177,13 @@ wheels/
 │   │   ├── output_cleaned/{parquet,csv}/ # Datasets higienizados e scripts de limpeza
 │   │   └── METRICS.md                    # Metadados, perfis e cotas determinísticas de anomalias
 │   └── relatorio-etapa1.md              # Relatório de entrega da Etapa 1
+├── metrics/                              # Camada Semântica de Métricas (Semantic Metrics Layer)
+│   ├── README.md                         # Governança semântica, taxonomia e padrões de agregação
+│   ├── catalogo_kpis.md                  # Catálogo Master de KPIs de Negócio e Fórmulas LaTeX
+│   ├── matriz_metricas_dimensoes.md      # Matriz Semântica Dimensional (Kimball DW)
+│   ├── arvore_metricas_driver_tree.md    # Driver Tree da North Star Metric (Decomposição Causal)
+│   ├── metricas_data_quality_slo.md      # Métricas de Confiabilidade, Quarentena e SLOs de Dados
+│   └── metricas_ml_genai.md              # Avaliação de Modelos de ML (Item 8) e GenAI/LLM (Item 5)
 ├── pipelines/
 │   ├── datalakes/                        # Arquitetura Lakehouse & Catálogo por Entidade
 │   │   ├── README.md                     # Visão Geral das 4 Camadas

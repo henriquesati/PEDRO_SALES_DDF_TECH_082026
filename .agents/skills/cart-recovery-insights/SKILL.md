@@ -68,6 +68,12 @@ Maintain:
 │   └── 04_opportunity/
 ├── dashboards/
 └── metrics/
+    ├── README.md                      # Governança semântica e padrões de agregação
+    ├── catalogo_kpis.md               # Catálogo Master de KPIs de Negócio e Fórmulas LaTeX
+    ├── matriz_metricas_dimensoes.md   # Matriz Semântica Dimensional (Kimball DW)
+    ├── arvore_metricas_driver_tree.md # Driver Tree da North Star Metric (Decomposição Causal)
+    ├── metricas_data_quality_slo.md   # Métricas de Confiabilidade, Quarentena e SLOs de Dados
+    └── metricas_ml_genai.md           # Avaliação de Modelos de ML (Item 8) e GenAI/LLM (Item 5)
 ```
 
 Do not create empty or unnecessary files merely to fill the structure.
