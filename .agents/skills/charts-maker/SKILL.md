@@ -26,6 +26,10 @@ Todo gráfico, dashboard, mini card ou visualização gerada no projeto deve seg
    - **Dado Observado (Realidade do Dataset)**: Plotado nas séries temporais, barras e áreas reais.
    - **Benchmark de Mercado (Baymard, Klaviyo, Salesforce)**: Plotado exclusivamente como linha de referência pontilhada/tracejada (`ax.axhline(69.8, linestyle=':', label='Benchmark Global')`), **nunca** alterando a série de dados subjacente.
 
+4. **REFERÊNCIA CANÔNICA DE BASELINE & ENTIDADE DE NEGÓCIO (PITCH SPEC)**:
+   - Todo gráfico, métrica, faixa de ticket de exemplo ou custo de canal deve reconciliar com a especificação canônica master em [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md) (Seções 4 e 5).
+   - Datasets obrigatórios: `data/mock/output_cleaned/parquet/*.parquet` (com fallback em `data/mock/output/parquet/*.parquet`).
+
 ---
 
 ## 🏗️ Padrão Arquitetural de Geração de Gráficos

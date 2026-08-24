@@ -54,12 +54,12 @@ Serve como fonte de contexto para outros agentes que precisam entender **por qu�
 | 3 | Dadosfera - Explorar & Catalogar | Explorar | Catalogar dataset com dicionários de dados, organizar por 4 zonas do Lakehouse (Bronze, Silver Qualify, Silver Anomaly Quarentena DEC-006, Gold Curated Kimball DEC-008), 28 diretórios por entidade em `pipelines/datalakes/` com `metadata.md` e spec central `data/catalogo/business-catalog-classification.md` v2.0 | ✅ Concluído |
 | 4 | Data Quality | Processar | Relatório e evidências de qualidade geradas no módulo do pipeline (`pipelines/case-item-04/outputs/data_quality_report.md`), notebook de qualificação (`pipelines/case-item-04/notebooks/qualification_raw.ipynb`), suíte Great Expectations (18 regras) e quarentena de anomalias em Parquet | ✅ Concluído |
 | 5 | GenAI & LLMs - Processar | Processar | Transformar dados desestruturados em features usando IA | ⏳ Planejado |
-| 6 | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos granulares, 2 visões analíticas Gold, diagrama DW em camadas Medallion e relatório em `pipelines/case-item-06/outputs/data_modeling_report.md` sob DEC-008) | ✅ Concluído |
+| 6 | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos granulares, 2 visões analíticas Gold, diagrama DW em camadas Medallion e relatório em `pipelines/case-item-06/outputs/data_modeling_report.md` sob DEC-008), com `data/data-models/logical/business-rules.md` consolidado como o Master SSOT de regras de negócio e lógicas de BI | ✅ Concluído |
 | 7 | Análise de Dados | Analisar | Dashboard com análise de categorias + série temporal. 6 visualizações de 6 tipos distintos geradas em alta resolução (`dashboards/assets/`), catálogo declarativo (`chart_specs.py`) e notebook interativo | ✅ Concluído |
 | 8 | Pipelines & Data Lakehouse | Processar | Especificações imutáveis das 4 camadas do Lakehouse (`pipelines/datalakes/{raw,qualify,anomaly,curated}/spec.md`), arquitetura modular por entidade e framework normativo (`data-pipeline-documentation`) | ✅ Concluído |
 | 9 | Data Apps | Consumir | Data App com Streamlit para explorar dados | ⏳ Planejado |
 | 10 | Apresentação (Pitch) | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md` - Backbone & Guidelines), 8 submódulos com geradores em Python e dashboards de alta definição (300 DPI) para suporte ao vídeo | ✅ Concluído |
-| 10.1 | Gráficos de Insights | Visualizações | Galeria de gráficos de insights em `presentation/insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais de motivos, risco e timing mapeados | 🔄 Em processo |
+| 10.1 | Gráficos de Insights | Visualizações | Galeria de gráficos de insights em `presentation/insights/`: módulos de BI, motivos de abandono, custo/ROI, segmentação de risco, estratégia de resgate e otimização de timing concluídos com 100% dos dados reais em Parquet e governança em `pitch_spec.md` | ✅ Concluído |
 | Bônus | GenAI + Data Apps | IA Generativa | Gerador de apresentações de produto com DALL-E ou similar | ⏳ Planejado |
 
 ---
@@ -140,7 +140,7 @@ A Dadosfera substitui a complexidade da infraestrutura com: ingestão plug & pla
 
 ### DEC-006: Dual-Artifact Pipeline & Fronteira Plataforma vs. Domínio
 - **Decisão**:
-  1. O pipeline de qualidade gera dois artefatos na camada Silver: `[entidade]_qualify` (dados validados) e `[entidade]_anomalies` (dead-letter/auditoria de riscos).
+  1. O pipeline de qualidade gera dois artefatos na camada Silver: `[entidade]_qualify` (dados validados) e `[entidade]_anomalies` (quarentena de anomalias / auditoria de riscos).
   2. A Plataforma de Dados é responsável por detecção, classificação de severidade, captura da evidência bruta (`payload_raw`) e comunicação. A Aplicação/Domínio é responsável pela tomada de decisão e política de resolução (rejeitar, recalcular, alertar, corrigir).
   3. Adoção do blueprint canônico em 4 divisões para todas as entidades lógicas (`data/data-models/logical/entities/blueprint-entities-archive.md`).
 - **Justificativa**: Preservação da integridade e auditabilidade dos dados brutos sem assumir mutações operacionais arbitrárias na camada de infraestrutura/plataforma.
@@ -179,6 +179,7 @@ Prioridade de consulta:
 | 9 | Regras de negócio | [`business-rules.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/models/logical/business-rules.md) | Estados do carrinho, RFM, canais de resgate, sequência de comunicação |
 | 10 | Métricas do dataset | [`METRICS.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/mock/METRICS.md) | Taxas de conversão, ROI, volumes gerados |
 | 11 | Framework analítico | [`data-strategy-analyst SKILL.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/.agents/skills/data-strategy-analyst/SKILL.md) | Template Dadosfera: descritiva, diagnóstica, preditiva, prescritiva |
+| 12 | Especificação Canônica do Pitch & Insights | [`pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md) | Fonte canônica master de governança visual, entidades, tickets de exemplo e métricas |
 
 ---
 

@@ -243,7 +243,7 @@ fct_itens_carrinho / view_itens_abandonados_detalhe (Curated Gold)
 |---|---|---|
 | Raw / Bronze | `raw_itens_carrinho` (`/raw/recuperacao_carrinho/itens_carrinho.parquet`) | Dados brutos preservados diretamente das adições transacionais |
 | Qualify / Silver | `qualify_itens_carrinho` (`CART_RECOVERY.ITENS_CARRINHO`) | Dados de itens tipados, sanitizados e validados com integridade relacional |
-| Anomaly / Silver | `itens_carrinho_anomalies` (`CART_RECOVERY.ITENS_CARRINHO_ANOMALIES`) | Repositório de evidências, dead-letter e alertas de integridade contábil/temporal |
+| Anomaly / Silver | `itens_carrinho_anomalies` (`CART_RECOVERY.ITENS_CARRINHO_ANOMALIES`) | Repositório de evidências, quarentena de anomalias e alertas de integridade contábil/temporal |
 | Curated / Gold | `fct_itens_carrinho`, `view_itens_abandonados_detalhe` | Dados modelados dimensionalmente para consumo analítico e operacional |
 
 ## Lineage

@@ -261,7 +261,7 @@ fct_pedidos / view_receita_recuperada_mensal (Curated Gold)
 |---|---|---|
 | Raw / Bronze | `raw_pedidos` (`/raw/recuperacao_carrinho/pedidos.parquet`) | Dados brutos de liquidação transacional preservados diretamente da origem |
 | Qualify / Silver | `qualify_pedidos` (`CART_RECOVERY.PEDIDOS`) | Dados de pedidos tipados, sanitizados e validados com integridade contábil |
-| Anomaly / Silver | `pedidos_anomalies` (`CART_RECOVERY.PEDIDOS_ANOMALIES`) | Repositório de evidências, dead-letter e alertas de qualidade fiscal/atribuição |
+| Anomaly / Silver | `pedidos_anomalies` (`CART_RECOVERY.PEDIDOS_ANOMALIES`) | Repositório de evidências, quarentena de anomalias e alertas de qualidade fiscal/atribuição |
 | Curated / Gold | `fct_pedidos`, `view_receita_recuperada_mensal`, `dim_conversao_checkout` | Dados modelados dimensionalmente para consumo financeiro e executivo |
 
 ## Lineage

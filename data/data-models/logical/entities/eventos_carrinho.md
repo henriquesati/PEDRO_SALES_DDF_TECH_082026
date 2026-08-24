@@ -256,7 +256,7 @@ fct_funil_carrinho / view_jornada_abandono (Curated Gold)
 |---|---|---|
 | Raw / Bronze | `raw_eventos_carrinho` (`/raw/recuperacao_carrinho/eventos_carrinho.parquet`) | Logs brutos de telemetria preservados diretamente da camada de captura |
 | Qualify / Silver | `qualify_eventos_carrinho` (`CART_RECOVERY.EVENTOS_CARRINHO`) | Dados de eventos tipados, sanitizados e validados com integridade relacional |
-| Anomaly / Silver | `eventos_carrinho_anomalies` (`CART_RECOVERY.EVENTOS_CARRINHO_ANOMALIES`) | Repositório de evidências, dead-letter e alertas de schema drift de telemetria |
+| Anomaly / Silver | `eventos_carrinho_anomalies` (`CART_RECOVERY.EVENTOS_CARRINHO_ANOMALIES`) | Repositório de evidências, quarentena de anomalias e alertas de schema drift de telemetria |
 | Curated / Gold | `fct_funil_carrinho`, `view_jornada_abandono`, `fct_atrito_checkout` | Dados agregados em funil para consumo analítico e operacional |
 
 ## Lineage

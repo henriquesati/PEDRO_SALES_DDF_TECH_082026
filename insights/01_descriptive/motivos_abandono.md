@@ -1,4 +1,10 @@
-# Motivos de Abandono de Carrinho (Categorização)
+# Decomposição de Motivos de Abandono de Carrinho
+
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../presentation/pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)  
+> **Artefatos Visuais Correspondentes**: [`presentation/insights/01_descriptive/02_motivos_abandono/chart_02_treemap_motivos_abandono.png`](../../presentation/insights/01_descriptive/02_motivos_abandono/chart_02_treemap_motivos_abandono.png) e [`chart_02_perda_financeira_motivos.png`](../../presentation/insights/01_descriptive/02_motivos_abandono/chart_02_perda_financeira_motivos.png)
+
+---
 
 ## ❓ Pergunta de Negócio
 Qual razão de abandono causa a maior perda de receita na plataforma e como esses motivos se distribuem entre diferentes faixas de valor de carrinho, tipos de dispositivo e segmentos de clientes (RFM)?
@@ -26,8 +32,6 @@ Qual razão de abandono causa a maior perda de receita na plataforma e como esse
 - **Alvo (Benchmark)**:
   - Benchmark de E-commerce: Custos adicionais/frete representam ~48% dos motivos declarados; problemas de processo/pagamento representam ~15-20%.
   - Alvo: Mapear 100% dos motivos inferidos e direcionar estratégias de resgate e UX específicas para cada causa-raiz.
-
-  <!-- granularidade por dispositivo em staging pra evitar poluição-->
 
 ---
 
@@ -75,9 +79,8 @@ Qual razão de abandono causa a maior perda de receita na plataforma e como esse
    - Agrupar por `motivo_abandono`, `segmento_rfm` e `dispositivo`.
    - Calcular contagem de carrinhos, soma do `valor_total` e média do `valor_frete`.
 4. **Visualizações Oficiais (Source of Truth)**:
-   - **Artefato 1 (Treemap Proporcional)**: Treemap hierárquico onde a área de cada retângulo representa a fatia exata de cada motivo de abandono (25% Preço, 23,1% Frete, 20% Indecisão, etc.) com rótulos humanizados simples, sem poluição de cifras financeiras (`chart_02_treemap_motivos_abandono.png`).
-   - **Artefato 2 (Perda Financeira por Faixa de Ticket & Resgate)**: Gráfico de painel duplo lado a lado detalhando a perda financeira bruta por faixa de ticket em R$ e o impacto do resgate Dadosfera com montante recuperado (+R$ 173,7k / 498 pedidos) vs perda residual (`chart_02_perda_financeira_motivos.png`).
-
+   - **Artefato 1 (Treemap Proporcional)**: Treemap hierárquico onde a área de cada retângulo representa a fatia exata de cada motivo de abandono (25% Preço, 23,1% Frete, 20% Indecisão, etc.) com rótulos humanizados simples, sem poluição de cifras financeiras ([`chart_02_treemap_motivos_abandono.png`](../../presentation/insights/01_descriptive/02_motivos_abandono/chart_02_treemap_motivos_abandono.png)).
+   - **Artefato 2 (Perda Financeira por Faixa de Ticket & Resgate)**: Gráfico de painel duplo lado a lado detalhando a perda financeira bruta por faixa de ticket em R$ e o impacto do resgate Dadosfera com montante recuperado (+R$ 173,7k / 498 pedidos) vs perda residual ([`chart_02_perda_financeira_motivos.png`](../../presentation/insights/01_descriptive/02_motivos_abandono/chart_02_perda_financeira_motivos.png)).
 
 ---
 
@@ -107,6 +110,6 @@ Qual razão de abandono causa a maior perda de receita na plataforma e como esse
 ## 💰 ROI & Impacto Financeiro
 
 - **Metodologia de Impacto**:
-  - Abandono por **Preço (40%)** e **Frete (30%)** respondem por **~70% da perda total**.
-  - Tratar especificamente a dor do frete com cupom de entrega recupera até **12-15% dos carrinhos de frete**, com custo marginal coberto pela margem do produto.
-  - Reduzir o atrito de pagamento mobile (recuperando 1 em cada 5 falhas de pagamento) gera conversão imediata de carrinhos com alta intenção de compra, sem concessão de desconto, maximizando a margem líquida.
+  - Abandono por **Preço (25%)** e **Frete (23%)** respondem por **~48% da perda total**.
+  - Tratar a dor do frete com cupom de entrega recupera carrinhos de frete com custo marginal coberto pela margem do produto.
+  - Reduzir o atrito de pagamento mobile gera conversão imediata de carrinhos com alta intenção de compra, sem concessão de desconto, maximizando a margem líquida.

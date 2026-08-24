@@ -18,11 +18,7 @@ PITCH_DIR: Final[str] = os.path.abspath(os.path.dirname(__file__))
 BASE_DIR: Final[str] = os.path.abspath(os.path.join(PITCH_DIR, "..", ".."))
 
 MODULES: Final[Sequence[str]] = (
-    "01_abandono_vs_recuperacao_timeline",
-    "02_performance_categorias_produtos",
-    "03_roi_canais_e_comunicacao",
-    "04_matriz_motivos_segmentos_rfm",
-    "05_matriz_viabilidade_recuperacao",
+    os.path.join("views", "caseitem06"),
     "06_data_quality_e_quarentena",
     "07_arquitetura_dadosfera_vs_aws",
     "08_data_app_simulador_prescritivo_genai",

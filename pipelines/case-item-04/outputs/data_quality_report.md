@@ -45,4 +45,4 @@
 ## 4. 🛠️ Roteamento Dual-Artifact
 
 1. **Camada Silver Qualify (`pipelines/case-item-04/outputs/qualify/`):** Registros 100% limpos e aptos para a camada analítica/Gold.
-2. **Camada Silver Anomalies (`pipelines/case-item-04/outputs/anomalies/`):** Dead-letter auditável para diagnóstico e prevenção de poluição de métricas.
+2. **Camada Silver Anomalies (`pipelines/case-item-04/outputs/anomalies/`):** Quarentena auditável de anomalias para diagnóstico e prevenção de poluição de métricas.

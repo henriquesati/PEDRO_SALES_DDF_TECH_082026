@@ -1,11 +1,14 @@
 # Especificação Visual & BI: Custo por Carrinho Recuperado (CAC de Resgate), ROI & Adjacências
 
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)
+
 ## 📌 Contexto & Pergunta de Negócio
 - **Pergunta Central**: Qual é o custo efetivo por carrinho recuperado (CAC de Resgate) em cada canal de comunicação (Email, SMS, WhatsApp, Push) e qual o retorno sobre o investimento (ROI líquido) e margem residual gerados na esteira de recuperação?
 - **Insight de Negócio**: A operação multicanal da Dadosfera demonstra que o **Email** atua como o grande motor de escala e rentabilidade (custo de apenas R$ 0,05/envio, gerando CAC de resgate inferior a R$ 1,20 por pedido recuperado). Canais de maior custo unitário como **WhatsApp (R$ 0,30/envio)** e **SMS (R$ 0,15/envio)** devem ser acionados de forma qualificada para tickets médios e altos (> R$ 250), garantindo um **ROI global consolidado superior a 40x** e custo de comunicação **abaixo de 1,5%** do valor resgatado.
 
 > [!NOTE]
-> **Foco do Projeto em Proporções (%) & Entidade Exemplo**: As métricas de eficiência são estruturadas em ratios relativos (CAC como % do Ticket Médio e Multiplicador de ROI). A *Entidade Exemplo de Baseline* (TM Geral ~R$ 375,00) exemplifica os ganhos absolutos em R$, permitindo ao cliente plugar sua própria estrutura de custos de mensageria e ticket médio.
+> **Foco do Projeto em Proporções (%) & Referência Pitch Spec**: As métricas de eficiência são estruturadas em ratios relativos (CAC como % do Ticket Médio e Multiplicador de ROI - DEC-001). A *Entidade Exemplo de Baseline* declarada em [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md#42-entidade-exemplo-de-negócio-baseline-mock-para-simulações-monetárias) (TM Geral ~R$ 375,00, WhatsApp R$ 0,30, SMS R$ 0,15, Email R$ 0,05, Push R$ 0,02) exemplifica os ganhos absolutos em R$, permitindo ao cliente plugar sua própria estrutura de custos de mensageria e ticket médio.
 
 ---
 

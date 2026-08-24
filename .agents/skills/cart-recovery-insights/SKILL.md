@@ -48,10 +48,12 @@ When requested to create or analyze an insight:
 8. Identify dashboard implications when relevant.
 9. **Do not write SQL.**
 10. **Do not invent unavailable data.** (If required data is missing, explicitly document the gap).
+11. **Align with Pitch Canonical Specification:** All insights, KPIs, example ticket values, channel costs, and baseline metrics must strictly reconcile with [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md) (Sections 4 & 5).
+12. **Master SSOT for Business Rules & BI:** Consult [`data/data-models/logical/business-rules.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/data-models/logical/business-rules.md) as the official single source of truth for cross-entity business rules, state machines, and canonical KPI formulas.
 
 ## Arbitraty contraint for Insight Generation
 
-  This is a intern test case, so it should not opt in for analyze ultra granular things or really edge cases, so it limits the complexity of the project to be finalized under 1 or 2 days. The approach is for a study technical case to be used on a mock pitch interview, not real business data insights, so dont create unnecessary or overly complex things.
+  This is an intern test case, so it should not opt in for analyze ultra granular things or really edge cases, so it limits the complexity of the project to be finalized under 1 or 2 days. The approach is for a study technical case to be used on a mock pitch interview, not real business data insights, so dont create unnecessary or overly complex things.
 
 
 ## Project Structure

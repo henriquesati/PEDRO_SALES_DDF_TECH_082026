@@ -25,7 +25,7 @@ Bônus: Definir e implementar um Common Data Model para os dados utilizados.
 ### Escala de Avaliação do Case
 - **Mínimo:** Relatório básico de inconsistências e nulos.
 - **Avançado:** Uso de biblioteca formal (Great Expectations / Soda Core) com regras parametrizadas.
-- **Excelente / Outlier:** Arquitetura **Dual-Artifact Pipeline** na camada Silver (Bifurcação entre `Qualify` e `Anomalies` em quarentena dead-letter auditável), suíte de 18 regras de Data Quality (técnicas, contábeis e de negócio), relatório executivo gerado automaticamente em Markdown com gráficos 300DPI, e log de auditoria JSON.
+- **Excelente / Outlier:** Arquitetura **Dual-Artifact Pipeline** na camada Silver (Bifurcação entre `Qualify` e `Anomalies` em quarentena de anomalias auditável), suíte de 18 regras de Data Quality (técnicas, contábeis e de negócio), relatório executivo gerado automaticamente em Markdown com gráficos 300DPI, e log de auditoria JSON.
 
 ---
 
@@ -33,7 +33,7 @@ Bônus: Definir e implementar um Common Data Model para os dados utilizados.
 
 Em conformidade com a decisão arquitetural **DEC-006**, os dados da camada Bronze (RAW Parquet) são processados por um pipeline de qualificação que bifurca os registros em dois destinos:
 1. **Silver Qualify (`pipelines/case-item-04/outputs/qualify/`):** Registros 100% íntegros e promovidos para consultas analíticas e consumo no Metabase / Data Apps.
-2. **Silver Anomalies (`pipelines/case-item-04/outputs/anomalies/`):** Dead-letter estruturada com metadados de diagnóstico (`codigo_anomalia`, `campo_afetado`, `descricao_risco`, `severidade`, `detected_at`, `payload_raw`).
+2. **Silver Anomalies (`pipelines/case-item-04/outputs/anomalies/`):** Quarentena estruturada com metadados de diagnóstico (`codigo_anomalia`, `campo_afetado`, `descricao_risco`, `severidade`, `detected_at`, `payload_raw`).
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -92,23 +92,25 @@ Em conformidade com a decisão arquitetural **DEC-006**, os dados da camada Bron
 
 ---
 
-## 📁 4. Estrutura do Módulo
+## 📁 4. Estrutura do Módulo & Arquitetura de Outputs
 
 ```text
 pipelines/case-item-04/
-├── specs.md                # Esta especificação técnica
-├── implementation_plan.md  # Plano de execução e tarefas
+├── specs.md                     # Esta especificação técnica
+├── implementation_plan.md       # Plano de execução e tarefas
 ├── scripts/
-│   └── run_quality_pipeline.py  # Script de execução batch
+│   └── run_quality_pipeline.py  # Script batch de execução automatizada
 ├── notebooks/
 │   └── qualification_raw.ipynb  # Notebook Google Colab executável
 ├── quality/
 │   ├── expectations/
-│   │   └── carrinhos_suite.json # Suite Great Expectations
+│   │   └── carrinhos_suite.json # Suíte Great Expectations
 │   └── results/
 │       └── validation_results.json # Evidência de execução
-└── outputs/
-    ├── data_quality_report.md   # Relatório gerado de Data Quality
-    ├── validation_results.json  # Log JSON de validação
-    └── assets/                  # Gráficos em alta resolução (300 DPI)
+└── outputs/                     # Arquitetura Abstrata de Saída
+    ├── qualify/[entidade]/      # Datasets higienizados e conformes para a camada Gold
+    ├── anomalies/[entidade]/[rule]/ # Quarentena de anomalias segregada por regra
+    ├── assets/                  # Gráficos gerados pelo notebook e suas respectivas regras
+    ├── data_quality_report.md   # Relatório executivo consolidado multi-entidade
+    └── validation_results.json  # Log estruturado de validação por entidade
 ```

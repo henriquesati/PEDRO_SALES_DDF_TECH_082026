@@ -1,5 +1,9 @@
 # Custo por Carrinho Recuperado (CAC de Resgate), ROI & Adjacências
 
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../presentation/pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)  
+> **Artefato Visual Correspondente**: [`presentation/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png`](../../presentation/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png)
+
 ## ❓ Pergunta de Negócio
 Qual é o custo efetivo por carrinho recuperado (CAC de Resgate) em cada canal de comunicação (Email, SMS, WhatsApp, Push) e qual o retorno sobre o investimento (ROI líquido) e margem residual gerados na esteira de recuperação da plataforma?
 

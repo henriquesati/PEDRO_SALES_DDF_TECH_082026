@@ -24,11 +24,11 @@ Você é o guardião do contexto técnico e arquiteto de memória do projeto. Su
    - **Item 3 (Explorar & Catalogar)**: Dicionários de dados Qualify e mapeamento de Data Asset IDs oficiais em `assets_registry.md` (Concluído).
    - **Item 4 (Data Quality)**: Pipeline de qualificação dual-artifact (`pipelines/case-item-04/notebooks/qualification_raw.ipynb` e `specs.md`), suíte Great Expectations (18 regras), quarentena de anomalias em Parquet e relatório gerado (`pipelines/case-item-04/outputs/data_quality_report.md`) (Concluído).
    - **Item 5 (GenAI & LLMs)**: Processamento e enriquecimento semântico de motivos de abandono (Planejado).
-   - **Item 6 (Modelagem de Dados)**: Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos granulares, 2 visões analíticas Gold, diagrama DW em camadas Medallion e relatório em `pipelines/case-item-06/outputs/data_modeling_report.md` sob DEC-008) (Concluído).
+   - **Item 6 (Modelagem de Dados)**: Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos granulares, 2 visões analíticas Gold, diagrama DW em camadas Medallion e relatório em `pipelines/case-item-06/outputs/data_modeling_report.md` sob DEC-008), com o arquivo `data/data-models/logical/business-rules.md` consolidado como o Master SSOT de Regras de Negócio e Lógicas de BI (Concluído).
    - **Item 7 (Análise de Dados & Métricas)**: 6 visualizações de BI geradas em alta resolução (`dashboards/assets/`), catálogo declarativo (`chart_specs.py`), notebook (`07_bi_dashboards_visualizations.ipynb`) e task runner CLI (`notebook-gen`) (Concluído).
    - **Item 8 (Pipelines)**: Especificações de pipeline Silver (Qualify + Anomaly) e framework normativo (`data-pipeline-documentation`) (Planejado).
    - **Item 9 (Data Apps)**: Data App interativo em Streamlit para simulação de recuperação de carrinhos e ROI (Planejado).
    - **Item 10 (Apresentação)**: Vídeo comparativo Dadosfera vs arquitetura AWS legada com métricas em % (Planejado).
    - **Bônus (GenAI + Data Apps)**: Gerador dinâmico de vitrines e apresentações de produtos para resgate (Planejado).
 5. **Sem Arquivos .SQL Locais (DEC-004)**: É terminantemente proibido criar arquivos `.sql` locais. Todas as consultas analíticas pertencem exclusivamente à plataforma Dadosfera.
-6. **Padrão Canônico de Entidades (DEC-006)**: Assegurar que toda especificação de entidade mantenha o formato canônico de 4 divisões com `SCHEMA RULES` numerado e dead-letter de anomalias.
+6. **Padrão Canônico de Entidades (DEC-006)**: Assegurar que toda especificação de entidade mantenha o formato canônico de 4 divisões com `SCHEMA RULES` numerado e quarentena de anomalias.

@@ -1,4 +1,8 @@
-# Taxa e Volume de Abandono de Carrinho
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../presentation/pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)  
+> **Artefato Visual Correspondente**: [`presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png`](../../presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png)
+
+---
 
 ## ❓ Pergunta de Negócio
 Qual é a magnitude do abandono de carrinhos na plataforma (em volume absoluto de sessões e percentual relativo ao total de carrinhos criados), qual o montante financeiro represado e como essa perda se distribui temporalmente, por canal de origem e por dispositivo?
@@ -29,10 +33,9 @@ Qual é a magnitude do abandono de carrinhos na plataforma (em volume absoluto d
 ---
 
 ## 💡 Insight Esperado
-- **Volume & Taxa de Abandono**: Espera-se uma taxa de abandono concentrada na faixa de **70% a 72%** do total de sessões com carrinho aberto.
-- **Dispositivo (Mobile vs Desktop)**: Dispositivos móveis apresentam taxa de abandono superior (estimada em ~75-80%) devido a fricções de checkout e preenchimento de pagamento em telas menores.
-- **Concentração Temporal**: Picos de abandono nos finais de semana e no período noturno (20h às 23h), sugerindo comportamento de navegação comparativa sem intenção imediata de fechamento ("window shopping").
-- **Impacto no Topo de Funil**: Carrinhos originados de tráfego pago (Meta Ads / Google Ads) sem intenção de busca específica apresentam maior taxa de desistência por custos surpresa de frete.
+- **Volume & Taxa de Abandono**: Confirmado na faixa de **~70,0%** da base total de carrinhos criados (reconciliado com a série temporal observada no dataset).
+- **Dispositivo (Mobile vs Desktop)**: Dispositivos móveis concentram a maior fatia do abandono (61% do volume total) em virtude de atrito em telas touch e preenchimento de formulários de checkout.
+- **Comportamento Temporal**: Acompanhamento da curva de evolução acumulada evidenciando o lift gerado pelas réguas de recuperação Dadosfera (+498 pedidos convertidos).
 
 ---
 

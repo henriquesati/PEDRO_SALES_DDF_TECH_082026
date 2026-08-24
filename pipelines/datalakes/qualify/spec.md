@@ -17,7 +17,7 @@ A camada **Qualify (Silver)** é responsável por transformar os dados brutos da
 1. **Contrato Rígido de Schema:** Nenhuma linha com chave primária nula, tipos incompatíveis ou campos obrigatórios corrompidos é promovida para consumo downstream.
 2. **Dual-Artifact Routing (DEC-006):** Os registros processados são bifurcados:
    - **Silver Qualify (`CART_RECOVERY.*`):** Registros 100% íntegros (taxa média de aprovação ~94.2%).
-   - **Silver Anomalies (Quarentena Dead-Letter):** Registros com violação de regras de negócio ou integridade contábil (taxa ~5.8%), armazenados na camada Anomaly.
+   - **Silver Anomalies (Quarentena de Anomalias):** Registros com violação de regras de negócio ou integridade contábil (taxa ~5.8%), armazenados na camada Anomaly.
 3. **Governança & Rastreabilidade de Catálogo:** Todas as entidades possuem dicionários padronizados com classificação de sensibilidade e identificação de PII (LGPD).
 
 ---

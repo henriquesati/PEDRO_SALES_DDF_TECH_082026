@@ -5,42 +5,51 @@ Este diretório contém toda a infraestrutura documental, especificações visua
 ---
 
 ## 🧭 Documento Principal de Roteiro & Estrutura
-- 📄 **[pitch_spec.md](pitch_spec.md)**: **Especificação do Pitch**
+- 📄 **[`pitch_spec.md`](pitch_spec.md)**: **Especificação Canônica do Pitch**
   - **[1] Apresentar Plataforma Dadosfera**: O Sistema Operacional de Dados unificado, o meio estruturante para a empresa e módulos integrados.
   - **[2] Comentar Arquitetura do Cliente e Iniciar Pitch**: Diagnóstico da stack AWS (Kinesis, Redis, S3), riscos em picos e redução de 86% no lead time.
   - **[3] Case Carrinho (PoC)**: As 5 regras de recuperação, preservação de margem de lucro, Data Quality e Data App com GenAI.
+  - **[4] Diretriz Metodológica**: Foco em proporções (%) e Entidade Exemplo de baseline.
+  - **[5] Governança de Dados**: Entidades canônicas unificadas e fonte da verdade.
 
 ---
 
-## 📂 Arquitetura de Diretórios & Artefatos Visuais
+## 🏛️ Arquitetura de Módulos Visuais do Pitch
 
-Cada diretório abaixo agrupa de forma autocontida a **especificação (`spec.md`)**, o **script gerador em Python (`generate_chart.py`)** e o **artefato visual gerado (`chart_*.png`)**:
+> [!IMPORTANT]
+> **Fonte Única da Verdade para Insights de Negócio**:  
+> Todos os gráficos analíticos de negócio (Série Temporal, Motivos, CAC/ROI, Segmentação de Risco, LTV, Viabilidade, Timing e Produtos) residem canonicamente na galeria **[`presentation/insights/`](../insights/)** (`01_descriptive/`, `02_risk/`, `03_prescriptive/`).  
+> O diretório `presentation/pitch/` concentra os dashboards estruturais e executivos de arquitetura, modelagem e governança da plataforma.
 
-| # | Diretório do Módulo | Tema / Regra de Negócio | Artefatos na Pasta |
+| # | Módulo do Pitch | Tema / Item do Case | Artefatos na Pasta |
 |:---:|---|---|---|
-| **01** | [`01_abandono_vs_recuperacao_timeline/`](01_abandono_vs_recuperacao_timeline/) | **Ciclo de Vida & Série Temporal**: Transição de status (30min inatividade), sazonalidade Jan–Jun 2026 e taxa de recuperação (~10.1%). | [`spec.md`](01_abandono_vs_recuperacao_timeline/spec.md) • [`generate_chart.py`](01_abandono_vs_recuperacao_timeline/generate_chart.py) • [`chart_01_*.png`](01_abandono_vs_recuperacao_timeline/chart_01_serie_temporal_abandono_resgate.png) |
-| **02** | [`02_performance_categorias_produtos/`](02_performance_categorias_produtos/) | **Performance de Catálogo**: Sensibilidade de categorias (Eletrônicos, Moda, Beleza), atrito de preço e volume represado. | [`spec.md`](02_performance_categorias_produtos/spec.md) • [`generate_chart.py`](02_performance_categorias_produtos/generate_chart.py) • [`chart_02_*.png`](02_performance_categorias_produtos/chart_02_performance_categorias.png) |
-| **03** | [`03_roi_canais_e_comunicacao/`](03_roi_canais_e_comunicacao/) | **Topologia de Canais & ROI**: Custo unitário (Email R$0,05 vs WhatsApp R$0,30) e ROI multiplicador de **~45x**. | [`spec.md`](03_roi_canais_e_comunicacao/spec.md) • [`generate_chart.py`](03_roi_canais_e_comunicacao/generate_chart.py) • [`chart_03_*.png`](03_roi_canais_e_comunicacao/chart_03_roi_eficiencia_canais.png) |
-| **04** | [`04_matriz_motivos_segmentos_rfm/`](04_matriz_motivos_segmentos_rfm/) | **Causas-Raiz vs Segmentação RFM**: Frete > 15%, Pagamento, Indecisão, e validação de que segmentar compensa (Ratio 3x). | [`spec.md`](04_matriz_motivos_segmentos_rfm/spec.md) • [`generate_chart.py`](04_matriz_motivos_segmentos_rfm/generate_chart.py) • [`chart_04_*.png`](04_matriz_motivos_segmentos_rfm/chart_04_matriz_motivos_rfm_heatmap.png) |
-| **05** | [`05_matriz_viabilidade_recuperacao/`](05_matriz_viabilidade_recuperacao/) | **Matriz Prescritiva de Decisão**: Dispersão probabilidade x valor do carrinho e fila de priorização em tempo real. | [`spec.md`](05_matriz_viabilidade_recuperacao/spec.md) • [`generate_chart.py`](05_matriz_viabilidade_recuperacao/generate_chart.py) • [`chart_05_*.png`](05_matriz_viabilidade_recuperacao/chart_05_dispersao_viabilidade_recuperacao.png) |
-| **06** | [`06_data_quality_e_quarentena/`](06_data_quality_e_quarentena/) | **Governança & Data Quality (Item 4)**: Suíte Great Expectations (18 regras), conformidade 94.2% e quarentena Silver 5.8%. | [`spec.md`](06_data_quality_e_quarentena/spec.md) • [`generate_chart.py`](06_data_quality_e_quarentena/generate_chart.py) • [`chart_06_*.png`](06_data_quality_e_quarentena/chart_06_scorecard_data_quality.png) |
-| **07** | [`07_arquitetura_dadosfera_vs_aws/`](07_arquitetura_dadosfera_vs_aws/) | **Arquitetura & Prova de Conceito (Item 10)**: Comparativo da stack legada AWS vs Dadosfera (-86% lead time). | [`spec.md`](07_arquitetura_dadosfera_vs_aws/spec.md) • [`generate_chart.py`](07_arquitetura_dadosfera_vs_aws/generate_chart.py) • [`chart_07_*.png`](07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png) |
-| **08** | [`08_data_app_simulador_prescritivo_genai/`](08_data_app_simulador_prescritivo_genai/) | **Data App & GenAI (Itens 9 e Bônus)**: Simulador interativo de ROI em Streamlit e copywriting semântico dinâmico. | [`spec.md`](08_data_app_simulador_prescritivo_genai/spec.md) • [`generate_chart.py`](08_data_app_simulador_prescritivo_genai/generate_chart.py) • [`chart_08_*.png`](08_data_app_simulador_prescritivo_genai/chart_08_simulador_roi_data_app.png) |
+| **06 (Item 6)** | [`views/caseitem06/`](views/caseitem06/) | **Modelagem Dimensional Kimball (Star Schema)**: Camada Gold no Snowflake Data Lakehouse, 6 dimensões conformadas, 2 fatos granulares, linhagem Medallion e 2 visões analíticas (`v_abandonment_summary` e `v_recovery_roi_by_segment`). | [`spec.md`](views/caseitem06/spec.md) • [`generate_chart.py`](views/caseitem06/generate_chart.py) • [`chart_caseitem06_kimball_model.png`](views/caseitem06/chart_caseitem06_kimball_model.png) |
+| **04 (Item 4)** | [`06_data_quality_e_quarentena/`](06_data_quality_e_quarentena/) | **Governança & Data Quality (Item 4)**: Suíte Great Expectations (18 regras), conformidade global de 94.2% e quarentena Silver de Anomalias de 5.8% (DEC-006). | [`spec.md`](06_data_quality_e_quarentena/spec.md) • [`generate_chart.py`](06_data_quality_e_quarentena/generate_chart.py) • [`chart_06_scorecard_data_quality.png`](06_data_quality_e_quarentena/chart_06_scorecard_data_quality.png) |
+| **10 (Item 10)** | [`07_arquitetura_dadosfera_vs_aws/`](07_arquitetura_dadosfera_vs_aws/) | **Arquitetura & Prova de Conceito (Item 10)**: Comparativo da stack legada AWS vs Plataforma Dadosfera (-86% lead time e zero risco de sharding). | [`spec.md`](07_arquitetura_dadosfera_vs_aws/spec.md) • [`generate_chart.py`](07_arquitetura_dadosfera_vs_aws/generate_chart.py) • [`chart_07_arquitetura_dadosfera_vs_aws.png`](07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png) |
+| **09 (Itens 9 & Bônus)** | [`08_data_app_simulador_prescritivo_genai/`](08_data_app_simulador_prescritivo_genai/) | **Data App & GenAI (Itens 9 e Bônus)**: Simulador interativo de sensibilidade de ROI em Streamlit e personalização semântica de copywriting via LLMs. | [`spec.md`](08_data_app_simulador_prescritivo_genai/spec.md) • [`generate_chart.py`](08_data_app_simulador_prescritivo_genai/generate_chart.py) • [`chart_08_simulador_roi_data_app.png`](08_data_app_simulador_prescritivo_genai/chart_08_simulador_roi_data_app.png) |
 
 ---
 
 ## ⚙️ Como Executar os Geradores Visuais
 
-### 1. Execução Consolidada (Todos os Gráficos)
-Para gerar todos os 8 artefatos visuais de uma só vez:
+### 1. Execução Consolidada dos Dashboards do Pitch
+Para gerar todos os 4 artefatos de infraestrutura e arquitetura do pitch:
 ```bash
 python presentation/pitch/run_all_pitch_charts.py
 ```
 
-### 2. Execução Individual por Módulo
+### 2. Execução Consolidada da Galeria de Insights de Negócio
+Para gerar toda a suíte de 10+ gráficos analíticos de negócio:
+```bash
+python presentation/insights/run_all_insights_charts.py
+```
+
+### 3. Execução Individual por Módulo
 Você pode entrar em qualquer subdiretório e executar seu script isoladamente:
 ```bash
-python presentation/pitch/01_abandono_vs_recuperacao_timeline/generate_chart.py
-python presentation/pitch/03_roi_canais_e_comunicacao/generate_chart.py
+python presentation/pitch/views/caseitem06/generate_chart.py
+python presentation/pitch/06_data_quality_e_quarentena/generate_chart.py
+python presentation/pitch/07_arquitetura_dadosfera_vs_aws/generate_chart.py
+python presentation/pitch/08_data_app_simulador_prescritivo_genai/generate_chart.py
 ```
-*Cada script lê os datasets estruturados em Parquet e salva a imagem correspondente em alta resolução (300 DPI) dentro do próprio diretório.*
+*Cada script consome os datasets estruturados em Parquet (`data/mock/output_cleaned/parquet/`) e salva a imagem correspondente em alta resolução (300 DPI) dentro do próprio diretório.*

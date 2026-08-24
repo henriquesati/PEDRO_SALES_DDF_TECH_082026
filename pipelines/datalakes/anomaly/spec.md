@@ -1,7 +1,7 @@
-# ⚠️ Especificação Imutável: Camada Anomaly (Silver Dead-Letter / Quarentena de Anomalias)
+# ⚠️ Especificação Imutável: Camada Anomaly (Silver Quarentena de Anomalias)
 
 > **Doc ID:** `spec_datalake_anomaly_001`  
-> **Camada:** `Anomaly (Silver Quarentena / Dead-Letter)`  
+> **Camada:** `Anomaly (Silver Quarentena de Anomalias de Dados)`  
 > **Natureza:** Objeto Imutável de Auditoria, Isolamento e Governança de Falhas  
 > **Banco / Schema:** Snowflake `CART_RECOVERY_ANOMALIES.*`  
 > **Padrão Arquitetural:** Dual-Artifact Pipeline (DEC-006)  
@@ -11,7 +11,7 @@
 
 ## 1. 📌 Objetivo e Princípios da Camada Anomaly
 
-A camada **Anomaly (Silver Quarentena)** é o mecanismo de tolerância e salvaguarda do Data Lakehouse. Em vez de descartar registros que violam contratos de integridade ou abortar pipelines inteiros, a camada Anomaly isola cada tupla problemática em quarentena dead-letter. Isso garante que a camada Silver Qualify permaneça 100% confiável para consumo downstream, enquanto os times de engenharia e sustentação têm visibilidade total dos desvios para auditoria, diagnóstico de causa-raiz e conciliação.
+A camada **Anomaly (Silver Quarentena)** é o mecanismo de tolerância e salvaguarda do Data Lakehouse. Em vez de descartar registros que violam contratos de integridade ou abortar pipelines inteiros, a camada Anomaly isola cada tupla problemática em quarentena estruturada. Isso garante que a camada Silver Qualify permaneça 100% confiável para consumo downstream, enquanto os times de engenharia e sustentação têm visibilidade total dos desvios para auditoria, diagnóstico de causa-raiz e conciliação.
 
 ### Princípios Fundamentais:
 1. **Preservação Integral do Payload de Origem:** Cada registro encaminhado à quarentena mantém seu conteúdo original inalterado, permitindo reprocessamento após correções sistêmicas ou ajustes de regras na origem.

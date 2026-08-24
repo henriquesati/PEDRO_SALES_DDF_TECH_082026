@@ -45,7 +45,7 @@ wheels/
 
 ---
 
-## 3. 🛡️ Abordagem Metodológica Dadosfera: Qualify + Dead-Letter Architecture
+## 3. 🛡️ Abordagem Metodológica Dadosfera: Qualify + Quarentena de Anomalias
 
 Em conformidade com a arquitetura de lakehouse da Dadosfera, a estratégia de qualidade **NÃO** realiza apenas detecção passiva; ela governa o fluxo de dados através do padrão **Dual-Artifact Silver Bifurcation**:
 
@@ -61,7 +61,7 @@ flowchart TD
 ```
 
 ### Princípios da Abordagem:
-1. **Sem Descarte Silencioso (`Dead-Letter Queue / Quarentena`):** Nenhum dado é deletado às cegas. Registros com inconsistências severas são roteados para `[entidade]_anomalies` com timestamp, payload original e motivo de falha (`anomaly_reason`).
+1. **Sem Descarte Silencioso (`Quarentena de Anomalias`):** Nenhum dado é deletado às cegas. Registros com inconsistências severas são roteados para `[entidade]_anomalies` com timestamp, payload original e motivo de falha (`anomaly_reason`).
 2. **Separação entre Detecção e Tratamento:**
    - **`SANITIZE`**: Correção determinística sem perda de informação (ex: `ABS(valor_frete)` para fretes negativos causados por bug de sinal).
    - **`ISOLATE`**: Quarentena imediata para inconsistências matemáticas ou estruturais irrecuperáveis (ex: `subtotal <= 0` com múltiplos itens).

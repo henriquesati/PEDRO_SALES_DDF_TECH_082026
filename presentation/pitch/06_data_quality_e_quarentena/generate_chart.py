@@ -21,7 +21,7 @@ OUTPUT_IMAGE_PATH: Final[str] = os.path.join(
 )
 
 def plot_data_quality_scorecard() -> plt.Figure:
-    """Gera visualização de scorecard de conformidade e dead-letter Silver."""
+    """Gera visualização de scorecard de conformidade e quarentena de anomalias Silver."""
     apply_dadosfera_theme()
     
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.0, 6.5), gridspec_kw={"width_ratios": [1, 1.2]})
@@ -29,7 +29,7 @@ def plot_data_quality_scorecard() -> plt.Figure:
     # Gráfico 1: Rosca de Conformidade Global
     sizes = [94.2, 5.8]
     colors = [DADOSFERA_PALETTE.accent_green, DADOSFERA_PALETTE.accent_coral]
-    labels = ["Camada Qualify\n(Aprovados: 94.2%)", "Quarentena Anomalies\n(Dead-letter: 5.8%)"]
+    labels = ["Camada Qualify\n(Aprovados: 94.2%)", "Quarentena Anomalies\n(Anomalias: 5.8%)"]
     
     wedges, texts, autotexts = ax1.pie(
         sizes, 
@@ -64,7 +64,7 @@ def plot_data_quality_scorecard() -> plt.Figure:
     ax2.set_yticks(y_pos)
     ax2.set_yticklabels(anomalias, fontsize=10, fontweight="bold", color=DADOSFERA_PALETTE.text_light)
     ax2.set_xlabel("Taxa de Incidência Interceptada (%)", fontsize=11, fontweight="bold", color=DADOSFERA_PALETTE.text_light)
-    ax2.set_title("Dead-Letter Silver: Anomalias Isoladas", fontsize=13, fontweight="bold", pad=10)
+    ax2.set_title("Quarentena Silver: Anomalias Isoladas", fontsize=13, fontweight="bold", pad=10)
     ax2.set_xlim(0, 7.5)
     
     for i, bar in enumerate(bars):

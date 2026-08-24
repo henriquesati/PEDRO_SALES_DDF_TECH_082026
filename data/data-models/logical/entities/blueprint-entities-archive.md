@@ -208,7 +208,7 @@ A estrutura do artefato reflete as atribuições estritas da plataforma de dados
 |---|---|---|
 | Raw / Bronze | `raw_[entidade]` | Dados brutos preservados diretamente da origem transacional |
 | Qualify / Silver | `qualify_[entidade]` | Dados tipados, deduplicados, sanitizados e validados com integridade relacional |
-| Anomaly / Silver | `[entidade]_anomalies` | Repositório de evidências, dead-letter e alertas de qualidade para atuação do domínio |
+| Anomaly / Silver | `[entidade]_anomalies` | Repositório de evidências, quarentena de anomalias e alertas de qualidade para atuação do domínio |
 | Curated / Gold | `[dim/fct/view]_[entidade]` | Dados modelados dimensionalmente, enriquecidos e prontos para consumo analítico e operacional |
 
 ## Lineage

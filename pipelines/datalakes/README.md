@@ -1,7 +1,7 @@
 # 🏗️ Arquitetura de Datalakes — Pipelines de Dados (Medallion & Quarentena)
 
 > **Módulo:** `pipelines/datalakes/`  
-> **Padrão Arquitetural:** Lakehouse Medallion + Dead-Letter (Raw ➔ Qualify / Anomaly ➔ Curated)  
+> **Padrão Arquitetural:** Lakehouse Medallion + Quarentena de Anomalias (Raw ➔ Qualify / Anomaly ➔ Curated)  
 > **Framework Normativo:** DEC-001 (Métricas em Execução) + DEC-004 (Sem SQL Local) + DEC-006 (Dual-Artifact Qualify/Anomaly) + DEC-008 (Kimball Dimensional)  
 > **Status:** ✅ Objeto Imutável de Especificação Centralizada  
 
@@ -32,7 +32,7 @@ pipelines/datalakes/
 │   ├── itens_carrinho_qualify/         # itens_carrinho_qualify + metadata.md
 │   ├── eventos_carrinho_qualify/       # eventos_carrinho_qualify + metadata.md
 │   └── eventos_resgate_qualify/        # eventos_resgate_qualify + metadata.md
-├── anomaly/                            # Camada Silver Dead-Letter: Quarentena & Diagnóstico (DEC-006)
+├── anomaly/                            # Camada Silver Quarentena: Armazenamento & Diagnóstico de Anomalias (DEC-006)
 │   ├── spec.md                         # Especificação da Camada Anomaly
 │   ├── carrinhos_anomalies/            # carrinhos_anomalies + metadata.md
 │   ├── pedidos_anomalies/              # pedidos_anomalies + metadata.md
@@ -78,7 +78,7 @@ flowchart LR
         Q7[eventos_resgate]
     end
 
-    subgraph Anomaly [Zona Anomaly - Dead-Letter]
+    subgraph Anomaly [Zona Anomaly - Quarentena de Anomalias]
         AN1[carrinhos_anomalies]
         AN2[pedidos_anomalies]
         AN3[clientes_anomalies]

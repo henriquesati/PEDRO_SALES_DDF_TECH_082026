@@ -17,7 +17,7 @@ Este documento funciona como a fonte normativa para:
 - Especificação e catalogação de pipelines (Bronze $\rightarrow$ Silver $\rightarrow$ Gold);
 - Definição de transformações e enriquecimentos;
 - Definição de regras de *Data Quality* (contratos e validações);
-- Classificação e roteamento de anomalias (*dead-letter / quarantine*);
+- Classificação e roteamento de anomalias (*quarentena de anomalias*);
 - Definição de linhagem e rastreabilidade (*Lineage*);
 - Geração padronizada de artefatos por agentes de IA e engenheiros.
 

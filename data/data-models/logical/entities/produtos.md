@@ -246,7 +246,7 @@ dim_produtos / fct_performance_sortimento_resgate (Curated Gold)
 |---|---|---|
 | Raw / Bronze | `raw_produtos` (`/raw/recuperacao_carrinho/produtos.parquet`) | Dados brutos preservados diretamente do catálogo comercial |
 | Qualify / Silver | `qualify_produtos` (`CART_RECOVERY.PRODUTOS`) | Dados de catálogo tipados, deduplicados, sanitizados e validados |
-| Anomaly / Silver | `produtos_anomalies` (`CART_RECOVERY.PRODUTOS_ANOMALIES`) | Repositório de evidências, dead-letter e alertas de qualidade para atuação do Comercial/Catálogo |
+| Anomaly / Silver | `produtos_anomalies` (`CART_RECOVERY.PRODUTOS_ANOMALIES`) | Repositório de evidências, quarentena de anomalias e alertas de qualidade para atuação do Comercial/Catálogo |
 | Curated / Gold | `dim_produtos`, `dim_produtos_performance`, `view_produtos_resgate` | Dados modelados dimensionalmente para consumo analítico e operacional |
 
 ## Lineage

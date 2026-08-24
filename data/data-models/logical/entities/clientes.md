@@ -270,7 +270,7 @@ dim_clientes / fct_perfil_cliente_360 (Curated Gold)
 |---|---|---|
 | Raw / Bronze | `raw_clientes` (`/raw/recuperacao_carrinho/clientes.parquet`) | Dados brutos preservados diretamente da origem cadastral transacional |
 | Qualify / Silver | `qualify_clientes` (`CART_RECOVERY.CLIENTES`) | Dados cadastrais tipados, deduplicados, sanitizados e validados com permissões |
-| Anomaly / Silver | `clientes_anomalies` (`CART_RECOVERY.CLIENTES_ANOMALIES`) | Repositório de evidências, dead-letter e alertas de qualidade para atuação do CRM/Domínio |
+| Anomaly / Silver | `clientes_anomalies` (`CART_RECOVERY.CLIENTES_ANOMALIES`) | Repositório de evidências, quarentena de anomalias e alertas de qualidade para atuação do CRM/Domínio |
 | Curated / Gold | `dim_clientes`, `dim_clientes_rfm`, `view_clientes_resgate` | Dados modelados dimensionalmente, enriquecidos com comportamento 360° |
 
 ## Lineage

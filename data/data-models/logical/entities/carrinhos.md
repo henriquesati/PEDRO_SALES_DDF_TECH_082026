@@ -285,7 +285,7 @@ dim_carrinhos / fct_recuperacao_carrinho (Curated Gold)
 |---|---|---|
 | Raw / Bronze | `raw_carrinhos` (`/raw/recuperacao_carrinho/carrinhos.parquet`) | Dados brutos preservados diretamente da origem transacional |
 | Qualify / Silver | `qualify_carrinhos` (`CART_RECOVERY.CARRINHOS`) | Dados tipados, deduplicados, sanitizados e validados com integridade relacional |
-| Anomaly / Silver | `carrinhos_anomalies` (`CART_RECOVERY.CARRINHOS_ANOMALIES`) | Repositório de evidências, dead-letter e alertas de qualidade para atuação do domínio |
+| Anomaly / Silver | `carrinhos_anomalies` (`CART_RECOVERY.CARRINHOS_ANOMALIES`) | Repositório de evidências, quarentena de anomalias e alertas de qualidade para atuação do domínio |
 | Curated / Gold | `dim_carrinhos`, `fct_recuperacao_carrinho`, `view_carrinhos_resgate` | Dados modelados dimensionalmente, enriquecidos e prontos para consumo analítico e operacional |
 
 ## Lineage

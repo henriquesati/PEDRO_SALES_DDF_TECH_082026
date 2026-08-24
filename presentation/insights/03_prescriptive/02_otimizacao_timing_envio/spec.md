@@ -1,12 +1,19 @@
 # Especificação Visual & BI: Otimização de Timing de Envio
 
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)
+
 ## 📌 Contexto & Pergunta de Negócio
 - **Pergunta Central**: Qual é a janela temporal ótima (latência pós-abandono: +1h, +6h, +24h, +48h, +72h) e qual cadência de disparos maximiza as taxas de abertura e conversão sem provocar atrito ou descadastros?
-- **Insight de Negócio**: A análise empírica da telemetria de disparos comprova uma **Curva Acentuada de Decaimento (Decay Curve)**: o primeiro toque disparado em até **1 hora** concentra a esmagadora maioria das conversões de resgate (taxa de conversão superior a 1,03% em disparo frio e até 10-15% em clientes cadastrados/Premium). A partir de 24 horas, a conversão sofre uma queda de mais de 70%, tornando disparos tardios (+72h) ineficientes a menos que acompanhados de forte gatilho de urgência ou cupom agressivo.
+- **Insight de Negócio**: A análise empírica da telemetria de disparos comprova uma **Curva Acentuada de Decaimento (Decay Curve)**: o primeiro toque disparado em até **1 hora** concentra a esmagadora maioria das conversões de resgate (86,4% do total recuperado). A partir de 24 horas, a conversão sofre uma queda de mais de 70%, tornando disparos tardios (+72h) ineficientes a menos que acompanhados de forte gatilho de urgência ou cupom agressivo.
 
 > [!NOTE]
-> **Foco do Projeto em Proporções (%)**: A curva de decaimento temporal e as taxas de abertura e conversão são métricas percentuais relativas universais. O cliente pode conectar sua própria volumetria e Ticket Médio operacional sem distorcer o comportamento de resposta temporal dos consumidores.
+> **[FLAG: REVIEW PENDENTE - METODOLOGIA DE TIMING DE DISPARO]**  
+> **Conclusão Metodológica para o Pitch**: Em vez de afirmar que *"o horário ótimo é +1h"*, a formulação defensável é:  
+> *"Nos dados observados, +1h apresentou a maior taxa de conversão e concentrou a maior parte das conversões (86,4%), indicando +1h como a janela inicial candidata prioritária à otimização contínua via experimentação (testes A/B)."*
 
+> [!NOTE]
+> **Foco do Projeto em Proporções (%) & Referência Pitch Spec**: A curva de decaimento temporal e as taxas de abertura e conversão são métricas percentuais relativas universais (DEC-001). O cliente pode conectar sua própria volumetria e Ticket Médio operacional sem distorcer o comportamento de resposta temporal dos consumidores, utilizando a *Entidade Exemplo de Baseline* declarada em [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md#42-entidade-exemplo-de-negócio-baseline-mock-para-simulações-monetárias).
 
 ---
 

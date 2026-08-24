@@ -1,11 +1,14 @@
 # Especificação Visual & BI: Motivos de Abandono de Carrinho
 
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)
+
 ## 📌 Contexto & Pergunta de Negócio
 - **Pergunta Central**: Qual razão de abandono causa a maior perda de volume e receita na plataforma e como esses motivos se distribuem entre diferentes causas-raiz e dispositivos?
 - **Insight de Negócio**: A análise descritiva dos 5.231 carrinhos abandonados revela que **Preço Alto (1.307 un / 25,0%)** e **Frete Caro (1.207 un / 23,1%)** são as duas principais causas-raiz de atrito no marketplace, somando mais de 48% de todo o volume abandonado. **Indecisão (1.045 un / 20,0%)** e **Problemas no Pagamento (961 un / 18,4%)** concentram-se principalmente em dispositivos móveis.
 
 > [!NOTE]
-> **Foco do Projeto em Proporções (%)**: O núcleo desta análise é estruturado em proporções e volumes de atrito. O Treemap principal é 100% focado em contagem e participação percentual (%) sem poluição financeira, permitindo ao cliente adequar seu próprio Ticket Médio. A perda financeira em R$ é gerada em gráfico separado como baseline da *Entidade Exemplo* (TM Global = R$ 375,00).
+> **Foco do Projeto em Proporções (%) & Referência Pitch Spec**: O núcleo desta análise é estruturado em proporções e volumes de atrito (DEC-001). O Treemap principal é 100% focado em contagem e participação percentual (%) sem poluição financeira, permitindo ao cliente adequar seu próprio Ticket Médio. A perda financeira em R$ é gerada em gráfico separado como baseline da *Entidade Exemplo* declarada em [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md#42-entidade-exemplo-de-negócio-baseline-mock-para-simulações-monetárias) (TM Global = R$ 375,00).
 
 ---
 

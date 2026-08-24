@@ -272,7 +272,7 @@ fct_campanhas_resgate / view_performance_roi_resgate (Curated Gold)
 |---|---|---|
 | Raw / Bronze | `raw_eventos_resgate` (`/raw/recuperacao_carrinho/resgate.parquet`) | Logs brutos de envio e webhooks de marketing preservados da origem |
 | Qualify / Silver | `qualify_eventos_resgate` (`CART_RECOVERY.EVENTOS_RESGATE`) | Dados de campanhas tipados, sanitizados e validados com integridade relacional |
-| Anomaly / Silver | `eventos_resgate_anomalies` (`CART_RECOVERY.EVENTOS_RESGATE_ANOMALIES`) | Repositório de evidências, dead-letter e alertas de desvio de engajamento |
+| Anomaly / Silver | `eventos_resgate_anomalies` (`CART_RECOVERY.EVENTOS_RESGATE_ANOMALIES`) | Repositório de evidências, quarentena de anomalias e alertas de desvio de engajamento |
 | Curated / Gold | `fct_campanhas_resgate`, `view_performance_roi_resgate` | Dados agregados em métricas de ROI e eficácia de marketing para BI |
 
 ## Lineage

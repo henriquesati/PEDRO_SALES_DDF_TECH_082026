@@ -14,7 +14,7 @@ Este documento estabelece as diretrizes normativas de arquitetura, classificaç�
 
 1. **Raw (Bronze):** Zona de aterrissagem bruta onde os dados operacionais são preservados em seu estado de origem, assegurando replayability, auditoria e rastreabilidade temporal sem transformações destrutivas.
 2. **Qualify (Silver):** Zona de conformidade técnica e padronização tipológica, responsável por executar contratos de dados rígidos, deduplicação e limpeza de domínios.
-3. **Anomaly (Silver Quarentena / Dead-Letter):** Zona de isolamento de registros corrompidos ou que violam regras de integridade contábil e de negócio, permitindo auditoria, diagnóstico de causas-raiz e governança contínua sem interrupção do pipeline principal.
+3. **Anomaly (Silver Quarentena de Anomalias):** Zona de isolamento de registros corrompidos ou que violam regras de integridade contábil e de negócio, permitindo auditoria, diagnóstico de causas-raiz e governança contínua sem interrupção do pipeline principal.
 4. **Curated (Gold):** Zona dimensional analítica estruturada no paradigma Kimball Star Schema, combinando entidades conformadas, métricas aditivas e visões de negócio prontas para consumo executivo no Metabase e em Data Apps.
 
 ---
@@ -45,7 +45,7 @@ pipelines/datalakes/
 │   ├── itens_carrinho_qualify/         # itens_carrinho_qualify + metadata.md
 │   ├── eventos_carrinho_qualify/       # eventos_carrinho_qualify + metadata.md
 │   └── eventos_resgate_qualify/        # eventos_resgate_qualify + metadata.md
-├── anomaly/                            # Zona Silver Dead-Letter (Quarentena DEC-006)
+├── anomaly/                            # Zona Silver Quarentena (Anomalias DEC-006)
 │   ├── spec.md                         # Diretrizes gerais da camada Anomaly
 │   ├── carrinhos_anomalies/            # carrinhos_anomalies + metadata.md
 │   ├── pedidos_anomalies/              # pedidos_anomalies + metadata.md
@@ -109,7 +109,7 @@ A camada Raw é o repositório imutável de entrada. Sua função primordial é 
 ### 4.2 Camada Qualify (Silver)
 A camada Qualify consolida os dados tecnicamente limpos e tipados. É nela que são aplicadas as padronizações de datas para formato canônico, conversões numéricas, higienização sintática de strings e a execução estrita das **validações declaradas no corpo da entidade**. A granularidade atômica original é rigorosamente mantida, não sendo permitidas agregações prematuras que ocultem o grão da fonte.
 
-### 4.3 Camada Anomaly (Quarentena / Dead-Letter)
+### 4.3 Camada Anomaly (Quarentena de Anomalias de Dados)
 A camada Anomaly atua como salvaguarda da integridade do Data Lakehouse. Em conformidade com o DEC-006, registros que não superam os testes de sanidade contábil (como equações financeiras incoerentes ou fretes negativos) ou regras de integridade referencial são direcionados para a quarentena. Cada registro anômalo é preservado com seu payload íntegro acompanhado de identificador único de auditoria, código do erro, severidade e timestamp de detecção.
 
 ### 4.4 Camada Curated (Gold)

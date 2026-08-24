@@ -59,7 +59,7 @@ def task_quality_eval() -> None:
 def task_pitch_charts() -> None:
     """Executa o orquestrador consolidado de gráficos do Pitch (Item 10)."""
     script_path = os.path.join(BASE_DIR, "presentation", "pitch", "run_all_pitch_charts.py")
-    print("\n[TASK: pitch-charts] Gerando os 8 gráficos e painéis visuais do Pitch...")
+    print("\n[TASK: pitch-charts] Gerando os gráficos e painéis visuais do Pitch...")
     subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
 
 def task_insights_charts() -> None:
@@ -68,6 +68,31 @@ def task_insights_charts() -> None:
     print("\n[TASK: insights-charts] Gerando gráficos de Insights...")
     subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
 
+def task_push_read(commit_msg: str | None = None) -> None:
+    """Faz commit e push exclusivamente do arquivo README.md."""
+    msg = commit_msg or "docs: update README.md"
+    readme_path = "README.md"
+    
+    print("\n[TASK: push-read] Adicionando exclusivamente o README.md ao staging...")
+    res_add = subprocess.run(["git", "add", readme_path], cwd=BASE_DIR)
+    if res_add.returncode != 0:
+        print("[ERRO] Falha ao adicionar README.md ao git.", file=sys.stderr)
+        sys.exit(res_add.returncode)
+
+    print(f"[TASK: push-read] Criando commit: '{msg}'...")
+    res_commit = subprocess.run(["git", "commit", "-m", msg], cwd=BASE_DIR)
+    if res_commit.returncode != 0:
+        print("[AVISO] Nenhuma alteração pendente no README.md para commitar.")
+        return
+
+    print("[TASK: push-read] Enviando alterações ao repositório remoto (git push)...")
+    res_push = subprocess.run(["git", "push"], cwd=BASE_DIR)
+    if res_push.returncode == 0:
+        print("\n[OK] [TASK: push-read] README.md commitado e enviado com sucesso ao GitHub!\n")
+    else:
+        print("[ERRO] Falha no git push.", file=sys.stderr)
+        sys.exit(res_push.returncode)
+
 def print_help() -> None:
     print("""
 =============================================================================
@@ -75,6 +100,7 @@ def print_help() -> None:
 =============================================================================
 Comandos disponíveis:
 
+  python make.py push-read [MSG]            Commita e envia EXCLUSIVAMENTE o README.md
   python make.py pitch-charts               Gera todos os 8 gráficos do Pitch (Item 10)
   python make.py insights-charts            Gera os gráficos de Insights (presentation/insights/)
   python make.py notebook-gen               Gera todas as 6 imagens de BI
@@ -86,9 +112,10 @@ Comandos disponíveis:
   python make.py help                       Exibe este menu de ajuda
 
 Atalhos diretos no Windows CLI:
+  .\\push-read                               (commita e sobe o README.md)
+  .\\push-read "mensagem personalizada"      (com mensagem de commit customizada)
+  .\\make push-read                         (executa via make wrapper)
   .\\notebook-gen                            (executa notebook-gen diretamente)
-  .\\notebook-gen categories                 (gera gráfico específico)
-  .\\make notebook-gen                       (executa via wrapper make)
 =============================================================================
 """)
 
@@ -100,7 +127,9 @@ def main():
     command = sys.argv[1].lower().replace("-", "_")
     arg = sys.argv[2] if len(sys.argv) > 2 else None
 
-    if command in ("pitch_charts", "pitch", "pitch_gen"):
+    if command in ("push_read", "pushread", "push_readme", "pushreadme"):
+        task_push_read(arg)
+    elif command in ("pitch_charts", "pitch", "pitch_gen"):
         task_pitch_charts()
     elif command in ("insights_charts", "insights", "insight_charts"):
         task_insights_charts()

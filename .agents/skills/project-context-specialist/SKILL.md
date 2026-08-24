@@ -86,16 +86,16 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
   - `03_roi_canais_e_comunicacao/` (Topologia de Canais, Custos & ROI Multiplicador de ~45x)
   - `04_matriz_motivos_segmentos_rfm/` (Causas-Raiz vs Segmentação RFM - Ratio 3x)
   - `05_matriz_viabilidade_recuperacao/` (Matriz Prescritiva de Viabilidade & Priorização)
-  - `06_data_quality_e_quarentena/` (Governança & Dead-Letter Silver - Great Expectations 18 regras)
+  - `06_data_quality_e_quarentena/` (Governança & Quarentena Silver de Anomalias - Great Expectations 18 regras)
   - `07_arquitetura_dadosfera_vs_aws/` (Comparativo Arquitetural & -86% Lead Time)
   - `08_data_app_simulador_prescritivo_genai/` (Data App Streamlit & GenAI com LLMs)
 - **Orquestrador Central (`run_all_pitch_charts.py`)**: Script funcional para execução ponta a ponta dos geradores visuais.
 
 ### ✅ 7. Arquitetura de Data Lakehouse & Catálogo de Metadados por Entidade (`pipelines/datalakes/`)
-- **Arquitetura em 4 Camadas**: Estruturação formal do Lakehouse Medallion com Dead-Letter em:
+- **Arquitetura em 4 Camadas**: Estruturação formal do Lakehouse Medallion com Quarentena de Anomalias em:
   - **`raw/` (Bronze)**: Ingestão bruta e preservação integral *as-is* com replayability e rastreabilidade (`spec_datalake_raw_001`).
   - **`qualify/` (Silver)**: Limpeza técnica, padronização tipológica e execução de contratos rígidos (`spec_datalake_qualify_001`).
-  - **`anomaly/` (Silver Quarentena / Dead-Letter - DEC-006)**: Isolamento de falhas contábeis e de negócio com diagnóstico de causa-raiz e severidades sem interrupção do pipeline (`spec_datalake_anomaly_001`).
+  - **`anomaly/` (Silver Quarentena de Anomalias - DEC-006)**: Isolamento de falhas contábeis e de negócio com diagnóstico de causa-raiz e severidades sem interrupção do pipeline (`spec_datalake_anomaly_001`).
   - **`curated/` (Gold Kimball - DEC-008)**: Modelagem dimensional analítica com medidas aditivas e cálculo de taxas em tempo de consulta (`spec_datalake_curated_001`).
 - **Padrão Diretório por Entidade**: Organização de 28 subdiretórios individuais nas 4 camadas (`[entidade]_raw/`, `[entidade]_qualify/`, `[entidade]_anomalies/`, `[entidade]_curated/`), contendo o respectivo arquivo `metadata.md`.
 - **Formato Híbrido e Texto Corrido Fluido**:

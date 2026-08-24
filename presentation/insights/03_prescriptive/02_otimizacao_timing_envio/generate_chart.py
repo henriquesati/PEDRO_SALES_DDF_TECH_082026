@@ -94,9 +94,9 @@ def plot_decay_timing_chart(df_timing: pd.DataFrame) -> plt.Figure:
     ax1_twin.plot(x_smooth, y_conv_smooth, color="#059669", linewidth=2.8, linestyle="--", label="Taxa de Conversão (%)")
     ax1_twin.scatter(x_real, y_conv_real, color="#047857", s=70, zorder=5, edgecolor="#FFFFFF", linewidth=1.5)
     
-    # Anotação do Ponto Ótimo (+1h)
+    # Anotação da Janela Inicial Candidata (+1h / 86,4% das conversões)
     ax1_twin.annotate(
-        "PONTO ÓTIMO DE DISPARO\n(+1h: Maior Abertura e Conversão)",
+        "JANELA CANDIDATA INICIAL\n(+1h: 86,4% das Conversões Observadas)",
         xy=(1.0, y_conv_real[0]),
         xytext=(15, y_conv_real[0] * 0.90),
         arrowprops=dict(facecolor="#059669", shrink=0.08, width=1.5, headwidth=7),

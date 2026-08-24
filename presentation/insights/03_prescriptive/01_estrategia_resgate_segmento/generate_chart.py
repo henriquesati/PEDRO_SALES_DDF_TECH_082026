@@ -104,15 +104,18 @@ def plot_prescriptive_strategy_chart(seg_summary: pd.DataFrame, df_viab: pd.Data
     plt.rcParams["axes.edgecolor"] = "#CBD5E1"
     plt.rcParams["axes.linewidth"] = 1.1
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14.0, 6.8), gridspec_kw={"width_ratios": [1.15, 1.05]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16.5, 7.2), gridspec_kw={"width_ratios": [1.48, 1.0]})
     fig.patch.set_facecolor("#FFFFFF")
 
     # --- PAINEL 1: Viabilidade Econômica Líquida por Resgate (R$) ---
     ax1.set_facecolor("#FFFFFF")
     
     segments = ["Premium", "Regular", "Dormant", "Novo"]
-    x = np.arange(len(segments))
-    width = 0.18
+    spacing = 2.10
+    x = np.arange(len(segments)) * spacing
+    
+    bar_width = 0.28
+    bar_step = 0.38  # espaçamento generoso entre barras para leitura nítida dos valores monetários
     
     channel_colors = {
         "WhatsApp": "#059669",
@@ -121,26 +124,36 @@ def plot_prescriptive_strategy_chart(seg_summary: pd.DataFrame, df_viab: pd.Data
         "Push": "#8B5CF6"
     }
 
+    max_y = 0.0
     for i, ch in enumerate(["WhatsApp", "SMS", "Email", "Push"]):
         vals = [
             df_viab[(df_viab["segmento"] == seg) & (df_viab["canal"] == ch)]["viab_liquida"].values[0]
             for seg in segments
         ]
-        offset = (i - 1.5) * width
-        bars = ax1.bar(x + offset, vals, width=width, label=ch, color=channel_colors[ch], alpha=0.90, edgecolor="#334155")
+        max_y = max(max_y, max(vals))
+        offset = (i - 1.5) * bar_step
+        bars = ax1.bar(
+            x + offset, vals, width=bar_width, label=ch,
+            color=channel_colors[ch], alpha=0.92, edgecolor="#1E293B", linewidth=0.8
+        )
         
         for bar, val in zip(bars, vals):
-            y_text = bar.get_height() + (0.5 if val >= 0 else -1.2)
-            ax1.text(bar.get_x() + bar.get_width()/2, y_text, f"R${val:.1f}",
-                     ha="center", va="bottom" if val >= 0 else "top", fontsize=8.5, fontweight="bold", color="#0F172A")
+            y_text = bar.get_height() + (0.7 if val >= 0 else -1.5)
+            ax1.text(
+                bar.get_x() + bar.get_width() / 2, y_text, f"R${val:.1f}",
+                ha="center", va="bottom" if val >= 0 else "top",
+                fontsize=8.5, fontweight="bold", color="#0F172A"
+            )
 
     ax1.axhline(0, color="#64748B", linestyle="-", linewidth=1.0)
     ax1.set_xticks(x)
-    ax1.set_xticklabels(segments, fontsize=11, fontweight="bold", color="#1E293B")
+    ax1.set_xticklabels(segments, fontsize=12, fontweight="bold", color="#1E293B")
+    ax1.set_xlim(x[0] - 0.90, x[-1] + 0.90)
+    ax1.set_ylim(0, max_y * 1.18)
     ax1.set_ylabel("Ganho Líquido Esperado por Resgate (R$)", fontsize=11, fontweight="bold", color="#334155")
     ax1.set_title("Simulador de Viabilidade Líquida por Canal & Segmento", fontsize=13, fontweight="bold", color="#0F172A", pad=12)
     ax1.grid(axis="y", linestyle="--", alpha=0.5, color="#CBD5E1")
-    ax1.legend(loc="upper right", frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5)
+    ax1.legend(loc="upper right", frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5, ncol=2)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
 

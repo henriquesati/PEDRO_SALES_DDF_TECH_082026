@@ -1,12 +1,14 @@
 # Especificação Visual & BI: Estratégia de Resgate por Segmento
 
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)
+
 ## 📌 Contexto & Pergunta de Negócio
 - **Pergunta Central**: Qual é a política ótima de resgate (timing, canal e incentivo financeiro) para cada segmento RFM (`Premium`, `Regular`, `Dormant`, `Novo`) que maximiza a receita recuperada líquida e impede o desperdício de margem com descontos desnecessários?
 - **Insight de Negócio**: Clientes **Premium** possuem ticket médio elevado (~R$ 800) e alta responsividade, o que gera uma **Viabilidade Líquida Unitária fortemente positiva** mesmo utilizando canais nobres de maior custo (WhatsApp a R$ 0,30 / atendimento VIP), sem necessidade de desconto. Por outro lado, para clientes **Novos** e **Dormant**, o uso de canais caros ou frete grátis irrestrito resulta em viabilidade negativa; a prescrição correta exige automação de custo quase zero (Email a R$ 0,05 / Push a R$ 0,02) e foco em *Social Proof* ou descontos progressivos condicionados ao valor da cesta.
 
 > [!NOTE]
-> **Foco do Projeto em Proporções (%)**: A modelagem de viabilidade baseia-se em multiplicadores de ROI e taxas relativas de conversão. O cliente pode plugar o seu próprio Ticket Médio por segmento para projetar seu ganho líquido. Os valores monetários apresentados refletem os tickets médios da *Entidade Exemplo de Baseline* (Premium R$ 800, Regular R$ 360, Novo R$ 250, Dormant R$ 200).
-
+> **Foco do Projeto em Proporções (%) & Referência Pitch Spec**: A modelagem de viabilidade baseia-se em multiplicadores de ROI e taxas relativas de conversão (DEC-001). O cliente pode plugar o seu próprio Ticket Médio por segmento para projetar seu ganho líquido. Os valores monetários apresentados refletem os tickets médios e custos de canal da *Entidade Exemplo de Baseline* declarados em [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md#42-entidade-exemplo-de-negócio-baseline-mock-para-simulações-monetárias) (Premium R$ 800, Regular R$ 360, Novo R$ 250, Dormant R$ 200, WhatsApp R$ 0,30, SMS R$ 0,15, Email R$ 0,05, Push R$ 0,02).
 
 ---
 

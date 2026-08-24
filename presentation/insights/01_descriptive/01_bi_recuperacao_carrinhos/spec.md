@@ -1,12 +1,14 @@
 # Especificação Visual & BI: Recuperação de Carrinhos
 
+> **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md) (Seções 4 e 5)  
+> **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)
+
 ## 📌 Contexto & Pergunta de Negócio
 - **Pergunta Central**: Qual é a evolução acumulada do volume de carrinhos no marketplace ao longo do primeiro semestre, qual a proporção de conversão direta no checkout e qual a contribuição do resgate de carrinhos abandonados?
 - **Insight de Negócio**: A visualização em camadas evidencia a dinâmica operacional do funil: o total atinge 7.500 carrinhos criados no semestre. A conversão direta orgânica atende **1.731 carrinhos (23,1%)**, enquanto as ações de recuperação Dadosfera resgatam **498 compras adicionais (6,64% do total / 10,60% sobre carrinhos abandonados)**, elevando o total comprado para **2.229 carrinhos (29,7%)**. Adicionalmente, há 153 carrinhos reengajados em andamento (2,04%), totalizando 651 carrinhos impactados por campanhas (8,68% / 13,85% de resgate). O atrito residual não convertido delimita 5.118 a 5.271 carrinhos (~68% a 70%).
 
 > [!NOTE]
-> **Foco do Projeto em Proporções (%)**: O núcleo desta análise é baseado em taxas percentuais e dinâmicas relativas do funil. O cliente pode adequar o seu próprio Ticket Médio e volumetria sem alterar as proporções analíticas. Os valores monetários absolutos (R$) apresentados utilizam a *Entidade Exemplo de Baseline* (Ticket Médio Global = R$ 375,00) para ilustrar simulações financeiras quando necessário.
-
+> **Foco do Projeto em Proporções (%) & Referência Pitch Spec**: O núcleo desta análise é baseado em taxas percentuais e dinâmicas relativas do funil (DEC-001). O cliente pode adequar o seu próprio Ticket Médio e volumetria sem alterar as proporções analíticas. Os valores monetários absolutos (R$) apresentados utilizam a *Entidade Exemplo de Baseline* declarada em [`presentation/pitch/pitch_spec.md`](../../../pitch/pitch_spec.md#42-entidade-exemplo-de-negócio-baseline-mock-para-simulações-monetárias) (Ticket Médio Global = R$ 375,00) para ilustrar simulações financeiras quando necessário.
 
 ---
 
