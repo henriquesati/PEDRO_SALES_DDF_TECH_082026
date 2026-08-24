@@ -49,8 +49,8 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
     - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *specificações de Regras de negócio, temporalidade de abandono (15 min) e status*
   - **📁 Diretórios relacionados (Geração & Carga de Dados Sintéticos):**
     - [`data/mock/generators/`](data/mock/generators/) — *Geradores modulares em Python com injeção determinística de dirty data (5%)*
-    - [`data/mock/output/`](data/mock/output/) — *Datasets sintéticos brutos (+115.777 registros em Parquet e CSV), contendo as partições `qualify/` (Silver Qualify) e `anomalies/` (Quarentena)*
-    - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets tratados e higienizados (Ground Truth para BI e Pitch), com pipeline de limpeza (`clean_all.py`)*
+    - [`data/mock/output/`](data/mock/output/) — *Datasets sintéticos brutos (+115.777 registros), organizados estritamente por formato de arquivo (`parquet/` e `csv/`)*
+    - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets higienizados e tratados (Ground Truth para BI e Pitch), organizados por formato (`parquet/` e `csv/`) com scripts de limpeza (`clean_all.py`)*
     - [`data/mock/METRICS.md`](data/mock/METRICS.md) — *Métricas de volumetria, distribuição e conformidade quantitativa*
   - **📁 Diretórios relacionados (Catálogo de Metadados & Qualify):**
     - [`data/catalogo/qualify/`](data/catalogo/qualify/) — *Dicionários de dados, contratos e schemas para ingestão na Dadosfera*
@@ -179,8 +179,8 @@ wheels/
 │   ├── data-models/logical/            # Modelagem Lógica Canônica (4 Divisões)
 │   └── mock/                           # Gerador modular e datasets gerados (Parquet/CSV)
 │       ├── generators/                 # Geradores Python com injeção de dirty data (5%)
-│       ├── output/                     # Datasets sintéticos brutos (parquet, csv, qualify, anomalies)
-│       └── output_cleaned/             # Datasets tratados/higienizados e scripts de limpeza
+│       ├── output/                     # Datasets sintéticos brutos por formato (csv/ e parquet/)
+│       └── output_cleaned/             # Datasets higienizados por formato (csv/ e parquet/) e scripts
 │
 ├── docs/
 │   ├── specifications/                 # Normas da plataforma e Data Quality
