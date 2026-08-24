@@ -46,7 +46,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
   - **📁 Definições de entidade:**
     - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificações de entidades canônicas ([`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
     - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Matriz de cardinalidade, integridade referencial e chaves*
-    - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *Regras de negócio, temporalidade de abandono (15 min) e status*
+    - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *specificações de Regras de negócio, temporalidade de abandono (15 min) e status*
   - **📁 Diretórios relacionados (Geração & Carga de Dados Sintéticos):**
     - [`data/mock/generators/`](data/mock/generators/) — *Geradores modulares em Python com injeção determinística de dirty data (5%)*
     - [`data/mock/output/`](data/mock/output/) — *Datasets sintéticos brutos (+115.777 registros em Parquet e CSV), contendo as partições `qualify/` (Silver Qualify) e `anomalies/` (Quarentena)*
