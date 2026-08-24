@@ -19,9 +19,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 - **Contratos e Governança de Metadados:** Alinhamento rigoroso à [Data Platform Specification](docs/specifications/data-platform-specification.md) e catálogo com Data Asset IDs mapeados.
 
 ---
-## 📋 2. Mapeamento de tarefas
-
-## 📋 2. Mapeamento de Requisitos do Case (Dadosfera)
+## 📋 2. Mapeamento de Tarefas do Case (Dadosfera)
 
 | Item | Tema | Fase do Ciclo | Entregas no Repositório | Status |
 |:---:|---|:---:|---|:---:|
@@ -41,22 +39,23 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 
 ### 🗂️ Mapeamento Detalhado de Tarefas por Entregável
 
-<div style="opacity: 0.65; color: #888888;">
+<div style="opacity: 0.60; color: #8c92a4;">
 
 - [x] **[X] [case-01] Definição da base de dados**
   - **.escolha de case carrinho** (*Recuperação de Carrinho Abandonado no Marketplace / E-commerce*)
-  - **📁 Diretórios que definem a Entidade Central & Modelagem Lógica:**
+  - **📁 Diretórios que definem a entidade:**
     - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificações de entidades canônicas ([`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
     - [`data/data-models/logical/relationships.md`](data/data-models/logical/relationships.md) — *Matriz de cardinalidade, integridade referencial e chaves*
     - [`data/data-models/logical/business-rules.md`](data/data-models/logical/business-rules.md) — *Regras de negócio, temporalidade de abandono (15 min) e status*
-  - **📁 Diretórios Relacionados (Schema SQL, DDL & Views):**
+  - **📁 Diretórios relacionados (Schema SQL, DDL & Views):**
     - [`data/database/sql/`](data/database/sql/) — *DDLs relacionais ([`001_create_tables.sql`](data/database/sql/001_create_tables.sql)), constraints ([`002_constraints.sql`](data/database/sql/002_constraints.sql)), índices ([`003_indexes.sql`](data/database/sql/003_indexes.sql)) e views analíticas ([`004_views.sql`](data/database/sql/004_views.sql))*
-  - **📁 Diretórios Relacionados (Geração & Carga de Dados Sintéticos):**
+  - **📁 Diretórios relacionados (Geração & Carga de Dados Sintéticos):**
     - [`data/mock/generators/`](data/mock/generators/) — *Geradores modulares em Python com injeção determinística de dirty data (5%)*
     - [`data/mock/output_cleaned/`](data/mock/output_cleaned/) — *Datasets finais em Parquet e CSV com +115.777 registros*
     - [`data/mock/METRICS.md`](data/mock/METRICS.md) — *Métricas de volumetria, distribuição e conformidade quantitativa*
-  - **📁 Diretórios Relacionados (Catálogo de Metadados & Qualify):**
+  - **📁 Diretórios relacionados (Catálogo de Metadados & Qualify):**
     - [`data/catalogo/qualify/`](data/catalogo/qualify/) — *Dicionários de dados, contratos e schemas para ingestão na Dadosfera*
+    - [`data/catalogo/business-catalog-classification.md`](data/catalogo/business-catalog-classification.md) — *Classificação e linhagem de catálogo*
 
 </div>
 
