@@ -1,7 +1,7 @@
 """
 Gerador das visualizações do Módulo 02: Motivos de Abandono de Carrinho.
-1. Gráfico de Dispersão: Decomposição de Volume e Carrinhos Abandonados por Causa-Raiz e Dispositivo.
-2. Gráfico de Impacto Financeiro: Perda Financeira Represada (R$) e Ticket Médio por Motivo (Separado).
+1. Treemap Hierárquico: Decomposição Proporcional de Volume por Causa-Raiz (Sem poluição financeira).
+2. Gráfico Separado de Impacto Financeiro: Perda Financeira Represada (R$) e Ticket Médio por Motivo.
 Atende estritamente à especificação de presentation/insights/02_motivos_abandono/spec.md.
 Paradigma funcional e declarativo com tipagem estrita (Type Annotations).
 """
@@ -12,19 +12,19 @@ import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 
 BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 MODULE_DIR: Final[str] = os.path.dirname(__file__)
 
-OUTPUT_DISPERSION_PATH: Final[str] = os.path.join(
-    MODULE_DIR, "chart_02_dispersao_motivos_abandono.png"
+OUTPUT_TREEMAP_PATH: Final[str] = os.path.join(
+    MODULE_DIR, "chart_02_treemap_motivos_abandono.png"
+)
+OUTPUT_OFFICIAL_PATH: Final[str] = os.path.join(
+    MODULE_DIR, "chart_02_motivos_abandono.png"
 )
 OUTPUT_FINANCIAL_PATH: Final[str] = os.path.join(
     MODULE_DIR, "chart_02_perda_financeira_motivos.png"
-)
-# Compatibilidade com o nome anterior
-OUTPUT_LEGACY_PATH: Final[str] = os.path.join(
-    MODULE_DIR, "chart_02_motivos_abandono.png"
 )
 
 PARQUET_CARTS_PATH: Final[str] = (
@@ -59,8 +59,7 @@ def prepare_aggregations(df: pd.DataFrame) -> pd.DataFrame:
     agg = df.groupby("motivo_label").agg(
         volume=("carrinho_id", "count"),
         receita_represada=("valor_total", "sum"),
-        ticket_medio=("valor_total", "mean"),
-        ticket_mediano=("valor_total", "median")
+        ticket_medio=("valor_total", "mean")
     ).reindex(order_motivos).reset_index()
     
     total_vol = agg["volume"].sum()
@@ -70,96 +69,92 @@ def prepare_aggregations(df: pd.DataFrame) -> pd.DataFrame:
     agg["pct_receita"] = (agg["receita_represada"] / total_rec) * 100
     return agg
 
-def plot_dispersion_chart(df: pd.DataFrame, agg: pd.DataFrame) -> plt.Figure:
-    """Gera o Gráfico de Dispersão (Scatter/Strip plot) de carrinhos abandonados por causa-raiz."""
+def plot_treemap_chart(agg: pd.DataFrame) -> plt.Figure:
+    """Gera o Treemap Hierárquico Proporcional ao volume, sem cifras financeiras."""
     plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
-    plt.rcParams["axes.edgecolor"] = "#CBD5E1"
-    plt.rcParams["axes.linewidth"] = 1.2
-
+    
     fig, ax = plt.subplots(figsize=(13.5, 7.2))
     fig.patch.set_facecolor("#FFFFFF")
     ax.set_facecolor("#FFFFFF")
-
-    motivo_list = agg["motivo_label"].tolist()
-    device_colors = {
-        "mobile": "#2563EB",   # Azul
-        "desktop": "#059669",  # Verde
-        "tablet": "#F59E0B"    # Âmbar
-    }
-    device_labels = {
-        "mobile": "Mobile",
-        "desktop": "Desktop",
-        "tablet": "Tablet"
-    }
-
-    np.random.seed(42)  # Reprodutibilidade estrita
-
-    # Plotagem pontual dos carrinhos distribuídos por motivo
-    for idx, motivo in enumerate(motivo_list):
-        df_m = df[df["motivo_label"] == motivo]
-        vol = len(df_m)
-        pct = agg.loc[agg["motivo_label"] == motivo, "pct_volume"].values[0]
-        tm = agg.loc[agg["motivo_label"] == motivo, "ticket_medio"].values[0]
-
-        # Jitter horizontal controlado
-        jitter = np.random.normal(0, 0.14, size=len(df_m))
-        jitter = np.clip(jitter, -0.32, 0.32)
-        x_vals = idx + jitter
-        y_vals = df_m["valor_total"].to_numpy()
-
-        for dev in ["mobile", "desktop", "tablet"]:
-            mask_dev = (df_m["dispositivo"] == dev).to_numpy()
-            if np.any(mask_dev):
-                ax.scatter(
-                    x_vals[mask_dev],
-                    y_vals[mask_dev],
-                    c=device_colors[dev],
-                    s=22,
-                    alpha=0.45,
-                    edgecolors="none",
-                    label=device_labels[dev] if idx == 0 else ""
-                )
-
-        # Marcador de Média
-        ax.scatter(idx, tm, color="#0F172A", s=90, zorder=6, marker="D", edgecolors="#FFFFFF", linewidth=1.5)
-
-        # Card superior com Volumetria
-        ax.text(
-            idx, 1530,
-            f"{vol:,.0f} un\n({pct:.1f}%)",
-            ha="center", va="center",
-            fontsize=10, fontweight="bold", color="#0F172A",
-            bbox=dict(boxstyle="round,pad=0.35", facecolor="#F1F5F9", edgecolor="#CBD5E1", alpha=0.95)
-        )
-
-        # Label de Ticket Médio
-        ax.text(
-            idx, tm + 45,
-            f"TM R${tm:.0f}",
-            ha="center", va="bottom",
-            fontsize=8.5, fontweight="bold", color="#0F172A"
-        )
-
-    ax.set_xticks(range(len(motivo_list)))
-    ax.set_xticklabels(motivo_list, fontsize=11, fontweight="bold", color="#1E293B")
-    ax.set_ylabel("Valor do Carrinho Abandonado (R$)", fontsize=11.5, fontweight="bold", color="#334155")
-    ax.set_ylim(0, 1650)
-    ax.set_title("DECOMPOSIÇÃO DE VOLUME: DISPERSÃO DE CARRINHOS POR CAUSA-RAIZ & DISPOSITIVO",
-                 fontsize=14, fontweight="bold", color="#0F172A", pad=15)
+    ax.axis("off")
     
-    ax.grid(axis="y", linestyle="--", alpha=0.5, color="#CBD5E1")
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-
-    # Legenda customizada
-    handles, labels = ax.get_legend_handles_labels()
-    mean_marker = plt.Line2D([0], [0], marker="D", color="w", markerfacecolor="#0F172A", markersize=8, label="Ticket Médio (R$)")
-    handles.append(mean_marker)
-    labels.append("Ticket Médio (R$)")
+    # Definição proporcional das coordenadas dos 6 blocos
+    # Total de 5.231 carrinhos (100%)
+    rects = [
+        # Preço Alto (1.307 un / 25.0%)
+        {
+            "name": "Preço Alto",
+            "pct": 25.0,
+            "desc": "1.307 carrinhos abandonados por preços elevados",
+            "bbox": [0.0, 0.50, 0.50, 0.50],
+            "color": "#1E3A8A",
+            "text_col": "#FFFFFF"
+        },
+        # Frete Caro (1.207 un / 23.1%)
+        {
+            "name": "Frete Caro",
+            "pct": 23.1,
+            "desc": "1.207 carrinhos abandonados por frete muito caro",
+            "bbox": [0.50, 0.50, 0.50, 0.50],
+            "color": "#2563EB",
+            "text_col": "#FFFFFF"
+        },
+        # Indecisão / Dúvida (1.045 un / 20.0%)
+        {
+            "name": "Indecisão / Dúvida",
+            "pct": 20.0,
+            "desc": "1.045 carrinhos abandonados por indecisão ou dúvida",
+            "bbox": [0.0, 0.0, 0.40, 0.50],
+            "color": "#059669",
+            "text_col": "#FFFFFF"
+        },
+        # Erro no Pagamento (961 un / 18.4%)
+        {
+            "name": "Erro no Pagamento",
+            "pct": 18.4,
+            "desc": "961 carrinhos abandonados por falhas no pagamento",
+            "bbox": [0.40, 0.0, 0.35, 0.50],
+            "color": "#D97706",
+            "text_col": "#FFFFFF"
+        },
+        # Não Informado (487 un / 9.3%)
+        {
+            "name": "Não Informado",
+            "pct": 9.3,
+            "desc": "487 carrinhos abandonados sem motivo declarado",
+            "bbox": [0.75, 0.22, 0.25, 0.28],
+            "color": "#64748B",
+            "text_col": "#FFFFFF"
+        },
+        # Estoque Indisponível (224 un / 4.3%)
+        {
+            "name": "Estoque Indisponível",
+            "pct": 4.3,
+            "desc": "224 carrinhos abandonados por falta de estoque",
+            "bbox": [0.75, 0.0, 0.25, 0.22],
+            "color": "#94A3B8",
+            "text_col": "#0F172A"
+        }
+    ]
     
-    ax.legend(handles=handles, labels=labels, loc="upper right", frameon=True,
-              facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5)
+    for r in rects:
+        x, y, w, h = r["bbox"]
+        rect_patch = patches.Rectangle((x, y), w, h, facecolor=r["color"], edgecolor="#FFFFFF", linewidth=3.5)
+        ax.add_patch(rect_patch)
+        
+        cx, cy = x + w / 2, y + h / 2
+        # Título
+        ax.text(cx, cy + h * 0.12, r["name"], ha="center", va="center", color=r["text_col"], fontsize=12.5, fontweight="bold")
+        # Porcentagem
+        ax.text(cx, cy - h * 0.04, f"{r['pct']:.1f}% do abandono", ha="center", va="center", color=r["text_col"], fontsize=11, fontweight="bold")
+        # Descrição simples
+        ax.text(cx, cy - h * 0.20, r["desc"], ha="center", va="center", color=r["text_col"], fontsize=9.5, fontweight="normal", alpha=0.92)
 
+    ax.set_xlim(-0.01, 1.01)
+    ax.set_ylim(-0.01, 1.06)
+    ax.set_title("DECOMPOSIÇÃO DE VOLUME: CAUSAS-RAIZ DE ABANDONO DE CARRINHO (5.231 UN)",
+                 fontsize=14.5, fontweight="bold", color="#0F172A", pad=15)
+                 
     plt.tight_layout()
     return fig
 
@@ -173,7 +168,6 @@ def plot_financial_loss_chart(agg: pd.DataFrame) -> plt.Figure:
     fig.patch.set_facecolor("#FFFFFF")
     ax.set_facecolor("#FFFFFF")
 
-    # Inverter para exibir o maior motivo no topo
     agg_sorted = agg.sort_values(by="receita_represada", ascending=True).reset_index(drop=True)
     y_pos = np.arange(len(agg_sorted))
     motivos = agg_sorted["motivo_label"].tolist()
@@ -209,13 +203,12 @@ def main() -> None:
     df_data = load_data()
     agg = prepare_aggregations(df_data)
 
-    # 1. Gráfico de Dispersão
-    fig_disp = plot_dispersion_chart(df_data, agg)
-    fig_disp.savefig(OUTPUT_DISPERSION_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
-    # Salvar também como legacy para manter compatibilidade
-    fig_disp.savefig(OUTPUT_LEGACY_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
-    plt.close(fig_disp)
-    print(f"[SUCCESS] Gráfico de Dispersão de Motivos salvo em: {OUTPUT_DISPERSION_PATH}")
+    # 1. Gráfico de Treemap (Sem poluição financeira)
+    fig_tree = plot_treemap_chart(agg)
+    fig_tree.savefig(OUTPUT_TREEMAP_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
+    fig_tree.savefig(OUTPUT_OFFICIAL_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
+    plt.close(fig_tree)
+    print(f"[SUCCESS] Treemap de Motivos de Abandono salvo em: {OUTPUT_TREEMAP_PATH}")
 
     # 2. Gráfico Separado de Perda Financeira
     fig_fin = plot_financial_loss_chart(agg)
