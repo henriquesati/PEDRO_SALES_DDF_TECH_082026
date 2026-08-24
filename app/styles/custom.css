@@ -1,0 +1,110 @@
+/* Design System & Custom CSS - Dadosfera Data App */
+
+:root {
+    --primary-navy: #1E3A8A;
+    --primary-blue: #3B82F6;
+    --success-green: #059669;
+    --warning-amber: #D97706;
+    --danger-red: #DC2626;
+    --bg-light: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --border-color: #E2E8F0;
+}
+
+/* Header & Banner */
+.main-header {
+    background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%);
+    color: #FFFFFF;
+    padding: 1.8rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.12);
+}
+
+.main-header h1 {
+    color: #FFFFFF !important;
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.main-header p {
+    color: #E0E7FF;
+    font-size: 1.0rem;
+    margin: 0.4rem 0 0 0;
+}
+
+/* KPI Cards */
+.kpi-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.kpi-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpi-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0.3rem 0;
+}
+
+.kpi-delta {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.kpi-delta.positive {
+    color: var(--success-green);
+}
+
+.kpi-delta.negative {
+    color: var(--danger-red);
+}
+
+/* Chat Message Preview */
+.chat-preview {
+    background-color: #ECE5DD;
+    border-radius: 12px;
+    padding: 1.2rem;
+    border: 1px solid #D1D5DB;
+    margin-top: 1rem;
+}
+
+.chat-bubble {
+    background-color: #DCF8C6;
+    border-radius: 8px 8px 0px 8px;
+    padding: 0.9rem 1.1rem;
+    color: #111827;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    max-width: 90%;
+    margin-left: auto;
+}
+
+/* Showcase Card */
+.showcase-card {
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
