@@ -43,12 +43,6 @@ data/
   - `relationships.md`: Cardinality maps (e.g. Customer 1 — N Orders), deletion behaviors (CASCADE, SET NULL, RESTRICT).
   - `business-rules.md`: Invariants, calculations, state machine transitions, edge cases.
 
-### Layer 2: Concrete Database Implementations (`data/database/`)
-- **Format**: SQL scripts / Schema definitions per target DBMS (PostgreSQL, MySQL, SQLite, etc.).
-- **Execution Order**:
-  - `001_create_tables.sql`: Base table definitions with data types and primary identifiers.
-  - `002_constraints.sql`: Foreign keys, check constraints, and composite unique keys.
-  - `003_indexes.sql`: B-Tree/GIN indexes, search indexes, and foreign key indexes for query optimization.
 
 ### Layer 3: Mock & Dirty Data Generation (`data/mock/`)
 - **Format**: Python scripts (`generators/<entity>.py`).

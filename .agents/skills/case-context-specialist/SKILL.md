@@ -51,14 +51,15 @@ Serve como fonte de contexto para outros agentes que precisam entender **por qu�
 | 0 | Agilidade & Planejamento | — | Artefato de planejamento (PMBOK): fluxo iterativo, gantt/kanban/checklist | ✅ Concluído |
 | 1 | Base de Dados | Integrar | Propor/gerar base de dados (mín. 100k registros) | ✅ Concluído (115.777+ registros via gerador modular declarativo em Parquet/CSV) |
 | 2.1 | Dadosfera - Integrar | Integrar | Carregar dados na plataforma Dadosfera via módulo de Coleta | ⏳ Planejado |
-| 3 | Dadosfera - Explorar | Explorar | Catalogar dataset com dicionário de dados, organizar por zonas do Data Lake | ✅ Concluído (Blueprint + Qualify + API) |
-| 4 | Data Quality | Processar | Relatório e evidências de qualidade geradas no módulo do notebook (`notebooks/pipelines/quality_report/outputs/data_quality_report.md`), notebook de qualificação (`notebooks/pipelines/quality_report/qualification_raw.ipynb`), suíte Great Expectations (18 regras) e quarentena de anomalias em Parquet | ✅ Concluído |
+| 3 | Dadosfera - Explorar & Catalogar | Explorar | Catalogar dataset com dicionários de dados, organizar por 4 zonas do Lakehouse (Bronze, Silver Qualify, Silver Anomaly Quarentena DEC-006, Gold Curated Kimball DEC-008), 28 diretórios por entidade em `pipelines/datalakes/` com `metadata.md` e spec central `data/catalogo/business-catalog-classification.md` v2.0 | ✅ Concluído |
+| 4 | Data Quality | Processar | Relatório e evidências de qualidade geradas no módulo do pipeline (`pipelines/case-item-04/outputs/data_quality_report.md`), notebook de qualificação (`pipelines/case-item-04/notebooks/qualification_raw.ipynb`), suíte Great Expectations (18 regras) e quarentena de anomalias em Parquet | ✅ Concluído |
 | 5 | GenAI & LLMs - Processar | Processar | Transformar dados desestruturados em features usando IA | ⏳ Planejado |
-| 6 | Modelagem de Dados | Analisar | Modelagem lógica canônica (4 divisões, SCHEMA RULES numerado, TRUE/FALSE, 6 entidades) | ✅ Concluído |
+| 6 | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos granulares, 2 visões analíticas Gold, diagrama DW em camadas Medallion e relatório em `pipelines/case-item-06/outputs/data_modeling_report.md` sob DEC-008) | ✅ Concluído |
 | 7 | Análise de Dados | Analisar | Dashboard com análise de categorias + série temporal. 6 visualizações de 6 tipos distintos geradas em alta resolução (`dashboards/assets/`), catálogo declarativo (`chart_specs.py`) e notebook interativo | ✅ Concluído |
-| 8 | Pipelines | Processar | Pipeline ETL/ML na Dadosfera (módulo de inteligência) | ⏳ Planejado |
+| 8 | Pipelines & Data Lakehouse | Processar | Especificações imutáveis das 4 camadas do Lakehouse (`pipelines/datalakes/{raw,qualify,anomaly,curated}/spec.md`), arquitetura modular por entidade e framework normativo (`data-pipeline-documentation`) | ✅ Concluído |
 | 9 | Data Apps | Consumir | Data App com Streamlit para explorar dados | ⏳ Planejado |
-| 10 | Apresentação | — | Vídeo no YouTube: prova de conceito Dadosfera vs arquitetura atual do cliente | ⏳ Planejado |
+| 10 | Apresentação (Pitch) | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md` - Backbone & Guidelines), 8 submódulos com geradores em Python e dashboards de alta definição (300 DPI) para suporte ao vídeo | ✅ Concluído |
+| 10.1 | Gráficos de Insights | Visualizações | Galeria de gráficos de insights em `presentation/insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais de motivos, risco e timing mapeados | 🔄 Em processo |
 | Bônus | GenAI + Data Apps | IA Generativa | Gerador de apresentações de produto com DALL-E ou similar | ⏳ Planejado |
 
 ---
@@ -75,7 +76,7 @@ Serve como fonte de contexto para outros agentes que precisam entender **por qu�
 
 ## 🏗️ Arquitetura do Cliente (Referência para Item 10)
 
-> Fonte: [`raw (1).md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/raw%20(1).md)
+> Fonte: [`user-case-raw-analyses.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/user-case-raw-analyses.md)
 
 ### Stack Atual (AWS)
 - **Lambda + Kinesis Stream**: Configuração manual de shards.
@@ -152,6 +153,12 @@ A Dadosfera substitui a complexidade da infraestrutura com: ingestão plug & pla
 - **Impacto**: Datasets sintéticos e pipelines de qualificação operando com distribuições fracionárias auditáveis em Parquet.
 - **Referência**: [`dec-007-natural-broken-rates.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/docs/relatorios/decision-making/dec-007-natural-broken-rates.md)
 
+### DEC-008: Adoção de Kimball Star Schema por Simplicidade e Performance
+- **Decisão**: Adoção do modelo dimensional Kimball Star Schema (6 dimensões conformadas, 2 tabelas de fatos granulares e 2 visões analíticas Gold) em detrimento de Data Vault 2.0 e 3NF Normalizado para a camada analítica (Gold / DW).
+- **Justificativa**: Simplicidade e pragmatismo para o escopo do case de estágio, eliminando over-engineering burocrático de Data Vault, maximizando a performance OLAP (1-hop JOINs) para Metabase (Item 7) e Streamlit (Item 9), e alinhando perfeitamente a granularidade aos eventos do funil de recuperação de carrinho.
+- **Impacto**: Camada Gold padronizada com chaves surrogate (`_sk`), diagrama DW em camadas Medallion e relatórios gerados exclusivamente em `pipelines/case-item-06/outputs/`.
+- **Referência**: [`dec-008-kimball-star-schema-simplicity.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/docs/relatorios/decision-making/dec-008-kimball-star-schema-simplicity.md) e [`data_modeling_report.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/outputs/data_modeling_report.md)
+
 
 ---
 
@@ -162,11 +169,11 @@ Prioridade de consulta:
 | # | Fonte | Caminho | Conteúdo |
 |---|---|---|---|
 | 1 | Especificação do case | [`specs-internship.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/specs-internship.txt) | Requisitos oficiais dos 11 itens do case |
-| 2 | Análise estratégica do cliente | [`raw (1).md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/raw%20(1).md) | Pain points da arquitetura AWS do cliente, proposta Dadosfera |
+| 2 | Análise estratégica do cliente (Pedro Sales) | [`user-case-raw-analyses.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/user-case-raw-analyses.md) | Esboço original de análises, arquitetura legada AWS, proposta Dadosfera e diagnóstico estratégico |
 | 3 | Prompt original do case | [`data_domain/1.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/data_domain/1.txt) | Contexto de modelagem de dados |
 | 4 | Referência da API Dadosfera | [`README.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/dadosfera-api/README.md) / [`endpoints.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/dadosfera-api/referencia/endpoints.md) | Documentação de endpoints Maestro, fluxos de autenticação e pipelines |
 | 5 | Output Mappers & Catálogo de Ativos | [`assets_registry.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md) / [`assets_registry.json`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json) | Mapeamento de Data Asset IDs oficiais, URLs da UI Dadosfera e schemas |
-| 6 | Decisão de métricas do pitch | [`pitch.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/relatorios/decision-making/pitch/pitch.txt) | Decision record: % vs R$ |
+| 6 | Decisão de métricas do pitch & Raw Analysis | [`pitch.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/docs/relatorios/pitch/decision-making/pitch.txt) / [`relatorio-pitch-01.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/docs/relatorios/pitch/decision-making/relatorio-pitch-01.md) | Decision records: % vs R$ e síntese da arquitetura/proposta de valor |
 | 7 | Plano inicial (pré-revisão) | [`init.md`](file:///c:/Users/pedro/OneDone/Desktop/wheels/relatorios/decision-making/pitch/init.md) | Versão inicial com métricas em R$ |
 | 8 | Plano final (pós-revisão) | [`end.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/relatorios/decision-making/pitch/end.md) | Versão final com métricas em % |
 | 9 | Regras de negócio | [`business-rules.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/models/logical/business-rules.md) | Estados do carrinho, RFM, canais de resgate, sequência de comunicação |

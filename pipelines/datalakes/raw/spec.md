@@ -4,7 +4,7 @@
 > **Camada:** `Raw (Bronze)`  
 > **Natureza:** Objeto Imutável de Especificação de Ingestão  
 > **Localização Física:** S3 Explorer Dadosfera (`/raw/recuperacao_carrinho/`)  
-> **Formato de Carga:** Arquivos binários `Parquet` / `CSV`  
+> **Formato de Carga:** Arquivos binários `Parquet`  
 > **Status:** ✅ Homologado & Ativo  
 
 ---
@@ -22,51 +22,29 @@ A camada **Raw (Bronze)** atua como a zona de aterrissagem (*landing zone*) brut
 
 ## 2. 📋 Entidades Integradas na Camada Raw
 
-A tabela abaixo resume todas as 7 entidades que aterrissam na camada Raw:
+A camada Raw organiza suas 7 entidades em diretórios dedicados, onde coabitam o dataset bruto e sua especificação de catálogo:
 
-| Entidade Bruta | Formato Físico | Origem Operacional | Volumetria Estimada | Particionamento | Destino Downstream |
-|:---|:---:|:---|:---:|:---:|:---|
-| **`raw_pedidos`** | `.parquet` | Checkout Transacional / ERP | ~10.000 registros | Diário (`ano_mes_dia`) | `qualify.pedidos` |
-| **`raw_carrinhos`** | `.parquet` | Sessões do E-commerce / Webstore | ~15.000 registros | Diário (`ano_mes_dia`) | `qualify.carrinhos` |
-| **`raw_itens_carrinho`** | `.parquet` | Microserviço de Carrinho | ~35.000 registros | Diário (`ano_mes_dia`) | `qualify.itens_carrinho` |
-| **`raw_clientes`** | `.parquet` | Banco de Contas de Usuários / CRM | ~10.000 registros | Snapshot Semanal | `qualify.clientes` |
-| **`raw_produtos`** | `.parquet` | Catálogo de SKUs / PIM | ~5.000 registros | Snapshot Semanal | `qualify.produtos` |
-| **`raw_eventos_carrinho`** | `.parquet` | Clickstream Telemetria Web & App | ~50.000 registros | Diário / Horário | `qualify.eventos_carrinho` |
-| **`raw_eventos_resgate`** | `.parquet` | Plataforma de Disparo de CRM | ~10.000 registros | Diário (`ano_mes_dia`) | `qualify.eventos_resgate` |
+- **`carrinhos_raw`**: Sessões e estados de intenção de compra originados da webstore e app móvel.
+- **`pedidos_raw`**: Compras finalizadas e liquidadas extraídas do ERP transacional e checkout.
+- **`clientes_raw`**: Base cadastral e de consentimento (opt-ins) do CRM corporativo.
+- **`produtos_raw`**: Catálogo de SKUs, categorias e tabela de preços exportados do PIM.
+- **`itens_carrinho_raw`**: Detalhamento unitário de mercadorias adicionadas ou removidas de cada carrinho.
+- **`eventos_carrinho_raw`**: Telemetria contínua de clickstream e etapas do fluxo de checkout.
+- **`eventos_resgate_raw`**: Disparos de réguas de CRM e registros de engajamento do funil de marketing.
 
 ---
 
-## 3. 🔍 Validações em Texto Corrido por Entidade
+## 3. 🔍 Validações de Ingestão em Texto Corrido por Entidade
 
-Diferente das camadas analíticas, a validação na camada Raw foca exclusivamente em **sanidade de transporte, integridade de arquivo e persistência física**. Abaixo estão detalhadas as validações corridas aplicadas a cada entidade antes de torná-la disponível para processamento:
+Diferente das camadas analíticas, a validação na camada Raw foca exclusivamente em sanidade de transporte, integridade de arquivo e persistência física. As regras de tipo, obrigatoriedade de campos e integridade de negócio correspondem às **validações declaradas no corpo da entidade**:
 
-### 3.1 Entidade `raw_pedidos`
-- **Validação de Ingestão e Formato:** Os dados de pedidos brutos chegam consolidados em lote diário via exportação transacional. A validação corrida verifica a integridade do cabeçalho do arquivo Parquet, certificando que o número de colunas bate com o schema esperado de faturamento (contendo `pedido_id`, `cliente_id`, `carrinho_id`, `valor_total`, `status_pedido`, `data_criacao`, `metodo_pagamento`).
-- **Sanidade Física:** O arquivo é checado quanto à integridade de compressão (Snappy/Gzip) e volumetria não-zerada (tamanho > 0 bytes). Não é feita nenhuma filtragem de pedidos cancelados ou estornados aqui; o payload completo é registrado para permitir conciliação contábil histórica.
-
-### 3.2 Entidade `raw_carrinhos`
-- **Validação de Ingestão e Formato:** Representa o registro atômico de sessões de compra abertas no marketplace. A validação corrida de ingestão garante a presença das colunas fundamentais de rastreio (`carrinho_id`, `cliente_id`, `status`, `valor_subtotal`, `valor_frete`, `valor_desconto`, `valor_total`, `data_criacao`, `data_abandono`, `origem_dispositivo`).
-- **Sanidade Física e Imutabilidade:** Verifica a legibilidade do arquivo parquet gerado pelos coletores. Eventuais inconsistências de cálculo (como frete negativo ou desconto abusivo) são aceitas e preservadas na camada Raw para serem devidamente segregadas pelo motor de Data Quality na camada Qualify.
-
-### 3.3 Entidade `raw_itens_carrinho`
-- **Validação de Ingestão e Formato:** Armazena o detalhe linha a linha dos produtos adicionados ou removidos de cada carrinho. A validação corrida inspeciona se todas as tuplas possuem as colunas brutas estruturais (`item_id`, `carrinho_id`, `produto_id`, `quantidade`, `preco_unitario`, `data_adicao`, `data_remocao`).
-- **Sanidade Física:** Garante que a ingestão não sofreu truncamento de linhas decorrente de perda de pacote de rede durante a transferência entre o coletor e o storage S3.
-
-### 3.4 Entidade `raw_clientes`
-- **Validação de Ingestão e Formato:** Traz a base bruta cadastral de clientes do marketplace. A validação corrida confirma a presença das colunas esperadas (`cliente_id`, `nome`, `email`, `telefone`, `estado`, `cidade`, `data_cadastro`, `segmento_rfm_inicial`, `opt_in_email`, `opt_in_sms`, `opt_in_push`, `opt_in_whatsapp`).
-- **Segurança & Governança na Ingestão:** Como esta entidade contém dados pessoais identificáveis (PII), a validação corrida confere se o bucket de aterrissagem possui criptografia at-rest ativa (AES-256) e permissões de acesso restritas à role de ingestão.
-
-### 3.5 Entidade `raw_produtos`
-- **Validação de Ingestão e Formato:** Exportação de catálogo de produtos contendo `produto_id`, `nome_produto`, `categoria`, `marca`, `preco_original`, `preco_atual`, `status_estoque`.
-- **Sanidade Física:** A validação corrida atesta a consistência na codificação de caracteres (UTF-8) para evitar corrupção em acentuação de nomes de produtos e marcas brasileiras durante o parsing downstream.
-
-### 3.6 Entidade `raw_eventos_carrinho`
-- **Validação de Ingestão e Formato:** Tabela de alta volumetria com eventos de telemetria do usuário (`evento_id`, `carrinho_id`, `tipo_evento`, `pagina_url`, `timestamp_evento`, `dispositivo`, `tempo_permanencia_segundos`).
-- **Sanidade Física:** Por se tratar de um fluxo de dados em lote semi-contínuo, a validação corrida monitora a sequência cronológica dos blocos de dados ingeridos e a ausência de corrupção nos timestamps ISO-8601 brutos.
-
-### 3.7 Entidade `raw_eventos_resgate`
-- **Validação de Ingestão e Formato:** Registro das réguas de comunicação de marketing de recuperação (`resgate_id`, `carrinho_id`, `cliente_id`, `canal_comunicacao`, `tipo_gatilho`, `cupom_oferecido`, `data_envio`, `data_abertura`, `data_clique`, `custo_envio`).
-- **Sanidade Física:** Assegura que o lote recebido da ferramenta de CRM contém todas as colunas de telemetria de engajamento para posterior validação de funil na camada Qualify.
+- **Entidade `carrinhos_raw`**: A validação assegura a legibilidade do arquivo Parquet e a presença das colunas estruturais básicas de sessão. Eventuais incoerências contábeis são preservadas para roteamento na camada seguinte, conforme as validações declaradas no corpo da entidade.
+- **Entidade `pedidos_raw`**: O processo confirma a integridade de compressão e o cabeçalho do lote diário de pedidos, preservando ordens canceladas e estornadas para fins de conciliação financeira.
+- **Entidade `clientes_raw`**: Valida a presença dos atributos cadastrais sob criptografia at-rest AES-256 no bucket de landing, resguardando os dados pessoais conforme as diretrizes de governança.
+- **Entidade `produtos_raw`**: Confere a codificação UTF-8 do catálogo para preservar a integridade de caracteres e acentuações de nomes de produtos brasileiros.
+- **Entidade `itens_carrinho_raw`**: Inspeciona a integridade das tuplas contra perdas de pacotes ou truncamentos de transferência entre microserviços e o storage.
+- **Entidade `eventos_carrinho_raw`**: Monitora a sequência cronológica dos blocos de telemetria ingeridos e a padronização dos timestamps brutos.
+- **Entidade `eventos_resgate_raw`**: Garante que o lote recebido da plataforma de marketing contém todos os campos necessários para posterior apuração do funil de resgate.
 
 ---
 
@@ -74,13 +52,13 @@ Diferente das camadas analíticas, a validação na camada Raw foca exclusivamen
 
 ```mermaid
 flowchart LR
-    S1[Webstore / App] --> R2[raw_carrinhos]
-    S1 --> R3[raw_itens_carrinho]
-    S1 --> R6[raw_eventos_carrinho]
-    S2[ERP / Checkout] --> R1[raw_pedidos]
-    S3[CRM / Cadastros] --> R4[raw_clientes]
-    S4[Catálogo / PIM] --> R5[raw_produtos]
-    S5[Marketing Hub] --> R7[raw_eventos_resgate]
+    S1[Webstore / App] --> R2[carrinhos_raw]
+    S1 --> R3[itens_carrinho_raw]
+    S1 --> R6[eventos_carrinho_raw]
+    S2[ERP / Checkout] --> R1[pedidos_raw]
+    S3[CRM / Cadastros] --> R4[clientes_raw]
+    S4[Catálogo / PIM] --> R5[produtos_raw]
+    S5[Marketing Hub] --> R7[eventos_resgate_raw]
 
     R1 --> Q1[qualify.pedidos]
     R2 --> Q2[qualify.carrinhos]
@@ -91,4 +69,4 @@ flowchart LR
     R7 --> Q7[qualify.eventos_resgate]
 ```
 
-> **Próxima Etapa:** Os dados brutos desta camada são consumidos pelos scripts de qualificação e bifurcados de acordo com a [Especificação da Camada Qualify](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/datalakes/qualify/spec.md).
+> **Próxima Etapa:** Os dados brutos desta camada são consumidos pelos pipelines de qualidade e bifurcados de acordo com a [Especificação da Camada Qualify](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/datalakes/qualify/spec.md) e a [Especificação da Camada Anomaly](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/datalakes/anomaly/spec.md).

@@ -10,25 +10,25 @@
 
 | Campo | Tipo | PK/FK | Nullable | Default | Descrição | Valores / Regras | Exemplo |
 |---|---|---|---|---|---|---|---|
-| `carrinho_id` | INT | PK | Não | AUTO | Identificador único exclusivo da sessão do carrinho | Inteiro sequencial único positivo | `1001` |
-| `cliente_id` | INT | FK | Não | — | Identificador do cliente proprietário do carrinho | Deve existir na tabela `clientes` | `42` |
-| `data_criacao` | TIMESTAMPTZ | — | Não | NOW() | Timestamp exato em que o carrinho foi inicializado | Data/hora UTC válida | `2026-03-15 14:23:10+00` |
-| `data_ultima_atividade` | TIMESTAMPTZ | — | Sim | — | Timestamp da última interação (adição/remoção/checkout) | `>= data_criacao` | `2026-03-15 14:45:00+00` |
-| `data_abandono` | TIMESTAMPTZ | — | Sim | — | Timestamp em que a inatividade foi classificada como abandono | `>= data_criacao` | `2026-03-15 15:15:00+00` |
-| `status` | VARCHAR(20) | — | Não | `'ativo'` | Estado atual do carrinho no ciclo de vida | `'ativo'`, `'abandonado'`, `'recuperado'`, `'comprado'`, `'expirado'` | `'abandonado'` |
-| `motivo_abandono` | VARCHAR(100) | — | Sim | — | Causa diagnosticada ou informada para o abandono | `'preco'`, `'frete'`, `'pagamento'`, `'indecisao'`, `'estoque'`, `'nao_informado'` | `'frete'` |
-| `valor_subtotal` | DECIMAL(10,2) | — | Sim | `0.00` | Soma dos valores unitários dos itens sem frete e sem desconto | `>= 0.00` | `249.90` |
-| `valor_frete` | DECIMAL(10,2) | — | Sim | `0.00` | Custo de frete calculado para a entrega | `>= 0.00` | `25.50` |
-| `valor_desconto` | DECIMAL(10,2) | — | Sim | `0.00` | Valor de abatimento promocional ou cupom aplicado | `>= 0.00` | `20.00` |
-| `valor_total` | DECIMAL(10,2) | — | Sim | `0.00` | Valor líquido total (`subtotal + frete - desconto`) | `>= 0.00` | `255.40` |
-| `duracao_sessao_minutos` | INT | — | Sim | — | Duração total da sessão de navegação em minutos | Inteiro `>= 0` | `22` |
-| `dispositivo` | VARCHAR(50) | — | Sim | — | Tipo de dispositivo utilizado na sessão | `'mobile'`, `'desktop'`, `'tablet'` | `'mobile'` |
-| `browser` | VARCHAR(50) | — | Sim | — | Navegador web ou aplicativo utilizado | `'Chrome'`, `'Safari'`, `'Firefox'`, `'Edge'` | `'Chrome'` |
-| `canal_origem` | VARCHAR(100) | — | Sim | — | Canal de aquisição ou origem do tráfego | `'google'`, `'facebook'`, `'direct'`, `'email'`, `'instagram'` | `'google'` |
-| `cliente_novo` | BOOLEAN | — | Não | `FALSE` | Indica se o cliente está realizando sua primeira compra | `TRUE` / `FALSE` | `TRUE` |
-| `tem_conta_criada` | BOOLEAN | — | Não | `FALSE` | Indica se o cliente possui cadastro formal (vs. guest) | `TRUE` / `FALSE` | `TRUE` |
-| `created_at` | TIMESTAMPTZ | — | Não | NOW() | Timestamp de auditoria de inserção do registro | Data/hora UTC | `2026-03-15 14:23:10+00` |
-| `updated_at` | TIMESTAMPTZ | — | Não | NOW() | Timestamp de auditoria da última atualização do registro | Data/hora UTC | `2026-03-15 15:15:00+00` |
+| `carrinho_id` | INT | PK | `FALSE` | AUTO | Identificador único exclusivo da sessão do carrinho | Inteiro sequencial único positivo | `1001` |
+| `cliente_id` | INT | FK | `FALSE` | — | Identificador do cliente proprietário do carrinho | Deve existir na tabela `clientes` | `42` |
+| `data_criacao` | TIMESTAMPTZ | — | `FALSE` | NOW() | Timestamp exato em que o carrinho foi inicializado | Data/hora UTC válida | `2026-03-15 14:23:10+00` |
+| `data_ultima_atividade` | TIMESTAMPTZ | — | `TRUE` | — | Timestamp da última interação (adição/remoção/checkout) | `>= data_criacao` | `2026-03-15 14:45:00+00` |
+| `data_abandono` | TIMESTAMPTZ | — | `TRUE` | — | Timestamp em que a inatividade foi classificada como abandono | `>= data_criacao` | `2026-03-15 15:15:00+00` |
+| `status` | VARCHAR(20) | — | `FALSE` | `'ativo'` | Estado atual do carrinho no ciclo de vida | `'ativo'`, `'abandonado'`, `'recuperado'`, `'comprado'`, `'expirado'` | `'abandonado'` |
+| `motivo_abandono` | VARCHAR(100) | — | `TRUE` | — | Causa diagnosticada ou informada para o abandono | `'preco'`, `'frete'`, `'pagamento'`, `'indecisao'`, `'estoque'`, `'nao_informado'` | `'frete'` |
+| `valor_subtotal` | DECIMAL(10,2) | — | `TRUE` | `0.00` | Soma dos valores unitários dos itens sem frete e sem desconto | `>= 0.00` | `249.90` |
+| `valor_frete` | DECIMAL(10,2) | — | `TRUE` | `0.00` | Custo de frete calculado para a entrega | `>= 0.00` | `25.50` |
+| `valor_desconto` | DECIMAL(10,2) | — | `TRUE` | `0.00` | Valor de abatimento promocional ou cupom aplicado | `>= 0.00` | `20.00` |
+| `valor_total` | DECIMAL(10,2) | — | `TRUE` | `0.00` | Valor líquido total (`subtotal + frete - desconto`) | `>= 0.00` | `255.40` |
+| `duracao_sessao_minutos` | INT | — | `TRUE` | — | Duração total da sessão de navegação em minutos | Inteiro `>= 0` | `22` |
+| `dispositivo` | VARCHAR(50) | — | `TRUE` | — | Tipo de dispositivo utilizado na sessão | `'mobile'`, `'desktop'`, `'tablet'` | `'mobile'` |
+| `browser` | VARCHAR(50) | — | `TRUE` | — | Navegador web ou aplicativo utilizado | `'Chrome'`, `'Safari'`, `'Firefox'`, `'Edge'` | `'Chrome'` |
+| `canal_origem` | VARCHAR(100) | — | `TRUE` | — | Canal de aquisição ou origem do tráfego | `'google'`, `'facebook'`, `'direct'`, `'email'`, `'instagram'` | `'google'` |
+| `cliente_novo` | BOOLEAN | — | `FALSE` | `FALSE` | Indica se o cliente está realizando sua primeira compra | `TRUE` / `FALSE` | `TRUE` |
+| `tem_conta_criada` | BOOLEAN | — | `FALSE` | `FALSE` | Indica se o cliente possui cadastro formal (vs. guest) | `TRUE` / `FALSE` | `TRUE` |
+| `created_at` | TIMESTAMPTZ | — | `FALSE` | NOW() | Timestamp de auditoria de inserção do registro | Data/hora UTC | `2026-03-15 14:23:10+00` |
+| `updated_at` | TIMESTAMPTZ | — | `FALSE` | NOW() | Timestamp de auditoria da última atualização do registro | Data/hora UTC | `2026-03-15 15:15:00+00` |
 
 ### Foreign Keys
 
@@ -36,6 +36,32 @@
 carrinhos.cliente_id
     → clientes.cliente_id
 ```
+
+## SCHEMA RULES
+
+### 01 — Unicidade e Não-Nulidade da Chave Primária (PK)
+O campo `carrinho_id` é chave primária inteira sequencial auto-incremental (`INT PRIMARY KEY`), obrigatória (`NOT NULL`) e exclusiva (`UNIQUE`), identificando unicamente cada sessão transacional de carrinho de compras.
+
+### 02 — Integridade Referencial do Consumidor (FK)
+O campo `cliente_id` é chave estrangeira obrigatória (`INT NOT NULL`) referenciando `clientes(cliente_id)` com política `ON DELETE RESTRICT`, impedindo a criação de carrinhos órfãos.
+
+### 03 — Restrição de Domínio de Ciclo de Vida (CHECK Constraint)
+O campo `status` possui restrição de verificação `CHECK (status IN ('ativo', 'abandonado', 'recuperado', 'comprado', 'expirado'))`, garantindo que apenas estados válidos da máquina de estados do carrinho sejam persistidos.
+
+### 04 — Restrição de Domínio de Motivo de Abandono (CHECK Constraint)
+O atributo `motivo_abandono` possui restrição `CHECK (motivo_abandono IN ('preco', 'frete', 'pagamento', 'indecisao', 'estoque', 'nao_informado') OR motivo_abandono IS NULL)`.
+
+### 05 — Restrição de Domínio de Dispositivo e Canal de Tráfego (CHECK Constraints)
+- `dispositivo`: `CHECK (dispositivo IN ('mobile', 'desktop', 'tablet') OR dispositivo IS NULL)`.
+- `canal_origem`: `CHECK (canal_origem IN ('google', 'facebook', 'direct', 'email', 'instagram') OR canal_origem IS NULL)`.
+
+### 06 — Não-Negatividade de Valores Financeiros e Duração (CHECK Constraints)
+- `valor_subtotal`, `valor_frete`, `valor_desconto`, `valor_total`: tipados como `DECIMAL(10,2)` com restrição `CHECK (valor >= 0.00)`.
+- `duracao_sessao_minutos`: tipado como `INT` com restrição `CHECK (duracao_sessao_minutos >= 0 OR duracao_sessao_minutos IS NULL)`.
+
+### 07 — Nulabilidade e Valores Padrão (Defaults)
+- **Campos Obrigatórios (NOT NULL)**: `carrinho_id`, `cliente_id`, `data_criacao`, `status`, `cliente_novo`, `tem_conta_criada`, `created_at`, `updated_at`.
+- **Valores Padrão**: `status = 'ativo'`, `valor_subtotal = 0.00`, `valor_frete = 0.00`, `valor_desconto = 0.00`, `valor_total = 0.00`, `cliente_novo = FALSE`, `tem_conta_criada = FALSE`, `data_criacao = NOW()`, `created_at = NOW()`, `updated_at = NOW()`.
 
 ---
 

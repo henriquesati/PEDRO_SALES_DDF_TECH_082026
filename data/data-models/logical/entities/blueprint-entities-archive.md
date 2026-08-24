@@ -12,7 +12,7 @@
 
 | Campo | Tipo | PK/FK | Nullable | Default | Descrição | Valores / Regras | Exemplo |
 |---|---|---|---|---|---|---|---|
-| `[campo]` | `[tipo]` | `[PK/FK]` | `[Não/Sim]` | `[default]` | `[descrição]` | `[regra / valores permitidos]` | `[exemplo]` |
+| `[campo]` | `[tipo]` | `[PK/FK]` | `[FALSE/TRUE]` | `[default]` | `[descrição]` | `[regra / valores permitidos]` | `[exemplo]` |
 
 ### Foreign Keys
 
@@ -20,6 +20,20 @@
 [entidade].[campo_fk]
     → [entidade_destino].[campo_pk]
 ```
+
+## SCHEMA RULES
+
+### 01 — [Nome da Regra de Schema: Ex: Unicidade e Não-Nulidade da Chave Primária (PK)]
+[Descrição da chave primária inteira/UUID sequencial única e não nula]
+
+### 02 — [Nome da Regra de Schema: Ex: Integridade Referencial (FKs)]
+[Descrição das chaves estrangeiras, relacionamentos e políticas de deleção (RESTRICT/CASCADE)]
+
+### 03 — [Nome da Regra de Schema: Ex: Restrições de Domínio e Tipagem (CHECK Constraints)]
+[Descrição dos tipos primitivos, precisão decimal, formatos de timestamp e domínios enum]
+
+### 04 — [Nome da Regra de Schema: Ex: Nulabilidade e Valores Padrão (Defaults)]
+[Descrição dos campos obrigatórios NOT NULL e valores default de banco]
 
 ---
 

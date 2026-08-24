@@ -14,33 +14,34 @@ The **DataMaker** skill is responsible for modeling business data entities, defi
 
 ## 1. Recommended Directory Structure
 
-The structure begins with technology-agnostic logical modeling in Markdown under `data/models/logical/`, followed by concrete database implementations (`data/database/`) and mock data generation scripts (`data/mock/`):
+The structure begins with technology-agnostic logical modeling in Markdown under `data/data-models/logical/`, followed by concrete database implementations (`data/database/`) and mock data generation scripts (`data/mock/`):
 
 ```text
 data/
-├── models/
+├── data-models/
 │   └── logical/
-│       ├── README.md
 │       ├── entities/
-│       │   ├── customer.md      # Attribute definitions, types, constraints
-│       │   ├── order.md
-│       │   └── product.md
-│       ├── relationships.md     # Cardinalities & ER associations
-│       └── business-rules.md    # Domain rules, validation, constraints
+│       │   ├── blueprint-entities-archive.md # Canonical 4-division entity blueprint
+│       │   ├── carrinhos.md                  # Attribute definitions, anomalies, validations
+│       │   ├── clientes.md
+│       │   └── produtos.md
+│       ├── relationships.md                  # Cardinalities & ER associations
+│       └── business-rules.md                 # Domain rules, validation, constraints
 │
 ├── database/
 │   ├── sql/
 │   │   ├── 001_create_tables.sql
 │   │   ├── 002_constraints.sql
 │   │   └── 003_indexes.sql
-│   └── nosql/                   # (Optional) Specialized schemas (e.g., MongoDB, JSON Schema)
+│   └── nosql/                                # (Optional) Specialized schemas
 │
 └── mock/
-    ├── generators/
-    │   ├── customer.py          # Entity-specific generator scripts (Python)
-    │   ├── order.py
-    │   └── product.py
-    └── output/                  # Generated seed datasets (CSV, JSON, SQL)
+    ├── generators/parquet/                   # Geradores modulares em Python
+    │   ├── config/                           # Constantes, settings e perfis (standard, rich, dev)
+    │   ├── core/                             # BaseGenerator e AnomalyEngine determinístico
+    │   ├── modules/                          # Módulos por entidade (clientes, produtos, carrinhos...)
+    │   └── run_all.py                        # Orquestrador CLI com suporte a perfis e cotas
+    └── output/                               # Datasets gerados (parquet/, csv/)
 ```
 
 ---
@@ -50,10 +51,10 @@ data/
 When requested to create or update data models and schemas:
 
 0. **Context & Consultation**:
-   - Check [data_model_specs.md](./references/data_model_specs.md) for custom business rules, domain entities, database specifications, and dirty data requirements provided for the project.
+   - Check `data/data-models/logical/entities/blueprint-entities-archive.md` for the canonical entity specification standard (4 divisions: Data Definition, Business Definition & Rules, Data Quality & Anomalies, Governance).
 1. **Logical Modeling (Markdown Base)**:
-   - Create foundational, database-agnostic models under `data/models/logical/`.
-   - Document each entity in `entities/<entity>.md` (attributes, types, descriptions, nullability).
+   - Create foundational, database-agnostic models under `data/data-models/logical/`.
+   - Document each entity in `entities/<entity>.md` following strictly `blueprint-entities-archive.md`.
    - Define entity associations in `relationships.md` and domain constraints in `business-rules.md`.
 2. **Specialized Database Implementations**:
    - Translate logical models into target database schemas under `data/database/` (e.g., `sql/001_create_tables.sql`, `002_constraints.sql`, `003_indexes.sql`).

@@ -20,10 +20,14 @@ from config.chart_theme import apply_dadosfera_theme, save_chart_artifact, DADOS
 OUTPUT_IMAGE_PATH: Final[str] = os.path.join(
     os.path.dirname(__file__), "chart_03_roi_eficiencia_canais.png"
 )
-PARQUET_RESGATE_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "eventos_resgate.parquet")
+PARQUET_RESGATE_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "eventos_resgate.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "eventos_resgate.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "eventos_resgate.parquet")
+)
 
 def load_resgate_data() -> pd.DataFrame:
-    """Carrega dados de eventos de resgate com telemetria financeira."""
+    """Carrega dados de eventos de resgate com telemetria financeira (fonte limpa)."""
     return pd.read_parquet(PARQUET_RESGATE_PATH)
 
 def calculate_channel_metrics(df_resgate: pd.DataFrame) -> pd.DataFrame:

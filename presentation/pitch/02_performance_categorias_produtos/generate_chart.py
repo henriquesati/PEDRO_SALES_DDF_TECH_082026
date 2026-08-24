@@ -20,12 +20,24 @@ from config.chart_theme import apply_dadosfera_theme, save_chart_artifact, DADOS
 OUTPUT_IMAGE_PATH: Final[str] = os.path.join(
     os.path.dirname(__file__), "chart_02_performance_categorias.png"
 )
-PARQUET_PRODUCTS_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "produtos.parquet")
-PARQUET_ITEMS_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "itens_carrinho.parquet")
-PARQUET_CARTS_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "carrinhos.parquet")
+PARQUET_PRODUCTS_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "produtos.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "produtos.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "produtos.parquet")
+)
+PARQUET_ITEMS_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "itens_carrinho.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "itens_carrinho.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "itens_carrinho.parquet")
+)
+PARQUET_CARTS_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "carrinhos.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "carrinhos.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "carrinhos.parquet")
+)
 
 def load_category_data() -> pd.DataFrame:
-    """Carrega dados combinados de itens, produtos e status do carrinho."""
+    """Carrega dados combinados de itens, produtos e status do carrinho (fonte limpa)."""
     df_products = pd.read_parquet(PARQUET_PRODUCTS_PATH)
     df_items = pd.read_parquet(PARQUET_ITEMS_PATH)
     df_carts = pd.read_parquet(PARQUET_CARTS_PATH)

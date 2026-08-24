@@ -50,11 +50,23 @@ def task_mock_gen(profile: str = "standard") -> None:
     subprocess.run(cmd, cwd=BASE_DIR)
 
 def task_quality_eval() -> None:
-    """Executa a validação e relatório de Data Quality."""
-    script_path = os.path.join(BASE_DIR, "notebooks", "pipelines", "quality_report", "run_quality_pipeline.py")
-    print("\n[TASK: quality-eval] Executando pipeline de Data Quality & Anomalias...")
+    """Executa a validação e relatório de Data Quality (Item 4)."""
+    script_path = os.path.join(BASE_DIR, "pipelines", "case-item-04", "scripts", "run_quality_pipeline.py")
+    print("\n[TASK: quality-eval] Executando pipeline de Data Quality & Anomalias (Item 4)...")
     subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
-    print("[TASK: quality-eval] Relatório e imagens gerados em: notebooks/pipelines/quality_report/outputs/\n")
+    print("[TASK: quality-eval] Relatório e imagens gerados em: pipelines/case-item-04/outputs/\n")
+
+def task_pitch_charts() -> None:
+    """Executa o orquestrador consolidado de gráficos do Pitch (Item 10)."""
+    script_path = os.path.join(BASE_DIR, "presentation", "pitch", "run_all_pitch_charts.py")
+    print("\n[TASK: pitch-charts] Gerando os 8 gráficos e painéis visuais do Pitch...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+
+def task_insights_charts() -> None:
+    """Executa o orquestrador consolidado de gráficos de Insights."""
+    script_path = os.path.join(BASE_DIR, "presentation", "insights", "run_all_insights_charts.py")
+    print("\n[TASK: insights-charts] Gerando gráficos de Insights...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
 
 def print_help() -> None:
     print("""
@@ -63,6 +75,8 @@ def print_help() -> None:
 =============================================================================
 Comandos disponíveis:
 
+  python make.py pitch-charts               Gera todos os 8 gráficos do Pitch (Item 10)
+  python make.py insights-charts            Gera os gráficos de Insights (presentation/insights/)
   python make.py notebook-gen               Gera todas as 6 imagens de BI
   python make.py notebook-gen [CHART]       Gera apenas o gráfico especificado
   python make.py chart [CHART]              Atalho para gerar um gráfico específico
@@ -86,7 +100,11 @@ def main():
     command = sys.argv[1].lower().replace("-", "_")
     arg = sys.argv[2] if len(sys.argv) > 2 else None
 
-    if command in ("notebook_gen", "notebookgen", "charts"):
+    if command in ("pitch_charts", "pitch", "pitch_gen"):
+        task_pitch_charts()
+    elif command in ("insights_charts", "insights", "insight_charts"):
+        task_insights_charts()
+    elif command in ("notebook_gen", "notebookgen", "charts"):
         task_notebook_gen(arg)
     elif command in ("chart", "view"):
         if not arg:

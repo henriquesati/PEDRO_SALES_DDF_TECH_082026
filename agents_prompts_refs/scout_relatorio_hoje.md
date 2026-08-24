@@ -43,5 +43,8 @@ Resumo executivo em formato checklist de tudo o que foi realizado no projeto por
 ## 📈 Status Atual do Projeto
 - **Etapa 1 (Modelagem Lógica & DDL SQL)**: ✅ Concluída
 - **Etapa 2 (Mapeamento & Gerador Parquet e CSV)**: ✅ Concluída
-
-- **Próximos Passos**: Elaboração de pipeline de dados
+- **Etapa 3 ():
+  Elaborar insights, analises preditivas e prescritivas em texto corrido para catalogação.
+  Elaborar métricas de negócio e suas entidades e relacionamentos relacionados, que refletiam os dados ou que decisões possam ser tomadas a partir desses dados
+  Posteriormente geração dos artefatos e views com base nas especificações geradas
+- **4**: Elaboração de pipeline de dados e limpeza

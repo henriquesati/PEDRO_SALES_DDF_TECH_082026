@@ -20,11 +20,19 @@ from config.chart_theme import apply_dadosfera_theme, save_chart_artifact, DADOS
 OUTPUT_IMAGE_PATH: Final[str] = os.path.join(
     os.path.dirname(__file__), "chart_05_dispersao_viabilidade_recuperacao.png"
 )
-PARQUET_CARTS_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "carrinhos.parquet")
-PARQUET_CLIENTS_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "clientes.parquet")
+PARQUET_CARTS_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "carrinhos.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "carrinhos.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "carrinhos.parquet")
+)
+PARQUET_CLIENTS_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "clientes.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "clientes.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "clientes.parquet")
+)
 
 def load_viability_data() -> pd.DataFrame:
-    """Carrega dados de carrinhos e calcula score heurístico de viabilidade."""
+    """Carrega dados de carrinhos e calcula score heurístico de viabilidade (fonte limpa)."""
     df_carts = pd.read_parquet(PARQUET_CARTS_PATH)
     df_clients = pd.read_parquet(PARQUET_CLIENTS_PATH)
     

@@ -1,0 +1,117 @@
+flowchart TD
+    %% Estilos Globais
+    classDef sourceClass fill:#2B2D42,stroke:#8D99AE,stroke-width:2px,color:#EDF2F4;
+    classDef bronzeClass fill:#8D5B4C,stroke:#D68C45,stroke-width:2px,color:#FFFFFF;
+    classDef silverClass fill:#2A9D8F,stroke:#264653,stroke-width:2px,color:#FFFFFF;
+    classDef anomalyClass fill:#E76F51,stroke:#C44536,stroke-width:2px,color:#FFFFFF,stroke-dasharray: 5 5;
+    classDef goldDimClass fill:#1D3557,stroke:#457B9D,stroke-width:2px,color:#FFFFFF;
+    classDef goldFactClass fill:#005F73,stroke:#0A9396,stroke-width:2px,color:#FFFFFF;
+    classDef goldViewClass fill:#023E8A,stroke:#0077B6,stroke-width:2px,color:#FFFFFF;
+    classDef consumerClass fill:#4A4E69,stroke:#9A8C98,stroke-width:2px,color:#F2E9E4;
+
+    %% 1. FONTES DE DADOS
+    subgraph SOURCELAYER["🌐 1. DATA SOURCES (Origens Operacionais)"]
+        SRC_ECOMM["Sessões Web & App\n(E-commerce Telemetria)"]:::sourceClass
+        SRC_CATALOG["Catálogo de Produtos\n& Precificação (ERP)"]:::sourceClass
+        SRC_CRM["Régua de Mensageria\n& Disparos (CRM/Marketing)"]:::sourceClass
+        SRC_PAY["Gateway de Pagamento\n& Pedidos Convertidos"]:::sourceClass
+    end
+
+    %% 2. CAMADA BRONZE (RAW)
+    subgraph BRONZELAYER["🥉 2. CAMADA BRONZE / RAW (Data Lake Storage Explorer / Parquet 115k+)"]
+        RAW_CLI["clientes (1.500)"]:::bronzeClass
+        RAW_PROD["produtos (300)"]:::bronzeClass
+        RAW_CAR["carrinhos (7.500)"]:::bronzeClass
+        RAW_ITM["itens_carrinho (18.888)"]:::bronzeClass
+        RAW_EVC["eventos_carrinho (78.931)"]:::bronzeClass
+        RAW_RES["eventos_resgate (6.427)"]:::bronzeClass
+        RAW_PED["pedidos (2.229)"]:::bronzeClass
+    end
+
+    %% Conexões Source -> Bronze
+    SRC_ECOMM --> RAW_CAR & RAW_ITM & RAW_EVC
+    SRC_CATALOG --> RAW_PROD
+    SRC_CRM --> RAW_CLI & RAW_RES
+    SRC_PAY --> RAW_PED
+
+    %% 3. CAMADA SILVER & DATA QUALITY PIPELINE
+    subgraph SILVER_QUALIFY["🥈 3.1 CAMADA SILVER / QUALIFY (94.2% Conformes)"]
+        SLV_CLI["clientes.parquet (1.386)"]:::silverClass
+        SLV_PROD["produtos.parquet (286)"]:::silverClass
+        SLV_CAR["carrinhos.parquet (6.525)"]:::silverClass
+        SLV_ITM["itens_carrinho.parquet (18.690)"]:::silverClass
+        SLV_EVC["eventos_carrinho.parquet (78.931)"]:::silverClass
+        SLV_RES["eventos_resgate.parquet (6.289)"]:::silverClass
+        SLV_PED["pedidos.parquet (2.229)"]:::silverClass
+    end
+
+    subgraph SILVER_ANOMALIES["🚨 3.2 OBSERVABILIDADE / ANOMALIES (Item 4 Quarentena - 5.8%)"]
+        ANOM_CLI["clientes_anomalies (114)"]:::anomalyClass
+        ANOM_CAR["carrinhos_anomalies (988)"]:::anomalyClass
+        ANOM_ITM["itens_anomalies (198)"]:::anomalyClass
+        ANOM_RES["resgate_anomalies (138)"]:::anomalyClass
+        ANOM_PROD["produtos_anomalies (14)"]:::anomalyClass
+    end
+
+    %% Conexões Bronze -> Silver (Bifurcação Dual-Artifact)
+    RAW_CLI --> SLV_CLI & ANOM_CLI
+    RAW_PROD --> SLV_PROD & ANOM_PROD
+    RAW_CAR --> SLV_CAR & ANOM_CAR
+    RAW_ITM --> SLV_ITM & ANOM_ITM
+    RAW_EVC --> SLV_EVC
+    RAW_RES --> SLV_RES & ANOM_RES
+    RAW_PED --> SLV_PED
+
+    %% 4. CAMADA GOLD / DIMENSIONAL (KIMBALL STAR SCHEMA)
+    subgraph GOLDLAYER["🥇 4. CAMADA GOLD / CURATED / DIMENSIONAL (Kimball Star Schema)"]
+        subgraph GOLD_DIMS["Dimensões Conformadas (Lookup & Context)"]
+            DIM_CLI["dim_clientes\n(SK: cliente_sk / RFM / LTV)"]:::goldDimClass
+            DIM_TMP["dim_tempo\n(SK: data_sk / 731 dias ISO)"]:::goldDimClass
+            DIM_DISP["dim_dispositivo\n(SK: dispositivo_sk / Fricção)"]:::goldDimClass
+            DIM_MOT["dim_motivo_abandono\n(SK: motivo_sk / 5 Motivos)"]:::goldDimClass
+            DIM_CAN["dim_canal_resgate\n(SK: canal_sk / 4 Canais)"]:::goldDimClass
+            DIM_RFM["dim_segmento_rfm\n(SK: segmento_sk / 4 Clusters)"]:::goldDimClass
+        end
+
+        subgraph GOLD_FACTS["Tabelas de Fatos Granulares"]
+            FCT_ABANDONO["fato_abandono\n(Grain: 1 Carrinho Abandonado | 6.525 linhas)\nFK: cliente_sk, data_sk, disp_sk, motivo_sk\nMeasures: valor_total, subtotal, frete, desconto"]:::goldFactClass
+            FCT_RESGATE["fato_resgate\n(Grain: 1 Disparo de Resgate | 6.289 linhas)\nFK: cliente_sk, data_sk, canal_sk, abandono_sk\nMeasures: open, click, conv, custo, receita, ROI"]:::goldFactClass
+        end
+
+        subgraph GOLD_VIEWS["Visões Analíticas Finais (Snowflake / Metabase Ready)"]
+            VIEW_SUMMARY["v_abandonment_summary\n(Visão Executiva: Volume, % Abandono, Risco Churn)"]:::goldViewClass
+            VIEW_ROI["v_recovery_roi_by_segment\n(Visão Tática: Taxa Conversão, Receita & % ROI por Canal)"]:::goldViewClass
+        end
+    end
+
+    %% Conexões Silver Qualify -> Gold
+    SLV_CLI --> DIM_CLI & DIM_RFM
+    SLV_CAR --> FCT_ABANDONO & DIM_DISP & DIM_MOT
+    SLV_RES --> FCT_RESGATE & DIM_CAN
+    SLV_PED --> FCT_RESGATE
+
+    %% Relacionamentos Star Schema
+    DIM_CLI -.-> FCT_ABANDONO & FCT_RESGATE
+    DIM_TMP -.-> FCT_ABANDONO & FCT_RESGATE
+    DIM_DISP -.-> FCT_ABANDONO
+    DIM_MOT -.-> FCT_ABANDONO
+    DIM_CAN -.-> FCT_RESGATE
+    DIM_RFM -.-> FCT_ABANDONO
+
+    FCT_ABANDONO --> VIEW_SUMMARY
+    FCT_RESGATE --> VIEW_ROI
+    FCT_ABANDONO -.-> FCT_RESGATE
+
+    %% 5. CONSUMIDORES DOWNSTREAM
+    subgraph DOWNSTREAM["🚀 5. CONSUMIDORES DOWNSTREAM (Aplicações de Negócio & IA)"]
+        CONS_BI["Metabase Dashboards\n(Item 7 - BI & Visualização)"]:::consumerClass
+        CONS_APP["Streamlit Data App\n(Item 9 - Simulador de Resgate)"]:::consumerClass
+        CONS_ML["Modelos Preditivos ML\n(Item 8 - Propensity Scoring)"]:::consumerClass
+        CONS_GENAI["Agentes GenAI & Copilotos\n(Item 5 / Bônus - Vitrines DALL-E)"]:::consumerClass
+    end
+
+    %% Conexões Gold -> Downstream
+    VIEW_SUMMARY --> CONS_BI & CONS_APP
+    VIEW_ROI --> CONS_BI & CONS_APP
+    GOLD_DIMS --> CONS_ML & CONS_GENAI
+    GOLD_FACTS --> CONS_ML & CONS_GENAI

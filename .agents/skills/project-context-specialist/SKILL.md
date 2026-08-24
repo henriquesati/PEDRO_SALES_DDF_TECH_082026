@@ -28,29 +28,28 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
 | **1** | Base de Dados (mín. 100k) | Integrar | Gerador Python modular e declarativo com 115.777+ registros (`data/mock/output/parquet/` e `csv/`), arquitetura DAG em cascata, perfis (`standard`, `rich`, `dev`) e motor determinístico de anomalias/dirty data | ✅ Concluído |
 | **2.1** | Dadosfera - Integrar | Integrar | Scripts de carga via API Maestro e Data Lakehouse Snowflake | ⏳ Planejado |
 | **3** | Dadosfera - Explorar & Catalogar | Explorar | Dicionários de Dados das 7 entidades no Qualify (`data/catalogo/qualify/`) e mapeamento de Data Asset IDs oficiais (`assets_registry.md` / `assets_registry.json`) | ✅ Concluído |
-| **4** | Data Quality & Anomalias | Processar | Pipeline de qualificação dual-artifact (`notebooks/pipelines/quality_report/qualification_raw.ipynb` e `pipeline_spec.md`), suíte Great Expectations (18 regras), quarentena de anomalias em Parquet e relatório gerado (`notebooks/pipelines/quality_report/outputs/data_quality_report.md`) | ✅ Concluído |
+| **4** | Data Quality & Anomalias | Processar | Pipeline de qualificação dual-artifact (`pipelines/case-item-04/notebooks/qualification_raw.ipynb` e `specs.md`), suíte Great Expectations (18 regras), quarentena de anomalias em Parquet e relatório gerado (`pipelines/case-item-04/outputs/data_quality_report.md`) | ✅ Concluído |
 | **5** | GenAI & LLMs | Processar | Geração de copies persuasivas e enriquecimento semântico de motivos de abandono | ⏳ Planejado |
-| **6** | Modelagem de Dados | Analisar | Modelagem lógica completa em 6 entidades sob o **Blueprint Canônico de 4 Divisões** com `## SCHEMA RULES` numerados e booleanos padronizados | ✅ Concluído |
+| **6** | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos granulares, 2 visões analíticas Gold, diagrama DW em camadas Medallion e relatório em `pipelines/case-item-06/outputs/data_modeling_report.md` sob DEC-008) | ✅ Concluído |
 | **7** | Análise de Dados & Métricas | Analisar | 6 visualizações de BI geradas (Série Temporal, Categorias, ROI, Heatmap, Scatter e DQ), script reproduzível (`pipelines/serving/generate_bi_charts.py`), catálogo declarativo (`chart_specs.py`), notebook (`07_bi_dashboards_visualizations.ipynb`) e task runner CLI (`notebook-gen`) | ✅ Concluído |
 | **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver (Qualify + Anomaly) e framework normativo (`data-pipeline-documentation`) | ⏳ Planejado |
 | **9** | Data Apps | Consumir | Planejamento de Data App interativo em Streamlit para simulação de recuperação de carrinhos e cálculo de ROI | ⏳ Planejado |
-| **10** | Apresentação em Vídeo | — | Roteiro de pitch ancorado em métricas de eficiência (DEC-001) e comparativo com stack legada AWS | ⏳ Planejado |
+| **10** | Apresentação em Vídeo | — | Infraestrutura completa de Pitch (`presentation/pitch/`), roteiro cronológico (Backbone Central & Guidelines em `pitch_spec.md`), 8 subdiretórios com specs/scripts funcionais e artefatos visuais (300 DPI) | ✅ Concluído |
 | **Bônus**| GenAI + Data Apps | IA Generativa | Geração visual de cards de produtos e vitrines dinâmicas de resgate | ⏳ Planejado |
 
 ---
 
 ## 📈 Histórico Detalhado de Etapas Concluídas
 
-### ✅ 1. Modelagem de Dados Lógica Canônica (Item 6)
-Todas as **6 entidades** do modelo de dados lógico foram reformuladas sob o padrão canônico de 4 divisões em `data/data-models/logical/entities/`:
-- **`blueprint-entities-archive.md`**: Padrão canônico documentado com 4 divisões, `## SCHEMA RULES` numerado e padronização `TRUE`/`FALSE`.
-- **`carrinhos.md`**: Transacional de sessão, ciclo de vida, 7 schema rules, 5 business rules, detecção de 4 anomalias e roteamento para `carrinhos_anomalies`.
-- **`clientes.md`**: Cadastro mestre, conformidade LGPD (opt-ins de e-mail, SMS, push), métricas RFM, LTV, 8 schema rules e 5 business rules.
-- **`produtos.md`**: Catálogo de SKUs, precificação atual/original, estoque, 4 schema rules e 5 business rules.
-- **`itens_carrinho.md`**: Linhas de produtos adicionados ao carrinho, snapshot imutável de preço, conciliação de subtotal e rastreio de remoção de itens.
-- **`eventos_carrinho.md`**: Telemetria comportamental de funil (`view_produto` a `retorno`), alta volumetria (`BIGINT`), payload semiestruturado `JSONB`/`VARIANT`.
-- **`eventos_resgate.md`**: Régua de mensageria multicanal (E-mail, SMS, Push, WhatsApp), controle de 4 toques, cancelamento pós-conversão e cálculo de ROI.
-- **`pedidos.md`**: Fechamento financeiro da conversão (relação 1:1 estrita com carrinho), meios de pagamento e atribuição de receita recuperada.
+### ✅ 1. Modelagem de Dados Lógica Canônica & Dimensional Kimball (Item 6)
+- **Modelagem Lógica Canônica (4 Divisões)**: Todas as **6 entidades** do modelo de dados lógico estruturadas em `data/data-models/logical/entities/` (`carrinhos.md`, `clientes.md`, `produtos.md`, `itens_carrinho.md`, `eventos_carrinho.md`, `eventos_resgate.md`, `pedidos.md`).
+- **Modelagem Dimensional Gold (Kimball Star Schema - DEC-008)**:
+  - 6 Dimensões Conformadas (`dim_clientes`, `dim_tempo`, `dim_dispositivo`, `dim_motivo_abandono`, `dim_canal_resgate`, `dim_segmento_rfm`) com chaves surrogate (`_sk`).
+  - 2 Tabelas de Fatos Granulares (`fato_abandono` com 6.525 linhas e `fato_resgate` com 6.289 linhas).
+  - 2 Visões Analíticas Gold (`v_abandonment_summary` para perfil/risco e `v_recovery_roi_by_segment` para conversão/ROI de CRM).
+  - Relatório de Gap Analysis em `pipelines/case-item-06/outputs/canonical_structure_gaps_report.md`.
+  - Diagrama de Arquitetura DW em camadas Medallion (`pipelines/case-item-06/outputs/assets/data_warehouse_architecture.png` e `.mmd`).
+  - Relatório técnico final consolidado em `pipelines/case-item-06/outputs/data_modeling_report.md`.
 
 ### ✅ 2. Geração de Base de Dados Sintética Modular e Declarativa (Item 1)
 - **Arquitetura Modular**: Decomposição em camadas desacopladas (`config/` para constantes e settings, `core/` para `BaseGenerator` e `AnomalyEngine`, `modules/` para geradores de entidade e `run_all.py` como orquestrador CLI).
@@ -65,9 +64,9 @@ Todas as **6 entidades** do modelo de dados lógico foram reformuladas sob o pad
 
 ### ✅ 4. Auditoria de Data Quality & Quarentena de Anomalias (Item 4)
 - **Tripé de Entrega Implementado**:
-  - `notebooks/pipelines/quality_report/qualification_raw.ipynb`: Notebook executável e compatível com Google Colab aplicando regras sobre as 7 entidades lendo Parquet.
-  - `notebooks/pipelines/quality_report/pipeline_spec.md`: Especificação normativa e documentação técnica do pipeline.
-  - `notebooks/pipelines/quality_report/outputs/data_quality_report.md`: Relatório e evidências geradas de forma autocontida pelo notebook/pipeline.
+  - `pipelines/case-item-04/notebooks/qualification_raw.ipynb`: Notebook executável e compatível com Google Colab aplicando regras sobre as 7 entidades lendo Parquet.
+  - `pipelines/case-item-04/specs.md` & `pipelines/case-item-04/implementation_plan.md`: Especificação normativa e documentação técnica do pipeline.
+  - `pipelines/case-item-04/outputs/data_quality_report.md`: Relatório e evidências geradas de forma autocontida pelo pipeline.
   - `quality/expectations/carrinhos_suite.json` e `quality/results/validation_results.json`: Suite formal e evidências estruturadas.
 - **Arquitetura Dual-Artifact (DEC-006)**: Bifurcação entre registros aprovados (`output/qualify/*.parquet` com 94.2% de conformidade) e quarentena (`output/anomalies/*.parquet` com 5.8% de registros isolados com `anomaly_reason`).
 
@@ -75,6 +74,45 @@ Todas as **6 entidades** do modelo de dados lógico foram reformuladas sob o pad
 - **6 Visualizações de BI Geradas**: Série Temporal, Performance de Categorias, ROI por Canal, Heatmap RFM, Dispersão de Viabilidade e Scorecard de Data Quality salvas em `dashboards/assets/` em alta definição (300 DPI).
 - **Catálogo Declarativo (`chart_specs.py`)**: Mapeamento estruturado de cada view/gráfico permitindo seleção dinâmica via chave string.
 - **Task Runner Multiplataforma (`make.py` / `notebook-gen`)**: Automação por CLI permitindo rodar `.\notebook-gen` ou `python make.py notebook-gen [chart_key]`.
+
+### ✅ 6. Infraestrutura Documental, Roteiro & Gráficos do Pitch (Item 10)
+- **Estrutura Centralizada (`presentation/pitch/`)**: Todos os artefatos de apresentação, especificações de negócio e geradores visuais organizados e autocontidos.
+- **Documentação Canônica (`pitch_spec.md` & `README.md`)**:
+  - **Parte 1 — Backbone Central**: Ordem cronológica da apresentação (Blocos 1 a 5, minutagem estimada, entregas levantadas e mensagem central).
+  - **Parte 2 — Pitch Guidelines**: Roteiro detalhado com falas sugeridas para cada slide/tópico, dados de impacto ancorados em taxas e percentuais (DEC-001/007), contraste Dadosfera vs AWS e tratamento de objeções de C-Levels.
+- **8 Módulos Autocontidos com Gráficos em 300 DPI**:
+  - `01_abandono_vs_recuperacao_timeline/` (Série Temporal & Ciclo de Vida do Carrinho)
+  - `02_performance_categorias_produtos/` (Performance de Catálogo & Categorias com Atrito)
+  - `03_roi_canais_e_comunicacao/` (Topologia de Canais, Custos & ROI Multiplicador de ~45x)
+  - `04_matriz_motivos_segmentos_rfm/` (Causas-Raiz vs Segmentação RFM - Ratio 3x)
+  - `05_matriz_viabilidade_recuperacao/` (Matriz Prescritiva de Viabilidade & Priorização)
+  - `06_data_quality_e_quarentena/` (Governança & Dead-Letter Silver - Great Expectations 18 regras)
+  - `07_arquitetura_dadosfera_vs_aws/` (Comparativo Arquitetural & -86% Lead Time)
+  - `08_data_app_simulador_prescritivo_genai/` (Data App Streamlit & GenAI com LLMs)
+- **Orquestrador Central (`run_all_pitch_charts.py`)**: Script funcional para execução ponta a ponta dos geradores visuais.
+
+### ✅ 7. Arquitetura de Data Lakehouse & Catálogo de Metadados por Entidade (`pipelines/datalakes/`)
+- **Arquitetura em 4 Camadas**: Estruturação formal do Lakehouse Medallion com Dead-Letter em:
+  - **`raw/` (Bronze)**: Ingestão bruta e preservação integral *as-is* com replayability e rastreabilidade (`spec_datalake_raw_001`).
+  - **`qualify/` (Silver)**: Limpeza técnica, padronização tipológica e execução de contratos rígidos (`spec_datalake_qualify_001`).
+  - **`anomaly/` (Silver Quarentena / Dead-Letter - DEC-006)**: Isolamento de falhas contábeis e de negócio com diagnóstico de causa-raiz e severidades sem interrupção do pipeline (`spec_datalake_anomaly_001`).
+  - **`curated/` (Gold Kimball - DEC-008)**: Modelagem dimensional analítica com medidas aditivas e cálculo de taxas em tempo de consulta (`spec_datalake_curated_001`).
+- **Padrão Diretório por Entidade**: Organização de 28 subdiretórios individuais nas 4 camadas (`[entidade]_raw/`, `[entidade]_qualify/`, `[entidade]_anomalies/`, `[entidade]_curated/`), contendo o respectivo arquivo `metadata.md`.
+- **Formato Híbrido e Texto Corrido Fluido**:
+  - Cabeçalho YAML Frontmatter para leitura automatizada por parsers e integração de catálogo.
+  - Narrativa em texto corrido abordando a visão de negócio, granularidade e papel da tabela na camada.
+  - Referência única: todas as regras de tipos, chaves e restrições são citadas como **"validações declaradas no corpo da entidade"**, eliminando duplicação de dados ou schemas.
+- **Atualização da Especificação Central do Catálogo**: [`data/catalogo/business-catalog-classification.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/catalogo/business-catalog-classification.md) evoluído para a versão 2.0 (Active).
+
+### 🔄 8. Gráficos de Insights de Negócio (`presentation/insights/`) [EM PROCESSO]
+- **Objetivo**: Fornecer visualizações analíticas focadas para os insights de negócio do case de Carrinho Abandonado (`insights/`), com estética refinada (300 DPI, fundo branco `#FFFFFF`, curvas suaves spline e preenchimento de zonas coloridas `fill_between`).
+- **Módulos**:
+  - ✅ `01_bi_recuperacao_carrinhos/` (**Concluído**): Evolução temporal acumulada (início em 0 até 7.500 no topo), linha basal de compras diretas (2.229 un) e linha intermediária de resgate & reengajamento (~4.100 un) com span balanceado e zonas nítidas.
+  - ⏳ `02_motivos_abandono/` (**Em processo / Próximo agente**): Decomposição descritiva de motivos de abandono por canal/dispositivo.
+  - ⏳ `03_segmentacao_risco/` (**Em processo / Próximo agente**): Matriz diagnóstica de atrito e risco de checkout.
+  - ⏳ `04_estrategia_resgate_segmento/` (**Em processo / Próximo agente**): Prescrição de canal por cluster RFM.
+  - ⏳ `05_otimizacao_timing_envio/` (**Em processo / Próximo agente**): Curvas de decaimento de conversão por janela temporal de disparo.
+- **Orquestração**: Orquestrador em lote `presentation/insights/run_all_insights_charts.py` e comando integrado no Makefile `python make.py insights-charts`.
 
 ---
 
@@ -101,7 +139,7 @@ wheels/
 │       ├── platform-registry-consultant/ # Skill: Mapeamento de Data Assets & IDs
 │       └── scout/                        # Skill: Mapeamento de repositório
 ├── agents_prompts_refs/
-│   ├── case-internship-files/            # Materiais oficiais do estágio (specs-internship.txt)
+│   ├── case-internship-files/            # Materiais do estágio (specs-internship.txt, user-case-raw-analyses.md)
 │   ├── dadosfera-api/                    # Documentação técnica e endpoints da API Maestro
 │   │   ├── output-mappers/               # assets_registry.md / assets_registry.json
 │   │   └── endpoints/                    # Mapeamento detalhado de rotas
@@ -119,18 +157,44 @@ wheels/
 │   │   │   └── pedidos.md                # Entidade pedidos
 │   │   ├── relationships.md              # Cardinalidades e grafo ERD
 │   │   └── business-rules.md             # Regras de negócio globais
-│   ├── catalogo/qualify/                 # Dicionários de dados da camada Qualify
+│   ├── catalogo/
+│   │   ├── business-catalog-classification.md # Especificação v2.0 do Catálogo & Lakehouse
+│   │   └── qualify/                      # Dicionários de dados da camada Qualify
 │   ├── mock/
 │   │   ├── generators/parquet/           # Gerador modular (config/, core/, modules/, run_all.py)
 │   │   ├── output/{parquet,csv}/         # Datasets com 115k+ linhas geradas
 │   │   └── METRICS.md                    # Metadados, perfis e cotas determinísticas de anomalias
 │   └── relatorio-etapa1.md              # Relatório de entrega da Etapa 1
+├── pipelines/
+│   ├── datalakes/                        # Arquitetura Lakehouse & Catálogo por Entidade
+│   │   ├── README.md                     # Visão Geral das 4 Camadas
+│   │   ├── raw/                          # Bronze: spec.md + 7 pastas com metadata.md
+│   │   ├── qualify/                      # Silver: spec.md + 7 pastas com metadata.md
+│   │   ├── anomaly/                      # Quarentena DEC-006: spec.md + 7 pastas com metadata.md
+│   │   └── curated/                      # Gold Kimball: spec.md + 7 pastas com metadata.md
+│   ├── case-item-03/                     # Catalogação e Exploração na Dadosfera
+│   ├── case-item-04/                     # Data Quality Pipeline (Notebook + Specs + Report)
+│   └── case-item-06/                     # Modelagem Dimensional Kimball (DW Gold)
 ├── insights/
 │   ├── 01_descriptive/                   # Insights descritivos (conversão, volume)
 │   ├── 02_risk/                          # Insights de risco (abandono por atrito)
 │   ├── 03_prescriptive/                  # Insights prescritivos (melhor canal/timing)
 │   └── 04_opportunity/                   # Insights de oportunidade (otimização de receita)
-└── relatorios/decision-making/pitch/     # Decision records estratégicos
+├── presentation/
+│   ├── pitch/                            # Infraestrutura completa da apresentação (Item 10)
+│   │   ├── README.md                     # Visão geral e índice de navegação
+│   │   ├── pitch_spec.md                 # Backbone Central & Guidelines de Apresentação
+│   │   ├── run_all_pitch_charts.py       # Orquestrador central dos geradores
+│   │   ├── config/chart_theme.py         # Tema visual corporativo Dadosfera (300 DPI)
+│   │   └── 01 a 08/                      # Módulos com spec, script e chart
+│   └── insights/                         # Gráficos e visualizações dos insights de negócio
+│       ├── README.md                     # Galeria de gráficos de insights
+│       ├── run_all_insights_charts.py    # Orquestrador em lote de insights
+│       └── 01_bi_recuperacao_carrinhos/  # Spec + Script + Gráfico BI (curvas, fundo branco, fill_between)
+└── docs/relatorios/
+    ├── decision-making/                  # DEC-007, DEC-008
+    └── pitch/
+        └── decision-making/              # pitch.txt, relatorio-pitch-01.md
 ```
 
 ---
@@ -144,6 +208,7 @@ wheels/
 - **DEC-005 (Governança Maestro API)**: Token JWT sem prefixo Bearer e isolamento de duplicatas órfãs via PUT.
 - **DEC-006 (Dual-Artifact Pipeline & 4-Division Blueprint)**: Bifurcação Silver (`[entidade]_qualify` vs `[entidade]_anomalies`) com fronteira clara entre Plataforma (evidência/detecção) e Domínio (resolução/ação), com `## SCHEMA RULES` numerados e booleanos padronizados em `TRUE`/`FALSE`.
 - **DEC-007 (Taxas Quebradas e Distribuições Naturais no Mock Engine)**: Adoção de percentuais fracionários não-redondos em `config/settings.py` e `core/anomaly_engine.py` para máxima verossimilhança estatística de telemetria nos dashboards e Data Apps.
+- **DEC-008 (Kimball Star Schema por Simplicidade e Performance)**: Adoção do modelo dimensional Kimball (6 dimensões conformadas, 2 fatos granulares e 2 visões analíticas Gold) na camada Gold, eliminando complexidade desnecessária de Data Vault e maximizando a performance analítica para Metabase (Item 7) e Streamlit (Item 9).
 
 ---
 

@@ -104,29 +104,40 @@
 
 ---
 
-## Volumes Gerados
+## Perfis e Volumes Gerados
 
-| Entidade | Volume | Arquivo |
-|---|---|---|
-| `clientes` | ~1.200 | `clientes.parquet` |
-| `produtos` | ~250 | `produtos.parquet` |
-| `carrinhos` | ~6.000 | `carrinhos.parquet` |
-| `itens_carrinho` | ~18.000 | `itens_carrinho.parquet` |
-| `eventos_carrinho` | ~70.000 | `eventos_carrinho.parquet` |
-| `eventos_resgate` | ~4.200 | `eventos_resgate.parquet` |
-| `pedidos` | ~1.800 | `pedidos.parquet` |
-| **TOTAL** | **~101.450** | — |
+Os geradores sintéticos contam com arquitetura modular e declarativa (`data/mock/generators/parquet/`) organizada em perfis pré-configurados (`standard`, `rich`, `dev`) com geração em cascata (DAG):
+
+| Entidade | Volume (Standard) | Volume (Rich) | Volume (Dev) | Arquivos Gerados |
+|---|:---:|:---:|:---:|---|
+| `clientes` | 1.500 | 2.500 | 200 | `clientes.parquet` / `csv` |
+| `produtos` | 300 | 500 | 50 | `produtos.parquet` / `csv` |
+| `carrinhos` | 7.500 | 10.000 | 800 | `carrinhos.parquet` / `csv` |
+| `itens_carrinho` | ~18.890 | ~26.000 | ~1.650 | `itens_carrinho.parquet` / `csv` |
+| `eventos_carrinho` | ~78.930 | ~110.000 | ~8.400 | `eventos_carrinho.parquet` / `csv` |
+| `eventos_resgate` | ~6.430 | ~9.500 | ~750 | `eventos_resgate.parquet` / `csv` |
+| `pedidos` | ~2.230 | ~3.100 | ~250 | `pedidos.parquet` / `csv` |
+| **TOTAL CONSOLIDADO** | **115.777** | **~161.600** | **~12.100** | *(Garante os 105k+ exigidos pelo case)* |
 
 ---
 
-## Dirty Data Injetada
+## Dirty Data e Anomalias Injetadas (Cotas Mínimas Garantidas)
 
-| Entidade | Anomalia | Taxa |
-|---|---|---|
-| `clientes` | Email com casing inconsistente | ~5% |
-| `clientes` | Telefone sem máscara | ~5% |
-| `produtos` | `preco_atual > preco_original` | ~5% |
-| `carrinhos` | Frete negativo | ~3% |
-| `carrinhos` | `valor_total ≠ subtotal + frete - desconto` | ~5% |
-| `itens_carrinho` | `data_remocao < data_adicao` | ~5% |
-| `eventos_resgate` | `data_abertura < data_envio` | ~5% |
+O motor `AnomalyEngine` assegura matematicamente cotas mínimas determinísticas para viabilizar os testes dos pipelines de Qualidade (Great Expectations / Camada Qualify vs Anomaly da Dadosfera):
+
+| Entidade | Regra / Anomalia | Cota Mínima Garantida | Risco de Negócio / Propósito |
+|---|---|:---:|---|
+| `clientes` | `email_null` (e-mails ausentes) | **5.0%** | Teste de completude cadastral e fallback multicanal |
+| `clientes` | `email_invalido` (sintaxe malformada) | **3.0%** | Teste de regex e higienização cadastral (ANOM-01) |
+| `clientes` | `email_casing` (caixa alta/mista) | **5.0%** | Padronização e casing de strings no pipeline |
+| `clientes` | `telefone_sem_mascara` (sem formatação) | **5.0%** | Validação de máscara e formato telefônico |
+| `clientes` | `ltv_inconsistente` (LTV > 0 com total_compras = 0) | **3.0%** | Inconsistência contábil de LTV (ANOM-02) |
+| `produtos` | `preco_invertido` (`preco_atual > preco_original`) | **5.0%** | Promoção invertida / precificação abusiva |
+| `carrinhos` | `frete_negativo` (`valor_frete < 0.00`) | **4.0%** | Subfaturamento e prejuízo logístico (ANOM-01) |
+| `carrinhos` | `total_inconsistente` (`valor_total ≠ subtotal + frete - desc`) | **5.0%** | Divergência contábil no checkout (ANOM-04) |
+| `carrinhos` | `subtotal_zerado` (`valor_subtotal <= 0.00`) | **2.0%** | Falha de payload ou produto gratuito indevido (ANOM-02) |
+| `carrinhos` | `desconto_excessivo` (`valor_desconto > valor_subtotal`) | **2.0%** | Exploit de cupons / valor líquido negativo (ANOM-03) |
+| `itens_carrinho` | `carrinhos_sem_itens` (sessões sem linhas) | **2.0%** | Dados inúteis / carrinhos órfãos (itens faltando) |
+| `itens_carrinho` | `inversao_temporal_item` (`data_remocao < data_adicao`) | **5.0%** | Quebra de cronologia transacional de navegação |
+| `eventos_resgate` | `inversao_temporal_abertura` (`data_abertura < data_envio`) | **5.0%** | Telemetria assíncrona com timestamp corrompido |
+

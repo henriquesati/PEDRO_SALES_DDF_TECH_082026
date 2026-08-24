@@ -6,7 +6,7 @@ description: "Skill para documentação, catálogo e linhagem de pipelines de da
 # 📚 Skill: Data Pipeline Documentation & Cataloging (Enxuta & Prática)
 
 ## 🎯 Objetivo da Skill
-Padronizar e acelerar a documentação dos pipelines de engenharia de dados do projeto (Camadas Bronze, Silver e Gold), garantindo clareza técnica, rastreabilidade de linhagem (*lineage*), regras de *Data Quality* e contratos de dados (*Data Contracts*), sem burocracia excessiva ou *over-engineering*.
+Padronizar e acelerar a documentação dos pipelines de engenharia de dados do projeto (Camadas Bronze, Silver e Gold), garantindo clareza técnica, rastreabilidade de linhagem (*lineage*), regras de *Data Quality* e contratos de dados (*Data Contracts*), sem burocracia excessiva ou *over-engineering*, em total conformidade com a [Data Platform Specification](file:///c:/Users/pedro/OneDrive/Desktop/wheels/docs/specifications/data-platform-specification.md).
 
 ---
 

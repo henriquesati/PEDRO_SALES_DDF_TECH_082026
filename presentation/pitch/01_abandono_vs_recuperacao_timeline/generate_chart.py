@@ -21,11 +21,19 @@ from config.chart_theme import apply_dadosfera_theme, save_chart_artifact, DADOS
 OUTPUT_IMAGE_PATH: Final[str] = os.path.join(
     os.path.dirname(__file__), "chart_01_serie_temporal_abandono_resgate.png"
 )
-PARQUET_CARTS_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "carrinhos.parquet")
-PARQUET_RESGATE_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "eventos_resgate.parquet")
+PARQUET_CARTS_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "carrinhos.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "carrinhos.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "carrinhos.parquet")
+)
+PARQUET_RESGATE_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "eventos_resgate.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "eventos_resgate.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "eventos_resgate.parquet")
+)
 
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Carrega dados das entidades carrinhos e eventos_resgate."""
+    """Carrega dados das entidades carrinhos e eventos_resgate (fonte limpa)."""
     df_carts = pd.read_parquet(PARQUET_CARTS_PATH)
     df_resgate = pd.read_parquet(PARQUET_RESGATE_PATH)
     return df_carts, df_resgate

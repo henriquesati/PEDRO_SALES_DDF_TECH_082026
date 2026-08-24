@@ -153,13 +153,6 @@
 
 ---
 
-## 5. Especificações do Banco de Dados Alvo
-
-- **Tipo / SGBD**: PostgreSQL
-- **Versão Alvo**: 15+
-- **Convenções de Nomenclatura**: snake_case, tabelas no plural, campos descritivos em português
-- **Tipos de Dados Especiais**: TIMESTAMPTZ (timestamps com timezone), JSONB (dados flexíveis em eventos), DECIMAL(10,2) para monetários, SERIAL/BIGSERIAL para PKs
-
 ---
 
 ## 6. Diretrizes para Geração de Dados Mock & Dirty Data
@@ -204,7 +197,6 @@
 - Histórico de preços de produtos
 
 ### Arquivos de Implementação
-- **Modelagem Lógica**: `data/models/logical/`
-- **DDL SQL**: `data/database/sql/001_create_tables.sql` → `004_views.sql`
-- **Mock Generators**: `data/mock/generators/` (a criar)
-- **Datasets**: `data/mock/output/` (a gerar)
+- **Modelagem Lógica**: `data/data-models/logical/`
+- **Mock Generators**: `data/mock/generators`
+- **Datasets**: `data/mock/output/`

@@ -1,0 +1,350 @@
+
+Case Base Geral
+
+
+
+
+
+
+
+
+
+
+Olá, pessoa candidata! Estamos empolgados para conhecer melhor suas habilidades. Preparado(a) para o desafio? Vamos nessa!
+
+Objetivo
+O objetivo deste teste é avaliar a forma como você aborda, desenvolve e resolve o desafio proposto.
+
+Mais do que validar conhecimentos técnicos prévios, buscamos entender o raciocínio utilizado, o nível de esforço dedicado, a capacidade de buscar soluções, aprender ao longo do processo e evoluir a partir do desafio apresentado.
+
+Os conhecimentos mencionados abaixo não são necessários para a realização do teste nem para participação no processo seletivo. Eles servem apenas como referência dos temas relacionados à vaga e podem ajudar a contextualizar o desafio:
+
+
+Ensino superior cursando nas áreas de Computação, Estatística, Matemática, Engenharias ou áreas afins;
+Conhecimento básico em Programação, preferencialmente SQL e/ou Python;
+Conhecimento em Análise Descritiva de Dados;
+Conhecimento em Machine Learning;
+Conhecimento em Visualização de Dados;
+Conhecimentos em Linux, Cloud e Metodologias Ágeis são um plus;
+Inglês Avançado
+
+
+Sobre a Dadosfera
+
+2018: os fundadores, Luis Martins e Allan Sene, compartilhavam de uma mesma ideia revolucionar o mercado de dados no Brasil. Com isso, Luis descobriu uma forma de juntos, transformar a paixão por Dados em um negócio de sucesso orientado a Dados.
+2019: No dia 20 de fevereiro de 2019 nasce, oficialmente, a empresa DataSprints.
+2020: Começamos uma das maiores e mais renomadas consultorias de Data, AI & Analytics do Brasil.
+2021: Recebemos nosso primeiro aporte de fundos de um investidor renomado no mercado com mais de 1 bilhão de dólares sob cessão! Lançamos nosso produto no mercado: Dadosfera e, estrategicamente, privatizamos a empresa com o mesmo nome.
+2022: Conquistamos clientes e lançamos o nosso primeiro curso com a Dadosfera: Data Mesh na Prática!
+
+Sobre o Case
+Introdução ao case
+
+Como Profissional de Dados na Dadosfera, você irá construir projetos de implementação da plataforma Dadosfera SaaS, em uma empresa, buscando centralizar diversas fontes de dados para aprimorar a tomada de decisões, eficiência operacional e análise estratégica. Após um kickoff bem-sucedido com o cliente, é hora de dar sequência à execução do projeto, enfrentando os desafios específicos delineados pelo cliente.
+
+
+Seu cliente, uma grande empresa de e-commerce, está com um projeto de construir uma Plataforma de Dados, com o objetivo de entregar análises descritivas e prescritivas com maior agilidade, menor custo, em todas as áreas da empresa.
+
+
+PARA O CASE, VOCÊ DEVE PROPOR UMA BASE DE DADOS QUE CONHEÇA E QUE SE ENCAIXE NA NARRATIVA ACIMA.
+
+
+Sugestões de desafios:
+
+Processamento de dados desestruturados de anúncios
+Otimização de rotas logísticas
+
+Todo este case deve ser baseado em suas experiências anteriores. Sendo assim, recomendamos que traga soluções que você entenda muito bem e saiba como aplicá-las. Isso será cobrado na fase de entrevistas técnicas.
+
+
+Como vamos te avaliar
+Todo o Case é baseado no entendimento do Ciclo de Vida dos Dados, assim como entendido pela Dadosfera:
+
+
+
+Cada Etapa do Case-Base condiz com alguma dessas 9 fases do ciclo de vida dos dados: Do Integrar até IA Generativa.
+
+Instruções:
+Em hipótese alguma compartilhe esse usuário da Dadosfera com outra pessoa.
+O uso de GPT e outros LLMs é incentivado para esse case. Faz parte do nosso dia-a-dia trabalhar com IA. Use com sabedoria para acertar todos os itens, mas também sair bem na entrevista técnica.
+Seu acesso será criado automaticamente a partir do preenchimento do formulário,  Solicita-se a utilização do mesmo e-mail informado no cadastro desta vaga. Caso necessário, o e-mail poderá ser localizado por meio da busca por “from: suporte@dadosfera.ai” ou pelo assunto “Acesse a Dadosfera | Registro”.
+
+
+
+Siga estas instruções para realizar o seu primeiro acesso.
+
+IMPORTANTE: Nas etapas de Python, Data Apps e LLMs, utilize o Google Colab para o desenvolvimento. No README do seu projeto, explique como subir o Data App via Streamlit, ou, se preferir, publique-o no Streamlit Community Cloud (ou em outra plataforma similar).
+
+
+Os guias aqui referenciados utilizam a Dadosfera como exemplo. Faz parte do processo de avaliação sua capacidade de abstraí-los para os ambientes acima.
+
+
+Ambientes provisionados em outras Cloud serão avaliados como BÔNUS, caso estejam disponíveis no momento da avaliação.Análise de desempenho de profissionais da empresa
+
+Formato de Entrega:
+Subir todas as respostas abaixo no Github, em um repositório com o nome <primeiro_nome>_<ultimo_nome>_DDF_TECH_<mes><ano>, exemplo ALLAN_OLIVEIRA_DDF_TECH_082023. Responder os itens em formato Markdown com LINKS direcionando para os ativos na Dadosfera e PRINTS evidenciando os datasets, dashboards e data app.
+
+
+Caso necessite deixar o código como privado, por questões de privacidade, compartilhe o repositório com os seguintes usuários:
+allansene
+Rafaelsantanaep
+galvsoliveira
+Guilherme-maioli
+edvaldoazevedo
+
+
+Para o Item Apresentação do Case:
+
+1 - O vídeo deve ser carregado como Unlisted no YouTube. Seu link deve ser referenciado no markdown acima.
+
+2 - Garanta que o vídeo é acessível por qualquer usuário com o link.
+
+3 - Qualquer outra análise ou trabalho feito que não esteja catalogado na Dadosfera ou reprodutíveis pelo repositório no Github NÃO serão avaliados.
+
+
+Requisitos:
+
+Ter acesso à Internet
+Ter acesso ao ambiente de Treinamentos da Dadosfera
+
+Item 0 - Sobre Agilidade e Planejamento
+Crie um artefato que representa todas as etapas do projeto, desde a concepção até a implementação, seguindo as melhores práticas do PMBOK. Pode ser, tanto um gantt chart, um fluxograma, um checklist de tarefas ou um kanban board com as tarefas planejadas. Adicione este fluxograma na documentação do case.
+Avançado: Incluir análises de risco, estimativas de custos, e alocação de recursos.
+Avançado: Representar interdependências e pontos críticos do projeto.
+
+Item 1 - Sobre a Base de Dados
+Seguindo o cenário proposto na definição do Case, pesquise e sugira uma base de dados para fazer todo case ponta a ponta.
+
+
+Caso queira, você também pode gerar uma base de dados sinteticamente, desde que ela represente o domínio sugerido pelo case e que você apresente o script de geração de dados sintéticos utilizado.
+
+
+IMPORTANTE: Bases com menos de 100.000 registros não serão consideradas.
+
+
+Bases não sugeridas aqui serão tratadas como bônus. Seja criativo e traga análises de dados novos para nós, principalmente que você domine de ponta a ponta.
+
+
+Exemplos de bases de dados que você pode utilizar, caso não tenha alguma para sugerir:
+
+Microsoft AdventureWorks - Database Template
+NYC City Taxi Data
+Base de Produtos e suas descrições
+
+
+Item  2.1 - Sobre a Dadosfera - Integrar
+Vamos iniciar com o carregamento e posterior análise descritiva dos dados propostos. Utilizando o módulo de Coleta da Dadosfera, conecte a sua base de dados proposta e suba esses dados para a Plataforma.
+
+
+Lembre-se: você deve carregar, pelo menos, 100.000 registros para que seu case seja avaliado por completo.
+
+
+Bônus: Para bases de dados Transacionais, temos a feature de Microtransformação. Carregue seus dados numa base transacional SQL, importe para a Dadosfera e aplique uma microtransformação.
+
+
+Item  3 - Sobre a Dadosfera - Explorar
+Usando os seus conhecimentos e da documentação da Dadosfera, faça a carga desse dataset, catalogue-o com as informações mais relevantes, seguindo boas práticas de Dicionário de Dados.  
+
+
+Lembre-se de organizar os dados seguindo as definições comuns de um Data Lake. Abaixo um desenho das zonas que comumente são usadas pela Dadosfera para organização dos dados:
+
+
+
+
+
+Bônus: Usar a API da Dadosfera para Catalogar os ativos gerados automaticamente.
+
+Item 4 - Sobre Data Quality
+Após a integração e exploração dos dados do site de e-commerce, você identificou várias inconsistências e dados faltantes que podem impactar negativamente a performance dos modelos de IA e a experiência de compra dos clientes. Como você abordaria a melhoria da qualidade desses dados utilizando as ferramentas e práticas recomendadas pela Dadosfera?
+
+
+Gere um relatório de qualidade dos dados usando uma biblioteca apropriada - great-expectations ou soda-core -  para identificar inconsistências e dados faltantes.
+
+
+Bônus: Definir e implementar um Common Data Model para os dados utilizados.
+
+
+Item 5 - Sobre o uso de GenAI e LLMs - Processar
+Um dos Datasets sugeridos acima é uma lista Produtos e suas respectivas descrições. Esse Dataset tem aproximadamente de 3Gbs de Dados JSON e tem 2 colunas de texto, uma de título e outra de descrição.
+
+
+Nesta etapa do case, queremos avaliar sua capacidade de transformar dados desestruturados em Features para análise.
+
+
+Traga um dataset desestruturado e, utilizando IA, gere features em cima desses dados.
+
+
+Exemplo:
+
+
+Titulo: FYY Leather Case with Mirror for Samsung Galaxy S8 Plus, Leather Wallet Flip Folio Case with Mirror and Wrist Strap for Samsung Galaxy S8 Plus Black
+
+Product Description: Premium PU Leather Top quality. Made with Premium PU Leather. Receiver design. Accurate cut-out for receiver. Convenient to Answer the phone without open the case. Hand strap makes it easy to carry around. RFID Technique: Radio Frequency Identification technology, through radio signals to identify specific targets and to read and copy electronic data. Most Credit Cards, Debit Cards, ID Cards are set-in the RFID chip, the RFID reader can easily read the cards information within 10 feet(about 3m) without touching them. This case is designed to protect your cards information from stealing with blocking material of RFID shielding technology. 100% Handmade. Perfect craftsmanship and reinforced stitching make it even more durable. Sleek, practical, and elegant with a variety of dashing colors. Multiple Functions Card slots are designed for you to put your photo, debit card, credit card, or ID card while on the go. Unique design. Cosmetic Mirror inside made for your makeup and beauty. Perfect Viewing Angle. Kickstand function is convenient for movie-watching or video-chatting. Space amplification, convenient to unlock. Kickstand function is convenient for movie-watching or video-chatting.
+
+Features: {
+
+  "category": "Phone Accessories",
+
+  "material": "Premium PU Leather",
+
+  "features": {
+
+    "receiver_design": "Accurate cut-out for receiver. Convenient to Answer the phone without opening the case.",
+
+    "hand_strap": "Yes",
+
+    "RFID_technique": "Protection of card information with RFID shielding technology",
+
+    "handmade": "100% Handmade",
+
+    "stitching": "Reinforced stitching",
+
+    "functions": {
+
+      "card_slots": "Yes",
+
+      "cosmetic_mirror": "Yes",
+
+      "kickstand_function": "Yes, convenient for movie-watching or video-chatting",
+
+      "space_amplification": "Yes, convenient to unlock"
+
+    },
+
+    "color_options": "Variety of dashing colors",
+
+    "compatibility": "Samsung Galaxy S8 Plus"
+
+  }
+
+}
+
+
+Para entender como usar um LLM como o GPT, acesse este notebook de exemplo ou então pesquise no Playground da Open AI (referenciado abaixo).
+
+
+Bônus: Usar vídeo ou áudio como exemplo deste item do case.
+
+
+Item 6 - Sobre Modelagem de Dados
+Com os dados importados, precisamos propor uma modelagem de dados que seja condizente com o cenário dos dados e do cliente.
+
+Crie um modelagem seguindo os princípios de Kimball, Data Vault ou outro - que deve ser explicado e justificado - com 2 visões finais dos dados.
+
+
+Bônus: desenhe o diagrama representando as camadas finais do DW proposto.
+
+
+Item  7 - Sobre Análise de Dados - Analisar
+Com as features extraídas pelo LLM dentro da Dadosfera e sua base de dados, precisamos ir para a etapa de geração de valor.
+
+
+Utilize as mesmas credenciais para acessar nosso módulo de Visualização. Observe que você precisa utilizar o identificador (ID) da tabela para encontrá-la no nosso módulo de Visualização:
+
+
+
+
+Exemplo do dataset na Dadosfera, destacando o ID
+
+
+Crie uma Coleção com o formato <nome> <sobrenome> - <mes_ano> assim como no exemplo:
+
+
+
+
+Crie um dashboard que mostre uma análise das categorias e uma análise de série-temporal. Salve a Query SQL utilizada e também o print do resultado da query no documento markdown deste teste. Crie, pelo menos, 5 visualizações/questões em cima dos dados, utilizando 5 tipos de visualizações diferentes.
+
+
+Bônus 1: Explore as features do Metabase de notificação e integração inteligente para uma entrega completa de valor.
+
+
+Bônus 2: Caso necessário, traga mais dados sintéticos para incorporar mais sua análise, como Latitude/Longitude, Estados/Municípios do Brasil, Distribuições de baixa e alta cardinalidade, etc.
+
+
+Bônus 3: Traga ou realize alguma nova análise com dados próximos ao domínio utilizado neste case, mas que utilize ferramentas externas de BI como PowerBI ou Tableau. Crie um Readme explicando como foi criado esse projeto e suba no mesmo repositório do case. Incorpore este dashboard externo como um Ativo na Dadosfera.
+
+
+Item  8 - Sobre Pipelines
+Uma das etapas essenciais de um projeto de Dados é a criação de Pipelines de Dados. Desde o processo de criação de modelos inteligentes, utilizando-se de Machine Learning, até a Engenharia de Dados, com Pipelines de Transformação e Limpeza de Dados.
+
+
+Agora você tem que criar um pipeline para processar os dados anteriores. Para criar um pipeline, acesse nosso módulo de inteligência e siga este guia na nossa documentação.
+
+
+A Dadosfera disponibiliza uma série de Steps prontos para uso, que podem ser conferidos aqui:
+
+Stepsfera no Github
+
+Catalogue esse pipeline desenvolvido na Dadosfera.
+
+
+Sugestões de análises:
+
+ETL de modelagem e qualidade dos dados
+Pipeline de Treinamento de Modelos
+
+Bônus: Utilização de Spark ou Snowpark para processamento dos Dados
+
+
+Item  9 - Sobre Data Apps
+Agora você tem que criar um Data App utilizando Streamlit para explorar os dados anteriores.
+
+
+Conforme sugerido acima, você pode subir o Data App no Streamlit Community Cloud (ou em outra plataforma similar).
+
+
+O guia “Subindo um Data App com Streamlit” utiliza a Dadosfera como exemplo. Faz parte do processo de avaliação sua capacidade de abstraí-lo para o ambiente sugerido acima.
+
+
+Sugestões de Análises:
+
+Similaridade entre produtos
+Tensorboard - Similaridade entre produtos
+EDA - usando GPT
+Item 10 - Apresentação do Case
+Após a primeira reunião com nossa equipe de vendas, você deve fornecer uma solução técnica que atenda às exigências e se encaixe na arquitetura deles. Aqui está o diagrama da arquitetura atual deles:
+
+
+
+
+Você deve mostrar, com base nos seus estudos sobre a Documentação da Dadosfera, a viabilidade de substituirmos essa solução pelo case construído.
+
+SEU CASE É COMO UMA PROVA DE CONCEITO DE QUE A DADOSFERA É O CAMINHO MAIS RÁPIDO ENTRE DADOS E VALOR.
+
+Essa arquitetura deve ser a base de uma nova Plataforma de Dados, com o objetivo de fornecer:
+
+ Modelos de IA para melhorar a experiência de compra dos clientes
+Sua apresentação deve:
+
+Passar por todos os ativos criados nos itens anteriores
+Pelo menos 1, destas respostas:
+Principal problema a ser resolvido
+Diagrama da solução com Dadosfera, substituindo parcial ou totalmente a arquitetura desenhada acima.
+Como a Dadosfera é uma solução tecnicamente mais viável e/ou mais barata
+Oportunidades e ganhos futuros de se adotar a Dadosfera, frente à solução atual
+Seja claro na apresentação, explicando o seu pensamento e como deve funcionar em cenários reais. Lembre-se de se apresentar como um Especialista de Dados da Dadosfera (pensamento positivo 🙏🏾).
+
+Item Bônus - Sobre GenAI + Data Apps
+Utilize este Data App como referência para criar um gerador de apresentações de produto. Seu objetivo é chegar em uma apresentação para mostrar as principais características do Produto a fim de vender mais. Utilize a API do Dall-e ou outro gerador de imagens para gerar uma imagem do produto. No notebook, documente em separado os prompts utilizados.
+
+Exemplo de uso do Dall-e aqui:
+
+
+
+Resultado e Forma de Avaliação
+Em escala de nota final menor para a maior.
+
+
+Mínimo: responder as perguntas do item do case 2, 3, 4 e 7 (Analisar) e carregá- no Github
+Intermediário: mínimo anterior + item do case 1 (apresentação em vídeo)
+Avançado: Intermediário + item case Sobre Data Apps
+Excelente: Avançado + case bonus
+Outlier: extrapolar o que foi pedido.
+Referências para esse teste
+
+Documentação da Dadosfera
+Galeria de Data Apps do Streamlit
+Open AI Playground
+API da Dadosfera
+Fórum de Discussões da Dadosfera
+Documentação do Metabase

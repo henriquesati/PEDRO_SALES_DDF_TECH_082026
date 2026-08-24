@@ -35,7 +35,8 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI) e catálogo declarativo | ✅ Concluído |
 | **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver e Golden views na Dadosfera | ⏳ Planejado |
 | **9** | Data Apps | Consumir | Planejamento de Data App em Streamlit para simulação de recuperação de ROI | ⏳ Planejado |
-| **10** | Apresentação em Vídeo | — | Roteiro de pitch comparativo (Dadosfera vs Stack Legada AWS) | ⏳ Planejado |
+| **10** | Apresentação em Vídeo | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
+| **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `presentation/insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
 | **Bônus**| GenAI + Data Apps | IA Generativa | Geração visual de cards de produtos e vitrines dinâmicas de resgate | ⏳ Planejado |
 
 ---
@@ -88,6 +89,12 @@ python make.py chart categories
 
 # Lista todas as views e gráficos disponíveis no catálogo declarativo:
 python make.py list-charts
+
+# Gera todos os 8 gráficos de alta resolução da apresentação de Pitch:
+python make.py pitch-charts
+
+# Gera todos os gráficos da galeria de Insights de Negócio (presentation/insights):
+python make.py insights-charts
 ```
 
 ---
@@ -165,15 +172,34 @@ wheels/
 │   │   └── relatorio-etapa3.md
 │   └── assets/charts/                  # Galeria de gráficos analíticos gerados
 │
-├── notebooks/
-│   ├── 04_data_quality.ipynb           # Notebook de execução de qualidade (Item 4)
-│   ├── 07_bi_dashboards_visualizations.ipynb # Notebook de visualizações de BI (Item 7)
-│   └── pipelines/serving/              # Scripts geradores e catálogo de charts
+├── presentation/
+│   └── pitch/                            # Infraestrutura completa da apresentação (Item 10)
+│       ├── README.md                     # Visão geral e índice de navegação
+│       ├── pitch_spec.md                 # Backbone Central & Guidelines de Apresentação
+│       ├── run_all_pitch_charts.py       # Orquestrador consolidado dos geradores visuais
+│       ├── config/chart_theme.py         # Tema visual corporativo Dadosfera (300 DPI)
+│       ├── 01_abandono_vs_recuperacao_timeline/ # Spec + Script + Gráfico Série Temporal
+│       ├── 02_performance_categorias_produtos/  # Spec + Script + Gráfico Categorias
+│       ├── 03_roi_canais_e_comunicacao/         # Spec + Script + Gráfico ROI Canais
+│       ├── 04_matriz_motivos_segmentos_rfm/     # Spec + Script + Heatmap RFM
+│       ├── 05_matriz_viabilidade_recuperacao/   # Spec + Script + Scatter Viabilidade
+│       ├── 06_data_quality_e_quarentena/        # Spec + Script + Scorecard DQ
+│       ├── 07_arquitetura_dadosfera_vs_aws/     # Spec + Script + Comparativo AWS
+│       └── 08_data_app_simulador_prescritivo_genai/ # Spec + Script + Painel GenAI
 │
-└── quality/
-    ├── expectations/                   # Expectativas formais Great Expectations
-    └── results/                        # Evidências JSON da validação de qualidade
+├── quality/
+│   ├── expectations/                   # Expectativas formais Great Expectations
+│   └── results/                        # Evidências JSON da validação de qualidade
 ```
+
+---
+
+## 🎤 5. Infraestrutura & Especificações do Pitch (Item 10)
+
+Toda a infraestrutura documental e visual que suporta a gravação da apresentação em vídeo está organizada em [`presentation/pitch/`](presentation/pitch/):
+- **Documentação Master (`pitch_spec.md`)**: Contém a **Parte 1 (Backbone Central)** com a cronologia em 5 blocos (00:00 a 12:30) e a **Parte 2 (Pitch Guidelines)** com falas sugeridas, dados de impacto em %, contraste Dadosfera vs AWS e respostas para objeções de C-Levels.
+- **8 Subdiretórios Autocontidos**: Cada diretório de regra de negócio/ponto técnico contém a sua especificação (`spec.md`), script gerador (`generate_chart.py`) e artefato visual gerado (`chart_*.png` em 300 DPI).
+- **Geração Consolidada**: `python make.py pitch-charts` ou `python presentation/pitch/run_all_pitch_charts.py`.
 
 ---
 
@@ -198,4 +224,9 @@ python make.py mock-gen
 
 # Ou em qualquer SO:
 python make.py notebook-gen
+```
+
+### 4. Gerar os 8 Gráficos e Painéis Visuais do Pitch
+```bash
+python make.py pitch-charts
 ```

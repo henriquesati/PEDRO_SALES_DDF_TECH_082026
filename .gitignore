@@ -1,0 +1,64 @@
+# ==============================================================================
+# Git Ignore — Case Recuperação de Carrinho Abandonado (Dadosfera)
+# ==============================================================================
+
+# ─── Python Bytecode & Caches ────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+
+# ─── Ambientes Virtuais (Virtual Environments) ────────────────────────────────
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ─── Testes, Cobertura & Linters ─────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.ruff_cache/
+.mypy_cache/
+
+# ─── Jupyter Notebooks ───────────────────────────────────────────────────────
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ─── Estado do Pipeline & Tokens ─────────────────────────────────────────────
+# Permitido no repositório para reprodutibilidade e avaliação imediata pelo time técnico
+!api/dadosfera/.state/
+!api/dadosfera/.state/*
+
+# ─── IDEs & Editores ─────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ─── Sistema Operacional (Windows / macOS / Linux) ───────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# ─── Arquivos Temporários e Logs ─────────────────────────────────────────────
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
