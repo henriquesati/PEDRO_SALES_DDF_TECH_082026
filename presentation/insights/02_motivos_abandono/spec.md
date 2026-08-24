@@ -4,6 +4,10 @@
 - **Pergunta Central**: Qual razão de abandono causa a maior perda de receita na plataforma e como esses motivos se distribuem entre diferentes dispositivos (Mobile, Desktop, Tablet) e faixas de valor de carrinho?
 - **Insight de Negócio**: A análise descritiva dos 5.231 carrinhos abandonados revela que **Preço Alto (1.307 un / 25,0% / R$ 498,8k)** e **Frete Caro (1.207 un / 23,1% / R$ 434,6k)** são as duas principais causas-raiz de atrito no marketplace, somando mais de 48% do volume e ~R$ 933,4k em receita represada. **Indecisão (1.045 un / 20,0% / R$ 379,5k)** e **Problemas no Pagamento (961 un / 18,4% / R$ 365,3k)** concentram-se com maior intensidade no dispositivo móvel devido a atritos de preenchimento e etapas de checkout.
 
+> [!NOTE]
+> **Foco do Projeto em Proporções (%)**: O núcleo desta análise é a distribuição percentual das causas de atrito e a quebra relativa por dispositivo. O cliente pode adequar o seu próprio Ticket Médio por categoria/motivo. Os valores em R$ refletem o baseline da *Entidade Exemplo* (TM Geral ~R$ 375,00) apenas para ilustrar a perda financeira correspondente.
+
+
 ---
 
 ## 📊 Métricas & Fórmulas (Ground Truth)

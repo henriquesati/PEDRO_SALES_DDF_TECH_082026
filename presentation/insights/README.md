@@ -16,6 +16,32 @@ Este diretório contém a infraestrutura de especificações visuais, scripts de
 
 ---
 
+## 📐 Diretriz Metodológica: Foco em Proporções (%) & Entidade Exemplo
+
+### 1. Foco Estrutural em Porcentagens (%)
+> [!IMPORTANT]
+> **O foco primordial de todas as análises e gráficos de Insights é a modelagem em PORCENTAGENS (%) e TAXAS RELATIVAS.**
+> As dinâmicas de conversão de funil, curvas de decaimento temporal (+1h a +72h), segmentação de risco RFM e distribuição de atritos são desenhadas de forma agnóstica de ticket. Isso permite que qualquer cliente ou prospect conecte sua própria operação e **adeque seu próprio Ticket Médio e volumetria**, recalculando o ROI financeiro diretamente sobre as proporções validadas.
+
+### 2. Entidade Exemplo de Negócio (Baseline Mock para Demonstrações)
+Para momentos em que for estritamente necessário exemplificar projeções em moeda corrente (R$), adota-se o seguinte **Baseline da Entidade Exemplo (Varejo / Marketplace Padrão)**:
+
+| Métrica / Dimensão | Valor Baseline Exemplo | Finalidade no Pitch / Insights |
+|---|:---:|---|
+| **Volume Semestral de Carrinhos** | `7.500 un` (~1.250 un/mês) | Base amostral da PoC |
+| **Taxa Global de Abandono** | `~70,3% a 70,9%` | Benchmark de mercado (Baymard) |
+| **Taxa de Conversão Direta** | `23,1%` | Conversão pura no checkout |
+| **Taxa de Recuperação de Carrinho** | `10,6% s/ abandono` (6,6% total) | Recuperação com motor de resgate |
+| **Ticket Médio Global da Operação** | `R$ 375,00` | Baseline médio ponderado |
+| **Ticket Médio: Segmento PREMIUM** | `R$ 800,00` | Alta fidelidade / atendimento VIP (WhatsApp) |
+| **Ticket Médio: Segmento REGULAR** | `R$ 360,00` | Compras recorrentes (Email + Push) |
+| **Ticket Médio: Segmento NOVO** | `R$ 250,00` | Primeira compra / incentivo moderado |
+| **Ticket Médio: Segmento DORMANT** | `R$ 200,00` | Reativação seletiva |
+| **Custo por Disparo (WhatsApp)** | `R$ 0,30` | Canal nobre / conversão alta |
+| **Custo por Disparo (Email / Push)** | `R$ 0,05 / R$ 0,02` | Canais de alta escala e custo mínimo |
+
+---
+
 ## ⚙️ Como Executar os Geradores
 
 ### 1. Execução Consolidada
@@ -38,3 +64,4 @@ python presentation/insights/04_estrategia_resgate_segmento/generate_chart.py
 python presentation/insights/05_otimizacao_timing_envio/generate_chart.py
 ```
 *Cada script lê diretamente os datasets limpos em Parquet (`data/mock/output_cleaned/parquet/`) e salva a imagem correspondente em 300 DPI dentro do próprio diretório.*
+

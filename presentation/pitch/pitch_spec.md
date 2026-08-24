@@ -106,3 +106,38 @@ Para comprovar o valor prático e o ROI imediato da Dadosfera, selecionou-se com
     - [2.2] Recuperação: 10.1% dos abandonos.  
     - [2.3] ROI de Disparos: 45x.  
 [3] **Call to Action**: Proposta de Prova de Conceito (PoC) guiada de 2 semanas em ambiente de homologação/produção do cliente.
+
+---
+
+## [4] Diretriz Metodológica: Foco em Proporções (%) & Entidade Exemplo de Negócio
+
+### [4.1] Princípio de Universalidade (Foco em % e Taxas Relativas)
+> [!IMPORTANT]
+> **O foco primordial de todas as especificações e gráficos do projeto é a representação em PORCENTAGENS (%) e TAXAS RELATIVAS.**
+> A dinâmica do funil de conversão, curvas de decaimento temporal, distribuição de causas de abandono e matrizes de risco são estruturalmente agnósticas de tíquete. Essa arquitetura permite que qualquer cliente ou prospect conecte sua própria operação e **adeque seu próprio Ticket Médio e volumetria**, recalculando instantaneamente o ganho financeiro sem distorcer as dinâmicas analíticas.
+
+### [4.2] Entidade Exemplo de Negócio (Baseline Mock para Simulações Monetárias)
+Quando for estritamente necessário exemplificar cálculos financeiros absolutos (R$) em simulações, pitch executivo ou relatórios de ROI, adota-se a seguinte **Entidade Exemplo de Referência (Varejo Online / Marketplace Padrão)**:
+
+| Dimensão / Parâmetro | Valor de Referência (Baseline Exemplo) | Notas & Aplicação |
+|---|:---:|---|
+| **Volume Semestral de Carrinhos** | `7.500 carrinhos` (~1.250/mês) | Base total observada no semestre de PoC |
+| **Taxa Global de Abandono** | `~70,0% a 70,9%` | Benchmark Baymard / E-commerce Brasil |
+| **Taxa de Conversão Direta no Checkout** | `23,1%` | Conversão orgânica direta sem recuperação |
+| **Taxa de Recuperação de Carrinho** | `10,1% a 10,6% s/ abandono` | ~6,6% sobre o total de carrinhos criados |
+| **Ticket Médio Global de Carrinho** | `R$ 375,00` | Baseline médio ponderado da cesta |
+| **Ticket Médio: Segmento PREMIUM** | `R$ 800,00` | Cestas de alta fidelidade / múltiplos itens |
+| **Ticket Médio: Segmento REGULAR** | `R$ 360,00` | Cestas de compras recorrentes |
+| **Ticket Médio: Segmento NOVO** | `R$ 250,00` | Primeira compra / itens promocionais |
+| **Ticket Médio: Segmento DORMANT** | `R$ 200,00` | Tentativa de reativação |
+| **Ticket Médio: Eletrônicos** | `R$ 850,00` | Alto ticket / atrito por indecisão |
+| **Ticket Médio: Casa & Decoração** | `R$ 420,00` | Médio ticket / atrito por frete |
+| **Ticket Médio: Moda & Vestuário** | `R$ 180,00` | Giro rápido / sensibilidade a frete e tamanho |
+| **Ticket Médio: Beleza & Saúde** | `R$ 110,00` | Cesta complementar / reposição |
+| **Ticket Médio: Livros & Papelaria** | `R$ 75,00` | Baixo ticket / frete representativo |
+| **Custo Unitário de Canal: WhatsApp** | `R$ 0,30 / envio` | Canal VIP / alta conversão unitária |
+| **Custo Unitário de Canal: SMS** | `R$ 0,15 / envio` | Canal transacional |
+| **Custo Unitário de Canal: Email** | `R$ 0,05 / envio` | Canal de escala / alta margem líquida |
+| **Custo Unitário de Canal: Push App** | `R$ 0,02 / envio` | Canal proprietário / custo marginal zero |
+| **Margem Bruta Operacional Média** | `35%` | Base para cálculo de preservação de margem |
+

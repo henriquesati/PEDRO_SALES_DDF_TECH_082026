@@ -4,6 +4,10 @@
 - **Pergunta Central**: Como identificar carrinhos em risco crítico/alto durante a sessão ativa e como essa vulnerabilidade se distribui entre os segmentos RFM (`Premium`, `Regular`, `Dormant`, `Novo`) e faixas de LTV?
 - **Insight de Negócio**: A estratificação de risco demonstra que carrinhos de clientes novos navegando via mobile com tickets elevados apresentam o maior risco de abandono (**Faixa Crítica / Alta**), demandando intervenção em tempo real (ex: modais de checkout ou chat). Por outro lado, clientes **Premium** concentram-se em risco baixo/médio, onde o abandono decorre de interrupção temporária e a recuperação possui alta elasticidade sem necessidade de descontos agressivos.
 
+> [!NOTE]
+> **Foco do Projeto em Proporções (%)**: A matriz de calor e a triagem de risco fundamentam-se em proporções de tráfego e taxas relativas de propensão ao abandono. O cliente pode parametrizar o limiar de valor do carrinho da sua própria operação. Os valores em R$ exemplificam a perda financeira usando a *Entidade Exemplo de Baseline*.
+
+
 ---
 
 ## 📊 Métricas & Fórmulas (Ground Truth)

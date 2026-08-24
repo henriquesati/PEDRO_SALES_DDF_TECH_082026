@@ -4,6 +4,10 @@
 - **Pergunta Central**: Qual é a janela temporal ótima (latência pós-abandono: +1h, +6h, +24h, +48h, +72h) e qual cadência de disparos maximiza as taxas de abertura e conversão sem provocar atrito ou descadastros?
 - **Insight de Negócio**: A análise empírica da telemetria de disparos comprova uma **Curva Acentuada de Decaimento (Decay Curve)**: o primeiro toque disparado em até **1 hora** concentra a esmagadora maioria das conversões de resgate (taxa de conversão superior a 1,03% em disparo frio e até 10-15% em clientes cadastrados/Premium). A partir de 24 horas, a conversão sofre uma queda de mais de 70%, tornando disparos tardios (+72h) ineficientes a menos que acompanhados de forte gatilho de urgência ou cupom agressivo.
 
+> [!NOTE]
+> **Foco do Projeto em Proporções (%)**: A curva de decaimento temporal e as taxas de abertura e conversão são métricas percentuais relativas universais. O cliente pode conectar sua própria volumetria e Ticket Médio operacional sem distorcer o comportamento de resposta temporal dos consumidores.
+
+
 ---
 
 ## 📊 Métricas & Fórmulas (Ground Truth)
