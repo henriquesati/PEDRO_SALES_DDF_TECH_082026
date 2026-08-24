@@ -31,16 +31,18 @@ Qual razão de abandono causa a maior perda de receita na plataforma e como esse
 
 ---
 
-## 💡 Insight Esperado
+## 💡 Insight Esperado & Distribuição Observada (Ground Truth)
 
-- **Distribuição de Motivos**:
-  - **Preço Alto (~40%)**: Principal gerador de volume e perda de receita absoluta, concentrado em tickets médios e altos.
-  - **Frete Caro (~30%)**: Impacta desproporcionalmente carrinhos de **ticket baixo (< R$ 100)**, onde o custo do frete ultrapassa 15-20% do subtotal.
-  - **Indecisão (~20%)**: Comportamento típico de navegação comparativa, mais comum em sessões com visualização única de checkout e sem início de pagamento.
-  - **Problema no Pagamento (~10%)**: Concentrado no **dispositivo mobile**, onde atritos de digitação, falhas no gateway ou lentidão no preenchimento de cartão geram cancelamentos imediatos.
-- **Cruzamento com Segmento de Clientes**:
-  - *Clientes Premium*: Raramente abandonam por preço ou frete; abandonos concentram-se em indecisão ou indisponibilidade de estoque.
-  - *Clientes Novos & Dormant*: Altamente sensíveis a preço e custo de entrega, demandando incentivo financeiro para converter.
+> [!NOTE]
+> **Foco do Projeto em Proporções (%)**: O núcleo desta análise é a decomposição percentual e volumétrica das causas de atrito. O Treemap oficial foca exclusivamente em contagem e % sem poluição de cifras monetárias, permitindo ao cliente adequar seu próprio Ticket Médio. O impacto financeiro em R$ é gerado em gráfico separado com base na *Entidade Exemplo de Baseline* (TM Geral ~R$ 375,00).
+
+- **Distribuição Real das Causas-Raiz de Abandono (5.231 carrinhos)**:
+  - **Preço Alto (25,0% / 1.307 un / R$ 498,8k)**: 1.307 carrinhos abandonados por preços elevados (TM: R$ 382).
+  - **Frete Caro (23,1% / 1.207 un / R$ 434,6k)**: 1.207 carrinhos abandonados por frete muito caro (TM: R$ 360).
+  - **Indecisão / Dúvida (20,0% / 1.045 un / R$ 379,5k)**: 1.045 carrinhos abandonados por indecisão ou dúvida (TM: R$ 363).
+  - **Erro no Pagamento (18,4% / 961 un / R$ 365,3k)**: 961 carrinhos abandonados por falhas no pagamento (TM: R$ 380). Concentrado no dispositivo mobile.
+  - **Não Informado (9,3% / 487 un / R$ 182,3k)**: 487 carrinhos abandonados sem motivo declarado (TM: R$ 374).
+  - **Estoque Indisponível (4,3% / 224 un / R$ 84,5k)**: 224 carrinhos abandonados por falta de estoque (TM: R$ 377).
 
 ---
 
@@ -72,11 +74,10 @@ Qual razão de abandono causa a maior perda de receita na plataforma e como esse
 3. **Agregações Multidimensionais**:
    - Agrupar por `motivo_abandono`, `segmento_rfm` e `dispositivo`.
    - Calcular contagem de carrinhos, soma do `valor_total` e média do `valor_frete`.
-4. **Visualização**:
-   - Gráfico de Rosca/Donut com a distribuição percentual dos motivos de abandono.
-   - Gráfico de Barras Empilhadas: Motivos de Abandono por Segmento RFM e por Dispositivo.
-   - Grafico de Impacto Financeiro: 1 linha mostrando total de carrinhos, 1 mostrando carrinhos perdidos e outra mostrando os recuperados 
-   - Gráfico auxiliar de impacto financeiro complementando o gráfico anterior mostrandoPerda Total em R$, valor recuperado
+4. **Visualizações Oficiais (Source of Truth)**:
+   - **Artefato 1 (Treemap Proporcional)**: Treemap hierárquico onde a área de cada retângulo representa a fatia exata de cada motivo de abandono (25% Preço, 23,1% Frete, 20% Indecisão, etc.) com rótulos humanizados simples, sem poluição de cifras financeiras (`chart_02_treemap_motivos_abandono.png`).
+   - **Artefato 2 (Perda Financeira Separada)**: Gráfico de barras horizontais detalhando a receita total represada em R$ por causa-raiz (R$ 1.845,0k total) e ticket médio unitário (`chart_02_perda_financeira_motivos.png`).
+
 
 ---
 
