@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import make_interp_spline
 
 # Caminhos absolutos
-BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
 OUTPUT_IMAGE_PATH: Final[str] = os.path.join(
     os.path.dirname(__file__), "chart_bi_recuperacao_carrinhos_sinuous_1week.png"
 )

@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 # Caminhos absolutos
-BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
 INSIGHTS_01_DIR: Final[str] = os.path.dirname(__file__)
 
 OUTPUT_CARD_RETO_PATH: Final[str] = os.path.join(
