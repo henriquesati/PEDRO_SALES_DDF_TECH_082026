@@ -41,7 +41,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 
 <div style="opacity: 0.60; color: #8c92a4;">
 
--  **[case-01] [X] Definição da base de dados **
+- **[case-01] [X] Definição da base de dados**
   - **escolha de case carrinho** (*Recuperação de Carrinho Abandonado no Marketplace / E-commerce*)
   - **📁 Definições de entidade:**
     - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificações de entidades canônicas ([`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
@@ -56,16 +56,17 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
   - **📁 Especificação do Catálogo de Negócios & Arquitetura (Item 3):**
     - [`data/catalogo/business-catalog-classification.md`](data/catalogo/business-catalog-classification.md) — *Blueprint normativo e formato padrão de governança e catálogo a ser seguido. Estrutura o Data Lakehouse em 4 zonas (Raw/Bronze, Qualify/Silver, Anomaly/Quarentena e Curated/Gold), seguindo à risca as boas práticas exigidas pelo case. Age como governança modular com diretório por entidade (`metadata.md`), dicionário de dados rico, rastreabilidade ponta a ponta de linhagem (upstream/downstream), registro de Data Asset IDs oficiais, definição de granularidade, stewardship (owners) e classificação de sensibilidade/LGPD.*
 
-- [x] ~~**[X] [case-02.1] Dadosfera - Integrar (Módulo de Coleta & Integração API Maestro) [X]**~~
+- **[case-02.1] [X] Dadosfera - Integrar (Módulo de Coleta & Integração API Maestro)**
   - **carga e ingestão da base de dados** (*Ingestão de 115.777+ registros nas 7 entidades canônicas, superando a meta mínima de 100k do case*)
   - **📁 Diretórios de interação com API, endpoints e mapeamento de ativos:**
     - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Documentação técnica e base de orquestração de scripts para integração com a API Maestro da Dadosfera, mantendo a documentação próxima do ambiente de contexto e execução*
     - [`agents_prompts_refs/dadosfera-api/referencia/endpoints.md`](agents_prompts_refs/dadosfera-api/referencia/endpoints.md) — *Catálogo de referência completa dos endpoints Maestro (Auth, Storage Explorer, Tables e Catalog)*
     - [`agents_prompts_refs/dadosfera-api/output-mappers/`](agents_prompts_refs/dadosfera-api/output-mappers/) — *Mapeamento oficial dos 7 Data Asset IDs, URLs da UI Dadosfera e schemas das tabelas Snowflake, serve como uma referencia em memória dos ativos e suas modificações realizadas na plataforma via API ([`assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md), [`assets_registry.json`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.json))*
+  - **📄 Relatório de Erros e Workarounds Técnicos (Auditoria de API):**
+    - [`agents_prompts_refs/dadosfera-api/referencia/solved-errors.md`](agents_prompts_refs/dadosfera-api/referencia/solved-errors.md) — *Relatório documentando os erros técnicos identificados na API e soluções/workarounds aplicados (envio de token puro sem prefixo `Bearer` no header, tratamento de payload no `sign-in`, contorno de permissão `403 Forbidden` no storage via Coleta Web, prevenção de duplicatas via `PUT` no catálogo e tratamento de charset no console Windows)*
   - **🤖 Agentes e Skills desenvolvidos/utilizados nesta etapa:**
     - [`platform-registry-consultant`](.agents/skills/platform-registry-consultant/SKILL.md) ([`.agents/agents/platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md)) — *Especialista e guardião do registro de ativos, metadados, Data Asset IDs oficiais e mapeamentos da plataforma Dadosfera no diretório `output-mappers`*
     - [`case-context-specialist`](.agents/skills/case-context-specialist/SKILL.md) ([`.agents/agents/case-context-specialist.md`](.agents/agents/case-context-specialist.md)) — *Fonte central de contexto estratégico, validação de requisitos do case de estágio e diretrizes de autenticação e governança*
-[`agents_prompts_refs/dadosfera-api/referencia/solved-errors.md`](agents_prompts_refs/dadosfera-api/referencia/solved-errors.md) — *Relatório documentando os erros técnicos identificados na API e soluções/workarounds aplicados (envio de token puro sem prefixo `Bearer` no header, tratamento de payload no `sign-in`, contorno de permissão `403 Forbidden` no storage via Coleta Web, prevenção de duplicatas via `PUT` no catálogo e tratamento de charset no console Windows)*
 </div>
 
 ---
