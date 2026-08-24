@@ -41,7 +41,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 
 <div style="opacity: 0.60; color: #8c92a4;">
 
-- [x] ~~**[X] [case-01] Definição da base de dados [X]**~~
+-  **[case-01] [X] Definição da base de dados [X]**~~
   - **escolha de case carrinho** (*Recuperação de Carrinho Abandonado no Marketplace / E-commerce*)
   - **📁 Definições de entidade:**
     - [`data/data-models/logical/entities/`](data/data-models/logical/entities/) — *Especificações de entidades canônicas ([`carrinhos.md`](data/data-models/logical/entities/carrinhos.md), [`itens_carrinho.md`](data/data-models/logical/entities/itens_carrinho.md), [`eventos_carrinho.md`](data/data-models/logical/entities/eventos_carrinho.md), [`eventos_resgate.md`](data/data-models/logical/entities/eventos_resgate.md), [`clientes.md`](data/data-models/logical/entities/clientes.md), [`produtos.md`](data/data-models/logical/entities/produtos.md), [`pedidos.md`](data/data-models/logical/entities/pedidos.md))*
