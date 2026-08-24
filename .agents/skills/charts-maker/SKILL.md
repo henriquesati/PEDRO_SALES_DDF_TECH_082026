@@ -2,15 +2,24 @@
 name: charts-maker
 description: >-
   Especialista em geração de gráficos, visualizações executivas e mini cards analíticos
-  com rigor absoluto de integridade de dados (Ground Truth). Garante que 100% dos dados
-  plotados venham diretamente dos datasets persistidos (Parquet, DW, Data Views), proibindo
-  estritamente qualquer falsificação, multiplicador arbitrário, inflação visual ou adulteração
-  de números para fins estéticos.
+  com rigor absoluto de integridade de dados (Ground Truth) e padronização visual
+  baseada no padrão canônico de presentation/insights. Garante que 100% dos dados
+  plotados venham diretamente dos datasets persistidos (Parquet, DW, Data Views), aplicando
+  como default o tema de fundo branco, tipografia moderna e paleta semântica executiva.
 ---
 
-# Charts Maker — Visualizações com Rigor Analítico e Integridade de Dados
+# Charts Maker — Visualizações Executivas com Rigor Analítico & Estilo Padrão Canônico
 
-## 🎯 Missão & Princípio Fundamental: Zero Fabrication (Ground Truth)
+> [!IMPORTANT]
+> **DIRETRIZ DE ESTILIZAÇÃO PADRÃO (DEFAULT STYLE)**  
+> Toda geração de gráficos por agentes e skills deve, por padrão, buscar manter a harmonia e a identidade visual consolidada em [`presentation/insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/) (fundo branco puro, tipografia limpa sem serifa, spines limpas e paleta semântica executiva), a menos que o usuário ou o contexto especifiquem um formato alternativo.
+>
+> A criação de gráficos é flexível e declarativa — cada script deve ser autocontido, aplicando as propriedades visuais diretamente sem engessamento ou dependências rígidas.
+> Consulte o catálogo de atributos e boas práticas em [presentation_insights_style_guide.md](./references/presentation_insights_style_guide.md).
+
+---
+
+## 🎯 1. Princípios Fundamentais & Ground Truth (Zero Fabrication)
 
 Todo gráfico, dashboard, mini card ou visualização gerada no projeto deve seguir o **princípio fundamental da verdade dos dados**:
 
@@ -28,79 +37,123 @@ Todo gráfico, dashboard, mini card ou visualização gerada no projeto deve seg
 
 4. **REFERÊNCIA CANÔNICA DE BASELINE & ENTIDADE DE NEGÓCIO (PITCH SPEC)**:
    - Todo gráfico, métrica, faixa de ticket de exemplo ou custo de canal deve reconciliar com a especificação canônica master em [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md) (Seções 4 e 5).
-   - Datasets obrigatórios: `data/mock/output_cleaned/parquet/*.parquet` (com fallback em `data/mock/output/parquet/*.parquet`).
 
 ---
 
-## 🏗️ Padrão Arquitetural de Geração de Gráficos
+## 🎨 2. Atributos Visuais Recomendados (Presentation Insights Standard)
 
-Todo script de geração de visualizações deve seguir a estrutura modular funcional:
+### 2.1 Estrutura & Canvas
+- **Fundo da Figura (`facecolor`)**: `#FFFFFF` (Branco Puro).
+- **Fundo dos Eixos (`ax.set_facecolor`)**: `#FFFFFF`.
+- **Containers e Cards de KPI**: Fundo `#F8FAFC` (Slate 50) com borda `#94A3B8` / `#CBD5E1` (Slate 400/300).
+- **Spines dos Eixos**: Linhas em `#CBD5E1`. Recomendado ocultar as bordas superior e direita (`ax.spines["top"].set_visible(False)`, `ax.spines["right"].set_visible(False)`).
+- **Grade (Grid)**: Tracejada suave (`linestyle="--"`, `alpha=0.40 - 0.50`, cor `#CBD5E1`, `zorder=1`).
+
+### 2.2 Tipografia & Textos
+- **Font Family**: `["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]`.
+- **Título da Figura / Supertitle**: Negrito, `#0F172A` (Slate 900), `fontsize=13.5 - 15.0 pt`, `pad=14 - 16`.
+- **Subtítulo / Eixos (`xlabel`, `ylabel`)**: Negrito, `#1E293B` ou `#334155` (Slate 800/700), `fontsize=10.5 - 11.5 pt`.
+- **Rótulos dos Ticks**: Negrito, `#334155` ou `#1E293B`, `fontsize=9.5 - 10.5 pt`.
+- **Anotações Diretas de Dados**: Rótulos informativos de 2 linhas (`f"{val} ({pct}%)\n{detalhe}"`), texto primário `#0F172A` em negrito, subtítulo de contexto em `#64748B` / `#334155`.
+
+### 2.3 Paleta Semântica de Negócio
+- 🔵 **Conversão Direta Orgânica / Base Total**: `#2563EB` (Blue 600) / `#1E3A8A` (Blue 900) | Fill suave: `alpha=0.14`.
+- 🟢 **Recuperação Ativa & Resgate Dadosfera**: `#059669` (Emerald 600) / `#10B981` (Emerald 500) | Fill suave: `alpha=0.28`.
+- 🔴 **Zona de Atrito / Abandono / Perda**: `#E11D48` (Rose 600) / `#9F1239` (Rose 800) | Fill suave: `alpha=0.14`.
+- 🟡 **Atenção / Risco Médio / SMS**: `#F59E0B` (Amber 500) / `#D97706` (Amber 600).
+- 🟣 **Canais Especiais / Push / Segmentação VIP / IA**: `#8B5CF6` (Violet 500) / `#7C3AED` (Violet 600).
+- ⚪ **Marcadores de Vértices Reais**: Ponto com preenchimento `#FFFFFF` e borda colorida (`linewidth=2.0`, `s=40 - 50`, `zorder=5`).
+
+### 2.4 Resolução de Exportação
+- `dpi=300` padrão.
+- `bbox_inches="tight"`.
+- `facecolor="#FFFFFF"`.
+
+---
+
+## 🏗️ 3. Estrutura Autocontida de Script Python (Exemplo Prático)
+
+Cada script pode ser construído de forma autocontida e direta:
 
 ```python
-from typing import Final
+from typing import Final, Tuple
 import os
-import pandas as pd
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
-# 1. Constantes e Caminhos Centralizados
-BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+# 1. Caminhos
+BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
 PARQUET_PATH: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "carrinhos.parquet")
 OUTPUT_PATH: Final[str] = os.path.join(os.path.dirname(__file__), "chart_output.png")
 
-# 2. Carga Pura de Dados Persistidos (Sem Mock Fake em Memória)
+# 2. Carga dos Dados Persistidos (Ground Truth)
 def load_data() -> pd.DataFrame:
     df = pd.read_parquet(PARQUET_PATH)
     df["data_criacao"] = pd.to_datetime(df["data_criacao"])
     return df
 
 # 3. Transformação & Agregação Funcional
-def compute_series(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    # Agregações reais sem multiplicadores artificiais
+def prepare_metrics(df: pd.DataFrame) -> Tuple[pd.DataFrame, dict]:
     ...
-    return x_data, y_real_1, y_real_2
+    return df_agg, kpis
 
-# 4. Plotagem Estilizada Executiva
-def plot_chart(...) -> plt.Figure:
+# 4. Plotagem Estilizada Executiva (Fundo Branco, Tipografia Moderna)
+def plot_chart(df_agg: pd.DataFrame, kpis: dict) -> plt.Figure:
+    plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
+    plt.rcParams["axes.edgecolor"] = "#CBD5E1"
+    plt.rcParams["axes.linewidth"] = 1.1
+
+    fig, ax = plt.subplots(figsize=(14.0, 7.5), facecolor="#FFFFFF")
+    ax.set_facecolor("#FFFFFF")
+
+    # Plotagem de séries, barras ou áreas
     ...
 
-# 5. Execução Principal com Salvamento em 300 DPI
+    # Limpeza de eixos e grid suave
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.grid(axis="x", linestyle="--", alpha=0.45, color="#CBD5E1", zorder=1)
+
+    ax.set_title("TÍTULO DO GRÁFICO\nSubtítulo explicativo com período e escopo",
+                 fontsize=13.5, fontweight="bold", color="#0F172A", pad=15)
+                 
+    plt.tight_layout()
+    return fig
+
+# 5. Execução Principal
 def main() -> None:
-    ...
+    df = load_data()
+    df_agg, kpis = prepare_metrics(df)
+    fig = plot_chart(df_agg, kpis)
+    
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    fig.savefig(OUTPUT_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
+    plt.close(fig)
+    print(f"[SUCCESS] Gráfico salvo em: {OUTPUT_PATH}")
+
+if __name__ == "__main__":
+    main()
 ```
 
 ---
 
-## 🎨 Diretrizes Visuais Executivas (Visual Standard)
+## 📐 4. Layouts Canônicos de Referência
 
-1. **Tipografia & Resolução**:
-   - Fontes: `Segoe UI`, `DejaVu Sans`, `Helvetica`, `Arial`, `sans-serif`.
-   - Exportação: `dpi=300`, `bbox_inches="tight"`, `facecolor="#FFFFFF"`.
-
-2. **Paleta de Cores Semântica Consistente**:
-   - 🔵 **Conversão Direta Orgânica**: Azul Royal (`#2563EB`) | Fundo Suave (`#EFF6FF` / `#DBEAFE`, alpha 0.15 - 0.20).
-   - 🟢 **Recuperação Ativa & Reengajamento**: Verde Esmeralda (`#059669` / `#16A34A`) | Fundo Suave (`#ECFDF5` / `#D1FAE5`, alpha 0.15 - 0.20).
-   - 🔴 **Zona de Atrito / Abandono / Perda**: Vermelho Rose (`#E11D48` / `#DC2626`) | Fundo Suave (`#FEF2F2` / `#FEE2E2`, alpha 0.15 - 0.20).
-   - ⚪ **Totalizadores & Fundo**: Cinza Escuro Executivo (`#0F172A`, `#1E293B`) sobre Fundo Branco Puro (`#FFFFFF`) e Cards em Slate Suave (`#F8FAFC`, borda `#94A3B8`).
-
-3. **Curvas Suaves (Spline Cúbica) com Integridade**:
-   - Ao interpolar pontos com `scipy.interpolate.make_interp_spline`, a curva deve passar pelos vértices reais e respeitar limites físicos (`np.maximum(0, ...)`).
-   - Os marcadores pontuais circulares (`scatter`) devem marcar exatamente os pontos reais auditáveis nos eixos X e Y.
-
-4. **Mini Cards e Mini Tabelas para Apresentações (PowerPoint)**:
-   - Gerar mini cards compactos com proporção limpa para inclusão em slides.
-   - Exibir simultaneamente o **volume absoluto (`un`)** e a **porcentagem (`%`)** correspondente calculada sobre a base correta.
-   - Indicar com clareza a base do percentual (se sobre o total de carrinhos criados ou sobre o total de carrinhos abandonados).
+| Tipo de Gráfico | Formato Recomendado | Exemplo de Referência no Repositório |
+|---|---|---|
+| **Evolução Temporal & Funil (Splines)** | `figsize=(14.0, 7.5)`, interpolação `k=3`, `fill_between` em zonas | [`presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py) |
+| **Painel Duplo Lado a Lado (Comparativo)** | `figsize=(15.0, 6.8)`, `gridspec_kw={"width_ratios": [1.0, 1.18]}`, barras `barh` | [`presentation/insights/01_descriptive/02_motivos_abandono/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/02_motivos_abandono/generate_chart.py) |
+| **Dashboard Executivo com KPI Cards** | `figsize=(15.0, 7.8)`, `GridSpec(2, 2, height_ratios=[0.28, 0.72])`, 4 KPI cards | [`presentation/insights/02_risk/01_segmentacao_risco/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/generate_chart.py) |
+| **Eficiência Unitária & CAC vs ROI** | `figsize=(15.0, 7.0)`, barras ordenadas com anotações diretas | [`presentation/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py) |
+| **Estratégia Prescritiva por Canal & RFM** | `figsize=(16.5, 7.2)`, barras agrupadas + Matriz prescritiva | [`presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py) |
 
 ---
 
-## 📋 Checklist de Validação Obrigatória (Definition of Done)
+## 📋 5. Checklist de Validação
 
-Antes de aprovar e salvar qualquer gráfico ou mini card:
-
-- [ ] Todos os dados foram carregados diretamente de arquivos Parquet / fontes limpas do repositório?
-- [ ] Não existe nenhum multiplicador, offset ou inflação visual manual no código?
-- [ ] Os percentuais somam 100% ou respeitam a relação matemática declarada?
-- [ ] A taxa de recuperação está claramente rotulada quanto ao seu denominador (sobre abandonados vs sobre o total)?
-- [ ] A imagem foi salva em 300 DPI com `bbox_inches="tight"` e fundo branco `#FFFFFF`?
-- [ ] O script pode ser executado autonomamente via orquestrador (`python run_all_insights_charts.py` / `python run_all_pitch_charts.py`) sem erros?
+- [ ] O visual segue o padrão harmônico de **fundo branco (`#FFFFFF`)**, **tipografia moderna** e **paleta corporativa** de `presentation/insights`?
+- [ ] Todos os dados foram carregados diretamente de arquivos Parquet persistidos do repositório?
+- [ ] Não existe nenhum multiplicador ou ajuste artificial manual nos dados?
+- [ ] As spines superior e direita foram ocultadas (`set_visible(False)`) e o grid está sutil (`#CBD5E1`)?
+- [ ] A imagem foi exportada em 300 DPI com `bbox_inches="tight"` e fundo branco?

@@ -86,3 +86,26 @@ When requested to create or update data models and schemas:
 ## 4. Dirty Data
 
 The data generation must include dirty data in the sense that it should contain realistic errors and inconsistencies that will be cleaned and fixed further on the pipeline. These errors and inconsistencies should be related to the business logic and rules that govern the data generation.
+
+---
+
+## 5. 📊 Data Visualization & Chart Generation Standard (Default Style)
+
+> [!IMPORTANT]
+> **INTEGRAÇÃO OBRIGATÓRIA COM A SKILL `charts-maker` (DEFAULT STYLE)**:  
+> Sempre que houver necessidade de gerar gráficos, visualizações de volumetria de dados, distribuições estatísticas, perfis de qualidade ou mini cards analíticos para acompanhar modelos e datasets, **o estilo de estilização padrão (Default) DEVE ser rigorosamente idêntico ao padrão corporativo de [`presentation/insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/)**, a não ser que explicitamente especificado de outra forma.
+>
+> **Atributos Canônicos Padrão**:
+> - **Canvas & Eixos**: Fundo Branco Puro (`#FFFFFF`), `dpi=300`, `bbox_inches="tight"`.
+> - **Tipografia**: `["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]`, títulos `#0F172A` (Bold).
+> - **Spines & Grade**: Spines superior/direita ocultas (`set_visible(False)`), bordas e grid em `#CBD5E1` (`alpha=0.45`).
+> - **Paleta Semântica**:
+>   - 🔵 Conversão Orgânica / Base Total: `#2563EB`
+>   - 🟢 Resgate Dadosfera / Sucesso: `#059669`
+>   - 🔴 Atrito / Abandono / Perda: `#E11D48`
+>   - 🟡 Alerta / Risco Médio: `#F59E0B`
+>   - 🟣 IA / Canais Especiais: `#8B5CF6`
+> - **Cards Executivos**: Containers em `#F8FAFC` com bordas `#94A3B8`.
+> - **Ground Truth**: Dados 100% lidos dos arquivos Parquet gerados (`data/mock/output_cleaned/parquet/*.parquet` ou `data/mock/output/parquet/*.parquet`), proibindo multiplicadores visuais manuais.
+>
+> Consulte as especificações completas em [`charts-maker/SKILL.md`](../charts-maker/SKILL.md) e no guia de estilo [`presentation_insights_style_guide.md`](../charts-maker/references/presentation_insights_style_guide.md).
