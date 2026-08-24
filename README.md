@@ -263,7 +263,7 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
   - **orquestração de pipelines e machine learning** (*Construção do pipeline Medallion funcional com catálogo Stepsfera, utilizando padrões de imutabilidade de objetos, suíte modular de validação, modelo preditivo e processamento Snowpark*)
   - **📁 Especificações Normativas e Contratos:**
     - [`pipelines/case-item-08/specs.md`](pipelines/case-item-08/specs.md) — *Especificação técnica do pipeline (`spec_pipeline_orchestration_001`), catálogo Stepsfera, DAG e governança JSON*
-    - [`docs/pipelines/`](docs/pipelines/) — *Documentação de catálogo das camadas ([`silver/silver_carrinhos_qualify.md`](docs/pipelines/silver/silver_carrinhos_qualify.md), [`gold/gold_fato_recuperacao_carrinho.md`](docs/pipelines/gold/gold_fato_recuperacao_carrinho.md))*
+    - [`docs/pipelines/`](docs/pipelines/) — *Documentação de catálogo das camadas Medallion ([`bronze/bronze_carrinhos_raw.md`](docs/pipelines/bronze/bronze_carrinhos_raw.md), [`silver/silver_carrinhos_qualify.md`](docs/pipelines/silver/silver_carrinhos_qualify.md), [`gold/gold_fato_recuperacao_carrinho.md`](docs/pipelines/gold/gold_fato_recuperacao_carrinho.md))*
   - **📁 Suíte Declarativa de Validações Modulares (`validators/`):**
     - [`pipelines/case-item-08/validators/`](pipelines/case-item-08/validators/) — *Validações declarativas modulares por entidade e dispatcher central imutável*
   - **📁 Catálogo de Steps Modulares (Padrão Stepsfera):**
@@ -308,7 +308,19 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 
 ## 📓 3. Notebooks e Geração de Artefatos Visuais
 
-O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (`make.py`)** com atalhos de linha de comando para Windows, permitindo inspecionar dados e gerar todos os artefatos visuais de BI e Data Quality instantaneamente.
+O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (`make.py`)**, permitindo inspecionar dados e gerar todos os artefatos visuais de BI e Data Quality instantaneamente.
+
+
+### 🎯 Interesse do Entrevistador - Atalhos Rápidos de Avaliação
+
+| Case Item | Entregável / Tema Técnico | Notebook Interativo | Caminho no Repositório |
+| :--- | :--- | :--- | :--- |
+| **Case 04** | Data Quality e Quarentena | [`qualification_raw.ipynb`](pipelines/case-item-04/notebooks/qualification_raw.ipynb) | [`pipelines/case-item-04/notebooks/`](pipelines/case-item-04/notebooks/) |
+| **Case 05** | GenAI, Pydantic e Whisper | [`genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) | [`pipelines/case-item-05/notebooks/`](pipelines/case-item-05/notebooks/) |
+| **Case 06** | Modelagem Dimensional Kimball | [`data_modeling_kimball.ipynb`](pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb) | [`pipelines/case-item-06/notebooks/`](pipelines/case-item-06/notebooks/) |
+| **Case 08** | Pipelines, Stepsfera e Snowpark | [`pipeline_snowpark_transformation.ipynb`](pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb) | [`pipelines/case-item-08/notebooks/`](pipelines/case-item-08/notebooks/) |
+| **Case 09** | Data App e Bônus Streamlit | [`streamlit_colab_runner.ipynb`](pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb) | [`pipelines/case-item-09/notebooks/`](pipelines/case-item-09/notebooks/) |
+
 
 ### 📁 Estrutura de Notebooks e Pipelines Executáveis:
 - [`pipelines/case-item-04/notebooks/qualification_raw.ipynb`](pipelines/case-item-04/notebooks/qualification_raw.ipynb): Notebook oficial de qualificação e auditoria de Data Quality com Great Expectations (Item 4).
@@ -452,14 +464,16 @@ wheels/
 │   ├── specifications/                 # Normas da plataforma e Data Quality
 │   │   ├── data-platform-specification.md
 │   │   └── data-quality-specification.md
-│   ├── relatorios/                     # Relatórios executivos (Data Quality, Etapas e BI Views)
-│   │   ├── 03_explorar_catalogacao.md
-│   │   ├── data_quality_report.md
-│   │   ├── bi_views_report.md
-│   │   ├── relatorio-etapa1.md
-│   │   ├── relatorio-etapa2.md
-│   │   └── relatorio-etapa3.md
-│   └── assets/charts/                  # Galeria de gráficos analíticos gerados
+│   ├── pipelines/                      # Catálogo Medallion de Pipelines
+│   │   ├── bronze/bronze_carrinhos_raw.md
+│   │   ├── silver/silver_carrinhos_qualify.md
+│   │   └── gold/gold_fato_recuperacao_carrinho.md
+│   └── relatorios/                     # Relatórios executivos e registros de decisão
+│       ├── relatorio-etapa1.md         # Etapa 1: Modelagem Lógica & DDL SQL
+│       ├── relatorio-etapa2.md         # Etapa 2: Gerador de Dados Mock
+│       ├── 03_explorar_catalogacao.md  # Etapa 3: Catálogo, Governança & Lakehouse
+│       ├── bi_views_report.md          # Etapa 7: Views Analíticas & BI
+│       └── pitch/decision-making/      # Decision Records e relatórios de pitch
 │
 ├── pipelines/
 │   ├── case-item-03/                   # Exploração & Catalogação de Ativos (Item 3)
