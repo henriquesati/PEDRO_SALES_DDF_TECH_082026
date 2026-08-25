@@ -1,19 +1,40 @@
-ROTEIRO
-
+					ROTEIRO
 
 Plataforma dadosfera
 . Explicar o que é
 .paralelo no ciclo de vida dos dados
-.Tem como objetivo mudar a forma como médias e grandes empresas lidam  , Inteligência Artificial e Analytics. antes restritas a grandes empresas de tecnologia — para organizações que precisam tomar decisões mais rápidas, seguras e orientadas ao negócio.
+.Tem como objetivo mudar a forma como médias e grandes empresas lidam  , Inteligência Artificial e Analytics. antes restritas a grandes empresas de tecnologia — para organizações que precisam tomar decisões mais rápidas, seguras e orientadas ao negócio.
 . apoia descoberta, modelagem, implementação e sustentação de soluções analíticas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 como podemos agregar valor ao seu negocio complementando ou substituindo a infra
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 Arquitetura Atual (AWS):
 A infraestrutura atual utiliza um pipeline clássico composto por:
-* Gerador (Lambda) & Kinesis Stream: Requer configuração manual de shards baseada em throughput, o que eleva a complexidade e o custo.
-* Firehose: Embora gerenciado, adiciona latência de buffering.
-* S3 Bucket: Atua como Data Lake, mas carece de imposição de schema (schema enforcement).
-* Redis Cluster (ElastiCache): Operação complexa entre modos standalone e cluster; upgrades de plano podem causar 5-15 min de indisponibilidade
+Gerador (Lambda) & Kinesis Stream: Requer configuração manual de shards baseada em throughput, o que eleva a complexidade e o custo.
+Firehose: Embora gerenciado, adiciona latência de buffering.
+S3 Bucket: Atua como Data Lake, mas carece de imposição de schema (schema enforcement).
+Redis Cluster (ElastiCache): Operação complexa entre modos standalone e cluster; upgrades de plano podem causar 5-15 min de indisponibilidade
 como podemos agregar valor ao seu negocio complementando ou substituindo a infra
 Para fazer uma arquitetura baseada em nuvem própria (AWS DIY) funcionar ponta a ponta, a empresa é forçada a acoplar uma série de serviços periféricos, repositórios de suporte e arquivos de infraestrutura.
 Abaixo estão os principais exemplos práticos de como esses componentes aumentam o custo e o risco operacional:
@@ -25,17 +46,15 @@ Abaixo estão os principais exemplos práticos de como esses componentes aumenta
 
 
 
-1. Dashboard: Validação & Quarentena de Dados
+Ingestão e qualidade
 Ingestão de Eventos Brutos (Kinesis / S3)
 🐍 Lambdas de Validação (Python / Great Expectations)
 📬 Fila Dead-Letter (AWS SQS DLQ)
 🗄️ Repositório de Quarentena (DynamoDB / S3)
 Alertas & Monitoramento: 🚨 AWS CloudWatch Alarms & SNS + configuração da aplicação
+destino: 📦 Buckets S3 (Camada Bronze — Dados Brutos)
 
 
-
-
-Dashboard:Limpeza dos dados e geração de modelos inteligenes
 📦 Buckets S3 (Camada Bronze — Dados Brutos)
 ⚡ AWS Glue Jobs / PySpark (Limpeza e Conformação) - gerenciamento de 
 Cada vez que um job é disparado, o Glue leva de 1 a 4 minutos apenas para alocar as máquinas (DPUs) e subir o cluster Spark, antes de processar uma única linha. Para ações rápidas como 
@@ -50,7 +69,7 @@ No AWS Glue:Delay entre processamento e registro no S3 e visualização no dashb
 Na Dadosfera:Baixo acoplamento entre tratamento e armazenamento
 Tabelas atualizadas refletem quase instantaneamentee no Catálogo e nas camadas de visualização, sendo metabase ou apps de dad os
 No AWS Glue: A AWS cobra por DPUs (Data Processing Units) com tempo mínimo de cobrança por execução. Rodar vários micro-jobs ao longo do dia para tratar dados de carrinho encarece a fatura rapidamente.
-Na Dadosfera: Modelo SaaS previsível, onde o consumo de processamento é elástico, otimizado e transparente.        
+Na Dadosfera: Modelo SaaS previsível, onde o consumo de processamento é elástico, otimizado e transparente.	
 em resumo: ou problema de provisionamento adequado ou problema de tempos de execução
 
 
@@ -90,14 +109,104 @@ Dashboard: Camada de Consumo (BI, Data App & GenAI)
 Disponibilização para Áreas de Negócio
 
 
-notificação aws:
+Sistema de notificação:
+aws:
 amazon e v enbridge e amazon sns para rotear e fazer push
 configuração de lambdas para formatação de dados em transito, em caso de campanhas, formatar email mensagem
 Ferramentas de observabilidde (dtadog, grafana) + custos o peracionals + overhead de gerenciamento
-
-
-notifica~~ao dadosfer:
+Dadosfera:
 pipelines e saude de pipeline/aleetas integrados, self hosted
 sistema de alertas integrados. é possivel criar alertas sob anomalias em analises, notificações de campanha
 qualquer usuario de negocio consegue c riar alertas em poucos cliques na plaforma
 “se taxa de abandono aumentar, avise equipe de marketing”
+
+3 - citar grafico ou algo do tipo de numero de staff de acordo com evolção da arquitetura solta
+
+Em caso de migração ou implementação de data app, o cliente precisaria de:
+1 platform engineer (por se tratar de uma arquitetura solta);
+1 ou 2 pessoas para gestão e utilização de dados, isso supondo uma arquitetura enxuta, programática, com processos bem estruturados e bem documentados.
+A cada conexão com um novo data app ou ferramenta seriam necessárias configurações de conexões com fontes de dados e/ou múltiplas fontes de dados e múltiplas ferramentas, a depender do tipo de dado coletado, objetivo e/ou expansão para coletar outros tipos de dados e métricas.
+Seria necessária outra integração manual.
+Custo da equipe vs. contratação da Dadosfera
+—> Manter uma equipe de TI para tratar os pontos propostos acima seria mais barato do que contratar a Dadosfera?
+economia de trabalho em gestão
+4 - Citar elasticidade citar valores mercado li3 
+explicar problema arquitetural
+citar valor ml
+grafico
+Dadosfera gerencia
+
+
+
+
+
+
+
+
+5. Como simplisfica segurança e traz agilidade pro negoci o
+Parte de governança e segurança: a camada de segurança de serviços em nuvem possui alto grau de complexidade; a Dadosfera auxiliaria tornando processos de segurança e compliance relacionados a dados  mais simples e intuitivos.
+AWS DIY:
+• Segurança fragmentada e de alta complexidade: Exige configurar e auditar políticas IAM em JSON, Lake Formation, Bucket Policies no S3, KMS e VPCs.
+• Gargalo de TI / SecOps: Qualquer nova liberação de dado para Marketing ou CRM exige abrir cham ado técnico, gerando semanas de espera (Lead Time excessivo).
+• Risco de Vazamento e "Shadow IT": Devido à lentidão de TI, equipes de negócio acabam extraindo planilhas CSV com dados sensíveis de clientes (PII) sem controle ou auditoria LGPD.
+Dadosfera:
+• Governança e RBAC Centralizados: Controle de acessos intuitivo por perfis de negócio (Marketing, CRM, Produto, Diretoria) em poucos cliques, sem escrever código de infraestrutura
+Dicionários de Dados Descritivos: Cada métrica e coluna possui definição formal de negócio, lineage, departamentos de interesse
+Geração de piipelines que sigam arquitetura medallion (sendo otimo pra gerar xx)
+– Bronze (Raw): Ingestão bruta isolada e imutável. 
+-- Silver (Qualify): Validação de Data Quality e quarentena automatizada (segrega anomalias como fretes negativos ou emails inválidos ant
+ -- Gold (Curated): Modelagem dimensional pronta e confiável para consumo. es de impactar o negócio). 
+• Blindagem e Conformidade LGPD "By Design": Tags semânticas automáticas (ex: tag `pii_sensivel` em clientes) protegem dados sensíveis enquanto liberam métricas de negócio.
+
+
+• Compartilhamento Seguro de Data Views: Disponibilização de visões analíticas curadas (ex: `v_abandonment_summary`, `v_recovery_roi_by_channel`, matriz RFM) para os setores sem expor o banco transacional nem vazar PII.
+• Democratização com Autonomia: Equipes de CRM, Produto e Vendas ganham autonomia democratico aos dados
+• Time-to-Data Reduzido de Semanas para Minutos: A disponibilização de novas visões para os setores é imediata, acelerando o ciclo de testes e campanhas time sensitive .
+• Segurança como Habilitadora de Receita: Em vez de atuar como uma barreira burocrática ("não pode acessar"), a segurança simplificada vira a alavanca que destrava 
+ punchline1 :A arquitetura descentralizada atual gera um custo marginal crescente. O problema central não é o volume de dados, mas a complexidade, headcount e custos que escalam junto com o negócio ao optar por uma arquitetura própria ao invés de não managed.
+Resumo Principais Gargalos Identificados:
+Complexidade de Serviços Não Gerenciados: A infraestrutura escala, mas o time precisa acompanhar manualmente. Mudanças de topologia exigem reconfiguração em múltiplos serviços codependentes.
+Crescimento Linear de Headcount: A manutenção exige especialistas (Platform e Data Engineers). Sem uma plataforma unificada, cada novo dado ou ferramenta exige mais horas de engenharia, impedindo a eficiência de escala.
+
+Final proposta de Valor da Plataforma Dadosfera
+
+
+forma como médias e grandes empresas lidam com dados, Inteligência Artificial e Analytics. Nossa plataforma entrega capacidades avançadas — antes restritas a grandes empresas de tecnologia — para organizações que precisam tomar decisões mais rápidas, seguras e orientadas ao negócio. 
+
+🏛️Raízes da Dadosfera
+Origem (DataSprints): A Dadosfera nasceu em 2019 a partir da DataSprints, uma das consultorias de Dados, IA & Analytics
+Transformação em Produto (2021): Toda a experiência prática acumulada em dezenas de projetos de consultoria foi condensada para criar a plataforma Dadosfera SaaS.
+hoje: A Dadosfera vende a Plataforma e oferece o braço de Solutions Engineering / Consultoria de Implementação para acelerar os primeiros casos de uso estratégicos no cliente.
+
+
+Aceleradores e Blueprints de Negócio:
+Para problemas clássicos (como Recuperação de Carrinho, Segmentação RFM, Previsão de Demanda ou Análise de Eficiência Logística), a Dadosfera já possui modelos lógicos, queries, contratos de qualidade e especificações pré-estruturadas.
+Capacidades Integradas:
+Ingestão (Plug & Play): Conectores nativos que eliminam a necessidade de desenvolver integrações manuais para cada fonte.
+Transformação Centralizada: Substitui scripts Python/SQL dispersos por processos estruturados de limpeza e padronização.
+Catálogo e Governança: Data lineage e metadados automáticos para rastreabilidade e descoberta fácil de ativos de dados.
+Consumo e Analytics: Camada de visualização intuitiva que reduz a dependência de licenças de BI externas.
+Segurança e IAM: Centraliza o controle de acesso, garantindo compliance e democratização segura dos dados.
+IA e GenAI: Exploração de dados em linguagem natural e geração automática de insights sobre o contexto do negócio.
+
+
+IA NA DADOSFERA
+1. MÓDULO DE INTELIGÊNCIA & PIPELINES (Stepsfera / Snowpark / ML)        
+    • Orquestração de DAGs e Steps modulares de Machine Learning         
+    • Execução in-database (Snowflake Cortex / Snowpark) ou distribuída  
+O LLM extraiu features estruturadas em JSON Schema (identificando atrito com frete ou dúvidas de voltagem elétrica 127V) e gerou copies de resgate personalizadas para WhatsApp/E-mail.
+
+
+2. CONECTIVIDADE COM GENAI & LLMS (OpenAI / Claude / Whisper / DALL-E)   
+ 3. EXPLORAÇÃO & CATÁLOGO EM LINGUAGEM NATURAL                           
+    • Chat com os dados / Text-to-SQL para usuários de negócio 
+No Módulo de Inteligência, criamos o step_05_train_churn_model.py com um modelo supervisionado de Propensão de Resgate (ROC-AUC de 0.9478 e 99.53% de acurácia) que ranqueia a chance de conversão de cada carrinho.         
+
+
+ 4. CONSUMO & DATA APPS (Streamlit Integrado)                            
+    • Deploy de aplicações inteligentes com modelos preditivos/prescritivos│
+Construímos um Data App em Streamlit com simulador prescritivo de ROI, exploração vetorial de similaridade de produtos (t-SNE/PCA) e copiloto de resgate.dd
+
+
+slide consolidação dadosfera
+exemplo blueprint caso carrinho

@@ -117,6 +117,11 @@ def plot_decay_timing_chart(df_timing: pd.DataFrame) -> plt.Figure:
     ax1.spines["top"].set_visible(False)
     ax1_twin.spines["top"].set_visible(False)
 
+    # Legenda combinada para o Painel 1
+    lines_1, labels_1 = ax1.get_legend_handles_labels()
+    lines_2, labels_2 = ax1_twin.get_legend_handles_labels()
+    ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc="center right", frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5)
+
     # --- PAINEL 2: Volumetria de Envios & Sucessos Efetivos ---
     ax2.set_facecolor("#FFFFFF")
     
@@ -132,7 +137,7 @@ def plot_decay_timing_chart(df_timing: pd.DataFrame) -> plt.Figure:
     for i, (env, conv) in enumerate(zip(envios, conversoes)):
         pct_conv_total = (conv / df_timing["total_conversoes"].sum()) * 100 if df_timing["total_conversoes"].sum() > 0 else 0
         ax2.text(
-            env + 50, i,
+            env + 70, i,
             f"{env:,.0f} envios\n{conv} conv. ({pct_conv_total:.1f}% do total)",
             va="center", ha="left", fontsize=9.5, fontweight="bold", color="#0F172A"
         )
@@ -141,9 +146,9 @@ def plot_decay_timing_chart(df_timing: pd.DataFrame) -> plt.Figure:
     ax2.set_yticklabels(labels, fontsize=11, fontweight="bold", color="#1E293B")
     ax2.set_xlabel("Volume de Mensagens Enviadas (un)", fontsize=11, fontweight="bold", color="#334155")
     ax2.set_title("Volumetria por Régua & Concentração de Pedidos", fontsize=13, fontweight="bold", color="#0F172A", pad=12)
-    ax2.set_xlim(0, max(envios) * 1.35)
+    ax2.set_xlim(0, max(envios) * 1.50)
     ax2.grid(axis="x", linestyle="--", alpha=0.5, color="#CBD5E1")
-    ax2.legend(loc="lower right", frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5)
+    ax2.legend(loc="upper right", frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=9.5)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
 

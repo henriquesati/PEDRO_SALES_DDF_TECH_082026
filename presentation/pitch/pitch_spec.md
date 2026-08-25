@@ -97,7 +97,9 @@ Para comprovar o valor prático e o ROI imediato da Dadosfera, selecionou-se com
 [1] **Concentração Temporal de Conversão**: Nos dados simulados e observados, quanto maior o atraso do primeiro contato, menor foi a conversão observada, com a janela de **+1h concentrando 86,4% das conversões**.  
 [2] **Rigor Metodológico no Pitch**: Em vez de afirmar dogmaticamente que "o horário ótimo é +1h", a defesa analítica correta é:  
 > *"Nos dados observados, +1h apresentou a maior taxa de conversão e concentrou a maior parte das conversões, indicando +1h como a janela inicial candidata prioritária à otimização contínua via experimentação (testes A/B)."* [^nota-timing-review]  
-[3] Artefato: `presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png`
+[3] Artefatos:
+    - Galeria Canônica: [`presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png`](../insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png)
+    - View do Roteiro: [`presentation/pitch/roteiro/case-carrinho/views/insights/timingenvio/chart_05_otimizacao_timing_envio.png`](roteiro/case-carrinho/views/insights/timingenvio/chart_05_otimizacao_timing_envio.png)
 
 [^nota-timing-review]: **[FLAG: REVIEW PENDENTE - METODOLOGIA DE TIMING]** A janela de +1h é a candidata inicial de maior performance na amostra histórica observada (86,4% do volume recuperado). Recomenda-se manter esta ressalva metodológica no pitch para evidenciar maturidade estatística perante o cliente, destacando que o pipeline da Dadosfera permite rodar testes A/B contínuos para aferir empiricamente o ponto ótimo para cada cluster de produtos.
 

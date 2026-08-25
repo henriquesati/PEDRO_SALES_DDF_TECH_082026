@@ -164,7 +164,7 @@ def plot_cumulative_recovery_chart(
         pad=16
     )
     
-    # Card de Métricas
+    # Card de Métricas & Totais Dinâmicos
     total_carts = int(cum_total[-1])
     total_comp_direto = int(cum_comp_direto[-1])
     total_recup = int(cum_recup_comprado[-1])
@@ -172,9 +172,10 @@ def plot_cumulative_recovery_chart(
     total_conv = int(cum_convertidos_total[-1])
     total_atrito = total_carts - total_conv
     
-    # Total de abandonados com potencial de resgate
-    total_abandonados_potencial = 4201 + total_recup
-    taxa_recup_abandono = (total_recup / total_abandonados_potencial) * 100
+    # Total de abandonados com potencial de resgate (Ground Truth)
+    total_abandonados_base = int((cum_total[-1] - cum_comp_direto[-1]))
+    total_abandonados_potencial = total_atrito + total_recup
+    taxa_recup_abandono = (total_recup / total_abandonados_potencial) * 100 if total_abandonados_potencial > 0 else 0.0
     
     card_text = (
         "MÉTRICAS DO PERÍODO (JAN–JUN 2026):\n"

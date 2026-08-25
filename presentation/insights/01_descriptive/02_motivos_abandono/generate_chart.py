@@ -122,76 +122,39 @@ def plot_treemap_chart(agg_motivos: pd.DataFrame) -> plt.Figure:
     ax.axis("off")
     
     # Blocos com paleta harmonizada com a identidade visual Dadosfera
-    rects = [
-        # Preço Alto (1.307 un / 25.0%)
-        {
-            "name": "Preço Alto",
-            "pct": 25.0,
-            "desc": "1.307 carrinhos abandonados por preços elevados",
-            "bbox": [0.0, 0.50, 0.50, 0.50],
-            "color": "#1E3A8A",
-            "text_col": "#FFFFFF"
-        },
-        # Frete Caro (1.207 un / 23.1%)
-        {
-            "name": "Frete Caro",
-            "pct": 23.1,
-            "desc": "1.207 carrinhos abandonados por frete muito caro",
-            "bbox": [0.50, 0.50, 0.50, 0.50],
-            "color": "#2563EB",
-            "text_col": "#FFFFFF"
-        },
-        # Indecisão / Dúvida (1.045 un / 20.0%)
-        {
-            "name": "Indecisão / Dúvida",
-            "pct": 20.0,
-            "desc": "1.045 carrinhos abandonados por indecisão ou dúvida",
-            "bbox": [0.0, 0.0, 0.40, 0.50],
-            "color": "#059669",
-            "text_col": "#FFFFFF"
-        },
-        # Erro no Pagamento (961 un / 18.4%)
-        {
-            "name": "Erro no Pagamento",
-            "pct": 18.4,
-            "desc": "961 carrinhos abandonados por falhas no pagamento",
-            "bbox": [0.40, 0.0, 0.35, 0.50],
-            "color": "#D97706",
-            "text_col": "#FFFFFF"
-        },
-        # Não Informado (487 un / 9.3%)
-        {
-            "name": "Não Informado",
-            "pct": 9.3,
-            "desc": "487 carrinhos abandonados sem motivo declarado",
-            "bbox": [0.75, 0.22, 0.25, 0.28],
-            "color": "#64748B",
-            "text_col": "#FFFFFF"
-        },
-        # Estoque Indisponível (224 un / 4.3%)
-        {
-            "name": "Estoque Indisponível",
-            "pct": 4.3,
-            "desc": "224 carrinhos abandonados por falta de estoque",
-            "bbox": [0.75, 0.0, 0.25, 0.22],
-            "color": "#94A3B8",
-            "text_col": "#0F172A"
-        }
+    # As descrições e percentuais são obtidos dinamicamente de agg_motivos (Ground Truth)
+    motivo_stats = agg_motivos.set_index("motivo_label")
+    total_vol = agg_motivos["volume"].sum()
+    
+    rect_configs = [
+        {"name": "Preço Alto", "desc_base": "carrinhos abandonados por preços elevados", "bbox": [0.0, 0.50, 0.50, 0.50], "color": "#1E3A8A", "text_col": "#FFFFFF"},
+        {"name": "Frete Caro", "desc_base": "carrinhos abandonados por frete muito caro", "bbox": [0.50, 0.50, 0.50, 0.50], "color": "#2563EB", "text_col": "#FFFFFF"},
+        {"name": "Indecisão / Dúvida", "desc_base": "carrinhos abandonados por indecisão ou dúvida", "bbox": [0.0, 0.0, 0.40, 0.50], "color": "#059669", "text_col": "#FFFFFF"},
+        {"name": "Erro no Pagamento", "desc_base": "carrinhos abandonados por falhas no pagamento", "bbox": [0.40, 0.0, 0.35, 0.50], "color": "#D97706", "text_col": "#FFFFFF"},
+        {"name": "Não Informado", "desc_base": "carrinhos abandonados sem motivo declarado", "bbox": [0.75, 0.22, 0.25, 0.28], "color": "#64748B", "text_col": "#FFFFFF"},
+        {"name": "Estoque Indisponível", "desc_base": "carrinhos abandonados por falta de estoque", "bbox": [0.75, 0.0, 0.25, 0.22], "color": "#94A3B8", "text_col": "#0F172A"}
     ]
     
-    for r in rects:
+    for r in rect_configs:
         x, y, w, h = r["bbox"]
+        name = r["name"]
+        
+        # Recupera valores reais dinamicamente
+        vol = int(motivo_stats.loc[name, "volume"]) if name in motivo_stats.index else 0
+        pct = float(motivo_stats.loc[name, "pct_volume"]) if name in motivo_stats.index else 0.0
+        desc = f"{vol:,.0f} {r['desc_base']}".replace(",", ".")
+        
         rect_patch = patches.Rectangle((x, y), w, h, facecolor=r["color"], edgecolor="#FFFFFF", linewidth=3.5)
         ax.add_patch(rect_patch)
         
         cx, cy = x + w / 2, y + h / 2
-        ax.text(cx, cy + h * 0.12, r["name"], ha="center", va="center", color=r["text_col"], fontsize=12.5, fontweight="bold")
-        ax.text(cx, cy - h * 0.04, f"{r['pct']:.1f}% do abandono", ha="center", va="center", color=r["text_col"], fontsize=11, fontweight="bold")
-        ax.text(cx, cy - h * 0.20, r["desc"], ha="center", va="center", color=r["text_col"], fontsize=9.5, fontweight="normal", alpha=0.92)
+        ax.text(cx, cy + h * 0.12, name, ha="center", va="center", color=r["text_col"], fontsize=12.5, fontweight="bold")
+        ax.text(cx, cy - h * 0.04, f"{pct:.1f}% do abandono", ha="center", va="center", color=r["text_col"], fontsize=11, fontweight="bold")
+        ax.text(cx, cy - h * 0.20, desc, ha="center", va="center", color=r["text_col"], fontsize=9.5, fontweight="normal", alpha=0.92)
 
     ax.set_xlim(-0.01, 1.01)
     ax.set_ylim(-0.01, 1.06)
-    ax.set_title("DECOMPOSIÇÃO DE VOLUME: CAUSAS-RAIZ DE ABANDONO DE CARRINHO (5.231 UN)",
+    ax.set_title(f"DECOMPOSIÇÃO DE VOLUME: CAUSAS-RAIZ DE ABANDONO DE CARRINHO ({total_vol:,.0f} UN)".replace(",", "."),
                  fontsize=14.5, fontweight="bold", color="#0F172A", pad=15)
                  
     plt.tight_layout()

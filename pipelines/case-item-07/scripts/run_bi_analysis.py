@@ -136,7 +136,7 @@ def generate_chart_01_time_series(df_car: pd.DataFrame) -> None:
 
     save_dual_asset(fig, "chart_01_serie_temporal_abandono_resgate.png")
 
-def generate_chart_02_categories(df_car: pd.DataFrame, df_itens: pd.DataFrame, df_prod: pd.DataFrame) -> None:
+def generate_chart_02_categories(df_car: pd.DataFrame, df_itens: pd.DataFrame, df_prod: pd.DataFrame, df_ord: pd.DataFrame = None) -> None:
     """2. Performance de Categorias: Volume Abandonado vs Convertido."""
     fig, ax = plt.subplots(figsize=(10.5, 5.8), facecolor="#FFFFFF")
     ax.set_facecolor("#FFFFFF")
@@ -151,7 +151,7 @@ def generate_chart_02_categories(df_car: pd.DataFrame, df_itens: pd.DataFrame, d
         cat_agg = merged.groupby("categoria").agg(
             total=("carrinho_id", "nunique"),
             abandonados=("carrinho_id", lambda s: len(set(s[merged.loc[s.index, "status"] == "abandonado"]))),
-            convertidos=("carrinho_id", lambda s: len(set(s[merged.loc[s.index, "status"].isin(["convertido", "recuperado"])]))),
+            convertidos=("carrinho_id", lambda s: len(set(s[merged.loc[s.index, "status"].isin(["comprado", "recuperado"])]))),
             preco_medio=(preco_col, "mean")
         ).reset_index()
     else:
@@ -201,7 +201,7 @@ def generate_chart_03_roi_channels(df_res: pd.DataFrame, df_car: pd.DataFrame) -
     if not df_res.empty and custo_col and "canal" in df_res.columns:
         sucesso_mask = (df_res["sucesso"] == True) if "sucesso" in df_res.columns else (df_res.get("status_entrega", "") == "convertido")
         
-        if "valor_pedido_final" in df_res.columns:
+        if "valor_pedido_final" in df_res.columns and df_res["valor_pedido_final"].sum() > 0:
             receita_col = df_res["valor_pedido_final"].fillna(0)
         elif not df_car.empty and "carrinho_id" in df_res.columns:
             merged = df_res.merge(df_car[["carrinho_id", "valor_total"]], on="carrinho_id", how="left")
@@ -259,9 +259,21 @@ def generate_chart_04_rfm_heatmap(df_car: pd.DataFrame, df_cli: pd.DataFrame) ->
     fig, ax = plt.subplots(figsize=(10.5, 5.8), facecolor="#FFFFFF")
     ax.set_facecolor("#FFFFFF")
 
+    label_map = {
+        "frete": "Frete Alto / Incompatível",
+        "preco": "Preço Elevado",
+        "indecisao": "Indecisão / Navegação",
+        "pagamento": "Falha de Pagamento",
+        "nao_informado": "Não Informado",
+        "estoque": "Estoque Indisponível"
+    }
+
     if not df_car.empty and not df_cli.empty:
         merged = df_car[df_car["status"] == "abandonado"].merge(df_cli[["cliente_id", "segmento_rfm"]], on="cliente_id", how="inner")
-        pivot = pd.crosstab(merged["motivo_abandono"], merged["segmento_rfm"], normalize="columns") * 100.0
+        merged["motivo_label"] = merged["motivo_abandono"].map(label_map).fillna(merged["motivo_abandono"])
+        pivot = pd.crosstab(merged["motivo_label"], merged["segmento_rfm"], normalize="columns") * 100.0
+        rfm_cols = [c for c in ["novo", "regular", "dormant", "premium"] if c in pivot.columns]
+        pivot = pivot[rfm_cols]
     else:
         pivot = pd.DataFrame(
             [[42.0, 31.0, 24.0, 14.0],
@@ -269,7 +281,7 @@ def generate_chart_04_rfm_heatmap(df_car: pd.DataFrame, df_cli: pd.DataFrame) ->
              [15.0, 18.0, 22.0, 26.0],
              [14.0, 16.0, 18.0, 12.0],
              [11.0, 13.0, 11.0, 10.0]],
-            index=["Frete Alto / Incompatível", "Indecisão / Navegação", "Preço Elevado", "Falha de Pagamento", "Outros"],
+            index=["Frete Alto / Incompatível", "Indecisão / Navegação", "Preço Elevado", "Falha de Pagamento", "Não Informado"],
             columns=["novo", "regular", "dormant", "premium"]
         )
 
@@ -318,7 +330,7 @@ def generate_chart_05_dispersion_viability(df_car: pd.DataFrame) -> None:
     # Quadrante de Ouro
     rect = patches.Rectangle((65, 300), 35, max(valor) - 280, linewidth=1.5, edgecolor="#059669", facecolor="#059669", alpha=0.08, linestyle="--")
     ax.add_patch(rect)
-    ax.text(78, max(valor) * 0.85, "🎯 QUADRANTE DE OURO\n(Alta Viabilidade & Ticket)", fontsize=9.5, fontweight="bold", color="#059669", ha="center")
+    ax.text(78, max(valor) * 0.85, "QUADRANTE DE OURO\n(Alta Viabilidade & Ticket)", fontsize=9.5, fontweight="bold", color="#059669", ha="center")
 
     ax.set_xlabel("Probabilidade Estimada de Recuperação (%)", fontsize=11, fontweight="bold", color="#1E293B", labelpad=8)
     ax.set_ylabel("Valor do Carrinho Abandonado (R$)", fontsize=11, fontweight="bold", color="#1E293B", labelpad=8)

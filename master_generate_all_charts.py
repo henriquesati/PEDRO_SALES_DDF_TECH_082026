@@ -13,8 +13,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 
 SCRIPTS = [
-    # Pitch & Arquitetura
+    # Pitch & Arquitetura & Roteiro Views
     "presentation/pitch/roteiro/arquitetura-view/generate_l2r_charts.py",
+    "presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/generate_chart.py",
+    "presentation/pitch/roteiro/problema-elasticidade/generate_chart.py",
+    "presentation/pitch/roteiro/staff-pain-point/generate_chart.py",
+    "presentation/pitch/roteiro/staff-pain-point/generate_cost_comparison_chart.py",
+    "presentation/pitch/roteiro/case-carrinho/views/insights/timingenvio/generate_chart.py",
     "presentation/pitch/views/caseitem06/generate_chart.py",
     "presentation/pitch/06_data_quality_e_quarentena/generate_chart.py",
     "presentation/pitch/07_arquitetura_dadosfera_vs_aws/generate_chart.py",

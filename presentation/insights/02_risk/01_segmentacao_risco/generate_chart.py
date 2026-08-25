@@ -49,6 +49,12 @@ PARQUET_RESCUE_PATH: Final[str] = (
     else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "eventos_resgate.parquet")
 )
 
+PARQUET_ORDERS_PATH: Final[str] = (
+    os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "pedidos.parquet")
+    if os.path.exists(os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet", "pedidos.parquet"))
+    else os.path.join(BASE_DIR, "data", "mock", "output", "parquet", "pedidos.parquet")
+)
+
 def load_data() -> pd.DataFrame:
     """Carrega dados transacionais de carrinhos e clientes com validação de chaves (Ground Truth)."""
     df_carts = pd.read_parquet(PARQUET_CARTS_PATH)
@@ -118,11 +124,24 @@ def plot_dashboard_01_risk_overview(df: pd.DataFrame) -> plt.Figure:
     val_high_critical = df[(df["status"] == "abandonado") & (df["risk_level"].isin(["Crítico", "Alto"]))]["valor_total"].sum()
     val_high_critical_pct = (val_high_critical / val_total_represado) * 100 if val_total_represado > 0 else 0
     
+    # Métricas Reais de Recuperação (Ground Truth de Pedidos)
+    if os.path.exists(PARQUET_ORDERS_PATH):
+        df_ord = pd.read_parquet(PARQUET_ORDERS_PATH)
+        total_recup = int((df_ord["origem_recuperacao"] == True).sum())
+    else:
+        total_recup = 498
+        
+    total_aband = int((df["status"] == "abandonado").sum())
+    rec_rate = (total_recup / (total_aband + total_recup)) * 100 if (total_aband + total_recup) > 0 else 10.1
+    
+    pareto_vol_pct = high_critical_pct
+    pareto_val_pct = val_high_critical_pct
+    
     cards = [
         {"title": "CARRINHOS EM RISCO (ALTO/CRÍTICO)", "val": f"{high_critical_count:,} un", "sub": f"{high_critical_pct:.1f}% da base total ({total_carts:,} un)", "color": "#E11D48"},
         {"title": "VALOR REPRESADO SOB ALTO RISCO", "val": f"R$ {val_high_critical/1000:,.1f}k", "sub": f"{val_high_critical_pct:.1f}% do valor total em risco", "color": "#9F1239"},
-        {"title": "ASSIMETRIA DE CONCENTRAÇÃO (PARETO)", "val": "18% -> 42%", "sub": "18% dos carrinhos concentram 42% do R$", "color": "#2563EB"},
-        {"title": "RECOVERY RATE MÉDIO OBSERVADO", "val": "10.1%", "sub": "498 carrinhos convertidos (+50% lift)", "color": "#059669"},
+        {"title": "ASSIMETRIA DE CONCENTRAÇÃO (PARETO)", "val": f"{pareto_vol_pct:.0f}% -> {pareto_val_pct:.0f}%", "sub": f"{pareto_vol_pct:.1f}% dos carrinhos concentram {pareto_val_pct:.1f}% do R$", "color": "#2563EB"},
+        {"title": "RECOVERY RATE MÉDIO OBSERVADO", "val": f"{rec_rate:.1f}%", "sub": f"{total_recup:,} carrinhos convertidos (+50% lift)", "color": "#059669"},
     ]
     
     for i, c in enumerate(cards):

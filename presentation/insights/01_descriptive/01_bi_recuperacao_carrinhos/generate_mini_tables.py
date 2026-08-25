@@ -68,8 +68,8 @@ def compute_metrics(df_carts: pd.DataFrame) -> tuple[dict, dict]:
     perdido_semestre = total_semestre - comp_semestre - recup_semestre
     conv_total_semestre = comp_semestre + recup_semestre
     
-    aband_base_semestre = 4201 + recup_semestre
-    pct_recup_sobre_aband_semestre = (recup_semestre / aband_base_semestre) * 100
+    aband_base_semestre = int((df_carts["status"] == "abandonado").sum()) + recup_semestre
+    pct_recup_sobre_aband_semestre = (recup_semestre / aband_base_semestre) * 100 if aband_base_semestre > 0 else 0.0
     
     metrics_reto = {
         "titulo": "MÉTRICAS POR ZONA: JAN–JUN 2026",

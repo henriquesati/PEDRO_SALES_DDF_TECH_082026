@@ -34,7 +34,7 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
 | **7** | Análise de Dados & Métricas | Analisar | 6 visualizações de BI geradas (Série Temporal, Categorias, ROI, Heatmap, Scatter e DQ), task runner CLI (`notebook-gen`) e Camada Semântica de Métricas (`metrics/`) consolidada com Catálogo de KPIs, Matriz Dimensional Kimball, Driver Tree, DQ SLOs e Métricas de ML/GenAI | ✅ Concluído |
 | **8** | Pipelines ETL/ML | Processar | Especificações de pipeline Silver (Qualify + Anomaly) e framework normativo (`data-pipeline-documentation`) | ⏳ Planejado |
 | **9** | Data Apps | Consumir | Planejamento de Data App interativo em Streamlit para simulação de recuperação de carrinhos e cálculo de ROI | ⏳ Planejado |
-| **10** | Apresentação em Vídeo | — | Infraestrutura completa de Pitch (`presentation/pitch/`), roteiro cronológico (Backbone Central & Guidelines em `pitch_spec.md`), 8 subdiretórios com specs/scripts funcionais e artefatos visuais (300 DPI) | ✅ Concluído |
+| **10** | Apresentação em Vídeo | — | Infraestrutura completa de Pitch (`presentation/pitch/`), roteiro cronológico (`pitch_spec.md`), roteiro falado e comparativo de infraestrutura (`roteiro.txt`), 8 subdiretórios com specs/scripts funcionais e artefatos visuais (300 DPI) | ✅ Concluído |
 | **Bônus**| GenAI + Data Apps | IA Generativa | Geração visual de cards de produtos e vitrines dinâmicas de resgate | ⏳ Planejado |
 
 ---
@@ -207,6 +207,7 @@ wheels/
 │   ├── pitch/                            # Infraestrutura completa da apresentação (Item 10)
 │   │   ├── README.md                     # Visão geral e índice de navegação
 │   │   ├── pitch_spec.md                 # Backbone Central & Guidelines de Apresentação
+│   │   ├── roteiro.txt                   # Roteiro prático de fala e comparativo detalhado da stack AWS vs Dadosfera
 │   │   ├── run_all_pitch_charts.py       # Orquestrador central dos geradores
 │   │   ├── config/chart_theme.py         # Tema visual corporativo Dadosfera (300 DPI)
 │   │   └── 01 a 08/                      # Módulos com spec, script e chart
