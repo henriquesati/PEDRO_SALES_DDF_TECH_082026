@@ -14,7 +14,6 @@ BASE_DIR = Path(__file__).resolve().parent
 
 SCRIPTS = [
     # Pitch & Arquitetura & Roteiro Views
-    "presentation/pitch/roteiro/arquitetura-view/generate_l2r_charts.py",
     "presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/generate_chart.py",
     "presentation/pitch/roteiro/problema-elasticidade/generate_chart.py",
     "presentation/pitch/roteiro/staff-pain-point/generate_chart.py",

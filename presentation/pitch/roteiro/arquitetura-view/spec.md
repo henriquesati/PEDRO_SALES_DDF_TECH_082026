@@ -1,63 +1,43 @@
-# Especificação Visual & Técnica: View de Arquitetura (`arquitetura-view`)
+# Especificação Visual & Técnica: Módulo de Arquitetura (`arquitetura-view`)
 
 > **Momento do Pitch**: Ato 1 — Diagnóstico da Arquitetura Legada (AWS DIY) vs. Solução Unificada Dadosfera  
-> **Padrão Visual**: Fundo Branco Puro (`#FFFFFF`), Proporção 16:9 Widescreen (300 DPI), Paleta Semântica Oficial do Treemap (`chart_02_motivos_abandono.png`), Estilo Geométrico Reto (90°).  
-> **Fonte Estratégica**: [`presentation/pitch/roteiro.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro.txt) e [`docs/specifications/data-platform-specification.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/docs/specifications/data-platform-specification.md).
+> **Padrão Visual**: Fundo Branco Puro (`#FFFFFF`), Proporção 16:9 Widescreen (300 DPI), Paleta Semântica Oficial dos 5 Pilares do Ciclo de Vida dos Dados.  
+> **Fonte Estratégica**: [`presentation/pitch/roteiro.txt`](../roteiro.txt) e [`presentation/pitch/roteiro/spec.md`](../spec.md).
 
 ---
 
-## 🗺️ 1. Governança e Estrutura de Diretórios (`assets/` vs. `assets/icons/`)
+## 🗺️ 1. Governança e Submódulo [`arc-diagram-view/`](arc-diagram-view/)
+
+Seguindo a regra de governança onde **apenas a view de diagramas de arquitetura possui subdiretório `assets/`** devido aos 26 logos e ícones de serviços:
 
 ```
 presentation/pitch/roteiro/arquitetura-view/
-├── assets/                               # 📊 Gráficos Gerados em Alta Resolução (PNG 300 DPI)
-│   ├── grafico-legado-l2r-vazio.png      # ⭐ [TEMPLATE OFICIAL APROVADO] Blocos limpos para colar os ícones no PPT
-│   ├── grafico-legado-l2r-populated.png  # 🗺️ [GUIA DE MONTAGEM] Mapa visual com todos os ícones e nomes mapeados
-│   ├── grafico-legado-l2r.png            # Diagrama Legado AWS completo
-│   ├── grafico-dadosfera-l2r-vazio.png   # Template Dadosfera vazio
-│   ├── grafico-dadosfera-l2r.png         # Diagrama Dadosfera unificado completo
-│   └── icons/                            # 🖼️ 26 Ícones Transparentes (PNG)
-│       ├── kinesis.png, lambda.png, redshift.png, redis.png, s3.png, snowflake.png, metabase.png, etc.
-├── powerpoint/                           # 📑 Apresentação PPTX
-│   ├── arquitetura_dadosfera.pptx        # Apresentação PowerPoint
-│   └── generate_architecture_deck.py     # Script Python compilador
-├── generate_l2r_charts.py                # 🐍 Script declarativo de renderização
-└── spec.md                               # 📄 Esta Especificação Técnica
+├── arc-diagram-view/                     # 🏛️ Submódulo Canônico da View de Arquitetura L2R
+│   ├── assets/
+│   │   └── icons/                        # 🖼️ 26 Ícones Transparentes (PNG) da AWS e Dadosfera
+│   ├── generate_chart.py                 # 🐍 Script declarativo de renderização em alta resolução
+│   ├── download_high_res_icons.py        # 📥 Script utilitário para download dos assets oficiais
+│   ├── spec.md                           # 📄 Especificação técnica em texto corrido
+│   ├── grafico-legado-l2r.png            # 📊 Diagrama Legado AWS DIY completo
+│   ├── grafico-dadosfera-l2r.png         # 📊 Diagrama Dadosfera unificado completo
+│   ├── grafico-legado-l2r-vazio.png      # 📊 Template limpo dos 5 blocos
+│   └── grafico-legado-l2r-populated.png  # 📊 Guia de referência mapeado
+└── spec.md                               # 📄 Esta Especificação Geral do Módulo
 ```
 
 ---
 
-## 🎨 2. Diretrizes Visuais Aprovadas (Negócio & Ciclo de Vida dos Dados)
+## 🎨 2. Diretrizes Visuais Aprovadas (Os 5 Pilares de Negócio)
 
-O fluxo foi estruturado sob os **5 Pilares Canônicos de Negócio**:
+O fluxo do ciclo de vida analítico é estruturado sob os 5 pilares:
 
-```
-[ 1. INGESTÃO ] ➔ [ 2. VALIDAÇÃO ] ➔ [ 3. MODELAGEM ] ➔ [ 4. GOVERNANÇA ] ➔ [ 5. INTELIGÊNCIA ]
-```
+$$\mathbf{1.\; INGEST\tilde{A}O} \;\longrightarrow\; \mathbf{2.\; VALIDA\Ccedil\tilde{A}O} \;\longrightarrow\; \mathbf{3.\; MODELAGEM} \;\longrightarrow\; \mathbf{4.\; GOVERNAN\Ccedil A} \;\longrightarrow\; \mathbf{5.\; INTELIG\hat{E}NCIA}$$
 
-1. **Blocos Quadrados Estritamente Retos (90°)**:
-   - **Borda branca grossa (`edgecolor = "#FFFFFF"`, `linewidth = 3.5pt`)** idêntica ao acabamento do Treemap.
-   - **Cores sólidas oficiais do Treemap (sem tons de cinza)**:
-     - 🟦 **Pilar 1 (Ingestão)**: `#1E3A8A` (*Navy Blue*)
-     - 🔵 **Pilar 2 (Validação)**: `#2563EB` (*Royal Blue*)
-     - 🟣 **Pilar 3 (Modelagem)**: `#7C3AED` (*Vibrant Purple*)
-     - 🟠 **Pilar 4 (Governança)**: `#D97706` (*Amber Orange*)
-     - 🟢 **Pilar 5 (Inteligência)**: `#059669` (*Emerald Green*)
-2. **Minimalismo Interno dos Quadrados**:
-   - Contém apenas o número (**`1`**, **`2`**, **`3`**, **`4`**, **`5`**) em tipografia discreta (`11.5pt`, bold white) no topo central.
-   - Espaço amplo e liso para posicionar e animar os ícones no PowerPoint.
-3. **Seta Contínua Espessa e Translúcida**:
-   - Fundo em **Âmbar (`#D97706`)** com **opacidade suave (`alpha = 0.72`)** e borda marcante (`#B45309`, `linewidth = 2.0pt`).
-   - Tópicos limpos sem prefixo numérico:  
-     `INGESTÃO  ➔  VALIDAÇÃO  ➔  MODELAGEM  ➔  GOVERNANÇA  ➔  INTELIGÊNCIA`
-4. **String Externa**:
-   - `FLUXO CONTÍNUO DO CICLO DE VIDA ANALÍTICO` em badge centralizado abaixo da seta.
-
----
-
-## 🗺️ 3. Guia de Montagem no PowerPoint (Qual Ícone Colar em Qual Bloco)
-
-Consulte o gráfico [`grafico-legado-l2r-populated.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-legado-l2r-populated.png) como gabarito visual:
+* 🟦 **Pilar 1 (Ingestão)**: `#1E3A8A` (*Navy Blue*)
+* 🔵 **Pilar 2 (Validação)**: `#2563EB` (*Royal Blue*)
+* 🟣 **Pilar 3 (Modelagem)**: `#7C3AED` (*Vibrant Purple*)
+* 🟠 **Pilar 4 (Governança)**: `#D97706` (*Amber Orange*)
+* 🟢 **Pilar 5 (Inteligência)**: `#059669` (*Emerald Green*)
 
 | Bloco | Pilar de Negócio | Cor | Ícones para Colar (de `assets/icons/`) | Papel no Pitch / Dores Abordadas |
 | :---: | :--- | :---: | :--- | :--- |

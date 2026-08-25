@@ -17,7 +17,7 @@ $$\mathbf{1.\; Ingest\tilde{a}o} \;\longrightarrow\; \mathbf{2.\; Valida\ccedil\
 
 ### 🔍 Narrativa Comparativa Apresentada no Roteiro:
 * **No Cenário Legado (AWS DIY - Slide 1)**: Para fazer o ciclo de vida dos dados funcionar, a empresa é obrigada a acoplar e manter mais de 20 serviços periféricos isolados (Kinesis, Lambda de validação, filas DLQ no SQS, Glue Jobs com Spark, Redshift, MWAA Airflow, Dockerfiles no ECR, scripts Terraform, Secrets Manager, Lake Formation e políticas IAM complexas). Isso cria um alto custo oculto de infraestrutura, lentidão de 3 a 6 semanas para novas entregas e dependência excessiva de engenheiros de plataforma dedicados apenas a manter "colas" de integração.
-* **Na Solução Dadosfera (Slide 2)**: A plataforma Dadosfera unifica essas 5 etapas em uma única interface gerenciada. A ingestão é plug-and-play, a validação com Data Quality é nativa, a modelagem dimensional roda no Snowflake Lakehouse de forma elástica, a governança/catálogo com LGPD é automática e a inteligência (Machine Learning e GenAI) roda integrada sem que o cliente precise gerenciar servidores ou clusters.
+* **Na Solução Dadosfera**: A plataforma Dadosfera unifica essas 5 etapas em uma única interface gerenciada. A ingestão é plug-and-play, a validação com Data Quality é nativa, a modelagem dimensional roda no Snowflake Lakehouse de forma elástica, a governança/catálogo com LGPD é automática e a inteligência (Machine Learning e GenAI) roda integrada sem que o cliente precise gerenciar servidores ou clusters.
 
 ---
 
@@ -25,13 +25,16 @@ $$\mathbf{1.\; Ingest\tilde{a}o} \;\longrightarrow\; \mathbf{2.\; Valida\ccedil\
 
 | Artefato Gerado | Papel na Apresentação |
 | :--- | :--- |
-| **`grafico-legado-l2r-vazio.png`** | **Template de Animação (Slide 1 PPTX)**: Os 5 blocos retos coloridos colados à seta contínua de fluxo analítico, sem ícones internos, permitindo a inserção progressiva de cada componente AWS durante a fala do apresentador. |
-| **`grafico-legado-l2r.png`** | **Diagrama Legado Completo**: Versão estática com todos os ícones de serviços AWS mapeados e legendados em seus respectivos pilares. |
-| **`grafico-dadosfera-l2r.png`** | **Diagrama Dadosfera Unificado (Slide 2 PPTX)**: Demonstração visual do container da Dadosfera absorvendo os 5 pilares com simplicidade e foco no negócio. |
+| **`grafico-legado-l2r-vazio.png`** | **Template de Animação**: Os 5 blocos retos coloridos colados à seta contínua de fluxo analítico, sem ícones internos, permitindo a inserção progressiva de cada componente AWS. |
+| **`grafico-legado-l2r.png`** | **Diagrama Legado Completo**: Versão com todos os ícones de serviços AWS mapeados e legendados em seus respectivos pilares. |
+| **`grafico-dadosfera-l2r.png`** | **Diagrama Dadosfera Unificado**: Demonstração visual do container da Dadosfera absorvendo os 5 pilares com simplicidade e foco no negócio. |
 | **`grafico-dadosfera-l2r-vazio.png`** | Template limpo da Dadosfera para suporte a mockups e customizações. |
 
 ---
 
-## ⚙️ 3. Mecanismo de Execução
+## ⚙️ 3. Mecanismo de Execução & Exceção de Assets
 
-Este subdiretório adota a **Opção 2 de Governança de Views**: seu script local `generate_chart.py` importa o pipeline central `generate_l2r_charts.py`, executa o motor de renderização matemática com `matplotlib` e `Pillow`, consome o pacote de ícones em `assets/icons/` e assegura a persistência sincronizada dos diagramas.
+Seguindo a regra de governança onde **esta é a única view com subpasta `assets/`** devido à biblioteca de logos e ícones:
+* [`assets/icons/`](assets/icons/): Contém os 26 ícones transparentes em PNG de cada serviço de nuvem e ferramentas da Dadosfera.
+* [`generate_chart.py`](generate_chart.py): Script declarativo autônomo que renderiza todos os diagramas em 300 DPI (`matplotlib` + `Pillow`).
+* [`download_high_res_icons.py`](download_high_res_icons.py): Script utilitário para atualização automática dos ícones oficiais.

@@ -134,12 +134,15 @@ def plot_decay_timing_chart(df_timing: pd.DataFrame) -> plt.Figure:
     ax2.barh(y_pos, envios, height=bar_height, color="#94A3B8", alpha=0.7, label="Total de Envios", edgecolor="#475569")
     ax2.barh(y_pos, conversoes * 60, height=bar_height, color="#059669", alpha=0.9, label="Conversões (Escala ampliada)", edgecolor="#047857")
 
-    for i, (env, conv) in enumerate(zip(envios, conversoes)):
-        pct_conv_total = (conv / df_timing["total_conversoes"].sum()) * 100 if df_timing["total_conversoes"].sum() > 0 else 0
+    taxas_conv = df_timing["taxa_conversao"].to_numpy()
+    total_recuperado = df_timing["total_conversoes"].sum()
+
+    for i, (env, conv, tx) in enumerate(zip(envios, conversoes, taxas_conv)):
+        pct_conv_total = (conv / total_recuperado) * 100 if total_recuperado > 0 else 0
         ax2.text(
             env + 70, i,
-            f"{env:,.0f} envios\n{conv} conv. ({pct_conv_total:.1f}% do total)",
-            va="center", ha="left", fontsize=9.5, fontweight="bold", color="#0F172A"
+            f"{env:,.0f} envios\n{conv} conv. (Tx: {tx:.2f}% | {pct_conv_total:.1f}% do share recuperado)",
+            va="center", ha="left", fontsize=9.0, fontweight="bold", color="#0F172A"
         )
 
     ax2.set_yticks(y_pos)
