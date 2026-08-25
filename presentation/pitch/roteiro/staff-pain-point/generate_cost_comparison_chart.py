@@ -2,7 +2,7 @@
 """
 generate_cost_comparison_chart.py
 Gera o gráfico conceitual minimalista de comparação de custos (Infra Própria AWS DIY vs. Dadosfera),
-com identificação direta das linhas e rótulos semânticos nos eixos X e Y,
+com identificação direta das linhas, ponto de inflexão/break-even e eixos conceituais X e Y,
 otimizado para apresentação executiva de alto impacto no PowerPoint.
 
 Padrão Visual: Fundo Branco Puro (#FFFFFF), 16:9 Widescreen (3600x2025 px), 300 DPI, Tipografia Sem Serifa Moderna.
@@ -165,118 +165,12 @@ def plot_crossover_chart() -> plt.Figure:
     
     return fig
 
-def plot_stacked_chart() -> plt.Figure:
-    """Gera 2 gráficos conceituais empilhados verticalmente com eixos conceituais X e Y."""
-    plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
-    fig = plt.figure(figsize=(16, 9), facecolor=COLORS["bg"], dpi=300)
-    
-    x, y_infra, y_dadosfera = generate_smooth_curves()
-    
-    # -------------------------------------------------------------
-    # Gráfico 1 (Superior): Curva com subida acentuada (Infra Própria)
-    # -------------------------------------------------------------
-    ax1 = fig.add_axes([0.10, 0.54, 0.65, 0.36], facecolor=COLORS["bg"])
-    for spine in ["top", "right", "left", "bottom"]:
-        ax1.spines[spine].set_visible(False)
-    ax1.set_xticks([])
-    ax1.set_yticks([])
-    
-    # Eixo X minimalista
-    ax1.annotate(
-        "", xy=(9.8, 0.6), xytext=(0.2, 0.6),
-        arrowprops=dict(arrowstyle="-|>", color=COLORS["axis_line"], lw=2.0, mutation_scale=16),
-        zorder=2
-    )
-    # Eixo Y minimalista
-    ax1.annotate(
-        "", xy=(0.2, np.max(y_infra) * 1.10), xytext=(0.2, 0.6),
-        arrowprops=dict(arrowstyle="-|>", color=COLORS["axis_line"], lw=2.0, mutation_scale=16),
-        zorder=2
-    )
-    
-    ax1.text(0.2, np.max(y_infra) * 1.14, "Custo Total de Operação (TCO)", color=COLORS["axis_text"], fontsize=11.5, fontweight="bold", ha="left", va="bottom")
-    
-    ax1.fill_between(x, 0.6, y_infra, color=COLORS["red_fill"], alpha=0.35, zorder=2)
-    ax1.plot(x[:-10], y_infra[:-10], color=COLORS["red_line"], linewidth=4.5, zorder=3)
-    ax1.annotate(
-        "", xy=(x[-1], y_infra[-1]), xytext=(x[-12], y_infra[-12]),
-        arrowprops=dict(arrowstyle="-|>", color=COLORS["red_line"], lw=4.5, mutation_scale=20),
-        zorder=4
-    )
-    
-    ax1.text(
-        x[-1] + 0.25, y_infra[-1] + 0.20, "Custo com Infraestrutura Própria",
-        color=COLORS["red_line"], fontsize=11.8, fontweight="bold", ha="left", va="bottom"
-    )
-    ax1.text(
-        x[-1] + 0.25, y_infra[-1] - 0.15, "(Escalada Exponencial)",
-        color=COLORS["red_line"], fontsize=10.5, fontweight="semibold", ha="left", va="top"
-    )
-    
-    ax1.set_xlim(-0.1, 10.0)
-    ax1.set_ylim(0.2, np.max(y_infra) * 1.20)
-    
-    # -------------------------------------------------------------
-    # Gráfico 2 (Inferior): Curva com subida moderada / estável (Dadosfera)
-    # -------------------------------------------------------------
-    ax2 = fig.add_axes([0.10, 0.08, 0.65, 0.36], facecolor=COLORS["bg"])
-    for spine in ["top", "right", "left", "bottom"]:
-        ax2.spines[spine].set_visible(False)
-    ax2.set_xticks([])
-    ax2.set_yticks([])
-    
-    # Eixo X minimalista
-    ax2.annotate(
-        "", xy=(9.8, 0.6), xytext=(0.2, 0.6),
-        arrowprops=dict(arrowstyle="-|>", color=COLORS["axis_line"], lw=2.0, mutation_scale=16),
-        zorder=2
-    )
-    # Eixo Y minimalista
-    ax2.annotate(
-        "", xy=(0.2, np.max(y_dadosfera) * 1.25), xytext=(0.2, 0.6),
-        arrowprops=dict(arrowstyle="-|>", color=COLORS["axis_line"], lw=2.0, mutation_scale=16),
-        zorder=2
-    )
-    
-    ax2.text(0.2, np.max(y_dadosfera) * 1.30, "Custo Total de Operação (TCO)", color=COLORS["axis_text"], fontsize=11.5, fontweight="bold", ha="left", va="bottom")
-    ax2.text(5.0, 0.12, "Tempo / Volume de Dados & Expansão de Casos de Uso ->", color=COLORS["axis_text"], fontsize=11.0, fontweight="bold", ha="center", va="top")
-    
-    ax2.fill_between(x, 0.6, y_dadosfera, color=COLORS["green_fill"], alpha=0.35, zorder=2)
-    ax2.plot(x[:-10], y_dadosfera[:-10], color=COLORS["green_line"], linewidth=4.5, zorder=3)
-    ax2.annotate(
-        "", xy=(x[-1], y_dadosfera[-1]), xytext=(x[-12], y_dadosfera[-12]),
-        arrowprops=dict(arrowstyle="-|>", color=COLORS["green_line"], lw=4.5, mutation_scale=20),
-        zorder=4
-    )
-    
-    ax2.text(
-        x[-1] + 0.25, y_dadosfera[-1] + 0.20, "Custo com Dadosfera",
-        color=COLORS["green_line"], fontsize=11.8, fontweight="bold", ha="left", va="bottom"
-    )
-    ax2.text(
-        x[-1] + 0.25, y_dadosfera[-1] - 0.15, "(Crescimento Suave e Estável)",
-        color=COLORS["green_line"], fontsize=10.5, fontweight="semibold", ha="left", va="top"
-    )
-    
-    ax2.set_xlim(-0.1, 10.0)
-    ax2.set_ylim(0.2, np.max(y_dadosfera) * 1.38)
-    
-    return fig
-
 def main() -> None:
-    # 1. Gráfico único Crossover com linhas e eixos identificados
     fig_crossover = plot_crossover_chart()
     crossover_path = OUTPUT_DIR / "chart_custo_infra_vs_dadosfera_crossover.png"
     fig_crossover.savefig(str(crossover_path), dpi=300, bbox_inches="tight", facecolor=COLORS["bg"])
     plt.close(fig_crossover)
-    print(f"[SUCCESS] Gráfico Crossover com eixos e linhas identificadas gerado em: {crossover_path}")
-    
-    # 2. Gráfico Empilhado Minimalista
-    fig_stacked = plot_stacked_chart()
-    stacked_path = OUTPUT_DIR / "chart_custo_infra_vs_dadosfera_stacked.png"
-    fig_stacked.savefig(str(stacked_path), dpi=300, bbox_inches="tight", facecolor=COLORS["bg"])
-    plt.close(fig_stacked)
-    print(f"[SUCCESS] Gráfico Empilhado com eixos e linhas identificadas gerado em: {stacked_path}")
+    print(f"[SUCCESS] Gráfico Crossover gerado em: {crossover_path}")
 
 if __name__ == "__main__":
     main()
