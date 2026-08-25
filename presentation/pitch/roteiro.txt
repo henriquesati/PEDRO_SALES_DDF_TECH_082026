@@ -1,0 +1,103 @@
+ROTEIRO
+
+
+Plataforma dadosfera
+. Explicar o que é
+.paralelo no ciclo de vida dos dados
+.Tem como objetivo mudar a forma como médias e grandes empresas lidam  , Inteligência Artificial e Analytics. antes restritas a grandes empresas de tecnologia — para organizações que precisam tomar decisões mais rápidas, seguras e orientadas ao negócio.
+. apoia descoberta, modelagem, implementação e sustentação de soluções analíticas
+como podemos agregar valor ao seu negocio complementando ou substituindo a infra
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+Arquitetura Atual (AWS):
+A infraestrutura atual utiliza um pipeline clássico composto por:
+* Gerador (Lambda) & Kinesis Stream: Requer configuração manual de shards baseada em throughput, o que eleva a complexidade e o custo.
+* Firehose: Embora gerenciado, adiciona latência de buffering.
+* S3 Bucket: Atua como Data Lake, mas carece de imposição de schema (schema enforcement).
+* Redis Cluster (ElastiCache): Operação complexa entre modos standalone e cluster; upgrades de plano podem causar 5-15 min de indisponibilidade
+como podemos agregar valor ao seu negocio complementando ou substituindo a infra
+Para fazer uma arquitetura baseada em nuvem própria (AWS DIY) funcionar ponta a ponta, a empresa é forçada a acoplar uma série de serviços periféricos, repositórios de suporte e arquivos de infraestrutura.
+Abaixo estão os principais exemplos práticos de como esses componentes aumentam o custo e o risco operacional:
+
+
+
+
+
+
+
+
+1. Dashboard: Validação & Quarentena de Dados
+Ingestão de Eventos Brutos (Kinesis / S3)
+🐍 Lambdas de Validação (Python / Great Expectations)
+📬 Fila Dead-Letter (AWS SQS DLQ)
+🗄️ Repositório de Quarentena (DynamoDB / S3)
+Alertas & Monitoramento: 🚨 AWS CloudWatch Alarms & SNS + configuração da aplicação
+
+
+
+
+Dashboard:Limpeza dos dados e geração de modelos inteligenes
+📦 Buckets S3 (Camada Bronze — Dados Brutos)
+⚡ AWS Glue Jobs / PySpark (Limpeza e Conformação) - gerenciamento de 
+Cada vez que um job é disparado, o Glue leva de 1 a 4 minutos apenas para alocar as máquinas (DPUs) e subir o cluster Spark, antes de processar uma única linha. Para ações rápidas como 
+Os módulos analíticos, steps de transformação e bibliotecas de Data Quality já vêm instalados e homologados no ambiente integrado.
+No AWS Glue / PySpark: Exige contratar Engenheiros de Dados de alta senioridade com conhecimento em infraestrutura e computação distribuída e não só com conhecimentos em analise
+Na Dadosfera: Um Analista de Dados, Analytics Engineer ou Cientista de Dados (que domina SQL e lógica de negócio) consegue performar anal ises e tratamentos nos dados
+
+
+
+
+No AWS Glue:Delay entre processamento e registro no S3 e visualização no dashboard, o dado ainda não está visível no dashboard
+Na Dadosfera:Baixo acoplamento entre tratamento e armazenamento
+Tabelas atualizadas refletem quase instantaneamentee no Catálogo e nas camadas de visualização, sendo metabase ou apps de dad os
+No AWS Glue: A AWS cobra por DPUs (Data Processing Units) com tempo mínimo de cobrança por execução. Rodar vários micro-jobs ao longo do dia para tratar dados de carrinho encarece a fatura rapidamente.
+Na Dadosfera: Modelo SaaS previsível, onde o consumo de processamento é elástico, otimizado e transparente.        
+em resumo: ou problema de provisionamento adequado ou problema de tempos de execução
+
+
+📦 Buckets S3 (Camada Silver — Dados Validados)
+🗃️ Amazon Redshift Cluster (Star Schema: 6 Dimensões e 2 Fatos)
+ AWS MWAA (Apache Airflow)
+📦 Buckets S3 (Camada Gold — Visões Analíticas)
+📊 BI / Data Apps / Analytics
+
+
+Airflor: orquestrados dos dados no redshift
+docker e amazon ecr pra armazenamento de artefatros docker 
+management de arquivos processuais
+🐳 Dockerfiles & AWS ECR (Registry e Versionamento de Imagens)
+📄 Repositórios Terraform / CloudFormation (Infraestrutura como Código)
+🔄 Esteiras de CI/CD (GitHub Actions / GitLab CI)
+🔑 AWS Secrets Manager (Gerenciamento de Credenciais e Chaves)
+
+
+
+
+Dashboard: Catálogo, Metadados & Governança
+Fluxo de Conformidade e Controle de Acesso
+🔍 AWS Glue Crawlers (Mapeamento de Schema)
+🏷️ AWS Lake Formation (Governança de Tabelas)
+🔐 Políticas IAM & Regras RBAC em JSON
+
+
+lake formation: governança de dados
+políticas IAM: alta complexidade porque nao  é so a parte de dados
+riscos marginais em caso de bnegligencia (vazamento de dados, lgpd)
+↓
+
+
+📋 Catálogo DataHub / OpenMetadata (Linhagem e Dicionário)
+Dashboard: Camada de Consumo (BI, Data App & GenAI)
+Disponibilização para Áreas de Negócio
+
+
+notificação aws:
+amazon e v enbridge e amazon sns para rotear e fazer push
+configuração de lambdas para formatação de dados em transito, em caso de campanhas, formatar email mensagem
+Ferramentas de observabilidde (dtadog, grafana) + custos o peracionals + overhead de gerenciamento
+
+
+notifica~~ao dadosfer:
+pipelines e saude de pipeline/aleetas integrados, self hosted
+sistema de alertas integrados. é possivel criar alertas sob anomalias em analises, notificações de campanha
+qualquer usuario de negocio consegue c riar alertas em poucos cliques na plaforma
+“se taxa de abandono aumentar, avise equipe de marketing”

@@ -46,7 +46,13 @@ A Dadosfera substitui toda essa complexidade operacional:
 
 [1] **Redução de Lead Time**: De 6 semanas para **menos de 3 dias (-86%)** para novas análises e aplicações.  
 [2] **Zero Risco de Sharding em Picos**: Desacoplamento e elasticidade nativa da nuvem gerenciada.  
-[3] **Foco no Negócio**: Desloca o esforço da equipe técnica da manutenção de servidores para a geração direta de receita.
+[3] **Foco no Negócio**: Desloca o esforço da equipe técnica da manutenção de servidores para a geração direta de receita.  
+[4] **Artefatos e Views do Roteiro**: 
+    - Template Oficial de Animação (Blocos Vazios): [`presentation/pitch/roteiro/arquitetura-view/assets/grafico-legado-l2r-vazio.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-legado-l2r-vazio.png)
+    - Diagrama L2R Legado (Referência): [`presentation/pitch/roteiro/arquitetura-view/assets/grafico-legado-l2r.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-legado-l2r.png)
+    - Diagrama L2R Dadosfera: [`presentation/pitch/roteiro/arquitetura-view/assets/grafico-dadosfera-l2r.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-dadosfera-l2r.png)
+    - Apresentação PPTX: [`presentation/pitch/roteiro/arquitetura-view/powerpoint/arquitetura_dadosfera.pptx`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/powerpoint/arquitetura_dadosfera.pptx)
+    - Gráfico Comparativo: [`presentation/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png)
 
 ---
 
