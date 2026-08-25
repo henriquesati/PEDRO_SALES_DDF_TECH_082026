@@ -29,6 +29,7 @@ Diretório: [`presentation/pitch/roteiro/arquitetura-view/`](file:///c:/Users/pe
 | **Solução Dadosfera Unificada** | [`grafico-dadosfera-l2r.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-dadosfera-l2r.png) | **Slide 2 no PowerPoint**: Container único da Plataforma Dadosfera absorvendo as 5 etapas. |
 | **Deck PowerPoint Formatado** | [`arquitetura_dadosfera.pptx`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/powerpoint/arquitetura_dadosfera.pptx) | Apresentação 16:9 widescreen pronta para apresentação executiva. |
 | **Biblioteca de 26 Ícones Oficiais (PNG)** | [`assets/icons/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/icons/) | Pacote com ícones transparentes (`kinesis.png`, `lambda.png`, `redshift.png`, `redis.png`, `s3.png`, `snowflake.png`, `metabase.png`, etc.). |
+| **🔥 View: Risco de Elasticidade em Picos** | [`chart_problema_elasticidade.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/problema-elasticidade/chart_problema_elasticidade.png) | **Slide de Transição Roteiro/Pitch**: Painel executivo demonstrando o custo de R$ 50k–100k/min de downtime em picos de Black Friday e a resposta elástica da Dadosfera. |
 
 ---
 
