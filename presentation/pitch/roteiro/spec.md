@@ -17,7 +17,13 @@ $$\text{presentation/pitch/roteiro/} \longrightarrow \mathbf{arquitetura\text{-}
    * **Somente a pasta `arc-diagram-view/`** possui um subdiretório `assets/` (dedicado exclusivamente a armazenar os 26 logos e ícones de serviços da AWS e da Dadosfera) e scripts utilitários adicionais (`download_high_res_icons.py`).
    * **Todas as demais pastas de views devem ser normais e sem pasta `assets/`**, mantendo seus scripts e saídas gráficos diretamente na raiz do diretório.
    * As pastas só podem ter arquivos e scripts adicionais quando estritamente **necessário e aprovado pelo usuário**.
-3. **Documento `spec.md` em Texto Corrido**:
+3. **Envelopamento Lógico e Agrupamento de Diretórios**:
+   * A arquitetura de diretórios é flexível e **suporta o envelopamento de subdiretórios dentro de outros** para organização lógica de atos ou seções temáticas complexas do roteiro.
+   * Exemplos de envelopes lógicos homologados:
+     * `view-03-dado-qualidades/` $\longrightarrow$ envelopa `view-lake-architecture/`, `view-governança/` e `view-model-kimball/`.
+     * `arquitetura-view/` $\longrightarrow$ envelopa `arc-diagram-view/`.
+     * `case-carrinho/views/` $\longrightarrow$ envelopa submódulos de insights e réguas.
+4. **Documento `spec.md` em Texto Corrido**:
    Cada diretório DEVE conter uma `spec.md` explicando em **texto corrido** o que a view representa no roteiro, qual momento da narrativa ela apoia e qual o diagnóstico/insight de negócio transmitido.
 
 ---
@@ -30,6 +36,9 @@ $$\text{presentation/pitch/roteiro/} \longrightarrow \mathbf{arquitetura\text{-}
 | [`problema-elasticidade/`](problema-elasticidade/) | **Momento 3: Risco de Elasticidade e Downtime em Picos (Black Friday)** | Padrão Enxuto | • `chart_problema_elasticidade.png` (Painel Executivo 16:9) |
 | [`staff-pain-point/`](staff-pain-point/) | **Momento 4: Headcount Linear & Escalabilidade de Equipe** | Padrão com 2 Scripts Aprovados | • `chart_staff_pain_point.png`<br/>• `chart_custo_infra_vs_dadosfera_crossover.png` |
 | [`case-carrinho/views/insights/timingenvio/`](case-carrinho/views/insights/timingenvio/) | **Ato 3: Blueprint Case Carrinho — Otimização de Timing (+1h & Decay Curve)** | Padrão Enxuto | • `chart_05_otimizacao_timing_envio.png` (300 DPI) |
+| [`view-03-dado-qualidades/view-lake-architecture/`](view-03-dado-qualidades/view-lake-architecture/) | **Seção [3]: Arquitetura Lakehouse Medallion, Pipelines & Data Quality** | Padrão Enxuto | • `chart_lake_architecture.png` (Previsto) |
+| [`view-03-dado-qualidades/view-governança/`](view-03-dado-qualidades/view-governança/) | **Seção {3.1}: Governança, Dicionário de Dados, RBAC & Blindagem LGPD** | Padrão Enxuto | • `chart_governanca_lgpd.png` (Previsto) |
+| [`view-03-dado-qualidades/view-model-kimball/`](view-03-dado-qualidades/view-model-kimball/) | **Seção {3.2}: Modelagem Dimensional Kimball (Star Schema) & Insights** | Padrão Enxuto | • `chart_modelagem_kimball.png` (Previsto) |
 
 ---
 
