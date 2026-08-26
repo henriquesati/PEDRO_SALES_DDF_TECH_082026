@@ -6,37 +6,47 @@
 
 ---
 
-## 🎯 Objetivo da Visualização
+## 🎯 1. Objetivo da Visualização
 
-Demonstrar a decomposição de abandono e receita represada por **Categoria de Produto**, identificando a barreira psicológica/operacional específica de cada categoria (risco financeiro em Eletrônicos, dúvida de caimento em Moda, frete volumoso em Decoração) e conectando a intervenções prescritivas customizadas no motor de resgate da Dadosfera.
+Demonstrar a decomposição multidimensional de abandono e receita represada por **Categoria de Produto e Top SKUs**, identificando a barreira psicológica/operacional específica de cada categoria (risco financeiro em Eletrônicos, dúvida de caimento em Moda, frete volumoso em Decoração) e conectando a intervenções prescritivas customizadas no motor de resgate da Dadosfera.
 
 ---
 
-## 📐 Estrutura do Painel (Painel Duplo Integrado)
+## 📐 2. Estrutura do Painel Executivo (Widescreen 16:9)
 
-- **Resolução & Exportação**: `16.0 x 7.2 polegadas`, 300 DPI, fundo `#FFFFFF`, bordas em Slate (`#CBD5E1`).
-- **Painel 1 (Ranking de Categorias por Receita Represada)**:
-  - **Eixo Y**: Categorias de Produtos (`Eletrônicos`, `Casa & Decoração`, `Moda`, `Esportes`, `Brinquedos`, `Beleza`, `Livros`).
-  - **Eixo X**: Receita Represada em Risco (`R$ Milhares`).
-  - **Rótulos**: Volume de Itens Abandonados (`un`), Taxa de Abandono (`%`) e Avaliação Média do Catálogo (`★`).
+- **Resolução & Exportação**: `16.0 x 9.0 polegadas`, 300 DPI, fundo `#FFFFFF`, bordas em Slate (`#CBD5E1`).
+- **Seção Superior (Top 4 KPI Cards)**:
+  1. `1. Concentração no Top 2`: R$ 7,34M (78,8%) represados em Eletrônicos & Casa & Decoração.
+  2. `2. Disparidade de Ticket`: R$ 2.109 vs R$ 74 (Hesitação financeira em Tech vs Frete relativo em Livros).
+  3. `3. Top 5 SKUs Críticos`: R$ 872,8k represados nos 5 principais produtos de tecnologia.
+  4. `4. Lift Prescritivo`: +18% a +35% de conversão com campanhas contextualizadas.
+- **Painel 1A (Matriz de Posicionamento de Catálogo - Scatter / Bubble)**:
+  - **Eixo Y (Escala Logarítmica)**: Ticket Médio do Item (`R$ 50` a `R$ 2.500`).
+  - **Eixo X**: Volume de Itens Abandonados (demanda represada).
+  - **Tamanho da Bolha**: Proporcional à Receita Represada em Risco (`R$`).
+  - **4 Quadrantes Estratégicos**: Alto Impacto (Q1), Frete Volumoso (Q2), Caimento/Tamanho (Q3), Frete Desproporcional (Q4).
+- **Painel 1B (Ranking Top 5 SKUs Críticos - Eletrônicos)**:
+  - Barras horizontais ordenadas dos 5 produtos que mais concentram valor represado (`Sony Headset Neo`, `Samsung Tab SPrime`, `LG IdeaPad Sport`, `Apple MacBook Max`, `Samsung iPhone Classic`).
 - **Painel 2 (Matriz Prescritiva de Intervenções por Categoria)**:
-  - Tabela operacional detalhando a Categoria, a Dor Principal do Cliente, o Gatilho Prescritivo na Régua de Resgate e a Ação Corretiva na UX da Página do Produto.
+  - 5 Cards Visuais Executivos estruturados com identificação da categoria, ticket médio, canal de acionamento Dadosfera, barreira crítica, ação prescritiva recomendada e impacto estimado (+XX% lift).
 
 ---
 
-## 🎨 Paleta Semântica & Tipografia
+## 🎨 3. Paleta Semântica & Tipografia
 
 - **Fontes**: `Segoe UI`, `DejaVu Sans`, `Helvetica`, `Arial`, `sans-serif`.
 - **Cores por Categoria**:
   - `Eletrônicos`: `#2563EB` (Azul Royal / Alto Ticket)
   - `Casa & Decoração`: `#059669` (Verde Esmeralda / Frete Volumoso)
-  - `Moda`: `#D97706` (Âmbar / Caimento & Troca)
-  - `Esportes`: `#7C3AED` (Roxo / Performance)
-  - `Demais Categorias`: `#64748B` (Slate Neutro)
+  - `Moda`: `#7C3AED` (Violeta / Caimento & Troca)
+  - `Esportes`: `#D97706` (Âmbar / Performance)
+  - `Brinquedos`: `#475569` (Slate Neutro)
+  - `Beleza`: `#DB2777` (Rosa)
+  - `Livros`: `#0284C7` (Azul Claro)
 
 ---
 
-## 📂 Fontes de Dados (Ground Truth)
+## 📂 4. Fontes de Dados (Ground Truth)
 
 - `data/mock/output_cleaned/parquet/itens_carrinho.parquet`
 - `data/mock/output_cleaned/parquet/produtos.parquet`

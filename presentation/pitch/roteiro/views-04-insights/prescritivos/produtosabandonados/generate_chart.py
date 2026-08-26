@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 generate_chart.py
-Módulo: presentation/insights/03_prescriptive/03_produtos_mais_abandonados (Ato 3 / Seção [4.2] - Atrito por Catálogo & Intervenções Prescritivas)
+Módulo: views-04-insights/prescritivos/produtosabandonados (Ato 3 / Seção [4.2] - Atrito por Catálogo & Intervenções Prescritivas)
 Função: Renderização executiva da Matriz Multidimensional de Atrito por Catálogo (Posicionamento Scatter + Top SKUs) e Matriz Prescritiva de Intervenções.
 Padrão Gráfico: Fundo Branco Puro (#FFFFFF), 16:9 Widescreen (16.0 x 9.0 pol), 300 DPI, charts-maker standard.
 """
@@ -29,7 +29,7 @@ def get_base_dir() -> Path:
         if (curr / "data" / "mock").exists():
             return curr
         curr = curr.parent
-    return Path(__file__).resolve().parents[4]
+    return Path(__file__).resolve().parents[6]
 
 BASE_DIR: Final[Path] = get_base_dir()
 
@@ -534,7 +534,7 @@ def main() -> None:
     OUTPUT_IMAGE_PATH.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUTPUT_IMAGE_PATH, dpi=300, bbox_inches="tight", facecolor=COLORS["bg_canvas"])
     plt.close(fig)
-    print(f"[SUCCESS] Gráfico Canônico de Produtos e Categorias Mais Abandonados salvo em: {OUTPUT_IMAGE_PATH}")
+    print(f"[SUCCESS] Gráfico de Categorias e Produtos Mais Abandonados salvo em: {OUTPUT_IMAGE_PATH}")
 
 if __name__ == "__main__":
     main()
