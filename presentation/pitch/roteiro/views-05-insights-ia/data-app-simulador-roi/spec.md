@@ -10,7 +10,7 @@
 
 ## 🎯 1. Visão Geral do Submódulo
 
-Este submódulo demonstra o módulo **Consumir** da Dadosfera com deploy de Data Apps em **Streamlit** em arquitetura modular de 5 camadas e 4 abas, fornecendo um simulador interativo de ROI com preset inteligente de canais (85% E-mail, 12% WhatsApp VIP, 2% SMS, 1% Push), demonstrativo contábil em cascata (Waterfall) com cantos arredondados, busca vetorial 2D com trajetórias e copiloto prescritivo com múltiplos tons de voz.
+Este submódulo demonstra o módulo **Consumir** da Dadosfera com deploy de Data Apps em **Streamlit** em arquitetura modular de 5 camadas e 4 abas, fornecendo um simulador interativo de ROI com preset inteligente de canais (85% E-mail, 12% WhatsApp VIP, 2% SMS, 1% Push), demonstrativo contábil em cascata (Waterfall) com cantos arredondados, busca vetorial 2D com trajetórias e copiloto prescritivo multimodal com suporte por voz (Whisper AI).
 
 ---
 

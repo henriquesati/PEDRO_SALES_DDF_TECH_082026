@@ -15,7 +15,7 @@ O **Data App Streamlit de Recuperação de Carrinhos** atua como uma plataforma 
 1. **Simular cenários econômicos e calibrar ROI** de campanhas de resgate com preset de rebalanceamento orçamentário (85% E-mail, 12% WhatsApp VIP, 2% SMS, 1% Push) e métrica de **Margem Preservada (28.5%)**.
 2. **Explorar semanticamente o catálogo de produtos** usando projeções dimensionais (t-SNE / PCA) com centróides, **trajetórias vetoriais do produto abandonado até alternativas**, ranking Top-5 com score de cosseno/delta de preço e **Card de Decisão Executiva C-Level**.
 3. **Gerar copies e abordagens de comunicação altamente persuasivas** com múltiplos tons de voz (*Urgência, Suporte, Prova Social*), validação de contrato Pydantic JSON Schema e preview multicanal fiel.
-4. **Renderizar vitrines promocionais inteligentes (Bônus GenAI)** com síntese visual (DALL-E) e catálogo de diferenciais técnicos.
+4. **Renderizar vitrines promocionais inteligentes (Bônus GenAI Multimodal)** com síntese visual (DALL-E) e módulo de **Áudio Transcrito via Whisper AI**.
 
 ---
 
@@ -36,7 +36,7 @@ flowchart TD
         M1["Aba 1: Simulador de ROI & Rebalanceamento"]
         M2["Aba 2: Explorador Semântico & Trajetórias 2D"]
         M3["Aba 3: Copiloto Prescritivo de Resgate (Pydantic)"]
-        M4["Aba 4: Vitrine Visual GenAI (Bônus)"]
+        M4["Aba 4: Vitrine Visual GenAI & Whisper AI (Bônus)"]
     end
 
     VIEWS -->|Métricas e Agregações| M1
@@ -81,10 +81,11 @@ flowchart TD
 
 ---
 
-### 🎨 Aba 4: Vitrine Visual & Apresentação de Produto (Item Bônus)
+### 🎨 Aba 4: Vitrine Visual & Suporte Multimodal por Voz (Item Bônus)
 - **Objetivo:** Cumprir o requisito do **Item Bônus** (*"Gerador de apresentações de produto com GenAI para mostrar as principais características a fim de vender mais"*).
 - **Funcionalidades:**
   - Card comercial executivo com proposta de valor, pilares técnicos de engenharia de materiais e gancho de vendas.
+  - **Módulo Multimodal Whisper AI:** Transcrição de áudio do concierge técnico de suporte esclarecendo dúvidas sobre voltagem, materiais e garantia.
   - **Engenharia de Prompts:** Prompts declarativos padronizados para renderização fotográfica de estúdio no DALL-E e síntese de texto com LLMs.
 
 ---

@@ -26,11 +26,11 @@ app/
 │   ├── lakehouse_service.py        # 📁 Leitor resiliente com cache dos Parquets Silver/Gold
 │   ├── similarity_service.py       # 🔍 Busca vetorial por cosseno, PCA/t-SNE e trajetórias
 │   ├── simulation_service.py       # 📊 Simulador financeiro, CAC unitário e margem preservada (28.5%)
-│   └── copy_service.py             # 🤖 Gerador de Copies com despacho funcional e DALL-E
+│   ├── copy_service.py             # 🤖 Gerador de Copies com despacho funcional, Whisper e DALL-E
 ├── components/
 │   ├── kpi_cards.py                # 🏆 Cards de métricas com badges delta semânticos e tooltips
 │   ├── charts.py                   # 📈 Gráficos Plotly reutilizáveis (Waterfall, Sensibilidade, 2D)
-│   └── chat_preview.py             # 💬 Visualizadores multicanais e Decision Cards
+│   └── chat_preview.py             # 💬 Visualizadores multicanais, Whisper AI e Decision Cards
 └── views/
     ├── tab_roi.py                  # 📊 Aba 1: Simulador de ROI & Sensibilidade
     ├── tab_similarity.py           # 🔍 Aba 2: Explorador Semântico de Catálogo (GenAI)
@@ -63,6 +63,7 @@ app/
 
 ### 🎨 Aba 4: Vitrine Visual de Produtos (`views/tab_showcase.py`)
 - **Apresentação Comercial**: Card de proposta de valor e pilares de engenharia do produto.
+- **Multimodal Whisper AI**: Módulo com transcrição de áudio do concierge técnico de suporte.
 - **Engenharia de Prompts**: Prompts declarativos documentados para geração de estúdio fotográfico com DALL-E e síntese textual com LLMs.
 
 ---

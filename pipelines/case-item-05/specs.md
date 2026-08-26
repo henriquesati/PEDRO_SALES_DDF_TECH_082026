@@ -43,7 +43,8 @@ Para garantir conformidade com as diretrizes de governança da Dadosfera, o data
 
 ### 3.1 Dados de Entrada (Desestruturados)
 - **Catálogo de Produtos (`produtos_raw_text`)**: Título comercial e descrição detalhada de especificações técnicas, materiais e funcionalidades.
-- **Feedbacks de Checkout (`checkout_feedback_text`)**: Comentários e objeções em texto livre registrados em pesquisas de saída pós-abandono e tickets de suporte SAC.
+- **Feedbacks de Checkout (`checkout_feedback_text`)**: Comentários e objeções em texto livre registrados em pesquisas de saída pós-abandono.
+- **Áudio / Voz (Bônus Multimodal)**: Transcrições de mensagens de voz e atendimentos SAC obtidas via modelo **Whisper**.
 
 ### 3.2 Schema de Saída Estruturado (Pydantic / JSON Schema)
 
@@ -131,3 +132,5 @@ DIRETRIZES DE PROCESSAMENTO:
    - Permite cruzar a taxa de abandono por categorias normalizadas e identificar produtos que necessitam de guias de compatibilidade.
 3. **Data App Streamlit (Item 9 & Bônus)**:
    - Alimenta o simulador com copies automáticas para disparo de CRM e gera prompts para vitrines personalizadas.
+4. **Bônus Multimodal (Áudio/Voz)**:
+   - Transcrição de áudios de atendimento ao cliente com Whisper, alimentando o mesmo pipeline estruturado.

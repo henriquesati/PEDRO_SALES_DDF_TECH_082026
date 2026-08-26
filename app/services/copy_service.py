@@ -159,7 +159,7 @@ def generate_showcase_presentation(
     technical_differential: str,
     target_audience: str = "Consumidores Exigentes & B2B",
 ) -> ShowcasePresentation:
-    """Gera o contrato estruturado da apresentação visual do produto (Item Bônus GenAI)."""
+    """Gera o contrato estruturado da apresentação visual e multimodal do produto (Item 5 & Bônus)."""
     return ShowcasePresentation(
         title=f"Apresentação Executiva: {product_title}",
         value_proposition=f"O melhor equilíbrio entre {technical_differential} e acabamento em {material}.",
@@ -174,5 +174,10 @@ def generate_showcase_presentation(
             f"materials visible ({material}), clean minimalist background with corporate lighting (#1E3A8A accents), "
             f"photorealistic 8k, award-winning e-commerce showcase."
         ),
-        sales_pitch_hook=f"Descubra como o {product_title} eleva a sua performance diária com {technical_differential}."
+        sales_pitch_hook=f"Descubra como o {product_title} eleva a sua performance diária com {technical_differential}.",
+        audio_transcript=(
+            f"[Transcrição Whisper AI - Áudio de Atendimento Concierge]: 'Olá! Sou o especialista de produto da Dadosfera. "
+            f"Vi que você estava olhando o {product_title}. Gostaria de destacar que este modelo com {material} e {technical_differential} "
+            f"já vem com garantia estendida e suporte de instalação incluso. Posso liberar o frete expresso para envio hoje mesmo?'"
+        )
     )

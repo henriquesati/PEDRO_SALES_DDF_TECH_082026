@@ -21,7 +21,7 @@ flowchart LR
     STREAMLIT --> M1["📊 1. Simulador de ROI & Rebalanceamento"]
     STREAMLIT --> M2["🔍 2. Explorador Semântico & Trajetórias 2D"]
     STREAMLIT --> M3["🤖 3. Copiloto Prescritivo (Pydantic)"]
-    STREAMLIT --> M4["🎨 4. Vitrine GenAI (Bônus)"]
+    STREAMLIT --> M4["🎨 4. Vitrine GenAI & Whisper AI (Bônus)"]
 ```
 
 ---
@@ -33,7 +33,7 @@ flowchart LR
 | **1. Simulador de ROI & Sensibilidade** | Simulação financeira com preset inteligente de canais (85% E-mail, 12% Wpp VIP, 2% SMS, 1% Push), decomposição Waterfall contábil e métrica de margem preservada (28.5%). | Streamlit, Plotly Waterfall, Curva de Sensibilidade, Gráfico de Barras de Rebalanceamento | Camada Gold (`carrinhos.parquet`, `eventos_resgate.parquet`) |
 | **2. Explorador Semântico de Catálogo** | 4 KPI Cards, busca vetorial por cosseno, espaço 2D (PCA/t-SNE) com marcação do item âncora e trajetórias para alternativas, ranking Top-5 com badges e Card de Decisão Executiva. | Scikit-Learn TF-IDF, Plotly 2D Scatter com trajetórias, Decision Cards | Camada Silver Qualify (`produtos_enriquecidos.parquet`) |
 | **3. Copiloto Prescritivo de Resgate** | Geração dinâmica de copies com 3 tons de voz (*Urgência, Suporte, Prova Social*), preview multicanal fiel (WhatsApp, E-mail, SMS) e contrato Pydantic JSON Schema. | Tabela de Despacho Funcional (`MappingProxyType`), Pydantic | Atributos LLM do Item 5 e Regras de Negócio |
-| **4. Vitrine Visual de Produtos (Bônus)** | Card comercial estruturado e catálogo de prompts declarativos DALL-E e LLM para apresentação técnica de produtos. | Engenharia de Prompts DALL-E & LLM | Catálogo Enriquecido com Features Técnicas |
+| **4. Vitrine Visual de Produtos (Bônus)** | Card comercial estruturado, módulo de suporte por voz multimodal com transcrição de áudio via Whisper AI e catálogo de prompts declarativos DALL-E e LLM. | Whisper AI Transcripts, Engenharia de Prompts DALL-E | Catálogo Enriquecido com Features Técnicas |
 
 ---
 
@@ -59,10 +59,10 @@ flowchart LR
 
 ---
 
-## 5. 🤖 Módulos 3 & 4: Copiloto Prescritivo & Vitrine GenAI (Item 5 & Bônus)
+## 5. 🤖 Módulos 3 & 4: Copiloto Prescritivo & Multimodal Whisper (Item 5 & Bônus)
 
 - **Copiloto Prescritivo:** Integração com múltiplos tons de voz e serialização formal em JSON Schema Pydantic.
-- **Vitrine GenAI (Bônus):** Prompts calibrados para DALL-E em estúdio fotográfico e síntese de valor com LLMs.
+- **Vitrine Multimodal (Bônus):** Incorporação de transcrição de áudio concierge gerada por Whisper AI para simular suporte por voz na resolução de objeções técnicas (como voltagem 127V ou compatibilidade), além de prompts calibrados para DALL-E em estúdio fotográfico.
 
 ---
 

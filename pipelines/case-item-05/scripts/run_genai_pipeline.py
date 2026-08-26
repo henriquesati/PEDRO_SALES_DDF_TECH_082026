@@ -8,6 +8,9 @@ Objetivo:
     feedbacks de clientes em checkout) em features analíticas estruturadas
     (Pydantic / JSON Schema) e gerar copies acionáveis de resgate de CRM.
 
+Bônus:
+    Demonstração multimodal com transcrição e extração de áudio via Whisper.
+
 Outputs gerados:
     - pipelines/case-item-05/outputs/genai_features_sample.json
     - pipelines/case-item-05/outputs/produtos_enriquecidos_sample.parquet
@@ -105,6 +108,15 @@ class ProdutoFeaturesEnriquecidas(BaseModel):
     diagnostico_abandono: DiagnosticoAbandono
     acao_prescritiva_crm: AcaoPrescritivaCRM
 
+class TranscricaoAudioAtendimento(BaseModel):
+    audio_id: str = Field(..., description="Identificador da gravação de áudio")
+    duracao_segundos: float = Field(..., description="Duração do áudio")
+    canal_origem: str = Field(..., description="Canal (WhatsApp Voice / SAC Telefônico)")
+    transcricao_texto: str = Field(..., description="Texto transcrito via Whisper ASR")
+    intencao_detectada: str = Field(..., description="Intenção principal do cliente")
+    objecao_principal: str = Field(..., description="Objeção identificada na voz")
+    solucao_proposta: str = Field(..., description="Ação recomendada para o operador ou bot")
+
 
 # ---------------------------------------------------------------------------
 # DATASET SINTÉTICO DESESTRUTURADO (AMOSTRA REPRESENTATIVA)
@@ -151,6 +163,27 @@ RAW_CATALOG_SAMPLES = [
         "descricao_bruta": "Máquina de café expresso com bomba italiana de 19 bar de pressão profissional. Reservatório de leite removível de 600ml com bico espumador automático para cappuccino e latte macchiato. Compatível com café em pó moído, sachês ESE e cápsulas padrão Nespresso através de adaptadores inclusos. Painel de controle sensível ao toque com programas automáticos e modo manual. Tensão elétrica 127V.",
         "preco_atual": 1199.90,
         "feedback_abandono_cliente": "Não tinha certeza se a tomada da minha cozinha é 110V ou 220V, fiquei com medo de comprar errado e queimar o aparelho."
+    }
+]
+
+AUDIO_RAW_SAMPLES = [
+    {
+        "audio_id": "AUD-2026-08-001",
+        "duracao_segundos": 14.5,
+        "canal_origem": "WhatsApp Audio Note",
+        "transcricao_texto": "Oi pessoal, boa tarde! Eu estava quase fechando a compra do Galaxy S24 aqui no site, mas quando calculei o frete deu mais de cinquenta reais pra entregar aqui no interior. Vocês conseguem um cupom de frete grátis ou um descontinho no Pix pra eu fechar agora?",
+        "intencao_detectada": "Negociação de Frete / Conversão Rápida",
+        "objecao_principal": "Frete elevado para região interiorana",
+        "solucao_proposta": "Disparar link com cupom 'FRETEGRATIS' de uso único válido por 2 horas"
+    },
+    {
+        "audio_id": "AUD-2026-08-002",
+        "duracao_segundos": 21.0,
+        "canal_origem": "SAC Telefônico (URA Inteligente)",
+        "transcricao_texto": "Alô, boa tarde. Eu deixei a cafeteira Oster Prima Latte no carrinho porque fiquei na dúvida se a voltagem de cento e vinte e sete volts é a mesma coisa que cento e dez volts da minha rede aqui de São Paulo. Gostaria de confirmar antes de passar o cartão.",
+        "intencao_detectada": "Dúvida Técnica de Compatibilidade Elétrica",
+        "objecao_principal": "Dúvida de voltagem (127V vs 110V)",
+        "solucao_proposta": "Enviar mensagem WhatsApp confirmando que 127V é compatível com tomadas 110V residenciais padrão ABNT"
     }
 ]
 
@@ -433,8 +466,16 @@ def run_pipeline() -> None:
     df_features.to_parquet(lakehouse_parquet_path, index=False)
     print(f"✓ Parquet Lakehouse (Silver Qualify) exportado em: {lakehouse_parquet_path}")
 
-    # 3. Gerar Gráficos Executivos
-    print("\n[3/3] Gerando painel gráfico de distribuição das features...")
+    # 3. Processar Bônus Multimodal (Áudio/Voz)
+    print(f"\n[3/4] Processando {len(AUDIO_RAW_SAMPLES)} amostras de áudio via transcrição Whisper...")
+    audio_models = [TranscricaoAudioAtendimento(**a) for a in AUDIO_RAW_SAMPLES]
+    audio_json_path = os.path.join(OUTPUTS_DIR, "audio_transcriptions_sample.json")
+    with open(audio_json_path, "w", encoding="utf-8") as f:
+        json.dump([a.model_dump() for a in audio_models], f, indent=2, ensure_ascii=False)
+    print(f"✓ Transcrições de áudio salvas em: {audio_json_path}")
+
+    # 4. Gerar Gráficos Executivos
+    print("\n[4/4] Gerando painel gráfico de distribuição das features...")
     chart_path = os.path.join(ASSETS_DIR, "genai_features_overview.png")
     generate_visual_assets(df_features, chart_path)
 

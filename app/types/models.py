@@ -113,9 +113,10 @@ class GeneratedCopy:
 
 @dataclass(frozen=True)
 class ShowcasePresentation:
-    """Estrutura da apresentação visual do produto (Item Bônus GenAI)."""
+    """Estrutura da apresentação visual e multimodal do produto (Item Bônus GenAI)."""
     title: str
     value_proposition: str
     key_pillars: str
     visual_prompt_reference: str
     sales_pitch_hook: str
+    audio_transcript: str

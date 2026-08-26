@@ -32,11 +32,13 @@ if hasattr(sys.stderr, "reconfigure"):
 BASE_DIR: Final[str] = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 OUTPUTS_DIR: Final[str] = os.path.join(os.path.dirname(__file__), "..", "outputs")
 ASSETS_DIR: Final[str] = os.path.join(OUTPUTS_DIR, "assets")
+DASHBOARDS_ASSETS_DIR: Final[str] = os.path.join(BASE_DIR, "dashboards", "assets")
 
 DATA_CLEANED_DIR: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output_cleaned", "parquet")
 DATA_RAW_DIR: Final[str] = os.path.join(BASE_DIR, "data", "mock", "output", "parquet")
 
 os.makedirs(ASSETS_DIR, exist_ok=True)
+os.makedirs(DASHBOARDS_ASSETS_DIR, exist_ok=True)
 
 # Configuração visual global (charts-maker standard)
 plt.rcParams.update({
@@ -69,9 +71,11 @@ def load_canonical_datasets() -> Dict[str, pd.DataFrame]:
     return data
 
 def save_dual_asset(fig: plt.Figure, filename: str) -> None:
-    """Salva a figura em outputs/assets/."""
+    """Salva a figura em outputs/assets/ e espelha em dashboards/assets/ para retrocompatibilidade."""
     path_primary = os.path.join(ASSETS_DIR, filename)
+    path_secondary = os.path.join(DASHBOARDS_ASSETS_DIR, filename)
     fig.savefig(path_primary, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
+    fig.savefig(path_secondary, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
     plt.close(fig)
     print(f"  [OK] Gerado: {filename}")
 

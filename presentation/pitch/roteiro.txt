@@ -197,7 +197,7 @@ IA NA DADOSFERA
 O LLM extraiu features estruturadas em JSON Schema (identificando atrito com frete ou dúvidas de voltagem elétrica 127V) e gerou copies de resgate personalizadas para WhatsApp/E-mail.
 
 
-2. CONECTIVIDADE COM GENAI & LLMS (OpenAI / Claude / DALL-E)   
+2. CONECTIVIDADE COM GENAI & LLMS (OpenAI / Claude / Whisper / DALL-E)   
  3. EXPLORAÇÃO & CATÁLOGO EM LINGUAGEM NATURAL                           
     • Chat com os dados / Text-to-SQL para usuários de negócio 
 No Módulo de Inteligência, criamos o step_05_train_churn_model.py com um modelo supervisionado de Propensão de Resgate (ROC-AUC de 0.9478 e 99.53% de acurácia) que ranqueia a chance de conversão de cada carrinho.         

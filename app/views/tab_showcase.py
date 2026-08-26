@@ -8,7 +8,7 @@ from app.services.copy_service import generate_showcase_presentation
 
 def render_showcase_tab(df_products: pd.DataFrame | None) -> None:
     """Renderiza a visualização da aba de vitrines e apresentações GenAI."""
-    st.subheader("🎨 Gerador de Apresentações de Produto com GenAI (Item Bônus)")
+    st.subheader("🎨 Gerador de Apresentações de Produto com GenAI (Item Bônus Multimodal)")
     st.markdown(
         "Gere apresentações comerciais de alto impacto visual e argumentativo para "
         "destacar os atributos de valor dos produtos e impulsionar as taxas de conversão de resgate."
@@ -56,6 +56,21 @@ def render_showcase_tab(df_products: pd.DataFrame | None) -> None:
     with col_card:
         st.markdown("#### 📱 Card de Apresentação Comercial")
         render_showcase_card(showcase_data, prod_row)
+        
+        st.markdown("#### 🎙️ Suporte Multimodal por Voz (Whisper AI)")
+        st.markdown(
+            f"""
+            <div style="background-color: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 8px; padding: 1.0rem; margin-top: 0.8rem;">
+                <div style="font-size: 0.85rem; font-weight: bold; color: #1E3A8A; margin-bottom: 0.4rem;">
+                    🔊 Áudio Transcrito do Concierge Técnico:
+                </div>
+                <div style="font-size: 0.90rem; color: #334155; font-style: italic;">
+                    {showcase_data.audio_transcript}
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
     with col_prompts:
         st.markdown("#### 📝 Engenharia de Prompts (Item Bônus GenAI)")
