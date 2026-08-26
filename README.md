@@ -330,6 +330,85 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 
 ---
 
+## 🌟 --- BÔNUS & DIFERENCIAIS DE ENGENHARIA (Itens Bônus do Case) ---
+
+Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os diferenciais analíticos de ponta desenvolvidos para demonstrar a superioridade da plataforma frente a arquiteturas manuais e fragmentadas (AWS DIY).
+
+---
+
+### 1. 🧠 Modelo Supervisionado de Machine Learning & Propensão de Resgate (Item 8 Bônus & XAI)
+* **O que foi feito:** Treinamento supervisionado de Regressão Logística Regularizada (L2) com split 80/20 sobre a camada Gold, atingindo **ROC-AUC de 0.9478**, **99.53% de acurácia** e latência ultrarrápida de **111.7 ms** para ranquear a propensão de conversão de carrinhos. Inclui módulo de *Explainable AI (XAI)* decompondo pesos marginais (Ticket +38.4%, RFM VIP +26.2%, Frete +18.5%).
+* **📁 Arquivos & Códigos:**
+  - [`pipelines/case-item-08/stepsfera/step_05_train_churn_model.py`](pipelines/case-item-08/stepsfera/step_05_train_churn_model.py) — *Pipeline funcional de engenharia de features e treino ML*
+  - [`pipelines/case-item-08/outputs/pipeline_execution_summary.json`](pipelines/case-item-08/outputs/pipeline_execution_summary.json) — *Métricas consolidadas de execução*
+  - [`presentation/pitch/roteiro/views-05-insights-ia/feature-importance-ml/`](presentation/pitch/roteiro/views-05-insights-ia/feature-importance-ml/) — *Módulo executivo de transparência de pesos do modelo*
+* **📊 Dashboards & Gráficos Gerados:**
+  - [`chart_modelos_preditivos_ml.png`](presentation/pitch/roteiro/views-05-insights-ia/modelos-preditivos-ml/chart_modelos_preditivos_ml.png) — *Curva ROC, Scorecard de Métricas e Validação de Resgate*
+  - [`chart_feature_importance_ml.png`](presentation/pitch/roteiro/views-05-insights-ia/feature-importance-ml/chart_feature_importance_ml.png) — *Ranking de Feature Importance, Decomposição Dimensional e Regras CRM*
+  - [`ml_feature_importance.png`](pipelines/case-item-08/outputs/assets/ml_feature_importance.png) — *Gráfico técnico gerado pelo pipeline de ML*
+
+---
+
+### 2. ⚡ Processamento In-Database Snowpark & PySpark Pushdown (Item 8 Bônus)
+* **O que foi feito:** Eliminação completa do *cold-start* (1 a 4 min de AWS Glue) através do motor de processamento funcional e dialeto compatível com Snowpark Python API e Snowflake Pushdown Compute.
+* **📁 Arquivos & Códigos:**
+  - [`pipelines/case-item-08/transformations/snowpark_engine.py`](pipelines/case-item-08/transformations/snowpark_engine.py) — *Motor de transformação compatível com Snowpark*
+  - [`pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb`](pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb) — *Notebook interativo de execução Snowpark*
+  - [`pipelines/case-item-08/outputs/pipeline_execution_report.md`](pipelines/case-item-08/outputs/pipeline_execution_report.md) — *Relatório executivo de performance e telemetria*
+
+---
+
+### 3. 🎨 Vitrine Visual GenAI & Gerador de Apresentações de Produtos (Item Bônus Oficial do Case)
+* **O que foi feito:** Atendimento integral ao requisito bônus (*"Gerador de apresentações de produto com GenAI para mostrar as principais características a fim de vender mais"*), estruturando síntese automática de diferenciais técnicos e geração de prompts profissionais para estúdio fotográfico e campanhas de retargeting.
+* **📁 Arquivos & Códigos:**
+  - [`app/components/product_showcase.py`](app/components/product_showcase.py) — *Componente Streamlit da Vitrine Visual GenAI*
+  - [`pipelines/case-item-09/core/genai_prompt_engine.py`](pipelines/case-item-09/core/genai_prompt_engine.py) — *Engine de engenharia de prompts estruturados para DALL-E/Midjourney*
+  - [`pipelines/case-item-09/outputs/data_app_report.md`](pipelines/case-item-09/outputs/data_app_report.md) — *Relatório completo de arquitetura do Data App e módulo bônus*
+
+---
+
+### 4. 🔍 Busca Semântica, Espaço Vetorial 2D (t-SNE/PCA) & Recomendador de SKUs (Itens 9 & Bônus)
+* **O que foi feito:** Mapeamento vetorial contínuo de 300 SKUs em 7 categorias e cálculo in-memory de Similaridade de Cosseno (< 2.5 ms), permitindo recomendar instantaneamente produtos alternativos para carrinhos abandonados por preço alto ou ruptura de estoque (+12.4% de recuperação incremental).
+* **📁 Arquivos & Códigos:**
+  - [`pipelines/case-item-09/core/similarity_engine.py`](pipelines/case-item-09/core/similarity_engine.py) — *Motor de álgebra linear, t-SNE e cálculo de cosseno*
+  - [`insights/04_intelligence_ai/03_similaridade_produtos/generate_chart.py`](insights/04_intelligence_ai/03_similaridade_produtos/generate_chart.py) — *Gerador do painel 2D de clusters de catálogo*
+* **📊 Dashboards & Gráficos Gerados:**
+  - [`chart_similaridade_produtos.png`](presentation/pitch/roteiro/views-05-insights-ia/similaridade-produtos/chart_similaridade_produtos.png) — *Projeção 2D de Produtos, Clusters Semânticos e Motor de Recomendação*
+  - [`data_app_product_similarity_map.png`](pipelines/case-item-09/outputs/assets/data_app_product_similarity_map.png) — *Mapa vetorial interativo de catálogo*
+
+---
+
+### 5. 💰 Data App em Streamlit com Simulador Prescritivo de ROI (Item 9 & Bônus)
+* **O que foi feito:** Aplicação analítica completa em Streamlit sob o paradigma funcional e declarativo, contendo Simulador Prescritivo de ROI com curva de sensibilidade de descontos, decomposição Waterfall (+R$ 167,9k de lucro líquido) e multiplicador de 45.0x sobre custos de mensageria.
+* **📁 Arquivos & Códigos:**
+  - [`app/app.py`](app/app.py) — *Entrypoint principal do Data App Streamlit*
+  - [`pipelines/case-item-09/core/simulation_engine.py`](pipelines/case-item-09/core/simulation_engine.py) — *Motor matemático de sensibilidade econômica*
+  - [`pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb`](pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb) — *Runner com suporte a túnel público no Google Colab*
+* **📊 Dashboards & Gráficos Gerados:**
+  - [`chart_data_app_simulador_roi.png`](presentation/pitch/roteiro/views-05-insights-ia/data-app-simulador-roi/chart_data_app_simulador_roi.png) — *Painel Executivo do Data App: Waterfall de Lucro Líquido e Curva de Sensibilidade*
+  - [`data_app_roi_simulation.png`](pipelines/case-item-09/outputs/assets/data_app_roi_simulation.png) — *Simulação de retorno econômico gerada pelo app*
+  - [`chart_08_simulador_roi_data_app.png`](presentation/pitch/08_data_app_simulador_prescritivo_genai/chart_08_simulador_roi_data_app.png) — *Visão integrada de ROI e inteligência prescritiva*
+
+---
+
+### 6. 🎙️ GenAI Multimodal & Transcrição de Áudio via Whisper (Item 5 Bônus)
+* **O que foi feito:** Processamento e transcrição de áudios de atendimento ao cliente via OpenAI Whisper, permitindo extrair a causa-raiz de abandono de checkout diretamente da voz do consumidor com 100% de conformidade JSON Schema Pydantic.
+* **📁 Arquivos & Códigos:**
+  - [`pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) — *Notebook Colab com extração multimodal e transcrição de áudios*
+  - [`pipelines/case-item-05/outputs/genai_feature_extraction_report.md`](pipelines/case-item-05/outputs/genai_feature_extraction_report.md) — *Relatório executivo de conformidade contratual Pydantic e transcrições*
+* **📊 Dashboards & Gráficos Gerados:**
+  - [`chart_genai_extracao_copies.png`](presentation/pitch/roteiro/views-05-insights-ia/genai-extracao-copies/chart_genai_extracao_copies.png) — *Scorecard Pydantic 100%, Matriz de Acurácia Causal e Lift de +18% no CTR*
+
+---
+
+### 7. 📡 Catalogação Automática via API da Dadosfera (Item 3 Bônus)
+* **O que foi feito:** Integração REST com a API Maestro da Dadosfera para catalogação programática de datasets, extração de metadados e mapeamento dos 7 Data Asset IDs oficiais.
+* **📁 Arquivos & Códigos:**
+  - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Scripts de automação REST e documentação de endpoints Maestro*
+  - [`agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md`](agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md) — *Mapeamento oficial dos 7 Data Asset IDs e URLs diretas na plataforma*
+
+---
+
 ## 📓 3. Notebooks e Geração de Artefatos Visuais
 
 O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (`make.py`)**, permitindo inspecionar dados e gerar todos os artefatos visuais de BI e Data Quality instantaneamente.
