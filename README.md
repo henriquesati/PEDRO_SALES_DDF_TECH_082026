@@ -2,8 +2,18 @@
 
 > **Candidato:** Pedro Henrique Sales  
 > **Identificador Oficial:** `PEDRO_SALES_DDF_TECH_082026`  
+> **Repositório GitHub:** `PEDRO_SALES_DDF_TECH_082026`  
 > **Plataforma:** [Dadosfera](https://dadosfera.ai) (Coleta, Catálogo, Qualify, Pipelines, Inteligência, Metabase & Data Apps)  
-> **Domínio de Negócio:** E-commerce / Marketplace — Recuperação de Carrinho e Conversão de GMV   
+> **Domínio de Negócio:** E-commerce / Marketplace — Recuperação de Carrinho e Conversão de GMV  
+
+
+---
+
+
+
+
+| **Vídeo 1** | **Apresentação do Case — Visão Geral, Arquitetura, Governança, Qualidade & Lakehouse** | [▶️ Vídeo 1 (YouTube)](https://youtu.be/TZph9Lhy8VQ)(Unlisted) |
+| **Vídeo 2** | **Apresentação do Case — Demonstração Prática, BI, ML, Data App em Streamlit & Pitch** | [▶️ Vídeo 2 (YouTube)](https://youtu.be/XxtPzbOk8ZA) 
 
 ---
 
@@ -33,7 +43,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI), Camada Semântica (`metrics/`) e Hub em [`pipelines/case-item-07/`](pipelines/case-item-07/) | ✅ Concluído |
 | **8** | Pipelines ETL/ML & Snowpark | Processar | Pipeline Medallion funcional, catálogo Stepsfera, validação modular, modelo preditivo e processamento Snowpark | ✅ Concluído |
 | **9** | Data Apps & GenAI | Consumir | Data App Streamlit com simulador de ROI, similaridade vetorial (t-SNE) e vitrine GenAI em [`pipelines/case-item-09/`](pipelines/case-item-09/) e [`app/`](app/) | ✅ Concluído |
-| **10** | Apresentação em Vídeo | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
+| **10** | Apresentação em Vídeo | — | Vídeos Unlisted no YouTube ([Vídeo 1](https://youtu.be/TZph9Lhy8VQ) e [Vídeo 2](https://youtu.be/XxtPzbOk8ZA)), Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
 | **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
 <!-- temporary-agent-instructions
 PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
@@ -306,7 +316,7 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 - [x] ~~**[X] [case-09] Data Apps em Streamlit e Bônus GenAI (Simulador de ROI, Similaridade de Produtos e Vitrine) [X]**~~
   <small>
 
-  - **aplicação analítica interativa e inteligência de catálogo** (*Desenvolvimento de Data App em Streamlit sob o paradigma funcional e declarativo com 4 módulos de negócio: Simulador Prescritivo de ROI com decomposição Waterfall e curva de sensibilidade de descontos, Explorador Semântico com redução dimensional 2D (t-SNE/PCA) e cálculo de similaridade por Cosseno sobre as features do Item 5, Copiloto Prescritivo de comunicação multicanal e Vitrine Visual com engenharia de prompts do Item Bônus. Suporte a execução no Google Colab e deploy no Streamlit Community Cloud*)
+  - **aplicação analítica interativa e inteligência de catálogo** *Desenvolvimento de Data App em Streamlit sob o paradigma funcional e declarativo com 4 módulos de negócio: Simulador Prescritivo de ROI com decomposição Waterfall e curva de sensibilidade de descontos.
   - **📁 Especificações Normativas e Contratos:**
     - [`pipelines/case-item-09/specs.md`](pipelines/case-item-09/specs.md) — *Especificação técnica formal do aplicativo (`spec_data_app_streamlit_001` v1.0), contratos de dados e diretrizes de deploy*
     - [`pipelines/case-item-09/config/settings.py`](pipelines/case-item-09/config/settings.py) — *Constantes centralizadas, paleta corporativa Dadosfera e mapeamento resiliente de datasets*
@@ -314,11 +324,11 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
     - [`pipelines/case-item-09/core/`](pipelines/case-item-09/core/) — *Módulos desacoplados contendo tipos imutáveis (`types.py`), motor de simulação econômica (`simulation_engine.py`), motor de busca semântica e projeção 2D (`similarity_engine.py`) e gerador declarativo de prompts e copies (`genai_prompt_engine.py`)*
   - **📁 Componentes da Interface Streamlit (`app/`):**
     - [`app/app.py`](app/app.py) — *Entrypoint principal da aplicação com layout corporativo, sidebar de governança e navegação em 4 abas*
-    - [`app/components/`](app/components/) — *Componentes modulares de interface: KPI cards, Simulador de ROI, Explorador Semântico, Copiloto Prescritivo e Vitrine Bônus*
+    - [`app/components/`](app/components/) — *Componentes modulares de interface: KPI cards, Simulador de ROI, etc*
     - [`app/styles/custom.css`](app/styles/custom.css) — *Design System com tokens visuais e componentes estilizados*
   - **📁 Scripts, Notebook Colab e Automação:**
-    - [`pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb`](pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb) — *Notebook executável no Google Colab com inicialização de túnel público (`localtunnel`)*
-    - [`pipelines/case-item-09/scripts/`](pipelines/case-item-09/scripts/) — *Scripts de inicialização local com verificação de dependências (`run_app_locally.py`) e exportador de assets visuais em 300 DPI (`export_app_assets.py`)*
+    - [`pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb`](pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb) — *Notebook executável (`localtunnel`)*
+    - [`pipelines/case-item-09/scripts/`](pipelines/case-item-09/scripts/) — *Scripts de inicialização local com verificação de dependências (`run_app_locally.py`)assets visuais em 300 DPI (`export_app_assets.py`)*
   - **📁 Arquitetura de Outputs e Relatórios:**
     - [`pipelines/case-item-09/outputs/data_app_report.md`](pipelines/case-item-09/outputs/data_app_report.md) — *Relatório executivo completo documentando arquitetura, métricas, telas e manual de deploy*
     - [`pipelines/case-item-09/outputs/assets/`](pipelines/case-item-09/outputs/assets/) — *Gráficos analíticos da simulação de ROI e mapa semântico gerados em alta resolução (300 DPI)*
@@ -330,14 +340,14 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 
 ---
 
-## 🌟 --- BÔNUS & DIFERENCIAIS DE ENGENHARIA (Itens Bônus do Case) ---
+## 🌟 --- BÔNUS ---
 
 Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os diferenciais analíticos de ponta desenvolvidos para demonstrar a superioridade da plataforma frente a arquiteturas manuais e fragmentadas (AWS DIY).
 
 ---
 
 ### 1. 🧠 Modelo Supervisionado de Machine Learning & Propensão de Resgate (Item 8 Bônus & XAI)
-* **O que foi feito:** Treinamento supervisionado de Regressão Logística Regularizada (L2) com split 80/20 sobre a camada Gold, atingindo **ROC-AUC de 0.9478**, **99.53% de acurácia** e latência ultrarrápida de **111.7 ms** para ranquear a propensão de conversão de carrinhos. Inclui módulo de *Explainable AI (XAI)* decompondo pesos marginais (Ticket +38.4%, RFM VIP +26.2%, Frete +18.5%).
+* **O que foi feito:** Treinamento supervisionado de Regressão Logística Regularizada (L2) com split 80/20 sobre a camada Gold, atingindo **ROC-AUC de 0.9478**, **99.53% de acurácia** e latência ultrarrápida de **111.7 ms** para ranquear a propensão de conversão de carrinhos. Inclui módulo de XAI* decompondo pesos marginais (Ticket, RFM VIP, Fret).
 * **📁 Arquivos & Códigos:**
   - [`pipelines/case-item-08/stepsfera/step_05_train_churn_model.py`](pipelines/case-item-08/stepsfera/step_05_train_churn_model.py) — *Pipeline funcional de engenharia de features e treino ML*
   - [`pipelines/case-item-08/outputs/pipeline_execution_summary.json`](pipelines/case-item-08/outputs/pipeline_execution_summary.json) — *Métricas consolidadas de execução*
@@ -349,7 +359,7 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 2. ⚡ Processamento In-Database Snowpark & PySpark Pushdown (Item 8 Bônus)
+### 2. ⚡ Processamento In-Database Snowpark PySpark  Item 8 Bônus
 * **O que foi feito:** Eliminação completa do *cold-start* (1 a 4 min de AWS Glue) através do motor de processamento funcional e dialeto compatível com Snowpark Python API e Snowflake Pushdown Compute.
 * **📁 Arquivos & Códigos:**
   - [`pipelines/case-item-08/transformations/snowpark_engine.py`](pipelines/case-item-08/transformations/snowpark_engine.py) — *Motor de transformação compatível com Snowpark*
@@ -367,7 +377,6 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 4. 🔍 Busca Semântica, Espaço Vetorial 2D (t-SNE/PCA) & Recomendador de SKUs (Itens 9 & Bônus)
 * **O que foi feito:** Mapeamento vetorial contínuo de 300 SKUs em 7 categorias e cálculo in-memory de Similaridade de Cosseno (< 2.5 ms), permitindo recomendar instantaneamente produtos alternativos para carrinhos abandonados por preço alto ou ruptura de estoque (+12.4% de recuperação incremental).
 * **📁 Arquivos & Códigos:**
   - [`pipelines/case-item-09/core/similarity_engine.py`](pipelines/case-item-09/core/similarity_engine.py) — *Motor de álgebra linear, t-SNE e cálculo de cosseno*
@@ -378,8 +387,8 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 5. 💰 Data App em Streamlit com Simulador Prescritivo de ROI (Item 9 & Bônus)
-* **O que foi feito:** Aplicação analítica completa em Streamlit sob o paradigma funcional e declarativo, contendo Simulador Prescritivo de ROI com curva de sensibilidade de descontos, decomposição Waterfall (+R$ 167,9k de lucro líquido) e multiplicador de 45.0x sobre custos de mensageria.
+### 5.  Data App em Streamlit
+* **O que foi feito:** Aplicação analítica completa em Streamlit 
 * **📁 Arquivos & Códigos:**
   - [`app/app.py`](app/app.py) — *Entrypoint principal do Data App Streamlit*
   - [`pipelines/case-item-09/core/simulation_engine.py`](pipelines/case-item-09/core/simulation_engine.py) — *Motor matemático de sensibilidade econômica*
@@ -391,7 +400,7 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 6. 🎙️ GenAI Multimodal & Transcrição de Áudio via Whisper (Item 5 Bônus)
+### 6.  GenAI Multimodal / Transcrição de Áudio via Whisper (Item 5 Bônus)
 * **O que foi feito:** Processamento e transcrição de áudios de atendimento ao cliente via OpenAI Whisper, permitindo extrair a causa-raiz de abandono de checkout diretamente da voz do consumidor com 100% de conformidade JSON Schema Pydantic.
 * **📁 Arquivos & Códigos:**
   - [`pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) — *Notebook Colab com extração multimodal e transcrição de áudios*
@@ -401,7 +410,7 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 7. 📡 Catalogação Automática via API da Dadosfera (Item 3 Bônus)
+### 7.  Catalogação Automática via API da Dadosfera (Item 3 Bônus)
 * **O que foi feito:** Integração REST com a API Maestro da Dadosfera para catalogação programática de datasets, extração de metadados e mapeamento dos 7 Data Asset IDs oficiais.
 * **📁 Arquivos & Códigos:**
   - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Scripts de automação REST e documentação de endpoints Maestro*
@@ -644,10 +653,22 @@ wheels/
 
 ---
 
-## 🎤 6. Infraestrutura e Especificações do Pitch (Item 10)
+## 🎤 6. Apresentação do Case & Infraestrutura do Pitch (Item 10)
+
+A apresentação executiva e técnica do case foi gravada e carregada no YouTube na modalidade **Não Listado (Unlisted)**, estruturada para demonstrar o valor da Dadosfera frente à arquitetura legada:
+
+### 🎥 Links da Apresentação no YouTube (Unlisted):
+- 🔗 **Vídeo 1 (Apresentação Geral, Arquitetura, Governança & Lakehouse):** [https://youtu.be/TZph9Lhy8VQ](https://youtu.be/TZph9Lhy8VQ)
+- 🔗 **Vídeo 2 (Demonstração Prática, BI, ML, Data App em Streamlit & Pitch):** [https://youtu.be/XxtPzbOk8ZA](https://youtu.be/XxtPzbOk8ZA)
+
+> [!IMPORTANT]
+> **Critérios de Avaliação Atendidos:**
+> 1. **Acesso Universal ao Link:** O vídeo está publicado como *Unlisted* no YouTube e acessível por qualquer avaliador com o link.
+> 2. **100% Catalogado & Reprodutível:** Todas as análises, consultas SQL, modelos de machine learning e painéis apresentados estão devidamente catalogados no tenant da Dadosfera e são 100% reproduzíveis pelos scripts e notebooks deste repositório GitHub.
+> 3. **Compartilhamento de Repositório Privado:** Caso o repositório seja mantido em modo privado, o acesso está concedido aos avaliadores: `allansene`, `Rafaelsantanaep`, `galvsoliveira`, `Guilherme-maioli` e `edvaldoazevedo`.
 
 Toda a infraestrutura documental e visual que suporta a gravação da apresentação em vídeo está organizada em [`presentation/pitch/`](presentation/pitch/):
-- **Documentação Master (`pitch_spec.md`)**: Contém a **Parte 1 (Backbone Central)** com a cronologia em 5 blocos (00:00 a 12:30) e a **Parte 2 (Pitch Guidelines)** com falas sugeridas, dados de impacto em %, contraste Dadosfera vs AWS e respostas para objeções de C-Levels.
+- **Documentação Master ([`pitch_spec.md`](presentation/pitch/pitch_spec.md))**: Contém a **Parte 1 (Backbone Central)** com a cronologia em 5 blocos (00:00 a 12:30) e a **Parte 2 (Pitch Guidelines)** com falas sugeridas, dados de impacto em %, contraste Dadosfera vs AWS e respostas para objeções de C-Levels.
 - **8 Subdiretórios Autocontidos**: Cada diretório de regra de negócio/ponto técnico contém a sua especificação (`spec.md`), script gerador (`generate_chart.py`) e artefato visual gerado (`chart_*.png` em 300 DPI).
 - **Geração Consolidada**: `python make.py pitch-charts` ou `python presentation/pitch/run_all_pitch_charts.py`.
 
@@ -659,7 +680,7 @@ Toda a infraestrutura documental e visual que suporta a gravação da apresenta�
 ```bash
 git clone https://github.com/pedro-sales/PEDRO_SALES_DDF_TECH_082026.git
 cd PEDRO_SALES_DDF_TECH_082026
-pip install pandas pyarrow faker great_expectations matplotlib seaborn plotly
+pip install pandas pyarrow faker great_expectations matplotlib seaborn plotly streamlit
 ```
 
 ### 2. Gerar a Base Sintética de Dados (115k+ Registros)
@@ -676,6 +697,78 @@ python make.py notebook-gen
 ```bash
 python make.py pitch-charts
 ```
+
+### 5. Executar o Data App em Streamlit
+```bash
+python make.py data-app
+```
+
+---
+
+## 🤖 8. Ecossistema de Inteligência Artificial: Agentes e Skills Utilizados
+
+Para garantir reprodutibilidade, rigor técnico, governança estrita de dados e velocidade de entrega, o projeto foi desenvolvido com suporte de um ecossistema modular de **Agentes Especialistas** e **Skills Normativas**:
+
+### 🧠 Agentes Especializados (`.agents/agents/`)
+
+| Agente | Arquivo de Definição | Especialidade / Escopo de Atuação |
+|:---|:---|:---|
+| **`cart-recovery-insights`** | [`cart-recovery-insights.md`](.agents/agents/cart-recovery-insights.md) | Especialista em insights de negócio, modelagem de funil de conversão e regras de recuperação de carrinho. |
+| **`case-context-specialist`** | [`case-context-specialist.md`](.agents/agents/case-context-specialist.md) | Fonte central de contexto estratégico, requisitos do case de estágio Dadosfera e diretrizes de governança. |
+| **`data-pipeline-documentation`** | [`data-pipeline-documentation.md`](.agents/agents/data-pipeline-documentation.md) | Documentação de catálogo, linhagem no padrão Medallion (Bronze/Silver/Gold) e Data Contracts. |
+| **`declarative-functional-coding`** | [`declarative-functional-coding.md`](.agents/agents/declarative-functional-coding.md) | Desenvolvimento sob paradigma funcional e declarativo, tipagem estrita e funções puras. |
+| **`platform-registry-consultant`** | [`platform-registry-consultant.md`](.agents/agents/platform-registry-consultant.md) | Guardião do registro oficial de Data Asset IDs, URLs diretas e metadados no catálogo da Dadosfera. |
+| **`project-context-specialist`** | [`project-context-specialist.md`](.agents/agents/project-context-specialist.md) | Rastreamento de progresso técnico, matriz de decisões arquiteturais e correlação com requisitos do case. |
+
+### 🛠️ Skills Normativas (`.agents/skills/`)
+
+| Skill | Diretório / Arquivo | Objetivo & Capacidades |
+|:---|:---|:---|
+| **`cart-recovery-insights`** | [`cart-recovery-insights/SKILL.md`](.agents/skills/cart-recovery-insights/SKILL.md) | Definição declarativa de KPIs, regras de negócio e especificações de dashboards analíticos. |
+| **`case-context-specialist`** | [`case-context-specialist/SKILL.md`](.agents/skills/case-context-specialist/SKILL.md) | Consulta aos materiais e requisitos do case técnico de estágio na Dadosfera. |
+| **`charts-maker`** | [`charts-maker/SKILL.md`](.agents/skills/charts-maker/SKILL.md) | Geração de gráficos e visualizações executivas em 300 DPI com rigor absoluto de Ground Truth. |
+| **`data-pipeline-documentation`** | [`data-pipeline-documentation/SKILL.md`](.agents/skills/data-pipeline-documentation/SKILL.md) | Catálogo e linhagem de pipelines Medallion, Data Quality e contratos de dados. |
+| **`data-strategy-analyst`** | [`data-strategy-analyst/SKILL.md`](.agents/skills/data-strategy-analyst/SKILL.md) | Consultoria estratégica de dados cobrindo as 4 camadas analíticas (descritiva a prescritiva). |
+| **`datamaker`** | [`datamaker/SKILL.md`](.agents/skills/datamaker/SKILL.md) | Modelagem de dados, esquemas relacionais canônicos e geração de dados sintéticos realistas (+115k). |
+| **`declarative-functional-coding`** | [`declarative-functional-coding/SKILL.md`](.agents/skills/declarative-functional-coding/SKILL.md) | Padrões de código funcional, imutabilidade, pipelines modulares e tipagem forte. |
+| **`platform-registry-consultant`** | [`platform-registry-consultant/SKILL.md`](.agents/skills/platform-registry-consultant/SKILL.md) | Manutenção do mapeamento oficial de ativos da Dadosfera em `output-mappers/`. |
+| **`project-context-specialist`** | [`project-context-specialist/SKILL.md`](.agents/skills/project-context-specialist/SKILL.md) | Memória técnica do projeto, marcos de entrega e alinhamento com especificações do case. |
+| **`scout`** | [`scout/SKILL.md`](.agents/skills/scout/SKILL.md) | Exploração rápida e mapeamento estrutural do repositório de código. |
+
+### 📜 Regras Operacionais (`.agents/rules/`)
+- [`python-execution.md`](.agents/rules/python-execution.md): Diretriz de execução autônoma, ciclo cirúrgico single-target e tratamento de erros em Python.
+
+---
+
+## 🌐 9. Catálogo de Ativos na Dadosfera, Links Diretos e Evidências Visuais
+
+Todos os datasets do projeto foram ingeridos, qualificados e catalogados no ambiente oficial de Treinamentos da Dadosfera via API Maestro e módulo Coletar/Explorar:
+
+### 📋 Mapeamento Oficial de Ativos (Data Asset IDs & URLs Diretas)
+
+| Entidade | Data Asset ID | Link Direto no Catálogo Dadosfera | Volume | Tabela Snowflake | Dicionário de Dados |
+|:---|:---|:---|:---:|:---|:---:|
+| **`clientes`** | `0327fecc-f826-48fb-bb0a-1493fe18a32c` | [🔗 Acessar `clientes` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/0327fecc-f826-48fb-bb0a-1493fe18a32c) | 2.000 reg. | `CART_RECOVERY.CLIENTES` | [`clientes.md`](data/catalogo/qualify/clientes.md) |
+| **`produtos`** | `65fcfa25-a6f3-4cb8-a444-7fd23df3fa84` | [🔗 Acessar `produtos` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/65fcfa25-a6f3-4cb8-a444-7fd23df3fa84) | 500 reg. | `CART_RECOVERY.PRODUTOS` | [`produtos.md`](data/catalogo/qualify/produtos.md) |
+| **`carrinhos`** | `e2d3b1bb-bf22-456e-bc66-4ac843deec82` | [🔗 Acessar `carrinhos` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/e2d3b1bb-bf22-456e-bc66-4ac843deec82) | 15.000 reg. | `CART_RECOVERY.CARRINHOS` | [`carrinhos.md`](data/catalogo/qualify/carrinhos.md) |
+| **`itens_carrinho`** | `7649755a-c6e8-4b56-a092-be9eefde1dab` | [🔗 Acessar `itens_carrinho` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/7649755a-c6e8-4b56-a092-be9eefde1dab) | 22.500 reg. | `CART_RECOVERY.ITENS_CARRINHO` | [`itens_carrinho.md`](data/catalogo/qualify/itens_carrinho.md) |
+| **`eventos_carrinho`** | `397c3ebc-15cb-42d2-a717-a3b5d150c3ea` | [🔗 Acessar `eventos_carrinho` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/397c3ebc-15cb-42d2-a717-a3b5d150c3ea) | 72.026 reg. | `CART_RECOVERY.EVENTOS_CARRINHO` | [`eventos_carrinho.md`](data/catalogo/qualify/eventos_carrinho.md) |
+| **`eventos_resgate`** | `04739f6d-e8c3-4d6f-80b7-0f98c12a5798` | [🔗 Acessar `eventos_resgate` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/04739f6d-e8c3-4d6f-80b7-0f98c12a5798) | 2.500 reg. | `CART_RECOVERY.EVENTOS_RESGATE` | [`eventos_resgate.md`](data/catalogo/qualify/eventos_resgate.md) |
+| **`pedidos`** | `7f82a988-8e68-416a-b6fa-5007c4789d1a` | [🔗 Acessar `pedidos` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/7f82a988-8e68-416a-b6fa-5007c4789d1a) | 2.000 reg. | `CART_RECOVERY.PEDIDOS` | [`pedidos.md`](data/catalogo/qualify/pedidos.md) |
+
+### 🖼️ Evidências Visuais (Datasets, Dashboards & Data App)
+
+| Artefato / Módulo | Descrição do Print / Evidência | Artefato Visual de Referência (300 DPI) |
+|:---|:---|:---|
+| **Data Quality & Quarentena (Item 4)** | Scorecard de conformidade (94.2%) e segregação Silver | [`chart_06_scorecard_data_quality.png`](presentation/pitch/06_data_quality_e_quarentena/chart_06_scorecard_data_quality.png) |
+| **GenAI & Pydantic (Item 5)** | Extração semântica de features e conformidade de schemas | [`chart_genai_extracao_copies.png`](presentation/pitch/roteiro/views-05-insights-ia/genai-extracao-copies/chart_genai_extracao_copies.png) |
+| **Modelagem Kimball DW (Item 6)** | Star Schema com 6 dimensões conformadas e 2 fatos | [`chart_caseitem06_kimball_model.png`](presentation/pitch/views/caseitem06/chart_caseitem06_kimball_model.png) |
+| **BI & Metabase (Item 7)** | Série temporal de conversão e recuperação de GMV | [`chart_bi_recuperacao_carrinhos.png`](insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png) |
+| **Machine Learning (Item 8)** | Curva ROC (AUC 0.9478) e ranking de propensão de resgate | [`chart_modelos_preditivos_ml.png`](presentation/pitch/roteiro/views-05-insights-ia/modelos-preditivos-ml/chart_modelos_preditivos_ml.png) |
+| **Feature Importance XAI (Item 8)** | Interpretabilidade dos pesos marginais do modelo preditivo | [`chart_feature_importance_ml.png`](presentation/pitch/roteiro/views-05-insights-ia/feature-importance-ml/chart_feature_importance_ml.png) |
+| **Espaço Vetorial 2D (Itens 9 & Bônus)** | Projeção t-SNE de similaridade de catálogo para resgate | [`chart_similaridade_produtos.png`](presentation/pitch/roteiro/views-05-insights-ia/similaridade-produtos/chart_similaridade_produtos.png) |
+| **Data App Streamlit (Item 9)** | Simulador de sensibilidade de ROI e Waterfall de ganho líquido | [`chart_data_app_simulador_roi.png`](presentation/pitch/roteiro/views-05-insights-ia/data-app-simulador-roi/chart_data_app_simulador_roi.png) |
+| **Arquitetura TCO Dadosfera vs AWS** | Contraste de Lead Time (-86%) e eliminação de sharding | [`chart_07_arquitetura_dadosfera_vs_aws.png`](presentation/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png) |
 
 ---
 
@@ -717,3 +810,4 @@ Caso utilize o ambiente Windows CMD ou PowerShell e deseje executar via wrappers
 ```
 
 </details>
+
