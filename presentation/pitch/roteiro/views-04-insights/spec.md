@@ -39,3 +39,19 @@ Após demonstrar a transição da arquitetura técnica legada para a Dadosfera (
 * **Tipografia**: Família sem serifa moderna (`Segoe UI`, `DejaVu Sans`, `Arial`).
 * **Integridade Absoluta (Ground Truth)**: Todos os dados plotados são carregados diretamente dos arquivos Parquet em `data/mock/output_cleaned/parquet/`.
 * **Ausência de Pasta `assets/`**: Estrutura de pastas limpa, plana e padronizada.
+
+---
+
+## ⚙️ 4. Padrão Arquitetural DRY nos Scripts de Views (`generate_chart.py`)
+
+Seguindo a diretriz de arquitetura limpa e **DRY (Don't Repeat Yourself)**:
+* O diretório canônico oficial de todas as fontes de scripts, specs e dados é [`insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights).
+* Todos os scripts `generate_chart.py` dentro dos submódulos deste envelope (`views-04-insights/`) atuam **estritamente como wrappers leves de importação**.
+* **Nunca se deve reimplementar lógica de geração de gráfico no roteiro** ou introduzir discrepâncias visuais.
+
+```python
+# Exemplo de wrapper padronizado em todas as views do roteiro:
+def main() -> None:
+    canonical_module = load_canonical_module()  # importa dinamicamente de insights/...
+    canonical_module.main()
+```

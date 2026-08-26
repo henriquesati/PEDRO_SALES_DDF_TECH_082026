@@ -38,3 +38,19 @@ A seção `[5]` do roteiro narrativo de pitch aborda o **Módulo de Inteligênci
 * **Tipografia**: Família sem serifa moderna (`Segoe UI`, `DejaVu Sans`, `Arial`).
 * **Integridade Absoluta (Ground Truth)**: Todos os dados plotados carregam diretamente dos arquivos Parquet em `data/mock/output_cleaned/parquet/` e relatórios auditados de execução em `pipelines/`.
 * **Ausência de Pasta `assets/`**: Estrutura plana, limpa e modular.
+
+---
+
+## ⚙️ 4. Padrão Arquitetural DRY nos Scripts de Views (`generate_chart.py`)
+
+Seguindo a diretriz de arquitetura limpa e **DRY (Don't Repeat Yourself)**:
+* O diretório canônico oficial de todas as fontes de scripts de inteligência, specs e modelos é [`insights/04_intelligence_ai/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/04_intelligence_ai/).
+* Todos os scripts `generate_chart.py` dentro dos submódulos de IA do roteiro (`views-05-insights-ia/`) atuam **estritamente como wrappers leves de importação**.
+* **Nunca se deve reimplementar lógica de geração de gráfico no roteiro** ou introduzir discrepâncias visuais.
+
+```python
+# Exemplo de wrapper padronizado em todas as views do roteiro:
+def main() -> None:
+    canonical_module = load_canonical_module()  # importa dinamicamente de insights/04_intelligence_ai/...
+    canonical_module.main()
+```

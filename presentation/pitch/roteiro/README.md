@@ -53,10 +53,12 @@ Cada subdiretório analítico segue estritamente a tríade de arquivos:
 
 ```text
 pasta-do-modulo/
-├── generate_chart.py    # 🐍 Script declarativo puro (Ground Truth Parquet -> 300 DPI)
+├── generate_chart.py    # 🐍 Script declarativo puro ou Wrapper DRY (importa de insights/)
 ├── spec.md              # 📄 Especificação técnica, métricas canônicas e narrativa de negócio
 └── chart_*.png          # 📊 Painel visual executivo (16:9, fundo branco #FFFFFF, 300 DPI)
 ```
+
+> **Diretriz de Arquitetura DRY**: Nas seções analíticas (`views-04-insights/` e `views-05-insights-ia/`), o script `generate_chart.py` atua estritamente como um wrapper leve que importa e executa o módulo canônico correspondente da raiz `insights/`, assegurando que o código de renderização e as regras de negócio existam em uma única fonte da verdade.
 
 ---
 
