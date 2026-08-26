@@ -300,16 +300,17 @@ def plot_dashboard_02_risk_drivers(df: pd.DataFrame) -> plt.Figure:
 # ==============================================================================
 
 def plot_dashboard_03a_fila_acionamento() -> plt.Figure:
-    """Gera o Dashboard 3A: Tabela Operacional de Fila de Acionamento com layout dedicado e espaçoso."""
+    """Gera o Dashboard 3A: Tabela Operacional de Fila de Acionamento com layout dedicado, colWidths balanceados e sem overlap."""
     plt.rcParams["text.parse_math"] = False
     plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
 
-    fig, ax = plt.subplots(figsize=(13.5, 6.8), facecolor="#FFFFFF")
+    fig, ax = plt.subplots(figsize=(15.5, 7.8), facecolor="#FFFFFF")
     ax.set_facecolor("#FFFFFF")
     ax.axis("off")
 
-    table_data = [
-        ["Carrinho ID", "Nível de Risco", "Valor Cesta", "Prob. Resgate", "Custo Canal", "Expected ROI", "Ação Prescrita / Canal", "Política de Incentivo"],
+    headers = ["Carrinho ID", "Nível de Risco", "Valor Cesta", "Prob. Resgate", "Custo Canal", "Expected ROI", "Ação Prescrita / Canal", "Política de Incentivo"]
+    
+    rows = [
         ["#1042", "CRÍTICO", "R$ 520,00", "78%", "R$ 0,30", "3,1x", "WhatsApp API / Atendimento VIP", "Sem Desconto (Reserva de Estoque)"],
         ["#9381", "CRÍTICO", "R$ 680,00", "81%", "R$ 0,30", "2,8x", "WhatsApp API / Suporte Técnico", "Sem Desconto (Cupom Zero)"],
         ["#1291", "ALTO", "R$ 340,00", "64%", "R$ 0,05", "2,2x", "E-mail Inbound + Push App", "Cupom 5% Condicionado (> R$ 200)"],
@@ -318,32 +319,44 @@ def plot_dashboard_03a_fila_acionamento() -> plt.Figure:
         ["#5519", "CRÍTICO", "R$ 25,00", "90%", "R$ 0,30", "< 0,1x", "Automação Zero Cost (Email)", "Sem WhatsApp (Evita Prejuízo R$)"]
     ]
 
+    table_data = [headers] + rows
+
+    # Larguras proporcionais calculadas para dar espaço amplo às colunas de texto (Ação e Política)
+    col_widths = [0.08, 0.10, 0.09, 0.09, 0.08, 0.09, 0.23, 0.24]
+
     table = ax.table(
         cellText=table_data,
+        colWidths=col_widths,
         cellLoc="center",
         loc="center",
         bbox=[0.02, 0.18, 0.96, 0.72]
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(9.5)
+    table.set_fontsize(9.2)
 
     for (row, col), cell in table.get_celld().items():
         cell.set_edgecolor("#CBD5E1")
         cell.set_linewidth(1.1)
         if row == 0:
             cell.set_facecolor("#0F172A")
-            cell.set_text_props(weight="bold", color="#FFFFFF")
+            cell.set_text_props(weight="bold", color="#FFFFFF", ha="center")
             cell.set_height(0.12)
         else:
             if row in [1, 2]:
-                cell.set_facecolor("#ECFDF5")  # Verde
+                cell.set_facecolor("#ECFDF5")  # Verde suave
             elif row in [3, 4]:
-                cell.set_facecolor("#EFF6FF")  # Azul
+                cell.set_facecolor("#EFF6FF")  # Azul suave
             elif row == 5:
-                cell.set_facecolor("#F8FAFC")  # Neutro
+                cell.set_facecolor("#F8FAFC")  # Neutro suave
             else:
-                cell.set_facecolor("#FEF2F2")  # Alerta vermelho
-            cell.set_text_props(weight="bold" if col in [0, 1, 5] else "normal", color="#0F172A")
+                cell.set_facecolor("#FEF2F2")  # Alerta vermelho suave
+            
+            # Alinhamento à esquerda com padding para colunas descritivas (Ação e Política)
+            if col in [6, 7]:
+                cell.set_text_props(weight="normal", color="#0F172A", ha="left")
+            else:
+                cell.set_text_props(weight="bold" if col in [0, 1, 5] else "normal", color="#0F172A", ha="center")
+                
             cell.set_height(0.13)
 
     # Card explicativo inferior de governança financeira
@@ -421,13 +434,13 @@ def plot_dashboard_03b_matriz_risk_roi() -> plt.Figure:
 # ==============================================================================
 
 def plot_dashboard_03_combined_matrix() -> plt.Figure:
-    """Gera o Dashboard 3 Combinado com proporção balanceada."""
+    """Gera o Dashboard 3 Combinado com proporção balanceada e larguras explícitas de coluna."""
     plt.rcParams["text.parse_math"] = False
     plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
     plt.rcParams["axes.edgecolor"] = "#CBD5E1"
     plt.rcParams["axes.linewidth"] = 1.1
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16.0, 7.2), gridspec_kw={"width_ratios": [1.0, 1.15]})
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16.5, 7.5), gridspec_kw={"width_ratios": [1.05, 1.10]})
     fig.patch.set_facecolor("#FFFFFF")
 
     # 1. Painel 1: Tabela
@@ -444,8 +457,11 @@ def plot_dashboard_03_combined_matrix() -> plt.Figure:
         ["#5519", "CRÍTICO", "R$ 25", "90%", "R$ 0,30", "<0,1x", "[ZERO COST] Email / Sem WhatsApp"]
     ]
 
+    col_w_comb = [0.08, 0.12, 0.11, 0.09, 0.10, 0.11, 0.39]
+
     table = ax1.table(
         cellText=table_data,
+        colWidths=col_w_comb,
         cellLoc="center",
         loc="center",
         bbox=[0.0, 0.05, 1.0, 0.88]
@@ -458,7 +474,7 @@ def plot_dashboard_03_combined_matrix() -> plt.Figure:
         cell.set_linewidth(1.0)
         if row == 0:
             cell.set_facecolor("#0F172A")
-            cell.set_text_props(weight="bold", color="#FFFFFF")
+            cell.set_text_props(weight="bold", color="#FFFFFF", ha="center")
             cell.set_height(0.11)
         else:
             if row in [1, 2]:
@@ -469,7 +485,12 @@ def plot_dashboard_03_combined_matrix() -> plt.Figure:
                 cell.set_facecolor("#F8FAFC")
             else:
                 cell.set_facecolor("#FEF2F2")
-            cell.set_text_props(weight="bold" if col in [0, 1, 5] else "normal", color="#0F172A")
+                
+            if col == 6:
+                cell.set_text_props(weight="normal", color="#0F172A", ha="left")
+            else:
+                cell.set_text_props(weight="bold" if col in [0, 1, 5] else "normal", color="#0F172A", ha="center")
+                
             cell.set_height(0.12)
 
     ax1.set_title("1. FILA DE ACIONAMENTO PRESCRITIVA (EXEMPLOS)", fontsize=12.5, fontweight="bold", color="#0F172A", pad=12)

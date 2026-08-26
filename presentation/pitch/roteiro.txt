@@ -1,11 +1,37 @@
 					ROTEIRO
 
 Plataforma dadosfera
-. Explicar o que é
-.paralelo no ciclo de vida dos dados
-.Tem como objetivo mudar a forma como médias e grandes empresas lidam  , Inteligência Artificial e Analytics. antes restritas a grandes empresas de tecnologia — para organizações que precisam tomar decisões mais rápidas, seguras e orientadas ao negócio.
-. apoia descoberta, modelagem, implementação e sustentação de soluções analíticas
 
+: A Dadosfera nasceu em 2019 a partir da DataSprints, uma das consultorias de Dados, IA & Analytics
+Nesse primeiro momento, o trabalho era estar dentro das empresas, entendendo problemas reais e construindo soluções de dados — desde engenharia e BI até governança, Data Lakes e Data Warehouses. 
+Transformação em Produto (2021): Toda a experiência prática acumulada em dezenas de projetos de consultoria
+[criar a plataforma Dadosfera SaaS.]
+
+A Dadosfera visa oferecer um braço de Solutions Engineering / Consultoria de Implementação para acelerar os primeiros casos de uso estratégicos no cliente.
+ mudar a forma como médias e grandes empresas lidam  , Inteligência Artificial e Analytics. antes restritas a grandes empresas de tecnologia — para organizações que precisam tomar decisões mais rápidas, seguras e orientadas ao negócio.
+[fornecer apoio]
+apoia descoberta, modelagem, implementação e sustentação de soluções analíticas
+
+
+
+ [Explicar o que é ciclo de vida dos dados]
+
+
+
+
+
+
+A dadosfera não só faz a parte tecnica dos dados (limpeza), etc. como a parte conceitual, oferecendo consultorias e soluções de negócio blueprints criadas
+Aceleradores e Blueprints de Negócio:
+clássicos (como Recuperação de Carrinho, Segmentação RFM, Previsão de Demanda), analise de risco, detecção a fraude: a Dadosfera já possui modelos lógicos, queries, contratos de qualidade e especificações pré-estruturadas.
+
+
+Ingestão (Plug & Play): Conectores nativos que eliminam a necessidade de desenvolver integrações manuais para cada fonte.
+Transformação Centralizada: Substitui scripts Python/SQL dispersos por processos estruturados de limpeza e padronização.
+Catálogo e Governança: Data lineage e metadados automáticos para rastreabilidade e descoberta fácil de ativos de dados.
+Consumo e Analytics: Camada de visualização intuitiva que reduz a dependência de licenças de BI externas.
+Segurança e IAM: Centraliza o controle de acesso, garantindo compliance e democratização segura dos dados.
+IA e GenAI: Exploração de dados em linguagem natural e geração automática de insights sobre o contexto do negócio.
 
 
 
@@ -163,7 +189,10 @@ Geração de piipelines que sigam arquitetura medallion (sendo otimo pra gerar x
 • Democratização com Autonomia: Equipes de CRM, Produto e Vendas ganham autonomia democratico aos dados
 • Time-to-Data Reduzido de Semanas para Minutos: A disponibilização de novas visões para os setores é imediata, acelerando o ciclo de testes e campanhas time sensitive .
 • Segurança como Habilitadora de Receita: Em vez de atuar como uma barreira burocrática ("não pode acessar"), a segurança simplificada vira a alavanca que destrava 
- punchline1 :A arquitetura descentralizada atual gera um custo marginal crescente. O problema central não é o volume de dados, mas a complexidade, headcount e custos que escalam junto com o negócio ao optar por uma arquitetura própria ao invés de não managed.
+
+
+ punchline :
+1. A arquitetura descentralizada atual gera um custo marginal crescente. O problema central não é o volume de dados, mas a complexidade, headcount e custos que escalam junto com o negócio ao optar por uma arquitetura própria ao invés de não managed.
 Resumo Principais Gargalos Identificados:
 Complexidade de Serviços Não Gerenciados: A infraestrutura escala, mas o time precisa acompanhar manualmente. Mudanças de topologia exigem reconfiguração em múltiplos serviços codependentes.
 Crescimento Linear de Headcount: A manutenção exige especialistas (Platform e Data Engineers). Sem uma plataforma unificada, cada novo dado ou ferramenta exige mais horas de engenharia, impedindo a eficiência de escala.
@@ -171,41 +200,122 @@ Crescimento Linear de Headcount: A manutenção exige especialistas (Platform e 
 Final proposta de Valor da Plataforma Dadosfera
 
 
-forma como médias e grandes empresas lidam com dados, Inteligência Artificial e Analytics. Nossa plataforma entrega capacidades avançadas — antes restritas a grandes empresas de tecnologia — para organizações que precisam tomar decisões mais rápidas, seguras e orientadas ao negócio. 
-
-🏛️Raízes da Dadosfera
-Origem (DataSprints): A Dadosfera nasceu em 2019 a partir da DataSprints, uma das consultorias de Dados, IA & Analytics
-Transformação em Produto (2021): Toda a experiência prática acumulada em dezenas de projetos de consultoria foi condensada para criar a plataforma Dadosfera SaaS.
-hoje: A Dadosfera vende a Plataforma e oferece o braço de Solutions Engineering / Consultoria de Implementação para acelerar os primeiros casos de uso estratégicos no cliente.
+exemplificar como a dadosfera consolida essas soluções
+propoe case bem utilizado utilizando a dadosfera
 
 
-Aceleradores e Blueprints de Negócio:
-Para problemas clássicos (como Recuperação de Carrinho, Segmentação RFM, Previsão de Demanda ou Análise de Eficiência Logística), a Dadosfera já possui modelos lógicos, queries, contratos de qualidade e especificações pré-estruturadas.
-Capacidades Integradas:
-Ingestão (Plug & Play): Conectores nativos que eliminam a necessidade de desenvolver integrações manuais para cada fonte.
-Transformação Centralizada: Substitui scripts Python/SQL dispersos por processos estruturados de limpeza e padronização.
-Catálogo e Governança: Data lineage e metadados automáticos para rastreabilidade e descoberta fácil de ativos de dados.
-Consumo e Analytics: Camada de visualização intuitiva que reduz a dependência de licenças de BI externas.
-Segurança e IAM: Centraliza o controle de acesso, garantindo compliance e democratização segura dos dados.
-IA e GenAI: Exploração de dados em linguagem natural e geração automática de insights sobre o contexto do negócio.
+Explicar case carrinho
+[1] Por que carrinho
 
 
-IA NA DADOSFERA
+[2] ingestão de dados
+ingestão plug e play
+camada bronze
+
+
+[3] etapas de qualidade e geração de artefatos - 
+apresentar arquitetura e modelagem
+explicar sobrre pipelines de dados
+pipelines de data quality automatizada, geração de artefatos
+
+{3.1} Modelagem Kimball
+	Transformação dos dados
+	Insights na nova modelagem
+	É exatamente essa a virada de chave: os dados nascem em um formato feito para máquinas transacionarem (OLTP) e a modelagem Kimball os traduz para um formato feito para humanos e algoritmos extraírem inteligência (OLAP). 
+
+ {3.2} Governança e dados
+	Dicionario de dados seguindo melhos práticasOwnership e responsabilidade
+Definição de responsáveis pelos dados e pelos seus domínios.
+Clareza sobre quem produz, mantém, valida e consome cada dado.
+Evita o cenário de “o dado é de todo mundo, mas ninguém é responsável por ele”.
+
+
+	Blindagem LGDP as opt inSeparação entre dados operacionais, analíticos e sensíveis.
+Controle de quem pode visualizar, alterar ou utilizar determinados dados.
+
+Objetivo business: reduzir risco jurídico, reputacional e operacional. 
+etc
+
+
+
+
+
+
+
+
+
+[4] geração de insigts de diferentes tipos
+
+A Dadosfera transforma os dados do modelo Gold em 4 camadas de inteligência:
+
+[Insight descritivos] --> Di["2. Diagnósticos: Por que aconteceu?"]
+  Otimização de Timing: janela de +1h após o abandono concentra conversões observadas (gatilho ótimo para a primeira mensagem).
+Estratégia RFM & Preservação de Margem:
+Clientes Premium: Abandonam por dúvidas $\rightarrow$ recebem WhatsApp consultivo sem desconto (protegendo a margem de lucro da empresa).
+Clientes Novos: Abandonam por frete $\rightarrow$ recebem cupom na primeira compra.
+Insights de Oportunidade & Fila de Acionamento:
+Curva de Pareto: Matriz de priorização que separa os 20% de carrinhos que representam mais de 65% da receita recuperável.
+
+
+[Insights Descritivos] → [O que aconteceu?]
+Taxa de Abandono Basal: Identificada em ~70% dos acessos.
+Taxa de Recuperação com a Dadosfera: 10.1% dos carrinhos recuperados (+50% de ganho sobre a média).
+Eficiência de Canais: E-mail entrega volume a R$ 0,05 por envio; WhatsApp entrega alta conversão (18%) a R$ 0,30 por envio $\rightarrow$ ROI Consolidado de 45x.
+Insights Diagnósticos & Risco (Por que aconteceu e quem corre risco?):
+Causas-Raiz: Frete alto (38%), indecisão/dúvidas técnicas em eletrônicos (24%), atrito cadastral (18%).
+LTV vs. Abandono: Clientes frequentes abandonam mais por dúvida técnica do que por preço.
+
+
+
+
+
+
+
+[5] Int, genai e datapps
+A plataforma fornece o ambiente para você treinar modelos do seu negócio (como Scikit-Learn, XGBoost, LightGBM) 
+
+antes: sobe ec2, configura clusters glue ou pyspark, airflow pra orquestao
+agora: ambiente integrado com suporte a notebooks, stepsfera
+execução elástica e resultados de baixa latência e alta disponibiilidade
+[mostrar case de analise em ia com produtos]
+No Módulo de Inteligência, criamos o step_05_train_churn_model.py com um modelo supervisionado de Propensão de Resgate (ROC-AUC de 0.9478 e 99.53% de acurácia) que ranqueia a chance de conversão de cada carrinho.     
+[types]
+Modelo de Propensão ao Resgate / Scoring de Conversão (Machine Learning Preditivo):
+Avalia o comportamento de navegação, ticket do carrinho e histórico do cliente para calcular uma pontuação de 0 a 100% de chance de fechamento.
+Para que serve: Evita que a empresa "queime dinheiro" disparando mensagens caras (como WhatsApp a R$ 0,30) para quem não tem intenção de compra, focando a comunicação apenas em quem tem alta probabilidade de retorno.
+
+
+Cruzamos a telemetria do carrinho com os comentários de checkout e dúvidas de clientes (incluindo áudios de suporte transcritos via Whisper). 
+Conectamos um modelo de IA → le dados de negócio -> gera novas formulações a partir desses dados-> gera a analise em cima desse dadoe extraiu, em formato JSON estrito, o motivo-raiz exato da hesitação — como uma dúvida técnica de voltagem (127V) em eletrônicos ou um atrito de valor no frete para o Nordeste.
+[explique formato de saida] 
+[explique a nalise e insight]
+Cruzamos a telemetria do carrinho com os comentários de checkout e dúvidas de clientes (incluindo áudios de suporte transcritos via Whisper). Conectamos um modelo de IA Generativa diretamente no pipeline da Dadosfera, que leu essas informações desestruturadas e extraiu, em formato JSON estrito, metadados da transação mais contextualiazados, contento motivo, perfil do cliente, ticket
+
+
+O modelo gera em  tempo real análises e estratégias de resgate altamente personalizadas:
+cruza o valor do ticket, a chance de conversão
+o motivo do abandono
+perfil RFM do cliente
+tempo de disparo 
+tudo isso para definir a melhor abordagem e o canal ideal (WhatsApp humanizado para tickets altos vs. E-mail automatizado para escala). Dessa forma, a plataforma direciona os recursos da empresa apenas p
+Como a Dadosfera auxiliou nisso? Sem a plataforma, teríamos que contratar engenheiros para configurar instâncias AWS SageMaker, orquestrar filas de API no Lambda, criar bancos vetoriais isolados e gerenciar chaves de criptografia. Na Dadosfera, todo esse fluxo rodou de forma nativa e unificada: o pipeline extraiu as variáveis semânticas, treinou o modelo in-database no Snowflake/Snowpark e já disponibilizou os resultados diretamente para o nosso Data App em Streamlit e para as réguas de CRM do marketing em questão de minutos."
 1. MÓDULO DE INTELIGÊNCIA & PIPELINES (Stepsfera / Snowpark / ML)        
     • Orquestração de DAGs e Steps modulares de Machine Learning         
     • Execução in-database (Snowflake Cortex / Snowpark) ou distribuída  
 O LLM extraiu features estruturadas em JSON Schema (identificando atrito com frete ou dúvidas de voltagem elétrica 127V) e gerou copies de resgate personalizadas para WhatsApp/E-mail.
 
 
-2. CONECTIVIDADE COM GENAI & LLMS (OpenAI / Claude / Whisper / DALL-E)   
- 3. EXPLORAÇÃO & CATÁLOGO EM LINGUAGEM NATURAL                           
-    • Chat com os dados / Text-to-SQL para usuários de negócio 
-No Módulo de Inteligência, criamos o step_05_train_churn_model.py com um modelo supervisionado de Propensão de Resgate (ROC-AUC de 0.9478 e 99.53% de acurácia) que ranqueia a chance de conversão de cada carrinho.         
-
-
+uso no case
+Rrealizamos uma análise semântica e preditiva com IA para entender as reais causas de abandono e personalizar o resgate.
  4. CONSUMO & DATA APPS (Streamlit Integrado)                            
     • Deploy de aplicações inteligentes com modelos preditivos/prescritivos│
 Construímos um Data App em Streamlit com simulador prescritivo de ROI, exploração vetorial de similaridade de produtos (t-SNE/PCA) e copiloto de resgate.dd
+Como a Dadosfera auxiliou nisso? Sem a plataforma, teríamos que contratar engenheiros para configurar instâncias AWS SageMaker, orquestrar filas de API no Lambda, criar bancos vetoriais isolados e gerenciar chaves de criptografia. Na Dadosfera, todo esse fluxo rodou de forma nativa e unificada: o pipeline extraiu as variáveis semânticas, treinou o modelo in-database no Snowflake/Snowpark e já disponibilizou os resultados diretamente para o nosso Data App em Streamlit e para as réguas de CRM do marketing em questão de minutos."
+    
+
+
+
+
 
 
 slide consolidação dadosfera

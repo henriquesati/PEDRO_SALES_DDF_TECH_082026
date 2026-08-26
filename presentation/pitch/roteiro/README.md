@@ -37,12 +37,19 @@ presentation/pitch/roteiro/
 │           └── roicampanhas/                  # Funil por Canal & Rebalanceamento de Budget (85% E-mail / 12% WhatsApp)
 │
 └── 🧠 Ato 4: Inteligência & Data Apps (Seção [5])
-    └── views-05-insights-ia/                  # Master Envelope de Inteligência, GenAI & Data Apps
-        ├── modelos-preditivos-ml/             # Machine Learning Supervisionado (ROC-AUC 0.9478 / 99.53% acurácia)
-        ├── feature-importance-ml/             # Pesos do Modelo & XAI (Ticket +38.4%, RFM VIP +26.2%, Frete +18.5%)
-        ├── genai-extracao-copies/             # GenAI, Pydantic 100% & Copywriting Personalizado (+18% CTR)
-        ├── similaridade-produtos/             # Embeddings, Espaço 2D (t-SNE) & Recomendação de SKUs (+12.4% resgate)
-        └── data-app-simulador-roi/            # Data App Streamlit, Simulação de ROI (45x) & Waterfall Contábil
+    ├── views-05-insights-ia/                  # Master Envelope de Inteligência, GenAI & Data Apps
+    │   ├── modelos-preditivos-ml/             # Machine Learning Supervisionado (ROC-AUC 0.9478 / 99.53% acurácia)
+    │   ├── feature-importance-ml/             # Pesos do Modelo & XAI (Ticket +38.4%, RFM VIP +26.2%, Frete +18.5%)
+    │   ├── genai-extracao-copies/             # GenAI, Pydantic 100% & Copywriting Personalizado (+18% CTR)
+    │   ├── similaridade-produtos/             # Embeddings, Espaço 2D (t-SNE) & Recomendação de SKUs (+12.4% resgate)
+    │   └── data-app-simulador-roi/            # Data App Streamlit, Simulação de ROI (45x) & Waterfall Contábil
+    │
+    └── views-streamlit/                       # 🛒 Módulo de Telas Executivas do Data App Streamlit (Item 9 & Bônus)
+        ├── 01-simulador-roi/                  # 📊 Aba 1: Simulador de ROI & Sensibilidade Orçamentária
+        ├── 02-explorador-catalogo/            # 🔍 Aba 2: Explorador Semântico & Projeção Vetorial 2D (t-SNE)
+        ├── 03-copiloto-resgate/               # 🤖 Aba 3: Copiloto Prescritivo de Resgate com IA Generativa
+        ├── 04-vitrine-produtos/               # 🎨 Aba 4: Vitrine de Produtos Enriquecidos (Camada Silver)
+        └── chart_streamlit_data_app_overview.png # 🖼️ Painel Executivo Consolidado do Data App Streamlit
 ```
 
 ---
