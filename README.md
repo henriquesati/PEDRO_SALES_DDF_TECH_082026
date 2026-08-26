@@ -5,6 +5,7 @@
 > **Repositório GitHub:** `PEDRO_SALES_DDF_TECH_082026`  
 > **Plataforma:** [Dadosfera](https://dadosfera.ai) (Coleta, Catálogo, Qualify, Pipelines, Inteligência, Metabase & Data Apps)  
 > **Domínio de Negócio:** E-commerce / Marketplace — Recuperação de Carrinho e Conversão de GMV  
+> **Dashboard Asana:** [🔗 Acessar Tarefa / Dashboard no Asana](https://app.asana.com/1/1217663928788836/project/1217663175762797/task/1217665407947566?focus=true)  
 
 
 ---
@@ -518,19 +519,6 @@ python make.py pitch-charts
 ## 🛡️ 4. Data Quality & Relatório de Anomalias (Item 4)
 
 O pipeline de qualidade avalia **115.777 registros** em 6 dimensões fundamentais com segregação estrita entre **Detecção** e **Tratamento**:
-
-```text
-carrinhos_raw (Bronze)
-       │
-       ▼
-[ Data Quality Gate: Great Expectations (18 Regras) ]
-       │
-   ┌───┴────────────────────────┐
-   ▼                            ▼
-carrinhos_qualify (Silver)    carrinhos_anomalies (Quarentena de Anomalias)
-   │ (98.8% Conformes)          │ (1.2% Isolados com anomaly_reason)
-   ▼                            ▼
-Gold Analytics / ML / GenAI   Auditoria & Ajustes de Engenharia
 ```
 
 - 📑 **Relatório de Data Quality & Anomalias:** [`pipelines/case-item-04/outputs/data_quality_report.md`](pipelines/case-item-04/outputs/data_quality_report.md)
@@ -654,17 +642,13 @@ wheels/
 
 ## 🎤 6. Apresentação do Case & Infraestrutura do Pitch (Item 10)
 
-A apresentação executiva e técnica do case foi gravada e carregada no YouTube na modalidade **Não Listado (Unlisted)**, estruturada para demonstrar o valor da Dadosfera frente à arquitetura legada:
-
-### 🎥 Links da Apresentação em Vídeo:
 - 🔗 **Vídeo 1 (Apresentação Geral, Arquitetura, Governança & Lakehouse):** [YouTube (Unlisted)](https://youtu.be/TZph9Lhy8VQ) • [Link Adicional (Google Drive)](https://docs.google.com/videos/d/112pY9SEehN1Ns9fc26lxhBGrNap2PwVtW1wBJ9UePBI/edit?usp=sharing)
 - 🔗 **Vídeo 2 (Demonstração Prática, BI, ML, Data App em Streamlit & Pitch):** [YouTube (Unlisted)](https://youtu.be/XxtPzbOk8ZA) • [Link Adicional (Google Drive)](https://docs.google.com/videos/d/1qPEeDBeC4l_SROuQBE9rVmg7R4CiaTzznecoT_El7cM/edit?usp=sharing)
 
-> [!IMPORTANT]
-> **Critérios de Avaliação Atendidos:**
-> 1. **Acesso Universal ao Link:** O vídeo está publicado como *Unlisted* no YouTube e acessível por qualquer avaliador com o link.
+
+> 1. **Acesso Universal ao Link:** como *Unlisted* no YouTube
 > 2. **100% Catalogado & Reprodutível:** Todas as análises, consultas SQL, modelos de machine learning e painéis apresentados estão devidamente catalogados no tenant da Dadosfera e são 100% reproduzíveis pelos scripts e notebooks deste repositório GitHub.
-> 3. **Compartilhamento de Repositório Privado:** Caso o repositório seja mantido em modo privado, o acesso está concedido aos avaliadores: `allansene`, `Rafaelsantanaep`, `galvsoliveira`, `Guilherme-maioli` e `edvaldoazevedo`.
+
 
 Toda a infraestrutura documental e visual que suporta a gravação da apresentação em vídeo está organizada em [`presentation/pitch/`](presentation/pitch/):
 - **Documentação Master ([`pitch_spec.md`](presentation/pitch/pitch_spec.md))**: Contém a **Parte 1 (Backbone Central)** com a cronologia em 5 blocos (00:00 a 12:30) e a **Parte 2 (Pitch Guidelines)** com falas sugeridas, dados de impacto em %, contraste Dadosfera vs AWS e respostas para objeções de C-Levels.
@@ -673,7 +657,7 @@ Toda a infraestrutura documental e visual que suporta a gravação da apresenta�
 
 ---
 
-## ⚡ 7. Como Executar o Projeto Localmente
+## Executar o Projeto Localmente
 
 ### 1. Clonar o Repositório e Instalar Dependências
 ```bash
@@ -704,9 +688,9 @@ python make.py data-app
 
 ---
 
-## 🤖 8. Ecossistema de Inteligência Artificial: Agentes e Skills Utilizados
+## 🤖 8.  Agentes e Skills Utilizados
 
-Para garantir reprodutibilidade, rigor técnico, governança estrita de dados e velocidade de entrega, o projeto foi desenvolvido com suporte de um ecossistema modular de **Agentes Especialistas** e **Skills Normativas**:
+Para garantir contexto, alterações em cascata, rigor técnico, governança na codebase e velocidade , o projeto foi desenvolvido com suporte de um ecossistema modular de **Agentes Especialistas** e **Skills Normativas**:
 
 ### 🧠 Agentes Especializados (`.agents/agents/`)
 
@@ -740,8 +724,7 @@ Para garantir reprodutibilidade, rigor técnico, governança estrita de dados e 
 ---
 
 ## 🌐 9. Catálogo de Ativos na Dadosfera, Links Diretos e Evidências Visuais
-
-Todos os datasets do projeto foram ingeridos, qualificados e catalogados no ambiente oficial de Treinamentos da Dadosfera via API Maestro e módulo Coletar/Explorar:
+via API Maestro 
 
 ### 📋 Mapeamento Oficial de Ativos (Data Asset IDs & URLs Diretas)
 
@@ -755,7 +738,7 @@ Todos os datasets do projeto foram ingeridos, qualificados e catalogados no ambi
 | **`eventos_resgate`** | `04739f6d-e8c3-4d6f-80b7-0f98c12a5798` | [🔗 Acessar `eventos_resgate` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/04739f6d-e8c3-4d6f-80b7-0f98c12a5798) | 2.500 reg. | `CART_RECOVERY.EVENTOS_RESGATE` | [`eventos_resgate.md`](data/catalogo/qualify/eventos_resgate.md) |
 | **`pedidos`** | `7f82a988-8e68-416a-b6fa-5007c4789d1a` | [🔗 Acessar `pedidos` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/7f82a988-8e68-416a-b6fa-5007c4789d1a) | 2.000 reg. | `CART_RECOVERY.PEDIDOS` | [`pedidos.md`](data/catalogo/qualify/pedidos.md) |
 
-### 🖼️ Evidências Visuais (Datasets, Dashboards & Data App)
+### 🖼️ Evidências Visuais (Datasets, Dashboards e Data Apps)
 
 | Artefato / Módulo | Descrição do Print / Evidência | Artefato Visual de Referência (300 DPI) |
 |:---|:---|:---|
@@ -768,6 +751,49 @@ Todos os datasets do projeto foram ingeridos, qualificados e catalogados no ambi
 | **Espaço Vetorial 2D (Itens 9 & Bônus)** | Projeção t-SNE de similaridade de catálogo para resgate | [`chart_similaridade_produtos.png`](presentation/pitch/roteiro/views-05-insights-ia/similaridade-produtos/chart_similaridade_produtos.png) |
 | **Data App Streamlit (Item 9)** | Simulador de sensibilidade de ROI e Waterfall de ganho líquido | [`chart_data_app_simulador_roi.png`](presentation/pitch/roteiro/views-05-insights-ia/data-app-simulador-roi/chart_data_app_simulador_roi.png) |
 | **Arquitetura TCO Dadosfera vs AWS** | Contraste de Lead Time (-86%) e eliminação de sharding | [`chart_07_arquitetura_dadosfera_vs_aws.png`](presentation/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png) |
+
+---
+
+### 📦 Atalhos e Scripts Legados (Windows CLI)
+
+<details>
+<summary>Clique para expandir os comandos e atalhos legados do Windows (.cmd)</summary>
+<br>
+
+Caso utilize o ambiente Windows CMD ou PowerShell e deseje executar via wrappers locais legados:
+
+```powershell
+# Iniciar Data App em Streamlit:
+.\make data-app
+
+# Gerar datasets sintéticos:
+.\make mock-gen
+
+# Executar suíte de Data Quality (Item 4):
+.\make quality-eval
+
+# Executar extração de GenAI (Item 5):
+.\make genai-extract
+
+# Executar modelagem dimensional Kimball (Item 6):
+.\make data-modeling
+
+# Executar pipeline Medallion Stepsfera & ML (Item 8):
+.\make pipeline-run
+
+# Gerar todos os gráficos de Insights e BI:
+.\notebook-gen
+
+# Gerar gráficos do Pitch (Item 10):
+.\make pitch-charts
+
+# Fazer commit e push exclusivamente do README.md:
+.\push-read "mensagem de commit opcional"
+```
+
+</details>
+
+tion/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png) |
 
 ---
 
