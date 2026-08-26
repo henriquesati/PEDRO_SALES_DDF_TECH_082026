@@ -7,6 +7,14 @@
 > **Domínio de Negócio:** E-commerce / Marketplace — Recuperação de Carrinho e Conversão de GMV  
 > **Dashboard Asana:** [🔗 Acessar Tarefa / Dashboard no Asana](https://app.asana.com/1/1217663928788836/project/1217663175762797/task/1217665407947566?focus=true)  
 
+---
+
+### 📝 Nota do Desenvolvedor:
+Para esse projeto optei por uma abordagem voltada a arquitetura mais orientada a agentes de IA.  
+**Motivo:** Não tenho tanta intimidade com termos e jargões de DADOS, e com o imenso toolset ao redor (alta quantidade de data apps, conexões etc), e também achei o escopo bem grande e multidisciplinar. Identifiquei que pelo tamanho do escopo e do que seria gerado, ia ser impossível fazer tudo tendo em vista que a cada nova sessão o agent ia alucinar, fazer o que não devia ou duplicar coisas na codebase.  
+Segui então como parâmetro de dev uma abordagem 100% IA; estruturando a codebase (o que tem benefícios e malefícios) com documentos de normas e especificações em markdown. Após isso, em todo contexto eu especificava a nova tarefa e o agent ia fazendo scout nos documentos e especificações, coletando contexto e executando com quase 100% de accuracy.  
+Tive erros com a geração de gráficos finais justamente porque não declarei um agent guardião de referências visuais; o que aconteceu foi que fui alterando os scripts de geração e mesmo pedindo pra atualizar os contextos e referências, alguns se perderam na etapa final de geração de artefatos.
+
 
 ---
 
