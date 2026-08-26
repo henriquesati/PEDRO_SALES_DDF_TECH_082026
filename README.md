@@ -9,11 +9,10 @@
 
 ---
 
-
-
-
-| **Vídeo 1** | **Apresentação do Case — Visão Geral, Arquitetura, Governança, Qualidade & Lakehouse** | [▶️ Vídeo 1 (YouTube)](https://youtu.be/TZph9Lhy8VQ)(Unlisted) |
-| **Vídeo 2** | **Apresentação do Case — Demonstração Prática, BI, ML, Data App em Streamlit & Pitch** | [▶️ Vídeo 2 (YouTube)](https://youtu.be/XxtPzbOk8ZA) 
+| Vídeo | Escopo da Apresentação | Link Principal (YouTube) | Link Adicional (Google Drive) |
+|:---:|---|:---:|:---:|
+| **Vídeo 1** | **Apresentação do Case — Visão Geral, Arquitetura, Governança, Qualidade & Lakehouse** | [▶️ Vídeo 1 (YouTube)](https://youtu.be/TZph9Lhy8VQ) | [▶️ Vídeo 1 (Google Drive)](https://docs.google.com/videos/d/112pY9SEehN1Ns9fc26lxhBGrNap2PwVtW1wBJ9UePBI/edit?usp=sharing) |
+| **Vídeo 2** | **Apresentação do Case — Demonstração Prática, BI, ML, Data App em Streamlit & Pitch** | [▶️ Vídeo 2 (YouTube)](https://youtu.be/XxtPzbOk8ZA) | [▶️ Vídeo 2 (Google Drive)](https://docs.google.com/videos/d/1qPEeDBeC4l_SROuQBE9rVmg7R4CiaTzznecoT_El7cM/edit?usp=sharing) |
 
 ---
 
@@ -657,9 +656,9 @@ wheels/
 
 A apresentação executiva e técnica do case foi gravada e carregada no YouTube na modalidade **Não Listado (Unlisted)**, estruturada para demonstrar o valor da Dadosfera frente à arquitetura legada:
 
-### 🎥 Links da Apresentação no YouTube (Unlisted):
-- 🔗 **Vídeo 1 (Apresentação Geral, Arquitetura, Governança & Lakehouse):** [https://youtu.be/TZph9Lhy8VQ](https://youtu.be/TZph9Lhy8VQ)
-- 🔗 **Vídeo 2 (Demonstração Prática, BI, ML, Data App em Streamlit & Pitch):** [https://youtu.be/XxtPzbOk8ZA](https://youtu.be/XxtPzbOk8ZA)
+### 🎥 Links da Apresentação em Vídeo:
+- 🔗 **Vídeo 1 (Apresentação Geral, Arquitetura, Governança & Lakehouse):** [YouTube (Unlisted)](https://youtu.be/TZph9Lhy8VQ) • [Link Adicional (Google Drive)](https://docs.google.com/videos/d/112pY9SEehN1Ns9fc26lxhBGrNap2PwVtW1wBJ9UePBI/edit?usp=sharing)
+- 🔗 **Vídeo 2 (Demonstração Prática, BI, ML, Data App em Streamlit & Pitch):** [YouTube (Unlisted)](https://youtu.be/XxtPzbOk8ZA) • [Link Adicional (Google Drive)](https://docs.google.com/videos/d/1qPEeDBeC4l_SROuQBE9rVmg7R4CiaTzznecoT_El7cM/edit?usp=sharing)
 
 > [!IMPORTANT]
 > **Critérios de Avaliação Atendidos:**

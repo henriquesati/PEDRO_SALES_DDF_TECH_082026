@@ -1,6 +1,0 @@
-#	Pergunta de Negócio (Questão)	Tipo de Gráfico Escolhido	O que a Query SQL busca
-1	"Como o abandono evolui no tempo?" (Requisito de Série Temporal)	📈 Gráfico de Linha	Agrupa por data (dia/mês) e calcula a taxa de abandono ao longo do tempo.
-2	"Quais categorias perdem mais receita?" (Requisito de Categorias)	📊 Gráfico de Barras	Agrupa por categoria (Eletrônicos, Moda, etc.) e soma o valor abandonado.
-3	"Qual a divisão dos motivos de desistência?"	🍩 Gráfico de Rosca (Donut)	Agrupa por motivo_abandono e mostra o percentual de cada fatia (Preço 40%, Frete 30%...).
-4	"Qual canal de resgate gera mais retorno?"	📉 Gráfico de Barras Duplas (Combo)	Compara lado a lado o custo de envio vs a receita recuperada (Email vs WhatsApp vs SMS).
-5	"Qual o resumo geral de eficiência?"	🔢 Cartão Numérico (Big Number)	Mostra em tamanho grande os números-chave: Taxa Abandono: 70.9% e ROI: 45x.

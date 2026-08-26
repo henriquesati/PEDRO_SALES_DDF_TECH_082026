@@ -2,7 +2,10 @@
 
 > **Projeto**: Implementação da Plataforma Dadosfera no E-commerce com PoC em Recuperação de Carrinho Abandonado  
 > **Autor**: Pedro Sales  
-> **Fonte Estratégica**: `agents_prompts_refs/case-internship-files/user-case-raw-analyses.md`
+> **Identificador Oficial**: `PEDRO_SALES_DDF_TECH_082026`  
+> **Vídeo 1 (YouTube Unlisted):** [https://youtu.be/TZph9Lhy8VQ](https://youtu.be/TZph9Lhy8VQ)  
+> **Vídeo 2 (YouTube Unlisted):** [https://youtu.be/XxtPzbOk8ZA](https://youtu.be/XxtPzbOk8ZA)  
+> **Fonte Estratégica**: `agents_prompts_refs/case-internship-files/user-case-raw-analyses.md`  
 
 ---
 
