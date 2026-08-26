@@ -104,7 +104,7 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
   - Referência única: todas as regras de tipos, chaves e restrições são citadas como **"validações declaradas no corpo da entidade"**, eliminando duplicação de dados ou schemas.
 - **Atualização da Especificação Central do Catálogo**: [`data/catalogo/business-catalog-classification.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/catalogo/business-catalog-classification.md) evoluído para a versão 2.0 (Active).
 
-### ✅ 8. Gráficos de Insights de Negócio (`presentation/insights/`)
+### ✅ 8. Gráficos de Insights de Negócio (`insights/`)
 - **Objetivo**: Fornecer visualizações analíticas focadas para os insights de negócio do case de Carrinho Abandonado (`insights/`), com estética refinada (300 DPI, fundo branco `#FFFFFF`, curvas suaves spline e preenchimento de zonas coloridas `fill_between`), governadas pela **Fonte Canônica Master em `presentation/pitch/pitch_spec.md`**.
 - **Módulos Concluídos (100% Ground Truth Parquet)**:
   - ✅ `01_descriptive/01_bi_recuperacao_carrinhos/`: Evolução temporal acumulada (início em 0 até 7.500 no topo), linha basal de compras diretas (1.731 un), resgate Dadosfera (498 un) e total comprado (2.229 un) com mini cards pareados 1-para-1.
@@ -113,7 +113,7 @@ Atuar como a **fonte central de contexto técnico e memória viva do projeto**. 
   - ✅ `02_risk/01_segmentacao_risco/`: Matriz diagnóstica de risco (Score de Sessão vs RFM) e distribuição de volume/receita represada.
   - ✅ `03_prescriptive/01_estrategia_resgate_segmento/`: Simulador de viabilidade econômica líquida por canal/cluster RFM e matriz prescritiva de políticas.
   - ✅ `03_prescriptive/02_otimizacao_timing_envio/`: Curva de decaimento temporal de conversão (Decay Curve) com ponto ótimo de disparo em até +1h.
-- **Orquestração**: Orquestrador em lote `presentation/insights/run_all_insights_charts.py` e comando integrado no Makefile `python make.py insights-charts`.
+- **Orquestração**: Orquestrador em lote `insights/run_all_insights_charts.py` e comando integrado no Makefile `python make.py insights-charts`.
 
 ### ✅ 9. Camada Semântica de Métricas & Governança de KPIs (`metrics/`)
 - **Papel Arquitetural**: Single Source of Truth (SSOT) de Fórmulas Matemáticas, Indicadores de Negócio, Matriz Dimensional, Confiabilidade de Dados (DQ/SLO) e Avaliação de IA/ML, amarrando 100% dos dados com referências cruzadas bidirecionais.

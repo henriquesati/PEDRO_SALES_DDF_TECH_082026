@@ -2,6 +2,7 @@
 
 > **Módulo do Pitch**: `presentation/pitch/views/caseitem06/`  
 > **Item do Case**: Item 6 — Sobre Modelagem de Dados  
+> **Master Source of Truth**: [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md#33-modelagem-dimensional-kimball-item-6)  
 > **Framework Normativo**: Kimball Star Schema (1-Hop) • DEC-001 (% e Ratios) • DEC-006 (Dual-Artifact Silver)  
 > **Origem dos Dados (Ground Truth)**: `data/mock/output_cleaned/parquet/*.parquet`  
 > **Doc de Referência Central**: [`pipelines/case-item-06/specs.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/specs.md)

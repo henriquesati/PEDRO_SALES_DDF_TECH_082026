@@ -2,7 +2,7 @@
 
 > **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../presentation/pitch/pitch_spec.md) (Seções 4 e 5)  
 > **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)  
-> **Artefato Visual Correspondente**: [`presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png`](../../presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png)
+> **Artefato Visual Correspondente**: [`insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png`](../../insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png)
 
 ---
 
@@ -35,7 +35,7 @@ Qual é a janela temporal inicial candidata e qual a cadência de reengajamento 
 
 > [!IMPORTANT]
 > **GOVERNANÇA METODOLÓGICA DE DADOS: NENHUMA SUPOSIÇÃO ARBITRÁRIA**
-> - **Evidência Medida no Dataset**: A análise empírica dos dados persistidos em `eventos_resgate.parquet` e plotados em [`chart_05_otimizacao_timing_envio.png`](../../presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png) demonstra que a **janela de +1h concentrou 86,4% do total de conversões de réguas**, apresentando a maior taxa unitária de conversão por disparo (1,04%) e taxa de abertura de 44,3%.
+> - **Evidência Medida no Dataset**: A análise empírica dos dados persistidos em `eventos_resgate.parquet` e plotados em [`chart_05_otimizacao_timing_envio.png`](../../insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png) demonstra que a **janela de +1h concentrou 86,4% do total de conversões de réguas**, apresentando a maior taxa unitária de conversão por disparo (1,04%) e taxa de abertura de 44,3%.
 > - **Ressalva Metodológica para o Pitch**: Em vez de assumir percentuais especulativos ou declarar categoricamente que *"o horário ótimo é +1h"*, a formulação rigorosa é:  
 > > *"Nos dados observados, a janela de +1h apresentou a maior taxa de conversão e concentrou a esmagadora maioria das conversões (86,4%), indicando +1h como a janela inicial candidata prioritária para calibração contínua via testes A/B na plataforma Dadosfera."*
 
@@ -67,7 +67,7 @@ Qual é a janela temporal inicial candidata e qual a cadência de reengajamento 
 1. **Cálculo da Latência de Disparo**: `TIMESTAMPDIFF(HOUR, carrinhos.data_abandono, eventos_resgate.data_envio)`.
 2. **Agrupamento por Onda Temporal**: Mapear para réguas padronizadas (`lembrete_1h`, `lembrete_24h`, `desconto_48h`, `urgencia_72h`).
 3. **Métricas Empíricas**: Calcular taxas reais de abertura, cliques e conversões observadas diretamente nos logs.
-4. **Visualização**: Curva de decaimento temporal conectando os vértices reais de resposta ([`chart_05_otimizacao_timing_envio.png`](../../presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png)).
+4. **Visualização**: Curva de decaimento temporal conectando os vértices reais de resposta ([`chart_05_otimizacao_timing_envio.png`](../../insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png)).
 
 ---
 

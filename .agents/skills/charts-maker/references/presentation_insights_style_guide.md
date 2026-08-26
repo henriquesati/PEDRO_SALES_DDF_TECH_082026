@@ -6,7 +6,7 @@ Este documento estabelece o **padrão visual obrigatório (Default Style)** para
 
 ## 1. 🎯 Princípio Central de Design
 
-O padrão visual do projeto segue a identidade corporativa e analítica de **`presentation/insights/`**:
+O padrão visual do projeto segue a identidade corporativa e analítica de **`insights/`**:
 - **Clareza Executiva**: Fundo branco puro (`#FFFFFF`), tipografia sem serifa moderna, hierarquia nítida entre dados observados e anotações.
 - **Rigor Matemático (Ground Truth)**: 100% dos dados plotados devem vir de fontes persistidas (`.parquet`), proibindo estritamente escalas artificiais, offsets ou multiplicadores arbitrários.
 - **Eliminação de Poluição Visual**: Ocultação de bordas desnecessárias (spines superior e direita), grades suaves e legendas em caixas compactas.
@@ -135,9 +135,9 @@ ax.spines["bottom"].set_color("#CBD5E1")
 ## 5. 📂 Links de Referência no Repositório
 
 Para consultar as implementações de referência em produção:
-- **Descritivos**: [`presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py)
-- **Motivos & Perda Financeira**: [`presentation/insights/01_descriptive/02_motivos_abandono/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/02_motivos_abandono/generate_chart.py)
-- **CAC & ROI**: [`presentation/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py)
-- **Risco & Dashboards Executivos**: [`presentation/insights/02_risk/01_segmentacao_risco/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/generate_chart.py)
-- **Estratégia Prescritiva**: [`presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py)
-- **Orquestrador Master de Gráficos**: [`presentation/insights/run_all_insights_charts.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/run_all_insights_charts.py)
+- **Descritivos**: [`insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py)
+- **Motivos & Perda Financeira**: [`insights/01_descriptive/02_motivos_abandono/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/02_motivos_abandono/generate_chart.py)
+- **CAC & ROI**: [`insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py)
+- **Risco & Dashboards Executivos**: [`insights/02_risk/01_segmentacao_risco/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/generate_chart.py)
+- **Estratégia Prescritiva**: [`insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py)
+- **Orquestrador Master de Gráficos**: [`insights/run_all_insights_charts.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/run_all_insights_charts.py)

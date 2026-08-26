@@ -1,5 +1,13 @@
 # Especificação Visual & Ponto do Pitch: Data App Simulador de ROI & GenAI
 
+> **Módulo do Pitch**: `presentation/pitch/08_data_app_simulador_prescritivo_genai/`  
+> **Item do Case**: Itens 9 e Bônus — Data App Streamlit & Copiloto GenAI  
+> **Master Source of Truth**: [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md#35-data-app-e-inteligência-com-genai-itens-9-e-bônus)  
+> **Artefato Visual**: [`chart_08_simulador_roi_data_app.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/08_data_app_simulador_prescritivo_genai/chart_08_simulador_roi_data_app.png)  
+> **Script Gerador**: [`generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/08_data_app_simulador_prescritivo_genai/generate_chart.py)
+
+---
+
 ## 📌 Contexto & Ponto do Pitch (Itens 9 e Bônus)
 - **Data App Streamlit (Item 9)**: Interface interativa onde o gestor de marketing ou C-Level pode calibrar parâmetros em tempo real (volume de carrinhos, investimento por canal, desconto ofertado) e visualizar instantaneamente o ROI projetado e a curva de conversão.
 - **Camada de IA Generativa & LLMs (Item 5 e Bônus)**:
@@ -17,7 +25,3 @@ Fechar a apresentação com "chave de ouro" (nível *Outlier*), mostrando que a 
 ## 📍 Mapeamento Plataforma Dadosfera
 - **Módulo**: Consumir / Data Apps & IA Generativa.
 - **Framework**: Streamlit / Python integrado via Docker/Dadosfera Workspace.
-
-## 🖼️ Artefato Visual Gerado
-- **Arquivo**: [`chart_08_simulador_roi_data_app.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/08_data_app_simulador_prescritivo_genai/chart_08_simulador_roi_data_app.png)
-- **Tipo de Gráfico**: Mockup Visual do Painel de Simulação de ROI & Interface Streamlit/GenAI.

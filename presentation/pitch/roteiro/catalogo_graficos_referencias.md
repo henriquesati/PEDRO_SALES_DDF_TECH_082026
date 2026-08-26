@@ -10,9 +10,9 @@
 
 - [🏛️ 1. View de Arquitetura & Roteiro (`presentation/pitch/roteiro/arquitetura-view/`)](#1-view-de-arquitetura--roteiro)
 - [🎯 2. Apresentação Pitch Executivo (`presentation/pitch/`)](#2-apresentação-pitch-executivo)
-- [📈 3. Galeria Descritiva (`presentation/insights/01_descriptive/`)](#3-galeria-descritiva)
-- [⚠️ 4. Galeria de Risco & Diagnóstico (`presentation/insights/02_risk/`)](#4-galeria-de-risco--diagnóstico)
-- [💡 5. Galeria Prescritiva & Otimização (`presentation/insights/03_prescriptive/`)](#5-galeria-prescritiva--otimização)
+- [📈 3. Galeria Descritiva (`insights/01_descriptive/`)](#3-galeria-descritiva)
+- [⚠️ 4. Galeria de Risco & Diagnóstico (`insights/02_risk/`)](#4-galeria-de-risco--diagnóstico)
+- [💡 5. Galeria Prescritiva & Otimização (`insights/03_prescriptive/`)](#5-galeria-prescritiva--otimização)
 - [⚙️ 6. Pipelines Técnicos dos Case Items (`pipelines/`)](#6-pipelines-técnicos-dos-case-items)
 
 ---
@@ -42,7 +42,8 @@ Diretório: [`presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/`](fi
 | **📦 View: Categorias & Produtos Mais Abandonados** | [`chart_03_produtos_mais_abandonados.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-04-insights/prescritivos/produtosabandonados/chart_03_produtos_mais_abandonados.png) | **Ato 3 / Seção [4.2] do Roteiro**: Matriz Multidimensional de Posicionamento (Scatter Log + 4 Quadrantes), Top 5 SKUs Críticos (Eletrônicos) e 5 Cards Prescritivos Executivos de Intervenção de Catálogo e UX. |
 | **📈 View: ROI de Campanhas & Rebalanceamento Orçamentário** | [`chart_04_roi_campanhas_resgate.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-04-insights/prescritivos/roicampanhas/chart_04_roi_campanhas_resgate.png) | **Ato 3 / Seção [4.2] do Roteiro**: Funil de engajamento multicanal e prescrição de alocação ótima de budget (85% E-mail / 12% WhatsApp VIP). |
 | **🧠 View: Módulo de Inteligência & IA Master** | [`chart_insights_ia_master.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-05-insights-ia/chart_insights_ia_master.png) | **Ato 4 / Seção [5] do Roteiro**: Painel consolidado demonstrando a evolução de maturidade de IA (Antes vs Agora) e a Tríade de Inteligência (Stepsfera ML, GenAI Pydantic e Streamlit Data Apps). |
-| **🎯 View: Modelos Preditivos de Negócio (ML)** | [`chart_modelos_preditivos_ml.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-05-insights-ia/modelos-preditivos-ml/chart_modelos_preditivos_ml.png) | **Ato 4 / Seção [5.1] do Roteiro**: Curva ROC (AUC: 0.9478), Acurácia de 99.53% e Feature Importance dos drivers determinantes de recuperação de carrinhos. |
+| **🎯 View: Modelos Preditivos de Negócio (ML)** | [`chart_modelos_preditivos_ml.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-05-insights-ia/modelos-preditivos-ml/chart_modelos_preditivos_ml.png) | **Ato 4 / Seção [5.1] do Roteiro**: Curva ROC (AUC: 0.9478), Acurácia de 99.53% e Scorecard de validação do classificador de propensão de resgate. |
+| **⚖️ View: Feature Importance & Pesos ML (XAI)** | [`chart_feature_importance_ml.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-05-insights-ia/feature-importance-ml/chart_feature_importance_ml.png) | **Ato 4 / Seção [5.1.1] do Roteiro**: Ranking de importância de features (Ticket +38.4%, RFM VIP +26.2%, Frete +18.5%), decomposição dimensional e matriz de regras de CRM. |
 | **🤖 View: GenAI & Extração de Features de Catálogo** | [`chart_genai_extracao_copies.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-05-insights-ia/genai-extracao-copies/chart_genai_extracao_copies.png) | **Ato 4 / Seção [5.2] do Roteiro**: Validação 100% Pydantic em JSON Schema e aumento de +18% de CTR no resgate de clientes através de copies contextuais. |
 | **🔍 View: Busca Semântica & Embeddings de Produtos** | [`chart_similaridade_produtos.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-05-insights-ia/similaridade-produtos/chart_similaridade_produtos.png) | **Ato 4 / Seção [5.3] do Roteiro**: Projeção vetorial 2D (t-SNE) e motor de similaridade de cosseno gerando +12.4% de recuperação cruzada com produtos substitutos. |
 | **📊 View: Data Apps em Streamlit & Simulador de ROI** | [`chart_data_app_simulador_roi.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/views-05-insights-ia/data-app-simulador-roi/chart_data_app_simulador_roi.png) | **Ato 4 / Seção [5.4] do Roteiro**: Simulador de sensibilidade de ROI (45x) e gráfico waterfall de receita líquida incremental (+R$ 167,9k) com deploy com 1 clique. |
@@ -64,49 +65,49 @@ Diretório: [`presentation/pitch/`](file:///c:/Users/pedro/OneDrive/Desktop/whee
 
 ## 📈 3. Galeria Descritiva
 
-Diretório: [`presentation/insights/01_descriptive/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/)
+Diretório: [`insights/01_descriptive/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/)
 
 | Visualização / Gráfico | Link Direto para o Arquivo | Destaques Técnicos |
 | :--- | :--- | :--- |
-| **BI: Funil de Recuperação de Carrinhos** | [`chart_bi_recuperacao_carrinhos.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png) | Série temporal com 70% de abandono basal e **10.1% de taxa de recuperação** com réguas Dadosfera (+50% de lift). |
-| **BI: Série Sinuosa 1 Semana** | [`chart_bi_recuperacao_carrinhos_sinuous_1week.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos_sinuous_1week.png) | Detalhamento intra-semanal com variação horária de criação, abandono e resgate. |
-| **Mini Card: Zonas Acumulado Reto** | [`mini_card_zonas_acumulado_reto.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/mini_card_zonas_acumulado_reto.png) | Mini card executivo consolidando os 7.500 carrinhos semestrais. |
-| **Mini Card: Zonas Dupla** | [`mini_card_zonas_dupla.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/mini_card_zonas_dupla.png) | Card duplo comparativo de conversão orgânica vs. resgatados. |
-| **Mini Card: Zonas Sinuoso 1 Semana** | [`mini_card_zonas_sinuoso_1semana.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/mini_card_zonas_sinuoso_1semana.png) | Mini card de telemetria semanal. |
-| **Motivos de Abandono (Barras)** | [`chart_02_motivos_abandono.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/02_motivos_abandono/chart_02_motivos_abandono.png) | Decomposição percentual de causas de abandono (Frete 38%, Indecisão 24%, Cadastro 18%, etc.). |
-| **Treemap de Motivos de Abandono** | [`chart_02_treemap_motivos_abandono.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/02_motivos_abandono/chart_02_treemap_motivos_abandono.png) | Visualização hierárquica por representatividade de abandono. |
-| **Perda Financeira por Motivo & Ticket** | [`chart_02_perda_financeira_motivos.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/02_motivos_abandono/chart_02_perda_financeira_motivos.png) | Cruzamento do motivo de abandono com faixas de ticket médio. |
-| **Custo de Recuperação & ROI de Disparos** | [`chart_03_custo_recuperacao_roi.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png) | Eficiência financeira por canal e **ROI consolidado de 45x multiplicador** sobre custos de envio. |
+| **BI: Funil de Recuperação de Carrinhos** | [`chart_bi_recuperacao_carrinhos.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png) | Série temporal com 70% de abandono basal e **10.1% de taxa de recuperação** com réguas Dadosfera (+50% de lift). |
+| **BI: Série Sinuosa 1 Semana** | [`chart_bi_recuperacao_carrinhos_sinuous_1week.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos_sinuous_1week.png) | Detalhamento intra-semanal com variação horária de criação, abandono e resgate. |
+| **Mini Card: Zonas Acumulado Reto** | [`mini_card_zonas_acumulado_reto.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/01_bi_recuperacao_carrinhos/mini_card_zonas_acumulado_reto.png) | Mini card executivo consolidando os 7.500 carrinhos semestrais. |
+| **Mini Card: Zonas Dupla** | [`mini_card_zonas_dupla.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/01_bi_recuperacao_carrinhos/mini_card_zonas_dupla.png) | Card duplo comparativo de conversão orgânica vs. resgatados. |
+| **Mini Card: Zonas Sinuoso 1 Semana** | [`mini_card_zonas_sinuoso_1semana.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/01_bi_recuperacao_carrinhos/mini_card_zonas_sinuoso_1semana.png) | Mini card de telemetria semanal. |
+| **Motivos de Abandono (Barras)** | [`chart_02_motivos_abandono.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/02_motivos_abandono/chart_02_motivos_abandono.png) | Decomposição percentual de causas de abandono (Frete 38%, Indecisão 24%, Cadastro 18%, etc.). |
+| **Treemap de Motivos de Abandono** | [`chart_02_treemap_motivos_abandono.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/02_motivos_abandono/chart_02_treemap_motivos_abandono.png) | Visualização hierárquica por representatividade de abandono. |
+| **Perda Financeira por Motivo & Ticket** | [`chart_02_perda_financeira_motivos.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/02_motivos_abandono/chart_02_perda_financeira_motivos.png) | Cruzamento do motivo de abandono com faixas de ticket médio. |
+| **Custo de Recuperação & ROI de Disparos** | [`chart_03_custo_recuperacao_roi.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png) | Eficiência financeira por canal e **ROI consolidado de 45x multiplicador** sobre custos de envio. |
 
 ---
 
 ## ⚠️ 4. Galeria de Risco & Diagnóstico
 
-Diretório: [`presentation/insights/02_risk/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/)
+Diretório: [`insights/02_risk/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/)
 
 | Visualização / Gráfico | Link Direto para o Arquivo | Destaques Técnicos |
 | :--- | :--- | :--- |
-| **Painel de Segmentação de Risco** | [`chart_03_segmentacao_risco.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/chart_03_segmentacao_risco.png) | Matriz consolidada de risco baseada em inatividade, histórico do cliente e valor da cesta. |
-| **Dashboard 01: Visão Geral de Risco (KPIs)** | [`chart_03_dashboard_01_risk_overview.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_01_risk_overview.png) | Métricas agregadas de exposição financeira e volume sob risco. |
-| **Dashboard 02: Drivers de Risco** | [`chart_03_dashboard_02_risk_drivers.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_02_risk_drivers.png) | Decomposição das variáveis preditivas de risco de abandono. |
-| **Dashboard 03a: Fila de Priorização de Resgate** | [`chart_03_dashboard_03a_fila_acionamento.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_03a_fila_acionamento.png) | Fila que prioriza os **20% de carrinhos com mais de 65% do faturamento recuperável**. |
-| **Dashboard 03b: Matriz Risco x ROI** | [`chart_03_dashboard_03b_matriz_risk_roi.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_03b_matriz_risk_roi.png) | Matriz cruzando probabilidade de conversão vs. retorno financeiro esperado. |
-| **Dashboard 03: Matriz de Intervenção Combinada** | [`chart_03_dashboard_03_intervention_matrix.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_03_intervention_matrix.png) | Painel completo combinando fila de acionamento e matriz de calor. |
-| **LTV Histórico vs Abandono** | [`chart_02_ltv_vs_abandono.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/02_ltv_vs_abandono/chart_02_ltv_vs_abandono.png) | Correlação entre o valor vitalício do cliente (LTV) e a propensão a responder réguas de resgate. |
-| **Matriz Prescritiva de Viabilidade** | [`chart_03_viabilidade_recuperacao_carrinho.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/03_viabilidade_recuperacao_carrinho/chart_03_viabilidade_recuperacao_carrinho.png) | Gráfico de dispersão classificando carrinhos por viabilidade econômica dentro da janela de 28h. |
+| **Painel de Segmentação de Risco** | [`chart_03_segmentacao_risco.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/chart_03_segmentacao_risco.png) | Matriz consolidada de risco baseada em inatividade, histórico do cliente e valor da cesta. |
+| **Dashboard 01: Visão Geral de Risco (KPIs)** | [`chart_03_dashboard_01_risk_overview.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_01_risk_overview.png) | Métricas agregadas de exposição financeira e volume sob risco. |
+| **Dashboard 02: Drivers de Risco** | [`chart_03_dashboard_02_risk_drivers.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_02_risk_drivers.png) | Decomposição das variáveis preditivas de risco de abandono. |
+| **Dashboard 03a: Fila de Priorização de Resgate** | [`chart_03_dashboard_03a_fila_acionamento.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_03a_fila_acionamento.png) | Fila que prioriza os **20% de carrinhos com mais de 65% do faturamento recuperável**. |
+| **Dashboard 03b: Matriz Risco x ROI** | [`chart_03_dashboard_03b_matriz_risk_roi.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_03b_matriz_risk_roi.png) | Matriz cruzando probabilidade de conversão vs. retorno financeiro esperado. |
+| **Dashboard 03: Matriz de Intervenção Combinada** | [`chart_03_dashboard_03_intervention_matrix.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/chart_03_dashboard_03_intervention_matrix.png) | Painel completo combinando fila de acionamento e matriz de calor. |
+| **LTV Histórico vs Abandono** | [`chart_02_ltv_vs_abandono.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/02_ltv_vs_abandono/chart_02_ltv_vs_abandono.png) | Correlação entre o valor vitalício do cliente (LTV) e a propensão a responder réguas de resgate. |
+| **Matriz Prescritiva de Viabilidade** | [`chart_03_viabilidade_recuperacao_carrinho.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/03_viabilidade_recuperacao_carrinho/chart_03_viabilidade_recuperacao_carrinho.png) | Gráfico de dispersão classificando carrinhos por viabilidade econômica dentro da janela de 28h. |
 
 ---
 
 ## 💡 5. Galeria Prescritiva & Otimização
 
-Diretório: [`presentation/insights/03_prescriptive/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/)
+Diretório: [`insights/03_prescriptive/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/03_prescriptive/)
 
 | Visualização / Gráfico | Link Direto para o Arquivo | Destaques Técnicos |
 | :--- | :--- | :--- |
-| **Estratégia de Resgate por Segmento RFM** | [`chart_04_estrategia_resgate_segmento.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png) | **Preservação de Margem**: Clientes Premium convertem 18% com WhatsApp humanizado *sem desconto*, enquanto Novos recebem cupom para frete. |
-| **Otimização de Timing & Curva de Decaimento** | [`chart_05_otimizacao_timing_envio.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png) | Curva de decaimento temporal: a janela de **+1h concentrou 86,4% das conversões observadas** na amostra. |
-| **Categorias e Produtos Mais Abandonados** | [`chart_03_produtos_mais_abandonados.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/03_produtos_mais_abandonados/chart_03_produtos_mais_abandonados.png) | Matriz Multidimensional de Posicionamento (Scatter Log), Top 5 SKUs Críticos e Matriz de Ação Prescritiva de Catálogo (Eletrônicos, Casa, Moda, Esportes, Beleza). |
-| **ROI e Eficiência de Campanhas de Resgate** | [`chart_04_roi_campanhas_resgate.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/04_roi_campanhas_resgate/chart_04_roi_campanhas_resgate.png) | Matriz de sensibilidade comparando canais (Email R$ 0,05 vs SMS R$ 0,15 vs WhatsApp R$ 0,30). |
+| **Estratégia de Resgate por Segmento RFM** | [`chart_04_estrategia_resgate_segmento.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png) | **Preservação de Margem**: Clientes Premium convertem 18% com WhatsApp humanizado *sem desconto*, enquanto Novos recebem cupom para frete. |
+| **Otimização de Timing & Curva de Decaimento** | [`chart_05_otimizacao_timing_envio.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png) | Curva de decaimento temporal: a janela de **+1h concentrou 86,4% das conversões observadas** na amostra. |
+| **Categorias e Produtos Mais Abandonados** | [`chart_03_produtos_mais_abandonados.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/03_prescriptive/03_produtos_mais_abandonados/chart_03_produtos_mais_abandonados.png) | Matriz Multidimensional de Posicionamento (Scatter Log), Top 5 SKUs Críticos e Matriz de Ação Prescritiva de Catálogo (Eletrônicos, Casa, Moda, Esportes, Beleza). |
+| **ROI e Eficiência de Campanhas de Resgate** | [`chart_04_roi_campanhas_resgate.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/03_prescriptive/04_roi_campanhas_resgate/chart_04_roi_campanhas_resgate.png) | Matriz de sensibilidade comparando canais (Email R$ 0,05 vs SMS R$ 0,15 vs WhatsApp R$ 0,30). |
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../presentation/pitch/pitch_spec.md) (Seções 4 e 5)  
 > **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)  
-> **Artefato Visual Correspondente**: [`presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png`](../../presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png)
+> **Artefato Visual Correspondente**: [`insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png`](../../insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png)
 
 ---
 
@@ -35,7 +35,7 @@ Qual é a política ótima de resgate (canal de comunicação e incentivo financ
 
 > [!IMPORTANT]
 > **GOVERNANÇA METODOLÓGICA: DADOS ORIUNDOS DO SIMULADOR E DATASET**
-> As decisões de alocação de canal não assumem percentuais arbitrários a priori; elas derivam da equação de viabilidade econômica líquida calculada sobre o Ticket Médio de cada segmento e custos reais de canais, conforme visualizado em [`chart_04_estrategia_resgate_segmento.png`](../../presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png).
+> As decisões de alocação de canal não assumem percentuais arbitrários a priori; elas derivam da equação de viabilidade econômica líquida calculada sobre o Ticket Médio de cada segmento e custos reais de canais, conforme visualizado em [`chart_04_estrategia_resgate_segmento.png`](../../insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png).
 
 ### 1. Segmento PREMIUM (Ticket Médio R$ 800,00)
 - **Diagnóstico Comportamental**: Clientes fiéis e de alto valor. O abandono decorre predominantemente de dúvidas pontuais ou interrupções de navegação.
@@ -68,5 +68,5 @@ Qual é a política ótima de resgate (canal de comunicação e incentivo financ
 ## ✅ Como Validar (Definition of Done)
 
 - **Viabilidade Estrita**: Nenhum acionamento via canal com custo $\ge \text{R\$} 0,15$ pode ser aprovado para cestas onde a margem líquida esperada resulte em prejuízo financeiro.
-- **Alinhamento com o Gráfico**: A matriz prescritiva de canais deve corresponder integralmente às zonas de viabilidade plotadas em [`chart_04_estrategia_resgate_segmento.png`](../../presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png).
+- **Alinhamento com o Gráfico**: A matriz prescritiva de canais deve corresponder integralmente às zonas de viabilidade plotadas em [`chart_04_estrategia_resgate_segmento.png`](../../insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png).
 - **Proteção de Margem**: Validar a regra de Cupom Zero para clientes Premium em 100% das simulações.

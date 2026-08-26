@@ -41,7 +41,7 @@ O módulo `pipelines/case-item-07/` atua como o **Hub Central de Conexão Analí
                  ▼                         ▼                                  ▼                         ▼
   ┌─────────────────────────────┐ ┌─────────────────────────────┐ ┌─────────────────────────────┐ ┌─────────────────────────────┐
   │  DASHBOARDS METABASE (ITEM 7)│ │ CAMADA SEMÂNTICA DE MÉTRICAS│ │ MODELAGEM KIMBALL DW (IT. 6)│ │  GALERIA DE INSIGHTS & BI   │
-  │ • dashboards/               │ │ • metrics/                  │ │ • pipelines/case-item-06/   │ │ • presentation/insights/    │
+  │ • dashboards/               │ │ • metrics/                  │ │ • pipelines/case-item-06/   │ │ • insights/    │
   │   dashboard_recuperacao_    │ │   catalogo_kpis.md          │ │   v_abandonment_summary     │ │   01_descriptive/           │
   │   carrinho.md               │ │   matriz_metricas_dimensoes │ │   v_recovery_roi_by_segment │ │   02_risk/                  │
   │ • Queries SQL para Metabase │ │   arvore_metricas_driver_tree││ • Star Schema Snowflake     │ │   03_prescriptive/          │
@@ -57,7 +57,7 @@ O módulo `pipelines/case-item-07/` atua como o **Hub Central de Conexão Analí
 | **Métricas de DQ & SLO** | [`metrics/metricas_data_quality_slo.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/metrics/metricas_data_quality_slo.md) | Telemetria de volumetria auditada, taxa de conformidade (98.76%) e quarentena Silver Anomalies |
 | **Modelagem Dimensional Gold** | [`pipelines/case-item-06/specs.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/specs.md) | Schemas dimensionais Kimball, tabelas de fatos (`fato_abandono`, `fato_resgate`) e visões analíticas |
 | **Regras Canônicas de Negócio** | [`data/data-models/logical/business-rules.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/data-models/logical/business-rules.md) | SSOT de invariantes contábeis, temporalidade de abandono (15 min) e lógicas de BI |
-| **Galeria de Gráficos Analíticos** | [`presentation/insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/) | Scripts e specs de visualizações analíticas em alta resolução (300 DPI) |
+| **Galeria de Gráficos Analíticos** | [`insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/) | Scripts e specs de visualizações analíticas em alta resolução (300 DPI) |
 
 ---
 

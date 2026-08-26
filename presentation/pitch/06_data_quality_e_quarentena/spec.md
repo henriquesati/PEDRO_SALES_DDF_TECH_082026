@@ -1,5 +1,13 @@
 # Especificação Visual & Aspecto Técnico: Data Quality & Quarentena de Anomalias
 
+> **Módulo do Pitch**: `presentation/pitch/06_data_quality_e_quarentena/`  
+> **Item do Case**: Item 4 — Governança & Data Quality  
+> **Master Source of Truth**: [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md#34-governança-ativa-e-data-quality-item-4)  
+> **Artefato Visual**: [`chart_06_scorecard_data_quality.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/06_data_quality_e_quarentena/chart_06_scorecard_data_quality.png)  
+> **Script Gerador**: [`generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/06_data_quality_e_quarentena/generate_chart.py)
+
+---
+
 ## 📌 Contexto & Aspecto Técnico (Item 4)
 - **Desafio de Governança**: Em e-commerces com alto volume transacional, dados corrompidos (frete negativo, emails malformados, totais divergentes) poluem o CRM e geram disparos errôneos ou prejuízo financeiro.
 - **Arquitetura Dual-Artifact (DEC-006)**:
@@ -18,7 +26,3 @@ Provar a superioridade técnica da Dadosfera contra pipelines manuais: a governa
 - **Módulo**: Processar / Pipelines & Qualify.
 - **Camada**: Silver (`[entidade]_qualify` vs `[entidade]_anomalies`).
 - **Suíte de Testes**: Great Expectations (`carrinhos_suite.json`).
-
-## 🖼️ Artefato Visual Gerado
-- **Arquivo**: [`chart_06_scorecard_data_quality.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/06_data_quality_e_quarentena/chart_06_scorecard_data_quality.png)
-- **Tipo de Gráfico**: Scorecard & Gráfico de Rosca / Barras de Conformidade e Quarentena.

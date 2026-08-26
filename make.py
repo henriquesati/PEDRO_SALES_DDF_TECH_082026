@@ -30,7 +30,7 @@ def task_notebook_gen(chart_name: str | None = None) -> None:
     print(f"\n[TASK: notebook-gen] Executando gerador de imagens de BI e Insights...")
     res = subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
     if res.returncode == 0:
-        print("[TASK: notebook-gen] Imagens geradas com sucesso em presentation/insights/!\n")
+        print("[TASK: notebook-gen] Imagens geradas com sucesso em insights/!\n")
     else:
         print("[ERRO] Falha na geração das imagens.", file=sys.stderr)
         sys.exit(res.returncode)
@@ -146,7 +146,7 @@ Comandos disponíveis:
   python make.py data-modeling              Gera a modelagem Kimball Gold DW (Item 6)
   python make.py bi-analysis                Gera as 6 visualizações e métricas de BI (Item 7)
   python make.py pitch-charts               Gera todos os 8 gráficos do Pitch (Item 10)
-  python make.py insights-charts            Gera os gráficos de Insights (presentation/insights/)
+  python make.py insights-charts            Gera os gráficos de Insights (insights/)
   python make.py notebook-gen               Gera todas as 6 imagens de BI (Item 7)
   python make.py notebook-gen [CHART]       Gera apenas o gráfico especificado
   python make.py chart [CHART]              Atalho para gerar um gráfico específico

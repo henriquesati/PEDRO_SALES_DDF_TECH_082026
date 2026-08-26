@@ -91,6 +91,6 @@ O módulo `pipelines/case-item-07/` conecta-se diretamente aos seguintes artefat
 - **Dashboards Metabase:** [`dashboards/dashboard_recuperacao_carrinho.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/dashboard_recuperacao_carrinho.md)
 - **Camada Semântica de Métricas:** [`metrics/catalogo_kpis.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/metrics/catalogo_kpis.md) & [`metrics/matriz_metricas_dimensoes.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/metrics/matriz_metricas_dimensoes.md)
 - **Modelagem Dimensional Gold (Item 6):** [`pipelines/case-item-06/specs.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/specs.md)
-- **Galeria de Gráficos de Insights:** [`presentation/insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/)
+- **Galeria de Gráficos de Insights:** [`insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/)
 - **Guidelines do Pitch (Item 10):** [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md)
 - **Regras Canônicas de Negócio:** [`data/data-models/logical/business-rules.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/data/data-models/logical/business-rules.md)

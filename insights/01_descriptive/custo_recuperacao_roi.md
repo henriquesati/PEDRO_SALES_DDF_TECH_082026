@@ -2,7 +2,7 @@
 
 > **Referência Canônica Master**: [`presentation/pitch/pitch_spec.md`](../../presentation/pitch/pitch_spec.md) (Seções 4 e 5)  
 > **Base de Dados Unificada**: `data/mock/output_cleaned/parquet/*.parquet` (Ground Truth)  
-> **Artefato Visual Correspondente**: [`presentation/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png`](../../presentation/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png)
+> **Artefato Visual Correspondente**: [`insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png`](../../insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png)
 
 ## ❓ Pergunta de Negócio
 Qual é o custo efetivo por carrinho recuperado (CAC de Resgate) em cada canal de comunicação (Email, SMS, WhatsApp, Push) e qual o retorno sobre o investimento (ROI líquido) e margem residual gerados na esteira de recuperação da plataforma?
@@ -65,7 +65,7 @@ Qual é o custo efetivo por carrinho recuperado (CAC de Resgate) em cada canal d
    - **Painel Duplo Integrado**:
      - *Painel 1 (CAC de Resgate)*: Barras horizontais do custo por conversão em R$ e % sobre o Ticket Médio.
      - *Painel 2 (Retorno Líquido & ROI)*: Comparativo de Receita Líquida vs Custo Total com Múltiplo de ROI destacado.
-   - **Artefato Gerado**: [`chart_03_custo_recuperacao_roi.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png).
+   - **Artefato Gerado**: [`chart_03_custo_recuperacao_roi.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png).
 
 ---
 

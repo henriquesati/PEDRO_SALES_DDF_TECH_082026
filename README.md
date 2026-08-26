@@ -34,7 +34,7 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 | **8** | Pipelines ETL/ML & Snowpark | Processar | Pipeline Medallion funcional, catálogo Stepsfera, validação modular, modelo preditivo e processamento Snowpark | ✅ Concluído |
 | **9** | Data Apps & GenAI | Consumir | Data App Streamlit com simulador de ROI, similaridade vetorial (t-SNE) e vitrine GenAI em [`pipelines/case-item-09/`](pipelines/case-item-09/) e [`app/`](app/) | ✅ Concluído |
 | **10** | Apresentação em Vídeo | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
-| **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `presentation/insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
+| **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
 <!-- temporary-agent-instructions
 PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 
@@ -367,7 +367,7 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 - [`pipelines/case-item-09/specs.md`](pipelines/case-item-09/specs.md): Especificação técnica formal (`spec_data_app_streamlit_001` v1.0) do Data App interativo.
 - [`app/app.py`](app/app.py): Aplicação principal em Streamlit com simulador de ROI, similaridade t-SNE e vitrine GenAI (`python make.py data-app`).
 - [`presentation/pitch/run_all_pitch_charts.py`](presentation/pitch/run_all_pitch_charts.py): Orquestrador de geração dos 8 painéis e gráficos visuais do Pitch (Item 10).
-- [`presentation/insights/run_all_insights_charts.py`](presentation/insights/run_all_insights_charts.py): Orquestrador de geração de gráficos analíticos de insights de negócio.
+- [`insights/run_all_insights_charts.py`](insights/run_all_insights_charts.py): Orquestrador de geração de gráficos analíticos de insights de negócio.
 
 ---
 

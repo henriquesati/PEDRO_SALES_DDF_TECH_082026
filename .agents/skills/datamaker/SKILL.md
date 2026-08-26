@@ -93,7 +93,7 @@ The data generation must include dirty data in the sense that it should contain 
 
 > [!IMPORTANT]
 > **INTEGRAÇÃO OBRIGATÓRIA COM A SKILL `charts-maker` (DEFAULT STYLE)**:  
-> Sempre que houver necessidade de gerar gráficos, visualizações de volumetria de dados, distribuições estatísticas, perfis de qualidade ou mini cards analíticos para acompanhar modelos e datasets, **o estilo de estilização padrão (Default) DEVE ser rigorosamente idêntico ao padrão corporativo de [`presentation/insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/)**, a não ser que explicitamente especificado de outra forma.
+> Sempre que houver necessidade de gerar gráficos, visualizações de volumetria de dados, distribuições estatísticas, perfis de qualidade ou mini cards analíticos para acompanhar modelos e datasets, **o estilo de estilização padrão (Default) DEVE ser rigorosamente idêntico ao padrão corporativo de [`insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/)**, a não ser que explicitamente especificado de outra forma.
 >
 > **Atributos Canônicos Padrão**:
 > - **Canvas & Eixos**: Fundo Branco Puro (`#FFFFFF`), `dpi=300`, `bbox_inches="tight"`.

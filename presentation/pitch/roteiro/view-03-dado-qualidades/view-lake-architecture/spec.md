@@ -1,11 +1,12 @@
 # Especificação Visual & Técnica: Módulo Arquitetura Lakehouse & Data Quality (`view-lake-architecture`)
 
 > **Momento do Roteiro**: **Ato 2 / Seção [3] — Etapas de Qualidade e Geração de Artefatos**  
-> **Caminho da View**: `presentation/pitch/roteiro/view-lake-architecture/`  
-> **Artefato Principal Previsto**: [`chart_lake_architecture.png`](chart_lake_architecture.png) (300 DPI, 16:9 Widescreen)  
-> **Script Gerador**: [`generate_chart.py`](generate_chart.py)  
+> **Caminho da View**: `presentation/pitch/roteiro/view-03-dado-qualidades/view-lake-architecture/`  
+> **Arquitetura Master**: [`presentation/pitch/roteiro/README.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/README.md)  
+> **Artefato Principal Previsto**: [`chart_lake_architecture.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/view-03-dado-qualidades/view-lake-architecture/chart_lake_architecture.png) (300 DPI, 16:9 Widescreen)  
+> **Script Gerador**: [`generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/view-03-dado-qualidades/view-lake-architecture/generate_chart.py)  
 > **Padrão Visual**: Fundo Branco Puro (`#FFFFFF`), Tipografia Sem Serifa Moderna, Paleta Semântica Executiva (`charts-maker` standard).  
-> **Fontes Estratégicas**: [`presentation/pitch/roteiro.txt`](../roteiro.txt), [`pipelines/datalakes/README.md`](../../../pipelines/datalakes/README.md) e [`pipelines/case-item-08/specs.md`](../../../pipelines/case-item-08/specs.md).
+> **Fontes Estratégicas**: [`presentation/pitch/roteiro.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro.txt), [`pipelines/datalakes/README.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/datalakes/README.md) e [`pipelines/case-item-08/specs.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-08/specs.md).
 
 ---
 

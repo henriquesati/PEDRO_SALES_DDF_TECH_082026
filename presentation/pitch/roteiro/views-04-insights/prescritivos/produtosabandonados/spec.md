@@ -4,7 +4,7 @@
 > **Caminho da View**: `presentation/pitch/roteiro/views-04-insights/prescritivos/produtosabandonados/`  
 > **Artefato Principal**: [`chart_03_produtos_mais_abandonados.png`](chart_03_produtos_mais_abandonados.png) (300 DPI, 16:9 Widescreen)  
 > **Script Gerador**: [`generate_chart.py`](generate_chart.py)  
-> **Script Raiz Canônico**: [`presentation/insights/03_prescriptive/03_produtos_mais_abandonados/generate_chart.py`](../../../../../insights/03_prescriptive/03_produtos_mais_abandonados/generate_chart.py)  
+> **Script Raiz Canônico**: [`insights/03_prescriptive/03_produtos_mais_abandonados/generate_chart.py`](../../../../../insights/03_prescriptive/03_produtos_mais_abandonados/generate_chart.py)  
 > **Padrão Visual**: Fundo Branco Puro (`#FFFFFF`), Tipografia Sem Serifa Moderna, Paleta Semântica Executiva (`charts-maker` standard).  
 > **Base de Dados**: `data/mock/output_cleaned/parquet/itens_carrinho.parquet`, `produtos.parquet`, `carrinhos.parquet` (Ground Truth 100% Auditável).
 

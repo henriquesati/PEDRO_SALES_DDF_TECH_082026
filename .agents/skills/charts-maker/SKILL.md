@@ -3,7 +3,7 @@ name: charts-maker
 description: >-
   Especialista em geração de gráficos, visualizações executivas e mini cards analíticos
   com rigor absoluto de integridade de dados (Ground Truth) e padronização visual
-  baseada no padrão canônico de presentation/insights. Garante que 100% dos dados
+  baseada no padrão canônico de insights. Garante que 100% dos dados
   plotados venham diretamente dos datasets persistidos (Parquet, DW, Data Views), aplicando
   como default o tema de fundo branco, tipografia moderna e paleta semântica executiva.
 ---
@@ -12,7 +12,7 @@ description: >-
 
 > [!IMPORTANT]
 > **DIRETRIZ DE ESTILIZAÇÃO PADRÃO (DEFAULT STYLE)**  
-> Toda geração de gráficos por agentes e skills deve, por padrão, buscar manter a harmonia e a identidade visual consolidada em [`presentation/insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/) (fundo branco puro, tipografia limpa sem serifa, spines limpas e paleta semântica executiva), a menos que o usuário ou o contexto especifiquem um formato alternativo.
+> Toda geração de gráficos por agentes e skills deve, por padrão, buscar manter a harmonia e a identidade visual consolidada em [`insights/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/) (fundo branco puro, tipografia limpa sem serifa, spines limpas e paleta semântica executiva), a menos que o usuário ou o contexto especifiquem um formato alternativo.
 >
 > A criação de gráficos é flexível e declarativa — cada script deve ser autocontido, aplicando as propriedades visuais diretamente sem engessamento ou dependências rígidas.
 > Consulte o catálogo de atributos e boas práticas em [presentation_insights_style_guide.md](./references/presentation_insights_style_guide.md).
@@ -142,17 +142,17 @@ if __name__ == "__main__":
 
 | Tipo de Gráfico | Formato Recomendado | Exemplo de Referência no Repositório |
 |---|---|---|
-| **Evolução Temporal & Funil (Splines)** | `figsize=(14.0, 7.5)`, interpolação `k=3`, `fill_between` em zonas | [`presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py) |
-| **Painel Duplo Lado a Lado (Comparativo)** | `figsize=(15.0, 6.8)`, `gridspec_kw={"width_ratios": [1.0, 1.18]}`, barras `barh` | [`presentation/insights/01_descriptive/02_motivos_abandono/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/02_motivos_abandono/generate_chart.py) |
-| **Dashboard Executivo com KPI Cards** | `figsize=(15.0, 7.8)`, `GridSpec(2, 2, height_ratios=[0.28, 0.72])`, 4 KPI cards | [`presentation/insights/02_risk/01_segmentacao_risco/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/02_risk/01_segmentacao_risco/generate_chart.py) |
-| **Eficiência Unitária & CAC vs ROI** | `figsize=(15.0, 7.0)`, barras ordenadas com anotações diretas | [`presentation/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py) |
-| **Estratégia Prescritiva por Canal & RFM** | `figsize=(16.5, 7.2)`, barras agrupadas + Matriz prescritiva | [`presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py) |
+| **Evolução Temporal & Funil (Splines)** | `figsize=(14.0, 7.5)`, interpolação `k=3`, `fill_between` em zonas | [`insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/01_bi_recuperacao_carrinhos/generate_chart.py) |
+| **Painel Duplo Lado a Lado (Comparativo)** | `figsize=(15.0, 6.8)`, `gridspec_kw={"width_ratios": [1.0, 1.18]}`, barras `barh` | [`insights/01_descriptive/02_motivos_abandono/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/02_motivos_abandono/generate_chart.py) |
+| **Dashboard Executivo com KPI Cards** | `figsize=(15.0, 7.8)`, `GridSpec(2, 2, height_ratios=[0.28, 0.72])`, 4 KPI cards | [`insights/02_risk/01_segmentacao_risco/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/02_risk/01_segmentacao_risco/generate_chart.py) |
+| **Eficiência Unitária & CAC vs ROI** | `figsize=(15.0, 7.0)`, barras ordenadas com anotações diretas | [`insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/01_descriptive/03_custo_recuperacao_roi/generate_chart.py) |
+| **Estratégia Prescritiva por Canal & RFM** | `figsize=(16.5, 7.2)`, barras agrupadas + Matriz prescritiva | [`insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/insights/03_prescriptive/01_estrategia_resgate_segmento/generate_chart.py) |
 
 ---
 
 ## 📋 5. Checklist de Validação
 
-- [ ] O visual segue o padrão harmônico de **fundo branco (`#FFFFFF`)**, **tipografia moderna** e **paleta corporativa** de `presentation/insights`?
+- [ ] O visual segue o padrão harmônico de **fundo branco (`#FFFFFF`)**, **tipografia moderna** e **paleta corporativa** de `insights`?
 - [ ] Todos os dados foram carregados diretamente de arquivos Parquet persistidos do repositório?
 - [ ] Não existe nenhum multiplicador ou ajuste artificial manual nos dados?
 - [ ] As spines superior e direita foram ocultadas (`set_visible(False)`) e o grid está sutil (`#CBD5E1`)?

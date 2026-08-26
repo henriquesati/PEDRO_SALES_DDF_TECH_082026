@@ -1,11 +1,12 @@
 # Especificação Visual & Técnica: Módulo Modelagem Dimensional Kimball (`view-model-kimball`)
 
 > **Momento do Roteiro**: **Ato 2 / Seção {3.2} — Modelagem Kimball: Transformação dos Dados & Geração de Insights**  
-> **Caminho da View**: `presentation/pitch/roteiro/view-model-kimball/`  
-> **Artefato Principal Previsto**: [`chart_modelagem_kimball.png`](chart_modelagem_kimball.png) (300 DPI, 16:9 Widescreen)  
-> **Script Gerador**: [`generate_chart.py`](generate_chart.py)  
+> **Caminho da View**: `presentation/pitch/roteiro/view-03-dado-qualidades/view-model-kimball/`  
+> **Arquitetura Master**: [`presentation/pitch/roteiro/README.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/README.md)  
+> **Artefato Principal Previsto**: [`chart_modelagem_kimball.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/view-03-dado-qualidades/view-model-kimball/chart_modelagem_kimball.png) (300 DPI, 16:9 Widescreen)  
+> **Script Gerador**: [`generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/view-03-dado-qualidades/view-model-kimball/generate_chart.py)  
 > **Padrão Visual**: Fundo Branco Puro (`#FFFFFF`), Tipografia Sem Serifa Moderna, Paleta Semântica Executiva (`charts-maker` standard).  
-> **Fontes Estratégicas**: [`presentation/pitch/roteiro.txt`](../roteiro.txt), [`pipelines/case-item-06/specs.md`](../../../pipelines/case-item-06/specs.md) e [`pipelines/case-item-08/specs.md`](../../../pipelines/case-item-08/specs.md).
+> **Fontes Estratégicas**: [`presentation/pitch/roteiro.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro.txt), [`pipelines/case-item-06/specs.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-06/specs.md) e [`pipelines/case-item-08/specs.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-08/specs.md).
 
 ---
 

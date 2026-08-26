@@ -1,5 +1,13 @@
 # Especificação Visual & Aspecto Técnico: Arquitetura Dadosfera vs Stack Legada AWS
 
+> **Módulo do Pitch**: `presentation/pitch/07_arquitetura_dadosfera_vs_aws/`  
+> **Item do Case**: Item 10 — Arquitetura & Prova de Conceito  
+> **Master Source of Truth**: [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md#2-comentar-arquitetura-do-cliente-e-iniciar-pitch)  
+> **Artefato Visual**: [`chart_07_arquitetura_dadosfera_vs_aws.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png)  
+> **Script Gerador**: [`generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/07_arquitetura_dadosfera_vs_aws/generate_chart.py)
+
+---
+
 ## 📌 Contexto & Aspecto Técnico (Item 10 & Prova de Conceito)
 - **Cenário do Cliente**: Grande e-commerce operando sobre serviços AWS fragmentados.
   - *Stack Atual*:
@@ -27,7 +35,3 @@ Posicionar a Dadosfera como o Sistema Operacional de Dados definitivo que desaco
 ## 📍 Mapeamento Plataforma Dadosfera
 - **Fases do Ciclo de Vida**: Integrar $\rightarrow$ Explorar $\rightarrow$ Processar $\rightarrow$ Analisar $\rightarrow$ Consumir $\rightarrow$ GenAI.
 - **Ativos Oficiais**: Sincronização via API Maestro (`assets_registry.md`).
-
-## 🖼️ Artefato Visual Gerado
-- **Arquivo**: [`chart_07_arquitetura_dadosfera_vs_aws.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png)
-- **Tipo de Gráfico**: Painel Visual Comparativo de Eficiência (Lead Time, Risco em Picos, Componentes e Governança).

@@ -66,39 +66,39 @@ Para comprovar o valor prático e o ROI imediato da Dadosfera, selecionou-se com
 [1] Classificação de abandono após 30 minutos de inatividade.  
 [2] Taxa média de abandono identificada em ~69.7%.  
 [3] Taxa de recuperação com réguas Dadosfera: **10.1% dos carrinhos abandonados** (lift de +50% sobre a conversão basal sem campanha).  
-[4] Artefato: `presentation/insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png`
+[4] Artefato: `insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png`
 
 #### [Regra 2] Performance de Catálogo e Atrito por Categoria
 [1] Categorias de alto ticket (Eletrônicos) concentram alto valor represado por indecisão e dúvidas técnicas.  
 [2] Categorias como Moda sofrem alto abandono por atrito no valor do frete.  
 [3] A plataforma permite direcionar réguas específicas para o contexto de cada produto.  
-[4] Artefato: `presentation/insights/03_prescriptive/03_produtos_mais_abandonados/chart_03_produtos_mais_abandonados.png`
+[4] Artefato: `insights/03_prescriptive/03_produtos_mais_abandonados/chart_03_produtos_mais_abandonados.png`
 
 #### [Regra 3] Topologia de Canais e Eficiência Financeira (ROI)
 [1] **Email** (R$ 0,05 por envio): Canal de tração em escala e maior retorno absoluto.  
 [2] **WhatsApp** (R$ 0,30 por envio): Maior conversão unitária (18% clique-para-venda), reservado estrategicamente para clientes e carrinhos de alto valor.  
 [3] **ROI Médio Consolidado**: **45x multiplicador** sobre o custo total de disparos (custo de campanha < 1% do valor recuperado).  
-[4] Artefato: `presentation/insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png`
+[4] Artefato: `insights/01_descriptive/03_custo_recuperacao_roi/chart_03_custo_recuperacao_roi.png`
 
 #### [Regra 4] Causa-Raiz vs Segmentação RFM (Preservação de Margem)
 [1] Cruzamento do valor do carrinho com o histórico RFM para proteger a rentabilidade da empresa.  
 [2] **Clientes Premium**: Abandonam por indecisão ou suporte -> recebem atendimento humanizado (WhatsApp) **sem cupom de desconto**, preservando a margem de lucro.  
 [3] **Clientes Novos**: Abandonam por frete -> recebem incentivo/cupom de primeira compra.  
 [4] Taxa de conversão do segmento Premium é **3 vezes maior** que a do segmento Dormant (18% vs 6%).  
-[5] Artefato: `presentation/insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png`
+[5] Artefato: `insights/03_prescriptive/01_estrategia_resgate_segmento/chart_04_estrategia_resgate_segmento.png`
 
 #### [Regra 5] Matriz Prescritiva de Viabilidade
 [1] Matriz de dispersão em tempo real combinando valor do carrinho e probabilidade de conversão.  
 [2] Fila de acionamento que prioriza os 20% de carrinhos que respondem por mais de 65% do faturamento recuperável dentro da janela de 28 horas de expiração.  
-[3] Artefato: `presentation/insights/02_risk/03_viabilidade_recuperacao_carrinho/chart_03_viabilidade_recuperacao_carrinho.png`
+[3] Artefato: `insights/02_risk/03_viabilidade_recuperacao_carrinho/chart_03_viabilidade_recuperacao_carrinho.png`
 
 #### [Regra 6] Otimização de Timing & Curva de Decaimento (Decay Curve)
 [1] **Concentração Temporal de Conversão**: Nos dados simulados e observados, quanto maior o atraso do primeiro contato, menor foi a conversão observada, com a janela de **+1h concentrando 86,4% das conversões**.  
 [2] **Rigor Metodológico no Pitch**: Em vez de afirmar dogmaticamente que "o horário ótimo é +1h", a defesa analítica correta é:  
 > *"Nos dados observados, +1h apresentou a maior taxa de conversão e concentrou a maior parte das conversões, indicando +1h como a janela inicial candidata prioritária à otimização contínua via experimentação (testes A/B)."* [^nota-timing-review]  
 [3] Artefatos:
-    - Galeria Canônica: [`presentation/insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png`](../insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png)
-    - View do Roteiro: [`presentation/pitch/roteiro/case-carrinho/views/insights/timingenvio/chart_05_otimizacao_timing_envio.png`](roteiro/case-carrinho/views/insights/timingenvio/chart_05_otimizacao_timing_envio.png)
+    - Galeria Canônica: [`insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png`](../insights/03_prescriptive/02_otimizacao_timing_envio/chart_05_otimizacao_timing_envio.png)
+    - View do Roteiro: [`presentation/pitch/roteiro/views-04-insights/prescritivos/timingenvio/chart_05_otimizacao_timing_envio.png`](roteiro/views-04-insights/prescritivos/timingenvio/chart_05_otimizacao_timing_envio.png)
 
 [^nota-timing-review]: **[FLAG: REVIEW PENDENTE - METODOLOGIA DE TIMING]** A janela de +1h é a candidata inicial de maior performance na amostra histórica observada (86,4% do volume recuperado). Recomenda-se manter esta ressalva metodológica no pitch para evidenciar maturidade estatística perante o cliente, destacando que o pipeline da Dadosfera permite rodar testes A/B contínuos para aferir empiricamente o ponto ótimo para cada cluster de produtos.
 
@@ -168,7 +168,7 @@ Quando for estritamente necessário exemplificar cálculos financeiros absolutos
 ## [5] Governança de Dados, Entidades Canônicas & Fonte Única da Verdade
 
 ### [5.1] Base de Dados Física Unificada (Ground Truth)
-Todos os geradores de gráficos do pitch (`presentation/pitch/`) e da galeria de insights (`presentation/insights/`) consom **rigorosamente a mesma base de dados persistida** no repositório, garantindo reproducibilidade e ausência de dados fabricados:
+Todos os geradores de gráficos do pitch (`presentation/pitch/`) e da galeria de insights (`insights/`) consom **rigorosamente a mesma base de dados persistida** no repositório, garantindo reproducibilidade e ausência de dados fabricados:
 - **Diretório Canônico Primário**: `data/mock/output_cleaned/parquet/`
 - **Diretório de Fallback**: `data/mock/output/parquet/`
 
@@ -187,7 +187,7 @@ Todos os geradores de gráficos do pitch (`presentation/pitch/`) e da galeria de
 > [!IMPORTANT]
 > **Este documento (`presentation/pitch/pitch_spec.md`) é a Fonte Canônica da Verdade (Master Source of Truth) para todo o ecossistema de visualizações do projeto.**
 > 
-> 1. Toda especificação contida em `presentation/insights/` e seus subdiretórios (`01_descriptive/`, `02_risk/`, `03_prescriptive/`) deve obrigatoriamente referenciar e estar em estrita conformidade com os parâmetros, entidades e métricas aqui declarados.
+> 1. Toda especificação contida em `insights/` e seus subdiretórios (`01_descriptive/`, `02_risk/`, `03_prescriptive/`) deve obrigatoriamente referenciar e estar em estrita conformidade com os parâmetros, entidades e métricas aqui declarados.
 > 2. Qualquer simulação monetária (R$), análise de CAC de resgate, ROI multiplicador ou categorização RFM em qualquer apresentação ou relatório deve reconciliar perfeitamente com a **Entidade Exemplo de Negócio (Seção 4.2)** e os datasets Parquet unificados (Seção 5.1).
 > 3. É expressamente proibida a criação de bases de dados paralelas, entidades divergentes ou valores arbitrários de ticket em qualquer artefato visual do projeto.
 

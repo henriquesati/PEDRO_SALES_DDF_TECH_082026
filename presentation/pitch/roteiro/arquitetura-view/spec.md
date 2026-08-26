@@ -2,28 +2,22 @@
 
 > **Momento do Pitch**: Ato 1 — Diagnóstico da Arquitetura Legada (AWS DIY) vs. Solução Unificada Dadosfera  
 > **Padrão Visual**: Fundo Branco Puro (`#FFFFFF`), Proporção 16:9 Widescreen (300 DPI), Paleta Semântica Oficial dos 5 Pilares do Ciclo de Vida dos Dados.  
-> **Fonte Estratégica**: [`presentation/pitch/roteiro.txt`](../roteiro.txt) e [`presentation/pitch/roteiro/spec.md`](../spec.md).
+> **Arquitetura Master**: [`presentation/pitch/roteiro/README.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/README.md)  
+> **Fonte Estratégica**: [`presentation/pitch/roteiro.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro.txt) e [`presentation/pitch/pitch_spec.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/pitch_spec.md).
 
 ---
 
-## 🗺️ 1. Governança e Submódulo [`arc-diagram-view/`](arc-diagram-view/)
+## 🗺️ 1. Governança e Submódulo [`arc-diagram-view/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/)
 
 Seguindo a regra de governança onde **apenas a view de diagramas de arquitetura possui subdiretório `assets/`** devido aos 26 logos e ícones de serviços:
 
-```
-presentation/pitch/roteiro/arquitetura-view/
-├── arc-diagram-view/                     # 🏛️ Submódulo Canônico da View de Arquitetura L2R
-│   ├── assets/
-│   │   └── icons/                        # 🖼️ 26 Ícones Transparentes (PNG) da AWS e Dadosfera
-│   ├── generate_chart.py                 # 🐍 Script declarativo de renderização em alta resolução
-│   ├── download_high_res_icons.py        # 📥 Script utilitário para download dos assets oficiais
-│   ├── spec.md                           # 📄 Especificação técnica em texto corrido
-│   ├── grafico-legado-l2r.png            # 📊 Diagrama Legado AWS DIY completo
-│   ├── grafico-dadosfera-l2r.png         # 📊 Diagrama Dadosfera unificado completo
-│   ├── grafico-legado-l2r-vazio.png      # 📊 Template limpo dos 5 blocos
-│   └── grafico-legado-l2r-populated.png  # 📊 Guia de referência mapeado
-└── spec.md                               # 📄 Esta Especificação Geral do Módulo
-```
+* **Diretório Canônico**: [`arc-diagram-view/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/)
+* **Biblioteca de Ícones**: [`arc-diagram-view/assets/icons/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/assets/icons/) (26 Ícones Transparentes em PNG da AWS e Dadosfera)
+* **Scripts**: [`generate_chart.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/generate_chart.py) e [`download_high_res_icons.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/download_high_res_icons.py)
+* **Artefatos Visuais**:
+  - `grafico-legado-l2r.png` (Diagrama Legado AWS DIY completo)
+  - `grafico-dadosfera-l2r.png` (Diagrama Dadosfera unificado completo)
+  - `grafico-legado-l2r-vazio.png` (Template limpo dos 5 blocos)
 
 ---
 
@@ -49,9 +43,9 @@ $$\mathbf{1.\; INGEST\tilde{A}O} \;\longrightarrow\; \mathbf{2.\; VALIDA\Ccedil\
 
 ---
 
-## 🎬 4. Roteiro Passo a Passo para o Slide de Animação
+## 🎬 3. Roteiro Passo a Passo para o Slide de Animação
 
-1. **Inserir Background**: Insira [`grafico-legado-l2r-vazio.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-legado-l2r-vazio.png) como imagem principal do Slide 1.
-2. **Posicionar Ícones**: Arraste os PNGs de [`assets/icons/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/icons/) para dentro de cada bloco conforme a tabela acima (ou usando o gabarito [`grafico-legado-l2r-populated.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-legado-l2r-populated.png)).
+1. **Inserir Background**: Insira [`grafico-legado-l2r-vazio.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/grafico-legado-l2r-vazio.png) como imagem principal do Slide 1.
+2. **Posicionar Ícones**: Arraste os PNGs de [`arc-diagram-view/assets/icons/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/assets/icons/) para dentro de cada bloco conforme a tabela acima.
 3. **Configurar Animações**: No PowerPoint, aplique a animação **Fade (Esmaecer) ou Appear (Aparecer)** em sequência para cada grupo de ícones conforme você narra as dores de cada etapa no pitch.
-4. **Slide de Fechamento**: No Slide 2, apresente [`grafico-dadosfera-l2r.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/assets/grafico-dadosfera-l2r.png) mostrando todos os 5 pilares consolidados em uma única plataforma SaaS All-in-One.
+4. **Slide de Fechamento**: No Slide 2, apresente [`grafico-dadosfera-l2r.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/arquitetura-view/arc-diagram-view/grafico-dadosfera-l2r.png) mostrando todos os 5 pilares consolidados em uma única plataforma SaaS All-in-One.

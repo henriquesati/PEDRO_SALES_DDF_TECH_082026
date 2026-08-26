@@ -68,7 +68,7 @@ graph TD
     
     CK -->|Especificação Visual| DB["dashboards: dashboard_recuperacao_carrinho.md"]
     CK -->|Lógica Prescritiva| APP["app/services: simulation_service.py"]
-    CK -->|Storytelling| PITCH["presentation/insights/"]
+    CK -->|Storytelling| PITCH["insights/"]
 ```
 
 ---

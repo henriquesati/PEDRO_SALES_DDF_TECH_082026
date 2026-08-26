@@ -59,7 +59,7 @@ Serve como fonte de contexto para outros agentes que precisam entender **por qu�
 | 8 | Pipelines & Data Lakehouse | Processar | Especificações imutáveis das 4 camadas do Lakehouse (`pipelines/datalakes/{raw,qualify,anomaly,curated}/spec.md`), arquitetura modular por entidade e framework normativo (`data-pipeline-documentation`) | ✅ Concluído |
 | 9 | Data Apps | Consumir | Data App com Streamlit para explorar dados | ⏳ Planejado |
 | 10 | Apresentação (Pitch) | — | Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md` - Backbone & Guidelines), 8 submódulos com geradores em Python e dashboards de alta definição (300 DPI) para suporte ao vídeo | ✅ Concluído |
-| 10.1 | Gráficos de Insights | Visualizações | Galeria de gráficos de insights em `presentation/insights/`: módulos de BI, motivos de abandono, custo/ROI, segmentação de risco, estratégia de resgate e otimização de timing concluídos com 100% dos dados reais em Parquet e governança em `pitch_spec.md` | ✅ Concluído |
+| 10.1 | Gráficos de Insights | Visualizações | Galeria de gráficos de insights em `insights/`: módulos de BI, motivos de abandono, custo/ROI, segmentação de risco, estratégia de resgate e otimização de timing concluídos com 100% dos dados reais em Parquet e governança em `pitch_spec.md` | ✅ Concluído |
 | Bônus | GenAI + Data Apps | IA Generativa | Gerador de apresentações de produto com DALL-E ou similar | ⏳ Planejado |
 
 ---
