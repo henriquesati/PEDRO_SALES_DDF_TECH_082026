@@ -185,14 +185,14 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 - [x] ~~**[X] [case-05] Processamento de Dados Desestruturados com GenAI e LLMs (Extração de Features e Resgate Prescritivo) [X]**~~
   <small>
 
-  - **processamento de dados desestruturados e inteligência de crm** (*Extração semântica de features de catálogo e feedbacks de abandono de checkout a partir de texto livre desestruturado, geração de contratos estruturados via Pydantic e JSON Schema, geração de copies persuasivas personalizadas para Email/WhatsApp e demonstração de bônus multimodal com áudio de atendimento via Whisper*)
+  - **processamento de dados desestruturados e inteligência de crm** (*Extração semântica de features de catálogo e feedbacks de abandono de checkout a partir de texto livre desestruturado, geração de contratos estruturados via Pydantic e JSON Schema e geração de copies persuasivas personalizadas para Email/WhatsApp*)
   - **Pipeline de Extração Semântica e Enriquecimento Silver:**
     ```text
                       ┌──────────────────────────────────────────────┐
                       │         DADOS BRUTOS DESESTRUTURADOS         │
                       │  • Catálogo Técnico de SKUs (Texto Livre)    │
                       │  • Feedbacks e Objeções de Checkout          │
-                      │  • Áudios e Mensagens de Voz (Whisper)       │
+                      │  • Mensagens de Suporte e Tickets de SAC     │
                       └──────────────────────┬───────────────────────┘
                                              │
                                              ▼
@@ -227,8 +227,6 @@ PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
     - [`pipelines/case-item-05/scripts/`](pipelines/case-item-05/scripts/) — *Script batch automatizado (`python make.py genai-extract`)*
   - **📁 Arquitetura de Outputs e Relatórios:**
     - [`pipelines/case-item-05/outputs/`](pipelines/case-item-05/outputs/) — *Relatório executivo consolidado, payloads JSON validados por Pydantic, amostras tabulares Parquet e painéis visuais 300 DPI*
-  - **🌟 Bônus: Transcrição e Extração Multimodal (Áudio/Voz via Whisper):**
-    - **Processamento de Áudio de Atendimento**: Ingestão de mensagens de voz e ligações de clientes no checkout com transcrição via **Whisper**, classificação de intenção de compra e recomendação imediata de resolução para o operador ou bot de WhatsApp.
   </small>
 
 
@@ -391,17 +389,7 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 6. 🎙️ GenAI Multimodal & Transcrição de Áudio via Whisper (Item 5 Bônus)
-* **O que foi feito:** Processamento e transcrição de áudios de atendimento ao cliente via OpenAI Whisper, permitindo extrair a causa-raiz de abandono de checkout diretamente da voz do consumidor com 100% de conformidade JSON Schema Pydantic.
-* **📁 Arquivos & Códigos:**
-  - [`pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) — *Notebook Colab com extração multimodal e transcrição de áudios*
-  - [`pipelines/case-item-05/outputs/genai_feature_extraction_report.md`](pipelines/case-item-05/outputs/genai_feature_extraction_report.md) — *Relatório executivo de conformidade contratual Pydantic e transcrições*
-* **📊 Dashboards & Gráficos Gerados:**
-  - [`chart_genai_extracao_copies.png`](presentation/pitch/roteiro/views-05-insights-ia/genai-extracao-copies/chart_genai_extracao_copies.png) — *Scorecard Pydantic 100%, Matriz de Acurácia Causal e Lift de +18% no CTR*
-
----
-
-### 7. 📡 Catalogação Automática via API da Dadosfera (Item 3 Bônus)
+### 6. 📡 Catalogação Automática via API da Dadosfera (Item 3 Bônus)
 * **O que foi feito:** Integração REST com a API Maestro da Dadosfera para catalogação programática de datasets, extração de metadados e mapeamento dos 7 Data Asset IDs oficiais.
 * **📁 Arquivos & Códigos:**
   - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Scripts de automação REST e documentação de endpoints Maestro*
@@ -419,7 +407,7 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 | Case Item | Entregável / Tema Técnico | Notebook Interativo | Caminho no Repositório |
 | :--- | :--- | :--- | :--- |
 | **Case 04** | Data Quality e Quarentena | [`qualification_raw.ipynb`](pipelines/case-item-04/notebooks/qualification_raw.ipynb) | [`pipelines/case-item-04/notebooks/`](pipelines/case-item-04/notebooks/) |
-| **Case 05** | GenAI, Pydantic e Whisper | [`genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) | [`pipelines/case-item-05/notebooks/`](pipelines/case-item-05/notebooks/) |
+| **Case 05** | GenAI e Pydantic | [`genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) | [`pipelines/case-item-05/notebooks/`](pipelines/case-item-05/notebooks/) |
 | **Case 06** | Modelagem Dimensional Kimball | [`data_modeling_kimball.ipynb`](pipelines/case-item-06/notebooks/data_modeling_kimball.ipynb) | [`pipelines/case-item-06/notebooks/`](pipelines/case-item-06/notebooks/) |
 | **Case 07** | Análise de Dados e BI | [`07_bi_dashboards_visualizations.ipynb`](pipelines/case-item-07/notebooks/07_bi_dashboards_visualizations.ipynb) | [`pipelines/case-item-07/notebooks/`](pipelines/case-item-07/notebooks/) |
 | **Case 08** | Pipelines, Stepsfera e Snowpark | [`pipeline_snowpark_transformation.ipynb`](pipelines/case-item-08/notebooks/pipeline_snowpark_transformation.ipynb) | [`pipelines/case-item-08/notebooks/`](pipelines/case-item-08/notebooks/) |
@@ -468,7 +456,7 @@ python make.py quality-eval
 
 #### 3. Extração Semântica e Enriquecimento GenAI (Item 5)
 ```bash
-# Processa textos com Pydantic, transcrições Whisper e enriquece produtos:
+# Processa textos com Pydantic e enriquece produtos:
 python make.py genai-extract
 ```
 

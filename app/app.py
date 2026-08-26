@@ -18,7 +18,6 @@ if ROOT_DIR in sys.path:
     sys.path.remove(ROOT_DIR)
 sys.path.insert(0, ROOT_DIR)
 
-
 from app.services.lakehouse_service import load_lakehouse_data
 from app.views.tab_copilot import render_copilot_tab
 from app.views.tab_roi import render_roi_tab
@@ -36,7 +35,7 @@ st.set_page_config(
 )
 
 # =============================================================================
-# 🎨 CARREGAMENTO DE ESTILOS CSS
+# 🎨 CARREGAMENTO DE ESTILOS CSS (WHITE THEME STANDARD)
 # =============================================================================
 def load_css() -> None:
     css_path = os.path.join(os.path.dirname(__file__), "styles", "custom.css")
@@ -47,9 +46,9 @@ def load_css() -> None:
 load_css()
 
 # =============================================================================
-# 📁 CARREGAMENTO DOS DATASETS
+# 📁 CARREGAMENTO DOS DATASETS DO LAKEHOUSE (GROUND TRUTH)
 # =============================================================================
-df_products, df_summary = load_lakehouse_data()
+df_products, df_carrinhos, df_resgate, df_clientes = load_lakehouse_data()
 
 # =============================================================================
 # 🏢 BANNER EXECUTIVO DADOSFERA
@@ -58,7 +57,7 @@ st.markdown(
     """
     <div class="main-header">
         <h1>🛒 Plataforma de Recuperação de Carrinhos | Dadosfera</h1>
-        <p>Data App Interativo de Análise Prescritiva, Simulação de ROI e Inteligência de Catálogo (Item 9 & Bônus)</p>
+        <p>Data App Interativo de Simulação de ROI, Inteligência de Catálogo e Copiloto Prescritivo (Item 9 & Bônus GenAI)</p>
     </div>
     """,
     unsafe_allow_html=True
@@ -76,8 +75,8 @@ with st.sidebar:
     st.markdown(
         "- **Camada Silver:** `PRODUTOS_ENRIQUECIDOS` (Qualify)\n"
         "- **Camada Gold:** `STAR_SCHEMA_KIMBALL` (DEC-008)\n"
-        "- **Ativos Catalogados:** 7 Entidades Oficiais\n"
-        "- **Qualidade:** 18 Regras Great Expectations"
+        "- **Qualidade:** 18 Regras Great Expectations (94.2% conformidade)\n"
+        "- **SSOT:** 7.500 Carrinhos • R$ 348,80 Ticket Médio"
     )
     
     st.divider()
@@ -90,7 +89,7 @@ with st.sidebar:
     st.markdown("**Autor:** Pedro Sales  \n*Lead Analytics Engineer Candidate*")
 
 # =============================================================================
-# 📑 ABAS DA APLICAÇÃO (VIEWS)
+# 📑 ABAS DA APLICAÇÃO (VIEWS) - ARQUITETURA DE 4 ABAS
 # =============================================================================
 tab1, tab2, tab3, tab4 = st.tabs([
     "📊 1. Simulador de ROI & Sensibilidade",
@@ -100,7 +99,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
 ])
 
 with tab1:
-    render_roi_tab(df_summary)
+    render_roi_tab(df_carrinhos)
 
 with tab2:
     render_similarity_tab(df_products)
@@ -118,7 +117,7 @@ st.markdown("---")
 st.markdown(
     "<div style='text-align: center; color: #64748B; font-size: 0.85rem;'>"
     "Dadosfera Data App • Arquitetura Modular em Camadas (React/TS Pattern) • "
-    "Case Técnico de Estágio (Item 9 & Bônus GenAI)"
+    "White Theme / charts-maker Standard • Case Técnico de Estágio (Item 9 & Bônus GenAI)"
     "</div>",
     unsafe_allow_html=True
 )

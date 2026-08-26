@@ -38,58 +38,58 @@ Centralizar a visão executiva e operacional de abandono e resgate de carrinhos 
 
 ### Visualização 1: Série Temporal — Evolução Diária de Abandono vs Recuperação
 - **Tipo**: **Gráfico de Linha (Time Series com 2 Eixos Y / Múltiplas Linhas)**
-- **Artefato Gerado**: [`chart_01_serie_temporal_abandono_resgate.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_01_serie_temporal_abandono_resgate.png)
+- **Artefato Gerado**: [`chart_01_serie_temporal_abandono_resgate.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_01_serie_temporal_abandono_resgate.png)
 - **Fonte**: `vw_metricas_resgate_diarias`
 - **Eixo X**: `data` (diário/semanal)
 - **Eixo Y (Esquerda)**: Taxa de Abandono (%) e Taxa de Recuperação (%)
 - **Eixo Y (Direita)**: Valor Total Abandonado (R$) vs Valor Total Recuperado (R$)
 - **Objetivo**: Atender ao requisito explícito de análise de série temporal do case, monitorando picos e sazonalidade.
 
-![Série Temporal](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_01_serie_temporal_abandono_resgate.png)
+![Série Temporal](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_01_serie_temporal_abandono_resgate.png)
 
 ---
 
 ### Visualização 2: Performance de Catálogo — Abandono e Conversão por Categoria
 - **Tipo**: **Gráfico de Barras Horizontais Empilhadas / Agrupadas**
-- **Artefato Gerado**: [`chart_02_performance_categorias.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_02_performance_categorias.png)
+- **Artefato Gerado**: [`chart_02_performance_categorias.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_02_performance_categorias.png)
 - **Fonte**: `vw_produtos_abandonados`
 - **Eixo Y**: `categoria` (Eletrônicos, Moda, Casa & Decoração, etc.)
 - **Eixo X**: Volume de Carrinhos Abandonados vs Volume de Carrinhos Convertidos
 - **Tooltip / Métrica Secundária**: Taxa de Abandono (%) e Ticket Médio da Categoria
 - **Objetivo**: Atender ao requisito explícito de análise de categorias do case.
 
-![Performance Categorias](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_02_performance_categorias.png)
+![Performance Categorias](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_02_performance_categorias.png)
 
 ---
 
 ### Visualização 3: Eficiência Financeira — Receita Recuperada vs Custo por Canal (ROI)
 - **Tipo**: **Gráfico de Barras Duplas com Linha de Tendência (Combo Chart)**
-- **Artefato Gerado**: [`chart_03_roi_eficiencia_canais.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_03_roi_eficiencia_canais.png)
+- **Artefato Gerado**: [`chart_03_roi_eficiencia_canais.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_03_roi_eficiencia_canais.png)
 - **Fonte**: `vw_performance_canais`
 - **Eixo X**: `canal` (`email`, `whatsapp`, `sms`, `push_app`)
 - **Eixo Y1 (Barras)**: Receita Total Gerada (R$) e Custo Total de Disparos (R$)
 - **Eixo Y2 (Linha / Pontos)**: Múltiplo de ROI Líquido por Canal
 - **Objetivo**: Demonstrar visualmente por que o Email escala com baixo custo e o WhatsApp gera alto valor unitário.
 
-![ROI Canais](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_03_roi_eficiencia_canais.png)
+![ROI Canais](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_03_roi_eficiencia_canais.png)
 
 ---
 
 ### Visualização 4: Matriz de Causas-Raiz — Distribuição de Motivos por Segmento RFM
 - **Tipo**: **Mapa de Calor (Heatmap) / Gráfico de Rosca (Donut)**
-- **Artefato Gerado**: [`chart_04_matriz_motivos_rfm_heatmap.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_04_matriz_motivos_rfm_heatmap.png)
+- **Artefato Gerado**: [`chart_04_matriz_motivos_rfm_heatmap.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_04_matriz_motivos_rfm_heatmap.png)
 - **Fonte**: `vw_abandono_analise`
 - **Dimensões**: `motivo_abandono` (Preço, Frete, Indecisão, Pagamento, Estoque) × `segmento_rfm`
 - **Valor**: Volume de Carrinhos e Valor Represado em R$
 - **Objetivo**: Identificar rapidamente que Premium abandona por Indecisão e Novos por Frete/Preço.
 
-![Heatmap RFM](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_04_matriz_motivos_rfm_heatmap.png)
+![Heatmap RFM](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_04_matriz_motivos_rfm_heatmap.png)
 
 ---
 
 ### Visualização 5: Matriz de Decisão — Dispersão de Viabilidade de Recuperação
 - **Tipo**: **Gráfico de Dispersão (Scatter Plot / Bubble Chart)**
-- **Artefato Gerado**: [`chart_05_dispersao_viabilidade_recuperacao.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_05_dispersao_viabilidade_recuperacao.png)
+- **Artefato Gerado**: [`chart_05_dispersao_viabilidade_recuperacao.png`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_05_dispersao_viabilidade_recuperacao.png)
 - **Fonte**: `vw_viabilidade_recuperacao`
 - **Eixo X**: Probabilidade de Recuperação (`prob_recuperacao_pct`)
 - **Eixo Y**: Valor do Carrinho (`valor_total`)
@@ -97,7 +97,7 @@ Centralizar a visão executiva e operacional de abandono e resgate de carrinhos 
 - **Tamanho da Bolha**: Retorno Esperado em R$
 - **Objetivo**: Fornecer a visão prescritiva dos carrinhos que geram o maior retorno com o menor risco.
 
-![Scatter Viabilidade](file:///c:/Users/pedro/OneDrive/Desktop/wheels/dashboards/assets/chart_05_dispersao_viabilidade_recuperacao.png)
+![Scatter Viabilidade](file:///c:/Users/pedro/OneDrive/Desktop/wheels/pipelines/case-item-07/outputs/assets/chart_05_dispersao_viabilidade_recuperacao.png)
 
 ---
 

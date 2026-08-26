@@ -14,6 +14,10 @@ AbandonmentReason: TypeAlias = Literal[
     "Frete Abusivo", "Preço Elevado", "Dúvida Técnica", "Checkout Complexo", "Indecisão"
 ]
 
+VoiceTone: TypeAlias = Literal["Urgência", "Suporte", "Prova Social"]
+
+RecommendationStrategy: TypeAlias = Literal["Substituto", "Cross-sell", "Acessório"]
+
 @dataclass(frozen=True)
 class ChannelAllocation:
     """Alocação percentual e volumétrica por canal de resgate."""
@@ -56,6 +60,7 @@ class SimulationOutput:
     total_discount_cost: float
     total_net_revenue: float
     overall_roi_multiplier: float
+    preserved_margin_pct: float
     channel_breakdown: tuple[ChannelSimulationResult, ...]
 
 @dataclass(frozen=True)
@@ -65,10 +70,33 @@ class ProductSimilarityMatch:
     title: str
     category: str
     price: float
+    price_delta_pct: float
     similarity_score: float
+    strategy_badge: RecommendationStrategy
     price_sensitivity: str
     urgency_level: str
     friction_risk: str
+
+@dataclass(frozen=True)
+class MLFeatureDriver:
+    """Impacto marginal de feature no modelo de Machine Learning."""
+    feature_name: str
+    importance_pct: float
+    impact_type: Literal["Positivo", "Negativo"]
+    description: str
+
+@dataclass(frozen=True)
+class MLModelSummary:
+    """Métricas consolidadas do modelo supervisionado de propensão."""
+    model_name: str
+    accuracy: float
+    roc_auc: float
+    f1_score: float
+    precision: float
+    recall: float
+    train_records: int
+    test_records: int
+    top_drivers: tuple[MLFeatureDriver, ...]
 
 @dataclass(frozen=True)
 class GeneratedCopy:
@@ -76,14 +104,16 @@ class GeneratedCopy:
     channel: ChannelType
     segment: RFMSegment
     reason: AbandonmentReason
+    tone: VoiceTone
     subject_or_headline: str
     body_text: str
     call_to_action: str
     persuasion_trigger: str
+    json_schema_payload: str
 
 @dataclass(frozen=True)
 class ShowcasePresentation:
-    """Estrutura da apresentação visual do produto (Item Bônus)."""
+    """Estrutura da apresentação visual do produto (Item Bônus GenAI)."""
     title: str
     value_proposition: str
     key_pillars: str

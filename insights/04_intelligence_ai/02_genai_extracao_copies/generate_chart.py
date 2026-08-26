@@ -97,7 +97,7 @@ def plot_genai_dashboard(df_produtos: pd.DataFrame) -> plt.Figure:
     ax_pipe.axis("off")
 
     blocks = [
-        ("1. Dados Não-Estruturados Brutos", "• Descrições técnicas de 300 produtos\n• Feedbacks de SAC & transcrições de áudio (Whisper)\n• Mensagens de abandono no checkout", COLOR_BLUE, 0.72),
+        ("1. Dados Não-Estruturados Brutos", "• Descrições técnicas de 300 produtos\n• Feedbacks de checkout & tickets de SAC\n• Mensagens e objeções no abandono", COLOR_BLUE, 0.72),
         ("2. Processamento GenAI & LLM Gate", "• Modelos Foundation (OpenAI / Claude / Cortex)\n• Prompts declarativos normativos (`spec_genai_001`)\n• Extração de features: voltagem, compatibilidade, frete", COLOR_PURPLE, 0.43),
         ("3. Validação Contratual Pydantic", "• Imposição estrita de JSON Schema\n• 100% dos campos validados tipologicamente\n• Ingestão na camada Silver (`produtos_enriquecidos`)", COLOR_GREEN, 0.14),
     ]

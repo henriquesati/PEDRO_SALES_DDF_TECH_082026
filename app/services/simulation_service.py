@@ -1,8 +1,14 @@
-"""Serviço puro de cálculo financeiro, simulação de resgate e sensibilidade de ROI."""
+"""Serviço puro de cálculo financeiro, simulação de resgate, sensibilidade de ROI e rebalanceamento."""
 
-from typing import Sequence
+from typing import Sequence, Tuple, Mapping
 import pandas as pd
 
+from app.constants.settings import (
+    CUSTO_POR_DISPARO,
+    DEFAULT_TICKET_MEDIO,
+    PRESCRIBED_MIX,
+    TAXA_CONVERSAO_POR_CANAL,
+)
 from app.types.models import (
     ChannelAllocation,
     ChannelSimulationResult,
@@ -68,6 +74,11 @@ def run_simulation(input_data: SimulationInput) -> SimulationOutput:
     
     overall_roi = (total_net / total_investment) if total_investment > 0 else 0.0
     
+    # Cálculo de Margem Preservada (Baseline comercial 32.0% bruta - desconto - custo)
+    base_gross_margin = 0.320
+    effective_net_margin = (base_gross_margin * total_gross - total_investment) / (total_gross if total_gross > 0 else 1.0)
+    preserved_margin_pct = max(0.0, round(effective_net_margin * 100.0, 1))
+
     return SimulationOutput(
         total_dispatches=total_dispatches,
         total_recovered_carts=total_recovered,
@@ -77,7 +88,55 @@ def run_simulation(input_data: SimulationInput) -> SimulationOutput:
         total_discount_cost=round(total_disc, 2),
         total_net_revenue=round(total_net, 2),
         overall_roi_multiplier=round(overall_roi, 2),
+        preserved_margin_pct=preserved_margin_pct,
         channel_breakdown=channel_results,
+    )
+
+def create_preset_simulation_input(
+    total_carrinhos: int = 7500,
+    ticket_medio: float = DEFAULT_TICKET_MEDIO,
+    discount_pct: float = 0.0,
+    elasticity: float = 1.2,
+    mix: Mapping[str, float] = PRESCRIBED_MIX,
+) -> SimulationInput:
+    """Gera o objeto de entrada com preset de canais parametrizado."""
+    allocations = (
+        ChannelAllocation(
+            channel="Email",
+            share_pct=mix.get("Email", 0.85),
+            dispatches_count=int(total_carrinhos * mix.get("Email", 0.85)),
+            cost_per_dispatch=CUSTO_POR_DISPARO["Email"],
+            base_conversion_rate=TAXA_CONVERSAO_POR_CANAL["Email"],
+        ),
+        ChannelAllocation(
+            channel="WhatsApp",
+            share_pct=mix.get("WhatsApp", 0.12),
+            dispatches_count=int(total_carrinhos * mix.get("WhatsApp", 0.12)),
+            cost_per_dispatch=CUSTO_POR_DISPARO["WhatsApp"],
+            base_conversion_rate=TAXA_CONVERSAO_POR_CANAL["WhatsApp"],
+        ),
+        ChannelAllocation(
+            channel="SMS",
+            share_pct=mix.get("SMS", 0.02),
+            dispatches_count=int(total_carrinhos * mix.get("SMS", 0.02)),
+            cost_per_dispatch=CUSTO_POR_DISPARO["SMS"],
+            base_conversion_rate=TAXA_CONVERSAO_POR_CANAL["SMS"],
+        ),
+        ChannelAllocation(
+            channel="Push",
+            share_pct=mix.get("Push", 0.01),
+            dispatches_count=int(total_carrinhos * mix.get("Push", 0.01)),
+            cost_per_dispatch=CUSTO_POR_DISPARO["Push"],
+            base_conversion_rate=TAXA_CONVERSAO_POR_CANAL["Push"],
+        ),
+    )
+    
+    return SimulationInput(
+        total_abandoned_carts=total_carrinhos,
+        average_ticket=ticket_medio,
+        discount_pct=discount_pct,
+        conversion_elasticity=elasticity,
+        channel_allocations=allocations,
     )
 
 def generate_discount_sensitivity_curve(
@@ -103,5 +162,6 @@ def generate_discount_sensitivity_curve(
             "Custo Total (R$)": out.total_communication_cost + out.total_discount_cost,
             "Receita Líquida (R$)": out.total_net_revenue,
             "ROI Multiplicador": out.overall_roi_multiplier,
+            "Margem Preservada (%)": out.preserved_margin_pct,
         })
     return pd.DataFrame(rows)

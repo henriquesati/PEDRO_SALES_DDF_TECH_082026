@@ -39,7 +39,7 @@ A tabela `produtos_enriquecidos` é uma entidade de dimensão analítica avança
 - **Origem (Lineage Upstream):**
   - `CART_RECOVERY.PRODUTOS` (dados cadastrais)
   - Pesquisas e feedbacks de checkout pós-abandono em texto livre
-  - Transcrições de mensagens de voz e áudios SAC via Whisper
+  - Tickets e registros de atendimento ao cliente (SAC)
 - **Destino (Lineage Downstream):**
   - Camada Curated / Gold (`v_recovery_roi_by_segment`)
   - Dashboards de BI no Metabase (Item 7)

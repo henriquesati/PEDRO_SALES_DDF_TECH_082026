@@ -1,4 +1,4 @@
-"""Componente atômico para renderização de KPI Cards com deltas e formatação."""
+"""Componente atômico para renderização de KPI Cards com deltas e formatação executiva."""
 
 import streamlit as st
 
@@ -6,15 +6,14 @@ def render_kpi_card(
     label: str,
     value: str,
     delta: str | None = None,
-    is_positive: bool = True,
+    delta_type: str = "positive",  # "positive", "negative", "neutral", "purple"
     help_text: str | None = None,
 ) -> None:
-    """Renderiza um card visual de métrica formatado."""
+    """Renderiza um card visual de métrica formatado com visual executivo."""
     delta_html = ""
     if delta:
-        delta_class = "positive" if is_positive else "negative"
-        arrow = "▲" if is_positive else "▼"
-        delta_html = f'<div class="kpi-delta {delta_class}">{arrow} {delta}</div>'
+        arrow = "▲" if delta_type == "positive" else ("▼" if delta_type == "negative" else "•")
+        delta_html = f'<div class="kpi-delta {delta_type}">{arrow} {delta}</div>'
         
     tooltip_html = f' title="{help_text}"' if help_text else ""
     

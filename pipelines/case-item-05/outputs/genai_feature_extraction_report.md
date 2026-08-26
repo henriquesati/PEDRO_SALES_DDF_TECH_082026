@@ -19,7 +19,7 @@ Este relatório consolida a execução do **Item 5 (Sobre o uso de GenAI e LLMs 
 │               DADOS BRUTOS DESESTRUTURADOS             │
 │  • Títulos e Descrições Técnicas de Produtos (Texto)   │
 │  • Feedbacks e Objeções de Abandono de Checkout        │
-│  • Áudios e Mensagens de Voz de Clientes (Whisper)     │
+│  • Tickets e Mensagens de Atendimento SAC              │
 └───────────────────────────┬────────────────────────────┘
                             │
                             ▼
@@ -89,27 +89,7 @@ O gráfico consolidado abaixo foi gerado automaticamente pelo pipeline (`python 
 
 ---
 
-## 🎙️ 5. Bônus Multimodal: Transcrição e Extração com Whisper (Áudio/Voz)
-
-Como diferencial competitivo, o pipeline suporta a ingestão de áudios gravados por clientes no WhatsApp ou em centrais de atendimento telefônico (URA inteligente). O áudio é transcrito via **Whisper** e processado pelo mesmo contrato de dados:
-
-### Exemplo 1: Mensagem de Voz no WhatsApp (`AUD-2026-08-001`)
-- **Duração:** 14.5 segundos
-- **Transcrição Whisper:** *"Oi pessoal, boa tarde! Eu estava quase fechando a compra do Galaxy S24 aqui no site, mas quando calculei o frete deu mais de cinquenta reais pra entregar aqui no interior. Vocês conseguem um cupom de frete grátis ou um descontinho no Pix pra eu fechar agora?"*
-- **Intenção Detectada:** Negociação de Frete / Conversão Imediata.
-- **Objeção Principal:** Frete elevado para região interiorana.
-- **Solução Recomendada:** Disparar link com cupom `FRETEGRATIS` exclusivo de uso único com validade de 2 horas.
-
-### Exemplo 2: Gravação SAC Telefônico (`AUD-2026-08-002`)
-- **Duração:** 21.0 segundos
-- **Transcrição Whisper:** *"Alô, boa tarde. Eu deixei a cafeteira Oster Prima Latte no carrinho porque fiquei na dúvida se a voltagem de cento e vinte e sete volts é a mesma coisa que cento e dez volts da minha rede aqui de São Paulo. Gostaria de confirmar antes de passar o cartão."*
-- **Intenção Detectada:** Dúvida Técnica de Compatibilidade Elétrica.
-- **Objeção Principal:** Insegurança sobre voltagem (127V vs 110V).
-- **Solução Recomendada:** Enviar mensagem automática no WhatsApp confirmando que 127V é o padrão ABNT para tomadas convencionais de 110V.
-
----
-
-## 📁 6. Inventário de Artefatos Gerados
+## 📁 5. Inventário de Artefatos Gerados
 
 - [`specs.md`](../specs.md): Especificação técnica formal (`spec_genai_llm_001` v1.1).
 - [`implementation_plan.md`](../implementation_plan.md): Plano de decomposição WBS e critérios de aceitação.
@@ -119,5 +99,4 @@ Como diferencial competitivo, o pipeline suporta a ingestão de áudios gravados
 - [`scripts/run_genai_pipeline.py`](../scripts/run_genai_pipeline.py): Script batch em Python puro (`python make.py genai-extract`).
 - [`outputs/genai_features_sample.json`](genai_features_sample.json): Dataset estruturado em JSON com as features extraídas.
 - [`outputs/produtos_enriquecidos_sample.parquet`](produtos_enriquecidos_sample.parquet): Amostra tabular Silver enriquecida de desenvolvimento.
-- [`outputs/audio_transcriptions_sample.json`](audio_transcriptions_sample.json): Transcrições e diagnósticos de áudio Whisper.
 - [`outputs/assets/genai_features_overview.png`](assets/genai_features_overview.png): Gráfico executivo em 300 DPI.

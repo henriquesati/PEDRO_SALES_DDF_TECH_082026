@@ -1,4 +1,4 @@
-"""Aba 4: Vitrine & Gerador Visual de Apresentação de Produto (Item Bônus) (View)."""
+"""Aba 4: Vitrine & Gerador Visual de Apresentação de Produto (Item Bônus GenAI) (View)."""
 
 import pandas as pd
 import streamlit as st
@@ -58,18 +58,18 @@ def render_showcase_tab(df_products: pd.DataFrame | None) -> None:
         render_showcase_card(showcase_data, prod_row)
 
     with col_prompts:
-        st.markdown("#### 📝 Engenharia de Prompts (Item Bônus)")
-        st.markdown("Prompts padronizados e documentados para geração de imagem com DALL-E / Midjourney e síntese de texto:")
+        st.markdown("#### 📝 Engenharia de Prompts (Item Bônus GenAI)")
+        st.markdown("Prompts declarativos e documentados para geração de estúdio com DALL-E e síntese de texto:")
         
-        with st.expander("🖼️ Prompt de Imagem para DALL-E / Gerador Visual", expanded=True):
+        with st.expander("🖼️ Prompt de Imagem para DALL-E / Estúdio Visual", expanded=True):
             st.code(showcase_data.visual_prompt_reference, language="text")
-            st.caption("Prompt estruturado para renderizar a fotografia de estúdio com iluminação no padrão visual Dadosfera.")
+            st.caption("Prompt estruturado para renderizar fotografia de estúdio com iluminação no padrão visual Dadosfera.")
 
-        with st.expander("📄 Prompt de Síntese de Texto (LLM)", expanded=False):
+        with st.expander("📄 Prompt de Síntese de Texto (LLM)", expanded=True):
             llm_prompt = (
-                f"Você é um copywriter sênior de e-commerce da Dadosfera. "
-                f"Gere um card comercial para o produto '{prod_row['nome_bruto']}' "
-                f"destacando o material '{prod_row.get('material_construcao')}' e diferencial '{prod_row.get('diferencial_tecnico')}'. "
-                f"Foco: conversão imediata de carrinho abandonado."
+                f"Você é um copywriter sênior de e-commerce da Dadosfera.\n"
+                f"Gere um card comercial para o produto '{prod_row['nome_bruto']}'\n"
+                f"destacando o material '{prod_row.get('material_construcao')}' e diferencial '{prod_row.get('diferencial_tecnico')}'.\n"
+                f"Foco: conversão imediata de carrinho abandonado com preservação de margem."
             )
             st.code(llm_prompt, language="text")

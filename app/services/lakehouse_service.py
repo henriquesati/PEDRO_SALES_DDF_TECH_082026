@@ -1,31 +1,45 @@
-"""Serviço de acesso e carregamento de dados do Data Lakehouse com cache inteligente."""
+"""Serviço de acesso e carregamento de dados do Data Lakehouse com cache inteligente (Ground Truth)."""
 
 import os
+from typing import Tuple, Dict, Any
 import pandas as pd
 import streamlit as st
 
 from app.constants.settings import DATA_PATHS
 
-@st.cache_data(show_spinner="Carregando catálogo e dados analíticos...")
-def load_lakehouse_data() -> tuple[pd.DataFrame | None, pd.DataFrame | None]:
-    """Carrega os datasets da Camada Silver e Gold com resolução resiliente de caminhos."""
-    # 1. Catálogo Enriquecido (Silver Qualify GenAI)
-    prod_path = DATA_PATHS["produtos_enriquecidos"]
-    df_products = None
-    if os.path.exists(prod_path):
-        df_products = pd.read_parquet(prod_path)
+@st.cache_data(show_spinner="Carregando catálogo e dados analíticos do Lakehouse...")
+def load_lakehouse_data() -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Carrega os datasets persistidos da Camada Silver/Gold com resolução resiliente.
+    
+    Retorna:
+        Tuple: (df_products, df_carrinhos, df_resgate, df_clientes)
+    """
+    # 1. Produtos Enriquecidos (Silver Qualify / GenAI Features)
+    prod_qualify = DATA_PATHS.get("produtos_enriquecidos_qualify", "")
+    prod_cleaned = DATA_PATHS.get("produtos_cleaned", "")
+    
+    if os.path.exists(prod_qualify):
+        df_products = pd.read_parquet(prod_qualify)
+    elif os.path.exists(prod_cleaned):
+        df_products = pd.read_parquet(prod_cleaned)
+        # Normalização de nomes de colunas se vier de cleaned
+        if "nome" in df_products.columns and "nome_bruto" not in df_products.columns:
+            df_products["nome_bruto"] = df_products["nome"]
+        if "categoria" in df_products.columns and "categoria_normalizada" not in df_products.columns:
+            df_products["categoria_normalizada"] = df_products["categoria"]
     else:
-        # Fallback para raw caso qualify não esteja no caminho padrão
-        alt_prod = DATA_PATHS.get("produtos_raw")
-        if alt_prod and os.path.exists(alt_prod):
-            df_products = pd.read_parquet(alt_prod)
-            
-    # 2. Resumo de Abandono (Gold View)
-    view_path = DATA_PATHS["v_abandonment_summary"]
-    df_summary = None
-    if os.path.exists(view_path):
-        df_summary = pd.read_parquet(view_path)
-    elif os.path.exists(DATA_PATHS["carrinhos_raw"]):
-        df_summary = pd.read_parquet(DATA_PATHS["carrinhos_raw"])
-        
-    return df_products, df_summary
+        df_products = pd.DataFrame()
+
+    # 2. Carrinhos (Ground Truth)
+    cart_path = DATA_PATHS.get("carrinhos_cleaned", "")
+    df_carrinhos = pd.read_parquet(cart_path) if os.path.exists(cart_path) else pd.DataFrame()
+
+    # 3. Eventos de Resgate (Telemetria Multicanal)
+    res_path = DATA_PATHS.get("eventos_resgate_cleaned", "")
+    df_resgate = pd.read_parquet(res_path) if os.path.exists(res_path) else pd.DataFrame()
+
+    # 4. Clientes & Segmentação RFM
+    cli_path = DATA_PATHS.get("clientes_cleaned", "")
+    df_clientes = pd.read_parquet(cli_path) if os.path.exists(cli_path) else pd.DataFrame()
+
+    return df_products, df_carrinhos, df_resgate, df_clientes
