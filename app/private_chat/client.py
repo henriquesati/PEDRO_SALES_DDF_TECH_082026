@@ -57,11 +57,16 @@ def send_chat_turn(
     message: str,
     agent_name: str,
     base_url: str = DEFAULT_SERVER_URL,
+    api_key: Optional[str] = None,
     timeout_sec: float = 60.0,
 ) -> Dict[str, Any]:
     """Envia uma mensagem para o agente no modo síncrono (/chat) e retorna o resultado estruturado."""
     url = f"{base_url.rstrip('/')}/chat"
-    payload = json.dumps({"message": message, "agent_name": agent_name}).encode("utf-8")
+    payload_dict = {"message": message, "agent_name": agent_name}
+    if api_key and api_key.strip():
+        payload_dict["api_key"] = api_key.strip()
+
+    payload = json.dumps(payload_dict).encode("utf-8")
 
     req = urllib.request.Request(
         url,
@@ -106,11 +111,16 @@ def stream_chat_turn(
     message: str,
     agent_name: str,
     base_url: str = DEFAULT_SERVER_URL,
+    api_key: Optional[str] = None,
     timeout_sec: float = 60.0,
 ) -> Generator[str, None, None]:
     """Consome a rota SSE (/stream) emitindo tokens em tempo real."""
     url = f"{base_url.rstrip('/')}/stream"
-    payload = json.dumps({"message": message, "agent_name": agent_name}).encode("utf-8")
+    payload_dict = {"message": message, "agent_name": agent_name}
+    if api_key and api_key.strip():
+        payload_dict["api_key"] = api_key.strip()
+
+    payload = json.dumps(payload_dict).encode("utf-8")
 
     req = urllib.request.Request(
         url,
@@ -139,3 +149,4 @@ def stream_chat_turn(
                         yield data_str
     except Exception as exc:
         yield f"\n\n❌ [Erro de Conexão Streaming]: {exc}"
+

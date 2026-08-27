@@ -1,6 +1,5 @@
-"""View principal da página isolada Private Chat."""
+"""View principal do Private Chat com interface limpa e minimalista no padrão ChatGPT."""
 
-import datetime
 from typing import Any, Dict, List, Optional
 import streamlit as st
 
@@ -8,17 +7,14 @@ from app.private_chat.client import (
     DEFAULT_SERVER_URL,
     check_server_health,
     fetch_agents_catalog,
-    fetch_openapi_spec,
     send_chat_turn,
     stream_chat_turn,
 )
 from app.private_chat.components import (
-    render_agent_selection_panel,
-    render_chat_header,
-    render_chat_message,
-    render_connection_failure_alert,
-    render_openapi_inspector_drawer,
-    render_quick_prompt_chips,
+    render_clean_connection_alert,
+    render_clean_message,
+    render_sidebar_menu,
+    render_welcome_hero,
 )
 from app.private_chat.styles import inject_private_chat_theme
 
@@ -26,19 +22,7 @@ from app.private_chat.styles import inject_private_chat_theme
 def init_chat_session_state() -> None:
     """Inicializa as variáveis de estado de sessão do chat de forma pura e idempotente."""
     if "private_chat_messages" not in st.session_state:
-        st.session_state["private_chat_messages"] = [
-            {
-                "role": "assistant",
-                "content": (
-                    "Olá! Sou a interface de orquestração autônoma multi-agente do ecossistema Dadosfera.\n\n"
-                    "Todos os 10 agentes e 10 skills do workspace estão conectados via **FastAPI** e padronizados "
-                    "sob a especificação **OpenAPI 3.1.0**.\n\n"
-                    "Selecione um agente especialista e envie sua dúvida ou utilize os botões rápidos abaixo!"
-                ),
-                "agent_name": "case-context-specialist",
-                "meta": "Inicialização do Sistema",
-            }
-        ]
+        st.session_state["private_chat_messages"] = []
 
     if "private_chat_selected_agent" not in st.session_state:
         st.session_state["private_chat_selected_agent"] = "case-context-specialist"
@@ -46,12 +30,15 @@ def init_chat_session_state() -> None:
     if "private_chat_server_url" not in st.session_state:
         st.session_state["private_chat_server_url"] = DEFAULT_SERVER_URL
 
+    if "private_chat_api_key" not in st.session_state:
+        st.session_state["private_chat_api_key"] = ""
+
     if "private_chat_stream_mode" not in st.session_state:
         st.session_state["private_chat_stream_mode"] = True
 
 
 def render_private_chat_page() -> None:
-    """Renderiza a página completa do Private Chat isolada do restante do aplicativo."""
+    """Renderiza a interface clean estilo ChatGPT 100% isolada em app/private_chat/."""
     init_chat_session_state()
     inject_private_chat_theme()
 
@@ -60,7 +47,6 @@ def render_private_chat_page() -> None:
     # Obter diagnósticos do backend
     health_info = check_server_health(base_url)
     agents_catalog = fetch_agents_catalog(base_url)
-    openapi_spec = fetch_openapi_spec(base_url)
 
     # Fallback caso servidor esteja offline para manter a UX amigável
     if not agents_catalog:
@@ -72,95 +58,62 @@ def render_private_chat_page() -> None:
             {"name": "platform-registry-consultant", "description": "Mapeamento oficial de ativos da plataforma."},
         ]
 
-    # 1. Header do Chat
-    render_chat_header(health_info, base_url)
-
-    # Alerta de Falha de Conexão com o Backend (se offline)
-    if health_info is None:
-        render_connection_failure_alert(
-            base_url=base_url,
-            error_detail="Servidor FastAPI offline ou inacessível em http://127.0.0.1:8000.",
-        )
-
-    # 2. Configurações de Conexão e Agente
-    col_agent, col_settings = st.columns([2.5, 1.5], gap="medium")
-
-    with col_agent:
-        selected_agent = render_agent_selection_panel(
+    # 1. Menu Lateral Minimalista (Descrição, Novo Chat, Seletor de Agente, API Key)
+    with st.sidebar:
+        sidebar_data = render_sidebar_menu(
             agents=agents_catalog,
             current_agent=st.session_state["private_chat_selected_agent"],
+            health_info=health_info,
+            base_url=base_url,
         )
+        selected_agent = sidebar_data["selected_agent"]
         st.session_state["private_chat_selected_agent"] = selected_agent
 
-    with col_settings:
-        with st.container(border=True):
-            st.markdown(
-                "<div style='font-family: monospace; font-size: 0.8rem; font-weight: bold; color: #94A3B8;'>⚙️ CONFIGURAÇÕES DE RUNTIME</div>",
-                unsafe_allow_html=True,
-            )
-            stream_mode = st.toggle(
-                "Streaming em Tempo Real (SSE)",
-                value=st.session_state["private_chat_stream_mode"],
-                key="toggle_stream_mode",
-            )
-            st.session_state["private_chat_stream_mode"] = stream_mode
+    # 2. Área Central de Conversação
+    st.markdown('<div class="chatgpt-layout-container">', unsafe_allow_html=True)
 
-            col_btn_clear, col_btn_reload = st.columns(2)
-            with col_btn_clear:
-                if st.button("🗑️ Limpar Chat", key="btn_clear_chat", use_container_width=True):
-                    st.session_state["private_chat_messages"] = []
-                    st.rerun()
-            with col_btn_reload:
-                if st.button("🔄 Reconectar", key="btn_reconnect_server", use_container_width=True):
-                    st.rerun()
+    # Alerta de Falha de Conexão se o backend estiver offline
+    if health_info is None:
+        render_clean_connection_alert(base_url)
 
-    # 3. Inspetor OpenAPI 3.1.0
-    render_openapi_inspector_drawer(openapi_spec, base_url)
-
-    # 4. Chips de Prompts Rápidos
-    clicked_chip_prompt = render_quick_prompt_chips()
-
-    st.divider()
-
-    # 5. Feed de Mensagens
-    chat_container = st.container()
-    with chat_container:
-        for msg in st.session_state["private_chat_messages"]:
-            render_chat_message(
+    # Se não houver mensagens, renderiza o Hero centralizado
+    messages = st.session_state["private_chat_messages"]
+    if not messages:
+        render_welcome_hero()
+    else:
+        for msg in messages:
+            render_clean_message(
                 role=msg["role"],
                 content=msg["content"],
                 agent_name=msg.get("agent_name"),
-                meta=msg.get("meta"),
             )
 
-    # 6. Processamento de Entrada (Input do Chat ou Chip Clicado)
-    user_input = st.chat_input("Digite sua mensagem para o agente autônomo...")
-    prompt_to_send = clicked_chip_prompt or user_input
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    if prompt_to_send:
-        now_str = datetime.datetime.now().strftime("%H:%M:%S")
+    # 3. Input do Usuário na Base da Página
+    user_input = st.chat_input("Pergunte sobre o projeto e seu desenvolvimento...")
+
+    if user_input:
+        active_api_key = st.session_state.get("private_chat_api_key") or None
 
         # Adicionar mensagem do usuário ao histórico
         st.session_state["private_chat_messages"].append(
             {
                 "role": "user",
-                "content": prompt_to_send,
-                "meta": now_str,
+                "content": user_input,
             }
         )
 
         # Se for modo streaming e o servidor estiver online
         if st.session_state["private_chat_stream_mode"] and health_info is not None:
-            # Renderiza a mensagem do usuário imediatamente
-            render_chat_message(role="user", content=prompt_to_send, meta=now_str)
+            render_clean_message(role="user", content=user_input)
 
-            # Placeholder para streaming de resposta
             with st.chat_message("assistant"):
-                st.markdown(f"**🤖 {selected_agent}** *(Gerando resposta...)*")
                 token_stream = stream_chat_turn(
-                    message=prompt_to_send,
+                    message=user_input,
                     agent_name=selected_agent,
                     base_url=base_url,
+                    api_key=active_api_key,
                 )
                 full_response = st.write_stream(token_stream)
 
@@ -169,35 +122,30 @@ def render_private_chat_page() -> None:
                     "role": "assistant",
                     "content": full_response or "(Resposta vazia)",
                     "agent_name": selected_agent,
-                    "meta": datetime.datetime.now().strftime("%H:%M:%S"),
                 }
             )
             st.rerun()
         else:
             # Modo síncrono (/chat) com spinner
-            with st.spinner(f"Agente '{selected_agent}' está processando..."):
+            with st.spinner("Processando resposta..."):
                 resp = send_chat_turn(
-                    message=prompt_to_send,
+                    message=user_input,
                     agent_name=selected_agent,
                     base_url=base_url,
+                    api_key=active_api_key,
                 )
 
-            resp_text = resp.get("response") or resp.get("error_message") or "Sem resposta."
+            resp_text = resp.get("response") or resp.get("error_message") or "Sem resposta do servidor."
             status = resp.get("status", "error")
-            elapsed = resp.get("_elapsed_sec", 0.0)
 
             if status != "success":
-                st.toast("🚨 Falha ao comunicar com o Backend FastAPI!", icon="⚠️")
-
-            meta_info = f"{now_str} &bull; {elapsed}s" if status == "success" else f"{now_str} &bull; ⚠️ Erro de Comunicação"
+                st.toast("🚨 Falha ao comunicar com o servidor!", icon="⚠️")
 
             st.session_state["private_chat_messages"].append(
                 {
                     "role": "assistant",
                     "content": resp_text,
                     "agent_name": selected_agent,
-                    "meta": meta_info,
                 }
             )
             st.rerun()
-

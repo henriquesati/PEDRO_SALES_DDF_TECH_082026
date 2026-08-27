@@ -43,6 +43,11 @@ class ChatInput(BaseModel):
         description="Nome do agente especializado a ser invocado (.agents/agents/).",
         examples=["case-context-specialist", "data-strategy-analyst", "charts-maker"],
     )
+    api_key: Optional[str] = Field(
+        default=None,
+        description="Chave de API Gemini/Google GenAI opcional para autenticação de runtime.",
+        examples=[None, "AIzaSy..."],
+    )
 
     class Config:
         frozen = True
@@ -50,8 +55,10 @@ class ChatInput(BaseModel):
             "example": {
                 "message": "Qual é o impacto financeiro de recuperar carrinhos abandonados acima de R$ 500?",
                 "agent_name": "data-strategy-analyst",
+                "api_key": None,
             }
         }
+
 
 
 class ChatOutput(BaseModel):

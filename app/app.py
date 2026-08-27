@@ -26,6 +26,7 @@ from app.views.tab_insights_explorer import render_insights_explorer_tab
 from app.views.tab_roi import render_roi_tab
 from app.views.tab_showcase import render_showcase_tab
 from app.views.tab_similarity import render_similarity_tab
+from app.views.view_business_dashboard import render_business_dashboard
 from app.views.view_hub_landing import render_hub_landing
 
 # =============================================================================
@@ -168,29 +169,7 @@ elif current_mode == "🥋 Central do Avaliador (Agentes, Skills & Insights)":
 # 3. 🏢 MÓDULO EXECUTIVO DE NEGÓCIOS & BI (BUSINESS COCKPIT & DATA PANELS)
 # -----------------------------------------------------------------------------
 elif current_mode == "🏢 Módulo de Negócio (BI & Consumo Executivo)":
-    render_business_cockpit_header()
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "1. Simulador de ROI",
-        "2. Explorador Semântico",
-        "3. Copiloto Prescritivo",
-        "4. Vitrine Visual de Produtos",
-        "5. Galeria de Insights",
-    ])
-
-    with tab1:
-        render_roi_tab(df_carrinhos)
-
-    with tab2:
-        render_similarity_tab(df_products)
-
-    with tab3:
-        render_copilot_tab(df_products)
-
-    with tab4:
-        render_showcase_tab(df_products)
-
-    with tab5:
-        render_insights_explorer_tab()
+    render_business_dashboard(df_carrinhos, df_products)
 
 # -----------------------------------------------------------------------------
 # 4. 💬 CONSOLE DE INFERÊNCIA AUTÔNOMA (/chat - ISOLADO)

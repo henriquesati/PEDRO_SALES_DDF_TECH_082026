@@ -20,6 +20,18 @@ load_dotenv(Path.home() / ".gemini" / ".env")
 # Pure Config Builders
 # ---------------------------------------------------------------------------
 
+def resolve_api_key(explicit_key: Optional[str] = None) -> Optional[str]:
+    """Resolve pure Gemini / Google GenAI API key from parameters or environment."""
+    if explicit_key and explicit_key.strip():
+        return explicit_key.strip()
+    return (
+        os.environ.get("GEMINI_API_KEY")
+        or os.environ.get("GOOGLE_API_KEY")
+        or os.environ.get("GOOGLE_GENAI_API_KEY")
+        or os.environ.get("ANTIGRAVITY_API_KEY")
+    )
+
+
 def build_autonomous_config(
     agent_meta: AgentMeta,
     skills_paths: Sequence[str],
@@ -33,7 +45,12 @@ def build_autonomous_config(
     - AgentBehavior.AUTONOMOUS: Prevents interactive pauses.
     - Automatic loading of discovered skill directories.
     """
-    key = api_key or os.environ.get("GEMINI_API_KEY")
+    key = resolve_api_key(api_key)
+    if not key:
+        raise ValueError(
+            "Chave de API Gemini não configurada. Defina a variável de ambiente "
+            "GEMINI_API_KEY no arquivo .env ou informe sua chave no painel de configurações do /chat."
+        )
 
     return LocalAgentConfig(
         model=model,
@@ -46,6 +63,7 @@ def build_autonomous_config(
             enable_subagents=True,
         ),
     )
+
 
 
 # ---------------------------------------------------------------------------

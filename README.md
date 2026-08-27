@@ -403,7 +403,7 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 ---
 
 ### 5.  Data App em Streamlit (Item 9)
-* **O que foi feito:** Aplicação analítica modular e interativa em Streamlit estruturada em 5 camadas (Types, Constants, Services, Components e Views), integrando a Central do Avaliador (Roster de Agentes e Skills com dossiês técnicos), Cockpit de Negócios com 5 abas (Simulador de ROI, Busca Vetorial 2D, Copiloto Prescritivo, Vitrine de Produtos e Galeria de Insights Side-by-Side em 300 DPI) e roteamento dinâmico via query params.
+* **O que foi feito:** Aplicação analítica modular e interativa em Streamlit estruturada em 5 camadas (Types, Constants, Services, Components e Views), integrando a Central do Avaliador (Roster de Agentes e Skills com dossiês técnicos), Cockpit Executivo de Negócios (Simulador de ROI, Busca Vetorial 2D, Copiloto Prescritivo, Vitrine de Produtos e Galeria de Insights Side-by-Side em 300 DPI) e roteamento dinâmico via query params.
 * **📁 Arquivos & Códigos:**
   - [`app/app.py`](app/app.py) — *Entrypoint e roteador principal do Data App*
   - [`app/views/`](app/views/) — *Módulos e abas desacopladas de negócio e avaliação*
@@ -418,7 +418,19 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 6.  GenAI Multimodal / Transcrição de Áudio via Whisper (Item 5 Bônus)
+### 6.  Console de Inferência Autônoma & Assistente do Projeto (`/chat` - Inovação Multi-Agente)
+* **O que foi feito:** Interface de conversação estilo ChatGPT conectada a um servidor backend autônomo FastAPI (`agent_server/`), permitindo interagir diretamente com os 10 agentes e 11 skills do projeto com streaming SSE em tempo real e bypass de confirmação (`allow_all`).
+* **Nota do usuário:** *Não sei se vai estar funcionando, não sei se vou achar provedor e ter limite na apikey.*
+* **📁 Arquivos & Códigos:**
+  - [`app/private_chat/view.py`](app/private_chat/view.py) — *Interface de chat no Streamlit*
+  - [`app/private_chat/components.py`](app/private_chat/components.py) — *Componentes visuais e renderizador de mensagens*
+  - [`app/private_chat/client.py`](app/private_chat/client.py) — *Cliente HTTP com streaming SSE para a porta 8000*
+  - [`agent_server/server.py`](agent_server/server.py) — *Servidor ASGI FastAPI autônomo com documentação Swagger/OpenAPI 3.1*
+  - [`agent_server/run.py`](agent_server/run.py) — *Entrypoint de execução do backend*
+
+---
+
+### 7.  GenAI Multimodal / Transcrição de Áudio via Whisper (Item 5 Bônus)
 * **O que foi feito:** Processamento e transcrição de áudios de atendimento ao cliente via OpenAI Whisper, permitindo extrair a causa-raiz de abandono de checkout diretamente da voz do consumidor com 100% de conformidade JSON Schema Pydantic.
 * **📁 Arquivos & Códigos:**
   - [`pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb`](pipelines/case-item-05/notebooks/genai_feature_extraction.ipynb) — *Notebook Colab com extração multimodal e transcrição de áudios*
@@ -428,7 +440,7 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 7.  Catalogação Automática via API da Dadosfera (Item 3 Bônus)
+### 8.  Catalogação Automática via API da Dadosfera (Item 3 Bônus)
 * **O que foi feito:** Integração REST com a API Maestro da Dadosfera para catalogação programática de datasets, extração de metadados e mapeamento dos 7 Data Asset IDs oficiais.
 * **📁 Arquivos & Códigos:**
   - [`agents_prompts_refs/dadosfera-api/`](agents_prompts_refs/dadosfera-api/) — *Scripts de automação REST e documentação de endpoints Maestro*

@@ -41,19 +41,17 @@ O backend autônomo na raiz (`agent_server`) expõe os seguintes contratos docum
 
 ---
 
-## 🚨 4. Protocolo de Resiliência & Modal de Falha de Conexão
+## 🎨 4. Design de Interface Clean (Padrão ChatGPT)
 
-Caso o aplicativo Streamlit falhe ao se comunicar com o backend `http://127.0.0.1:8000`:
-1. **Detecção Imediata**: O healthcheck (`check_server_health`) com timeout de 2.0s identifica a indisponibilidade.
-2. **Modal / Popup de Alerta**: É disparado automaticamente um diálogo modal (`st.dialog` / popup alert) na interface informando:
-   - Erro específico de conectividade (`ConnectionRefusedError` ou timeout).
-   - Comando CLI para inicialização do servidor: `python make.py agent-server`.
-   - Botão de ação rápida para reconexão imediata.
-3. **Modo Fallback Offline**: A interface permanece funcional, permitindo a inspeção de metadados estáticos e especificações OpenAPI em cache sem quebrar a execução do Streamlit.
+1. **Minimalismo e Foco**: A interface não possui cards ruidosos, botões de chips de propensão ou inspetores visuais pesados na área principal.
+2. **Layout Centrado**: As mensagens fluem em um canvas centralizado com largura de leitura ideal e bolhas discretas de conversa.
+3. **Menu Lateral Contextualizado**: O menu à esquerda concentra as configurações essenciais e a descrição normativa do assistente:
+   > *"Pergunte sobre o projeto e seu desenvolvimento: arquitetura do Lakehouse, modelagem dimensional, pipelines de dados, regras de negócio e simuladores de ROI."*
+4. **Resiliência Transparente**: Se o servidor FastAPI estiver offline, é exibido um alerta minimalista no topo sem poluir a interface.
 
 ---
 
-## 📂 5. Topologia dos Arquivos
+## 📂 5. Topologia dos Arquivos Isolados
 
 ```
 app/
@@ -64,7 +62,8 @@ app/
     ├── spec.md                     # [ESTE DOCUMENTO] Especificação normativa do subsistema
     ├── client.py                   # Cliente HTTP e SSE isolado em urllib puro
     ├── styles.py                   # Injetor de CSS isolado
-    ├── chat_theme.css              # Folha de estilos encapsulada com tema dark terminal
-    ├── components.py               # Componentes visuais atômicos e modal de falha
+    ├── chat_theme.css              # Folha de estilos encapsulada com tema clean ChatGPT
+    ├── components.py               # Componentes visuais atômicos, menu lateral e mensagens
     └── view.py                     # Orquestrador do ciclo de vida e estado do chat
 ```
+

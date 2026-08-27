@@ -164,6 +164,7 @@ def create_app() -> FastAPI:
                 agent_meta=agent_meta,
                 skills_paths=skills_paths,
                 prompt=payload.message,
+                api_key=payload.api_key,
             )
             return ChatOutput(
                 agent_name=payload.agent_name,
@@ -214,9 +215,11 @@ def create_app() -> FastAPI:
                     agent_meta=agent_meta,
                     skills_paths=skills_paths,
                     prompt=payload.message,
+                    api_key=payload.api_key,
                 ):
                     data_payload = json.dumps({"token": token, "agent": payload.agent_name})
                     yield f"data: {data_payload}\n\n"
+
                 yield "data: [DONE]\n\n"
             except Exception as exc:
                 err_payload = json.dumps({"error": str(exc)})

@@ -33,7 +33,7 @@ Serve como fonte de contexto para outros agentes que precisam entender **por qu�
 
 ## 📋 Itens do Case (Requisitos da Empresa)
 
-> Fonte: [`specs-internship.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/specs-internship.txt)
+> Fontes Estratégicas: [`specs-internship.txt`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/specs-internship.txt), [`user-case-raw-analyses.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/user-case-raw-analyses.md) & [`raw_analise.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/agents_prompts_refs/case-internship-files/raw_analise.md)
 
 ### Escala de Avaliação
 | Nível | Requisito |
