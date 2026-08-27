@@ -10,6 +10,7 @@ from app.types.models import (
     AgentPowerStats,
     AgentProfile,
     SkillProfile,
+    SpecProfile,
     SpecialMove,
 )
 
@@ -1266,6 +1267,448 @@ _SKILLS_MAP: Final[Mapping[str, SkillProfile]] = MappingProxyType({
 
 
 # =============================================================================
+# 📋 CATÁLOGO IMUTÁVEL DE SPECS DA CODEBASE (BLUEPRINTS NORMATIVOS)
+# =============================================================================
+
+_SPECS_DATA: Final[tuple[SpecProfile, ...]] = (
+    # 01. Case Items & Lakehouse Pipelines
+    SpecProfile(
+        spec_id="pipelines-case-item-03",
+        display_name="Item 03: Exploração, Catalogação & Metadados",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/case-item-03/specs.md",
+        description="Especificação técnica de ingestão no Snowflake, catalogação dos 7 datasets primários e linhagem no Maestro da Dadosfera.",
+        case_item="Item 3",
+        target_layer="Bronze (Raw) / Snowflake / Maestro",
+        artifacts_linked=(
+            "agents_prompts_refs/dadosfera-api/output-mappers/assets_registry.md",
+            "pipelines/case-item-03/README.md"
+        ),
+        scripts_linked=(
+            "pipelines/case-item-03/register_assets.py",
+            "data/mock/generator.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pipelines-case-item-04",
+        display_name="Item 04: Data Quality, Great Expectations & Quarentena",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/case-item-04/specs.md",
+        description="Especificação de integridade de dados com 18 testes automatizados, bifurcação Silver Qualify vs Silver Anomaly e relatórios de auditoria.",
+        case_item="Item 4",
+        target_layer="Silver Qualify / Silver Anomaly",
+        artifacts_linked=(
+            "pipelines/case-item-04/carrinhos_suite.json",
+            "pipelines/case-item-04/data_quality_report.md"
+        ),
+        scripts_linked=(
+            "pipelines/case-item-04/qualification_raw.ipynb",
+            "data/mock/generator.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pipelines-case-item-05",
+        display_name="Item 05: Enriquecimento GenAI & Structured Schemas",
+        category="03_analytics_insights",
+        file_path="pipelines/case-item-05/specs.md",
+        description="Pipeline de extração de features semânticas via LLM (Pydantic), categorização de tom de voz, nível de urgência e risco de atrito.",
+        case_item="Item 5",
+        target_layer="Silver Qualify (Enriched)",
+        artifacts_linked=(
+            "pipelines/case-item-05/outputs/genai_feature_extraction_report.md",
+            "data/mock/output_cleaned/parquet/df_produtos_qualify.parquet"
+        ),
+        scripts_linked=(
+            "pipelines/case-item-05/notebook_genai.ipynb",
+            "pipelines/case-item-05/scripts/genai_extractor.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pipelines-case-item-06",
+        display_name="Item 06: Modelagem Dimensional Kimball Star Schema Gold",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/case-item-06/specs.md",
+        description="Arquitetura dimensional Star Schema na camada Gold (DEC-008) com 6 dimensões conformadas, 2 tabelas fato granulares e surrogate keys.",
+        case_item="Item 6",
+        target_layer="Gold Curated (Kimball)",
+        artifacts_linked=(
+            "pipelines/case-item-06/outputs/data_modeling_report.md",
+            "data/models/physical/ddl_gold_star_schema.sql"
+        ),
+        scripts_linked=(
+            "pipelines/case-item-06/build_gold_layer.py",
+            "pipelines/case-item-06/validate_star_schema.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pipelines-case-item-07",
+        display_name="Item 07: BI, Análise Exploratória & Métricas Metabase",
+        category="03_analytics_insights",
+        file_path="pipelines/case-item-07/specs.md",
+        description="Diretrizes de BI e visualizações em 300 DPI, criação de Field Filters reutilizáveis e dashboards executivos.",
+        case_item="Item 7",
+        target_layer="Gold Curated / Metabase / Dashboards",
+        artifacts_linked=(
+            "pipelines/case-item-07/outputs/bi_analysis_report.md",
+            "dashboards/exports/"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "pipelines/case-item-07/notebook_bi.ipynb"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pipelines-case-item-08",
+        display_name="Item 08: Pipelines Medallion, Stepsfera & Treinamento ML",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/case-item-08/specs.md",
+        description="Orquestração da esteira Lakehouse Medallion ponta a ponta, Stepsfera e treinamento de modelos de propensão XGBoost/RandomForest.",
+        case_item="Item 8",
+        target_layer="Lakehouse Medallion End-to-End",
+        artifacts_linked=(
+            "pipelines/datalakes/README.md",
+            "pipelines/datalakes/medallion.md"
+        ),
+        scripts_linked=(
+            "pipelines/case-item-08/train_propensity_model.py",
+            "pipelines/case-item-08/run_medallion_pipeline.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pipelines-case-item-09",
+        display_name="Item 09: Data App Interativo Streamlit em 5 Camadas",
+        category="03_analytics_insights",
+        file_path="pipelines/case-item-09/specs.md",
+        description="Especificação técnica do Streamlit Data App em 5 camadas (Types, Constants, Services, Components, Views) com design tokens e hot-reload.",
+        case_item="Item 9",
+        target_layer="Streamlit Data App (Port 8501)",
+        artifacts_linked=(
+            "app/app.py",
+            "app/types/models.py",
+            "app/styles/custom.css"
+        ),
+        scripts_linked=(
+            "make.py data-app",
+            "app/app.py"
+        ),
+    ),
+    # 02. Camadas do Data Lakehouse
+    SpecProfile(
+        spec_id="datalake-raw-spec",
+        display_name="Lakehouse: Zona Bronze (Raw Ingestion)",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/datalakes/raw/spec.md",
+        description="Especificação dos contratos de dados brutos e persistência imutável em Parquet e CSV na zona Bronze.",
+        case_item="Item 8",
+        target_layer="Bronze (Raw)",
+        artifacts_linked=(
+            "pipelines/datalakes/raw/spec.md",
+            "data/mock/output_cleaned/parquet/df_carrinhos.parquet"
+        ),
+        scripts_linked=(
+            "data/mock/generator.py",
+            "pipelines/datalakes/raw/ingest_raw.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="datalake-qualify-spec",
+        display_name="Lakehouse: Zona Silver Qualify (Higienização)",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/datalakes/qualify/spec.md",
+        description="Especificação da camada Silver Qualify: deduplicação, sanitização e conformidade com as 18 regras de Data Quality.",
+        case_item="Item 4 & Item 8",
+        target_layer="Silver Qualify",
+        artifacts_linked=(
+            "pipelines/datalakes/qualify/spec.md",
+            "pipelines/case-item-04/carrinhos_suite.json"
+        ),
+        scripts_linked=(
+            "pipelines/case-item-04/qualification_raw.ipynb",
+            "data/mock/generator.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="datalake-curated-spec",
+        display_name="Lakehouse: Zona Gold Curated (Kimball Star Schema)",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/datalakes/curated/spec.md",
+        description="Especificação da camada Gold Curated: tabelas de fatos e dimensões otimizadas para consumo de BI e tomadores de decisão.",
+        case_item="Item 6 & Item 8",
+        target_layer="Gold Curated",
+        artifacts_linked=(
+            "pipelines/datalakes/curated/spec.md",
+            "pipelines/case-item-06/outputs/data_modeling_report.md"
+        ),
+        scripts_linked=(
+            "pipelines/case-item-06/build_gold_layer.py",
+            "app/services/data_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="datalake-anomaly-spec",
+        display_name="Lakehouse: Zona Silver Anomaly (Quarentena)",
+        category="02_lakehouse_engineering",
+        file_path="pipelines/datalakes/anomaly/spec.md",
+        description="Especificação de isolamento e rastreabilidade para os 1.439 registros com anomalias controladas (DEC-007).",
+        case_item="Item 4 & Item 8",
+        target_layer="Silver Anomaly (Quarentena)",
+        artifacts_linked=(
+            "pipelines/datalakes/anomaly/spec.md",
+            "pipelines/case-item-04/data_quality_report.md"
+        ),
+        scripts_linked=(
+            "data/mock/generator.py",
+            "pipelines/case-item-04/qualification_raw.ipynb"
+        ),
+    ),
+    # 03. Pitch & Apresentação Executiva
+    SpecProfile(
+        spec_id="pitch-spec-master",
+        display_name="Pitch: Especificação Master de Governança & DEC-001",
+        category="01_strategy_governance",
+        file_path="presentation/pitch/pitch_spec.md",
+        description="Documento canônico master de governança visual, métricas relativas em % (DEC-001) e narrativa executiva para C-Levels.",
+        case_item="Item 10 & Item 10.1",
+        target_layer="Apresentação Executiva (Pitch C-Level)",
+        artifacts_linked=(
+            "presentation/pitch/pitch_spec.md",
+            "presentation/pitch/roteiro.txt"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "presentation/pitch/validate_pitch.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pitch-views-04-insights",
+        display_name="Pitch: 4 Quadrantes Canônicos de Insights",
+        category="03_analytics_insights",
+        file_path="presentation/pitch/roteiro/views-04-insights/spec.md",
+        description="Especificação dos 4 quadrantes (Descritivo, Risco, Prescritivo e Oportunidade) para apresentação e visualização executiva.",
+        case_item="Item 7 & Item 10",
+        target_layer="Camada de Insights Analíticos",
+        artifacts_linked=(
+            "insights/",
+            "presentation/pitch/roteiro/views-04-insights/spec.md"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "app/services/insights_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pitch-views-05-ia",
+        display_name="Pitch: Módulos de IA, Machine Learning & Similaridade",
+        category="03_analytics_insights",
+        file_path="presentation/pitch/roteiro/views-05-insights-ia/spec.md",
+        description="Especificação técnica dos casos de uso de IA: Simulador de ROI, busca vetorial 2D e copiloto prescritivo com LLMs.",
+        case_item="Item 5, Item 8 & Bônus",
+        target_layer="GenAI & Machine Learning",
+        artifacts_linked=(
+            "presentation/pitch/roteiro/views-05-insights-ia/spec.md",
+            "pipelines/case-item-05/outputs/genai_feature_extraction_report.md"
+        ),
+        scripts_linked=(
+            "app/services/simulation_service.py",
+            "app/services/similarity_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pitch-views-streamlit",
+        display_name="Pitch: Telas & Navegação do Streamlit Data App",
+        category="03_analytics_insights",
+        file_path="presentation/pitch/roteiro/views-streamlit/spec.md",
+        description="Especificação de layout, componentes de visualização e interatividade das 5 abas de negócios do Streamlit.",
+        case_item="Item 9 & Item 10.1",
+        target_layer="Streamlit UI / Frontend",
+        artifacts_linked=(
+            "presentation/pitch/roteiro/views-streamlit/spec.md",
+            "app/app.py"
+        ),
+        scripts_linked=(
+            "make.py data-app",
+            "app/app.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pitch-arquitetura-view",
+        display_name="Pitch: Arquitetura Lakehouse & Governança Dadosfera",
+        category="01_strategy_governance",
+        file_path="presentation/pitch/roteiro/arquitetura-view/spec.md",
+        description="Especificação do diagrama comparando a complexidade da infraestrutura legada AWS com a plataforma unificada Dadosfera.",
+        case_item="Item 8 & Item 10",
+        target_layer="Arquitetura & Governança",
+        artifacts_linked=(
+            "presentation/pitch/roteiro/arquitetura-view/spec.md",
+            "docs/relatorios/pitch/decision-making/relatorio-pitch-01.md"
+        ),
+        scripts_linked=(
+            "presentation/pitch/generate_slide_charts.py",
+            "dashboards/generate_charts.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pitch-problema-elasticidade",
+        display_name="Pitch: Resiliência Operacional vs Black Friday",
+        category="01_strategy_governance",
+        file_path="presentation/pitch/roteiro/problema-elasticidade/spec.md",
+        description="Especificação sobre riscos de escalonamento, cache Redis e perdas por minuto em períodos de pico no e-commerce.",
+        case_item="Item 10",
+        target_layer="Arquitetura / Resiliência",
+        artifacts_linked=(
+            "presentation/pitch/roteiro/problema-elasticidade/spec.md",
+            "raw_analise.txt"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "presentation/pitch/validate_pitch.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="pitch-staff-pain-point",
+        display_name="Pitch: Dores Operacionais, Headcount & TCO",
+        category="01_strategy_governance",
+        file_path="presentation/pitch/roteiro/staff-pain-point/spec.md",
+        description="Especificação de custos marginais com time técnico especializado vs eficiência econômica da plataforma Dadosfera.",
+        case_item="Item 10",
+        target_layer="Estratégia de Negócios / TCO",
+        artifacts_linked=(
+            "presentation/pitch/roteiro/staff-pain-point/spec.md",
+            "relatorios/decision-making/DEC-001-metricas-propostas-valor.md"
+        ),
+        scripts_linked=(
+            "presentation/pitch/validate_pitch.py",
+            "dashboards/generate_charts.py"
+        ),
+    ),
+    # 04. Módulos de Insights Analíticos
+    SpecProfile(
+        spec_id="insight-bi-recuperacao",
+        display_name="Insight 01.1: BI de Recuperação de Carrinhos",
+        category="03_analytics_insights",
+        file_path="insights/01_descriptive/01_bi_recuperacao_carrinhos/spec.md",
+        description="Especificação analítica da taxa de abandono, receita total represada e evolução temporal dos carrinhos.",
+        case_item="Item 7",
+        target_layer="Descritiva (BI)",
+        artifacts_linked=(
+            "insights/01_descriptive/01_bi_recuperacao_carrinhos/spec.md",
+            "dashboards/exports/grafico_01_abandono_vs_recuperacao.png"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "app/services/insights_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="insight-motivos-abandono",
+        display_name="Insight 01.2: Diagnóstico de Motivos de Abandono",
+        category="03_analytics_insights",
+        file_path="insights/01_descriptive/02_motivos_abandono/spec.md",
+        description="Especificação da distribuição de fricção no checkout: frete abusivo, preço elevado e dúvidas técnicas.",
+        case_item="Item 7",
+        target_layer="Descritiva (BI)",
+        artifacts_linked=(
+            "insights/01_descriptive/02_motivos_abandono/spec.md",
+            "dashboards/exports/grafico_02_motivos_abandono.png"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "app/services/insights_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="insight-custo-recuperacao-roi",
+        display_name="Insight 01.3: Custo Unitário de Recuperação e ROI",
+        category="03_analytics_insights",
+        file_path="insights/01_descriptive/03_custo_recuperacao_roi/spec.md",
+        description="Especificação da matriz de CAC unitário por canal de resgate e ROI multiplicador líquido.",
+        case_item="Item 7",
+        target_layer="Descritiva (BI)",
+        artifacts_linked=(
+            "insights/01_descriptive/03_custo_recuperacao_roi/spec.md",
+            "dashboards/exports/grafico_03_custo_recuperacao_roi.png"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "app/services/simulation_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="insight-segmentacao-risco",
+        display_name="Insight 02.1: Segmentação de Risco RFM",
+        category="03_analytics_insights",
+        file_path="insights/02_risk/01_segmentacao_risco/spec.md",
+        description="Especificação de cruzamento de risco de churn e valor do cliente na matriz RFM.",
+        case_item="Item 7",
+        target_layer="Diagnóstica / Risco",
+        artifacts_linked=(
+            "insights/02_risk/01_segmentacao_risco/spec.md",
+            "dashboards/exports/grafico_04_segmentacao_risco.png"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "app/services/insights_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="insight-estrategia-resgate",
+        display_name="Insight 03.1: Estratégia de Resgate por Segmento",
+        category="03_analytics_insights",
+        file_path="insights/03_prescriptive/01_estrategia_resgate_segmento/spec.md",
+        description="Especificação da matriz de regras de acionamento recomendada para cada cluster de clientes.",
+        case_item="Item 7",
+        target_layer="Prescritiva",
+        artifacts_linked=(
+            "insights/03_prescriptive/01_estrategia_resgate_segmento/spec.md",
+            "dashboards/exports/grafico_07_estrategia_resgate.png"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "app/services/insights_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="insight-timing-envio",
+        display_name="Insight 03.2: Curva de Decaimento & Timing de Envio",
+        category="03_analytics_insights",
+        file_path="insights/03_prescriptive/02_otimizacao_timing_envio/spec.md",
+        description="Especificação da janela temporal ótima de resgate com decaimento exponencial de conversão pós-abandono.",
+        case_item="Item 7",
+        target_layer="Prescritiva",
+        artifacts_linked=(
+            "insights/03_prescriptive/02_otimizacao_timing_envio/spec.md",
+            "dashboards/exports/grafico_08_timing_envio.png"
+        ),
+        scripts_linked=(
+            "dashboards/generate_charts.py",
+            "app/services/insights_service.py"
+        ),
+    ),
+    SpecProfile(
+        spec_id="insight-similaridade-produtos",
+        display_name="Insight 04.3: Motor de Busca Vetorial por Cosseno",
+        category="03_analytics_insights",
+        file_path="insights/04_intelligence_ai/03_similaridade_produtos/spec.md",
+        description="Especificação do algoritmo de busca vetorial por cosseno multidimensional com visualização de trajetórias 2D.",
+        case_item="Item 5 & Bônus",
+        target_layer="Inteligência Artificial & Vetorial",
+        artifacts_linked=(
+            "insights/04_intelligence_ai/03_similaridade_produtos/spec.md",
+            "data/mock/output_cleaned/parquet/df_produtos_qualify.parquet"
+        ),
+        scripts_linked=(
+            "app/services/similarity_service.py",
+            "dashboards/generate_charts.py"
+        ),
+    ),
+)
+
+_SPECS_MAP: Final[Mapping[str, SpecProfile]] = MappingProxyType({
+    spec.spec_id: spec for spec in _SPECS_DATA
+})
+
+
+# =============================================================================
 # 🚀 FUNÇÕES PURAS DE ACESSO E CONSULTA
 # =============================================================================
 
@@ -1280,13 +1723,24 @@ def get_agent_by_id(agent_id: str) -> AgentProfile | None:
 
 
 def get_all_skills() -> tuple[SkillProfile, ...]:
-    """Retorna a tupla imutável com todas as 10 skills do ecossistema."""
+    """Retorna a tupla imutável com todas as 11 skills do ecossistema."""
     return _SKILLS_DATA
 
 
 def get_skill_by_id(skill_id: str) -> SkillProfile | None:
     """Busca um perfil de skill pelo identificador único (ou None se inexistente)."""
     return _SKILLS_MAP.get(skill_id)
+
+
+def get_all_specs() -> tuple[SpecProfile, ...]:
+    """Retorna a tupla imutável com todas as especificações técnicas da codebase."""
+    return _SPECS_DATA
+
+
+def get_spec_by_id(spec_id: str) -> SpecProfile | None:
+    """Busca um perfil de especificação pelo identificador único (ou None se inexistente)."""
+    return _SPECS_MAP.get(spec_id)
+
 
 
 def simulate_agent_response(agent_id: str, query: str) -> str:

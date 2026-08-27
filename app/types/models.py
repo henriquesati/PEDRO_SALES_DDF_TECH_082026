@@ -296,5 +296,16 @@ status:
 """
 
 
-
+@dataclass(frozen=True)
+class SpecProfile:
+    """Perfil de especificação técnica e blueprint normativo do repositório."""
+    spec_id: str
+    display_name: str
+    category: str
+    file_path: str
+    description: str
+    case_item: str
+    target_layer: str
+    artifacts_linked: tuple[str, ...]
+    scripts_linked: tuple[str, ...]
 

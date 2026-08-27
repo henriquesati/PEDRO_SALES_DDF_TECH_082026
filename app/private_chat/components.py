@@ -17,9 +17,9 @@ def render_sidebar_menu(
     st.markdown(
         """
         <div class="sidebar-chat-desc-box">
-            <div class="sidebar-chat-desc-title">💬 Assistente do Projeto</div>
+            <div class="sidebar-chat-desc-title">💬 Dadosfera AI &bull; Concierge Técnico</div>
             <div class="sidebar-chat-desc-text">
-                Pergunte sobre as decisões de arquitetura e o racional de desenvolvimento do <strong>Pedro Sales</strong>: desde a modelagem Medallion no Lakehouse, pipelines declarativos e engenharia de features com GenAI, até a lógica do simulador de ROI e regras de negócio.
+                Guia do projeto e assistente para explorar a implementação do <strong>usuário</strong>: regras de modelagem dimensional, tipos de análise descritiva e preditiva, especificações normativas, contratos de qualidade e esteiras Lakehouse.
             </div>
         </div>
         """,
@@ -67,7 +67,7 @@ def render_sidebar_menu(
     if is_online:
         st.caption(f"🟢 Servidor Online ({latency}ms)")
     else:
-        st.caption("🔴 Servidor Offline (Porta 8000)")
+        st.caption("🔴 Servidor Offline (pix3.gg/dadosfera-ask)")
 
     return {
         "selected_agent": selected_agent,
@@ -81,7 +81,7 @@ def render_welcome_hero() -> None:
         <div class="chatgpt-welcome-hero">
             <div class="chatgpt-welcome-title">Dadosfera AI &bull; Concierge Técnico</div>
             <div class="chatgpt-welcome-subtitle">
-                Converse com os agentes especializados sobre como <strong>Pedro Sales</strong> arquitetou as soluções deste case: modelagem Medallion, governança, embeddings vetoriais e otimização financeira de ROI.
+                Seu <strong>Assistente Técnico</strong> oficial para guiar você pelo entendimento completo da implementação do <strong>usuário</strong>. Tire dúvidas sobre regras de modelagem, tipos de análise, esteiras de dados, especificações normativas ou decisões técnicas do case.
             </div>
         </div>
         """,
@@ -108,7 +108,7 @@ def render_clean_message(role: str, content: str, agent_name: Optional[str] = No
             <div class="chat-turn-container">
                 <div class="chat-bubble-assistant">
                     <div class="chat-assistant-header">
-                        <span>🤖 {agent_name or 'Dadosfera AI'}</span>
+                        <span>🤖 {agent_name or 'Dadosfera AI • Concierge Técnico'}</span>
                     </div>
                 </div>
             </div>
@@ -119,18 +119,19 @@ def render_clean_message(role: str, content: str, agent_name: Optional[str] = No
         st.markdown(content)
 
 
-def render_clean_connection_alert(base_url: str, error_detail: Optional[str] = None) -> None:
+def render_clean_connection_alert(base_url: str = "pix3.gg/dadosfera-ask", error_detail: Optional[str] = None) -> None:
     """Alerta clean quando o servidor de agentes estiver offline."""
     st.markdown(
         f"""
         <div class="chat-alert-clean">
             <div>
-                <strong>⚠️ Servidor Offline:</strong> Backend não acessível em <code>{base_url}</code>.
+                <strong>⚠️ Servidor Offline:</strong> Backend não acessível em <code>pix3.gg/dadosfera-ask</code>.
             </div>
-            <div>
-                <code>python make.py agent-server</code>
+            <div style="font-size: 0.76rem; color: #94A3B8; margin-top: 0.25rem;">
+                Para inicializar o cluster local de inferência: <code>python make.py agent-server</code> ou consulte <code>pix3.gg/dadosfera-ask</code>
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
+

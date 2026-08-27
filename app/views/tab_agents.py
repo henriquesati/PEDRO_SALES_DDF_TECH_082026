@@ -7,12 +7,16 @@ from app.components.fighter_select import (
     render_agents_list,
     render_skill_view,
     render_skills_list,
+    render_spec_view,
+    render_specs_list,
 )
 from app.services.agents_service import (
     get_agent_by_id,
     get_all_agents,
     get_all_skills,
+    get_all_specs,
     get_skill_by_id,
+    get_spec_by_id,
 )
 
 
@@ -50,3 +54,22 @@ def render_skills_tab() -> None:
     with col_content:
         selected_skill = get_skill_by_id(st.session_state["selected_skill_id"]) or all_skills[0]
         render_skill_view(selected_skill)
+
+
+def render_specs_tab() -> None:
+    """Renderiza a visão dedicada de Specs da Codebase (visual de árvore de diretório e blueprint fidedigno)."""
+    all_specs = get_all_specs()
+
+    if "selected_spec_id" not in st.session_state:
+        st.session_state["selected_spec_id"] = all_specs[0].spec_id
+
+    # Layout em 3 Colunas: Menu Esquerdo (0.85), Conteúdo Fidedigno (2.65), Gutter Direito (0.50)
+    col_menu, col_content, _gutter_right = st.columns([0.85, 2.65, 0.50], gap="large")
+
+    with col_menu:
+        render_specs_list(all_specs, st.session_state["selected_spec_id"])
+
+    with col_content:
+        selected_spec = get_spec_by_id(st.session_state["selected_spec_id"]) or all_specs[0]
+        render_spec_view(selected_spec)
+

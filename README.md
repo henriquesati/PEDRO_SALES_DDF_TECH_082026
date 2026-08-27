@@ -38,28 +38,12 @@ Este repositório contém a solução completa de Engenharia, Governança, Quali
 
 ### 🎯 Principais Destaques em resumo:
 - **Base de Dados Sintética Modular e Declarativa:** **115.777+ registros** em Parquet e CSV com dirty data determinístico (5%) para testes de estresse de Data Quality.
-- **Arquitetura Medallion com Segregação em Quarentena:** Camada Silver bifurcada em `carrinhos_qualify` (dados conformes) e `carrinhos_anomalies` (dados anômalos).
+- **Arquitetura Medallion com Segregação em Quarentena:** Camadas bifurcadas em `*_qualify` (dados conformes) e `*_anomalies` (dados anômalos).
 - **Data Quality Framework (Item 4):** Suíte de **18 expectativas Great Expectations** em 6 dimensões com relatório executivo de anomalias.
 - **Dashboards & Views Analíticas (Item 7):** 6 visualizações de BI (Série Temporal, Performance de Categorias, ROI por Canal, Heatmap RFM e Matriz de Decisão) reproduzíveis via script e notebooks.
 - **Contratos e Governança de Metadados:** Alinhamento rigoroso à [Data Platform Specification](docs/specifications/data-platform-specification.md) e catálogo com Data Asset IDs mapeados.
 
----
-## 📋 2. Mapeamento de Tarefas do Case (Dadosfera)
 
-| Item | Tema | Fase do Ciclo | Entregas no Repositório | Status |
-|:---:|---|:---:|---|:---:|
-| **0** | Agilidade & Planejamento | — | Planejamento iterativo entidade a entidade e matriz de decisão | ✅ Concluído |
-| **1** | Base de Dados (mín. 100k) | Integrar | Gerador Python modular com 115.777+ registros em Parquet/CSV (`data/mock/`) | ✅ Concluído |
-| **2.1** | Integrar (Coleta & API Maestro) | Integrar | Ingestão de 115k+ registros via Módulo de Coleta, API Maestro e mapeamento em `output-mappers/` | ✅ Concluído |
-| **3** | Explorar & Catalogar | Explorar | Especificação de governança (`pipelines/case-item-03/`), Lakehouse Medallion (`pipelines/datalakes/`), dicionários (`data/catalogo/`) e Data Asset IDs oficiais | ✅ Concluído |
-| **4** | Data Quality & Anomalias | Processar | Pipeline Dual-Artifact, suíte Great Expectations (18 regras), quarentena Parquet e relatório em [`pipelines/case-item-04/outputs/data_quality_report.md`](pipelines/case-item-04/outputs/data_quality_report.md) | ✅ Concluído |
-| **5** | GenAI & LLMs | Processar | Extração de features de catálogo/feedbacks com Pydantic, geração de copies e bônus multimodal de áudio em [`pipelines/case-item-05/outputs/genai_feature_extraction_report.md`](pipelines/case-item-05/outputs/genai_feature_extraction_report.md) | ✅ Concluído |
-| **6** | Modelagem de Dados | Analisar | Modelagem dimensional Kimball Star Schema (6 dimensões conformadas, 2 fatos, 2 visões analíticas Gold e diagrama DW Medallion) | ✅ Concluído |
-| **7** | Análise de Dados & BI | Analisar | 6 visualizações de BI (Série Temporal, Categorias, ROI), Camada Semântica (`metrics/`) e Hub em [`pipelines/case-item-07/`](pipelines/case-item-07/) | ✅ Concluído |
-| **8** | Pipelines ETL/ML & Snowpark | Processar | Pipeline Medallion funcional, catálogo Stepsfera, validação modular, modelo preditivo e processamento Snowpark | ✅ Concluído |
-| **9** | Data Apps & GenAI | Consumir | Data App Streamlit com simulador de ROI, similaridade vetorial (t-SNE) e vitrine GenAI em [`pipelines/case-item-09/`](pipelines/case-item-09/) e [`app/`](app/) | ✅ Concluído |
-| **10** | Apresentação em Vídeo | — | Vídeos Unlisted no YouTube ([Vídeo 1](https://youtu.be/TZph9Lhy8VQ) e [Vídeo 2](https://youtu.be/XxtPzbOk8ZA)), Infraestrutura de Pitch (`presentation/pitch/`), roteiro master (`pitch_spec.md`), 8 módulos com scripts e gráficos 300 DPI | ✅ Concluído |
-| **10.1** | Gráficos de Insights | Visualizações | Galeria de gráficos analíticos em `insights/`: módulo `01_bi_recuperacao_carrinhos/` concluído; módulos adicionais mapeados | 🔄 Em processo |
 <!-- temporary-agent-instructions
 PADRÃO DE DOCUMENTAÇÃO DE ENTREGÁVEIS (BASE: ITEM 4):
 
@@ -609,21 +593,11 @@ wheels/
 │       └── pitch/decision-making/      # Decision Records e relatórios de pitch
 │
 ├── metrics/                            # Camada Semântica de Métricas (Semantic Metrics Layer)
-│   ├── README.md                       # Governança semântica, taxonomia e padrões de agregação
-│   ├── catalogo_kpis.md                # Catálogo Master de KPIs de Negócio e Fórmulas LaTeX
-│   ├── matriz_metricas_dimensoes.md    # Matriz Semântica Dimensional (Kimball DW)
-│   ├── arvore_metricas_driver_tree.md  # Driver Tree da North Star Metric (Decomposição Causal)
-│   ├── metricas_data_quality_slo.md    # Métricas de Confiabilidade, Quarentena e SLOs de Dados
-│   └── metricas_ml_genai.md            # Avaliação de Modelos de ML (Item 8) e GenAI/LLM (Item 5)
 │
 ├── pipelines/
 │   ├── case-item-03/                   # Exploração & Catalogação de Ativos (Item 3)
-│   │   ├── specs.md                    # Especificação formal do módulo
-│   │   └── outputs/                    # Relatório de governança e catálogo consolidado
-│   ├── case-item-04/                   # Data Quality Pipeline & Quarentena (Item 4)
-│   │   ├── specs.md                    # Especificação técnica normativa
-│   │   ├── notebooks/                  # Notebook Google Colab executável
-│   │   ├── scripts/                    # Script batch de execução automatizada (run_quality_pipeline.py)
+                  # Relatório de governança e catálogo consolidado
+│   ├── case-item-04/                   # Data Quality Pipeline & Quarentena                  # Script batch de execução automatizada (run_quality_pipeline.py)
 │   │   ├── quality/                    # Expectativas Great Expectations & resultados JSON
 │   │   └── outputs/                    # Relatório Markdown, datasets Parquet e gráficos 300 DPI
 │   ├── case-item-05/                   # GenAI, LLMs & Extração Semântica (Item 5)
@@ -668,23 +642,9 @@ wheels/
     └── insights/                       # Visualizações de insights de negócio (01_bi_recuperacao_carrinhos)
 ```
 
----
-
-## 🎤 6. Apresentação do Case & Infraestrutura do Pitch (Item 10)
-
-- 🔗 **Vídeo 1 (Apresentação Geral, Arquitetura, Governança & Lakehouse):** [YouTube (Unlisted)](https://youtu.be/TZph9Lhy8VQ) • [Link Adicional (Google Drive)](https://docs.google.com/videos/d/112pY9SEehN1Ns9fc26lxhBGrNap2PwVtW1wBJ9UePBI/edit?usp=sharing)
-- 🔗 **Vídeo 2 (Demonstração Prática, BI, ML, Data App em Streamlit & Pitch):** [YouTube (Unlisted)](https://youtu.be/XxtPzbOk8ZA) • [Link Adicional (Google Drive)](https://docs.google.com/videos/d/1qPEeDBeC4l_SROuQBE9rVmg7R4CiaTzznecoT_El7cM/edit?usp=sharing)
 
 
-> 1. **Acesso Universal ao Link:** como *Unlisted* no YouTube
-> 2. **100% Catalogado & Reprodutível:** Todas as análises, consultas SQL, modelos de machine learning e painéis apresentados estão devidamente catalogados no tenant da Dadosfera e são 100% reproduzíveis pelos scripts e notebooks deste repositório GitHub.
-
-
-Toda a infraestrutura documental e visual que suporta a gravação da apresentação em vídeo está organizada em [`presentation/pitch/`](presentation/pitch/):
-- **Documentação Master ([`pitch_spec.md`](presentation/pitch/pitch_spec.md))**: Contém a **Parte 1 (Backbone Central)** com a cronologia em 5 blocos (00:00 a 12:30) e a **Parte 2 (Pitch Guidelines)** com falas sugeridas, dados de impacto em %, contraste Dadosfera vs AWS e respostas para objeções de C-Levels.
-- **8 Subdiretórios Autocontidos**: Cada diretório de regra de negócio/ponto técnico contém a sua especificação (`spec.md`), script gerador (`generate_chart.py`) e artefato visual gerado (`chart_*.png` em 300 DPI).
-- **Geração Consolidada**: `python make.py pitch-charts` ou `python presentation/pitch/run_all_pitch_charts.py`.
-
+y`.
 ---
 
 ## Executar o Projeto Localmente
@@ -769,19 +729,6 @@ via API Maestro
 | **`eventos_resgate`** | `04739f6d-e8c3-4d6f-80b7-0f98c12a5798` | [🔗 Acessar `eventos_resgate` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/04739f6d-e8c3-4d6f-80b7-0f98c12a5798) | 2.500 reg. | `CART_RECOVERY.EVENTOS_RESGATE` | [`eventos_resgate.md`](data/catalogo/qualify/eventos_resgate.md) |
 | **`pedidos`** | `7f82a988-8e68-416a-b6fa-5007c4789d1a` | [🔗 Acessar `pedidos` na Dadosfera](https://app.dadosfera.ai/pt-BR/catalog/data-assets/7f82a988-8e68-416a-b6fa-5007c4789d1a) | 2.000 reg. | `CART_RECOVERY.PEDIDOS` | [`pedidos.md`](data/catalogo/qualify/pedidos.md) |
 
-### 🖼️ Evidências Visuais (Datasets, Dashboards e Data Apps)
-
-| Artefato / Módulo | Descrição do Print / Evidência | Artefato Visual de Referência (300 DPI) |
-|:---|:---|:---|
-| **Data Quality & Quarentena (Item 4)** | Scorecard de conformidade (94.2%) e segregação Silver | [`chart_06_scorecard_data_quality.png`](presentation/pitch/06_data_quality_e_quarentena/chart_06_scorecard_data_quality.png) |
-| **GenAI & Pydantic (Item 5)** | Extração semântica de features e conformidade de schemas | [`chart_genai_extracao_copies.png`](presentation/pitch/roteiro/views-05-insights-ia/genai-extracao-copies/chart_genai_extracao_copies.png) |
-| **Modelagem Kimball DW (Item 6)** | Star Schema com 6 dimensões conformadas e 2 fatos | [`chart_caseitem06_kimball_model.png`](presentation/pitch/views/caseitem06/chart_caseitem06_kimball_model.png) |
-| **BI & Metabase (Item 7)** | Série temporal de conversão e recuperação de GMV | [`chart_bi_recuperacao_carrinhos.png`](insights/01_descriptive/01_bi_recuperacao_carrinhos/chart_bi_recuperacao_carrinhos.png) |
-| **Machine Learning (Item 8)** | Curva ROC (AUC 0.9478) e ranking de propensão de resgate | [`chart_modelos_preditivos_ml.png`](presentation/pitch/roteiro/views-05-insights-ia/modelos-preditivos-ml/chart_modelos_preditivos_ml.png) |
-| **Feature Importance XAI (Item 8)** | Interpretabilidade dos pesos marginais do modelo preditivo | [`chart_feature_importance_ml.png`](presentation/pitch/roteiro/views-05-insights-ia/feature-importance-ml/chart_feature_importance_ml.png) |
-| **Espaço Vetorial 2D (Itens 9 & Bônus)** | Projeção t-SNE de similaridade de catálogo para resgate | [`chart_similaridade_produtos.png`](presentation/pitch/roteiro/views-05-insights-ia/similaridade-produtos/chart_similaridade_produtos.png) |
-| **Data App Streamlit (Item 9)** | Simulador de sensibilidade de ROI e Waterfall de ganho líquido | [`chart_data_app_simulador_roi.png`](presentation/pitch/roteiro/views-05-insights-ia/data-app-simulador-roi/chart_data_app_simulador_roi.png) |
-| **Arquitetura TCO Dadosfera vs AWS** | Contraste de Lead Time (-86%) e eliminação de sharding | [`chart_07_arquitetura_dadosfera_vs_aws.png`](presentation/pitch/07_arquitetura_dadosfera_vs_aws/chart_07_arquitetura_dadosfera_vs_aws.png) |
 
 ---
 

@@ -20,13 +20,12 @@ from app.components.business_header import render_business_cockpit_header
 from app.components.fighter_select import render_evaluator_header
 from app.private_chat.view import render_private_chat_page
 from app.services.lakehouse_service import load_lakehouse_data
-from app.views.tab_agents import render_agents_tab, render_skills_tab
+from app.views.tab_agents import render_agents_tab, render_skills_tab, render_specs_tab
 from app.views.tab_copilot import render_copilot_tab
 from app.views.tab_insights_explorer import render_insights_explorer_tab
 from app.views.tab_roi import render_roi_tab
 from app.views.tab_showcase import render_showcase_tab
 from app.views.tab_similarity import render_similarity_tab
-from app.views.view_business_dashboard import render_business_dashboard
 from app.views.view_hub_landing import render_hub_landing
 
 # =============================================================================
@@ -162,14 +161,38 @@ elif current_mode == "🥋 Central do Avaliador (Agentes, Skills & Insights)":
     active_eval_tab = render_evaluator_header()
     if active_eval_tab == "Agentes":
         render_agents_tab()
-    else:
+    elif active_eval_tab == "Skills":
         render_skills_tab()
+    elif active_eval_tab == "Specs":
+        render_specs_tab()
 
 # -----------------------------------------------------------------------------
 # 3. 🏢 MÓDULO EXECUTIVO DE NEGÓCIOS & BI (BUSINESS COCKPIT & DATA PANELS)
 # -----------------------------------------------------------------------------
 elif current_mode == "🏢 Módulo de Negócio (BI & Consumo Executivo)":
-    render_business_dashboard(df_carrinhos, df_products)
+    render_business_cockpit_header()
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "1. Simulador de ROI",
+        "2. Explorador Semântico",
+        "3. Copiloto Prescritivo",
+        "4. Vitrine Visual de Produtos",
+        "5. Galeria de Insights",
+    ])
+
+    with tab1:
+        render_roi_tab(df_carrinhos)
+
+    with tab2:
+        render_similarity_tab(df_products)
+
+    with tab3:
+        render_copilot_tab(df_products)
+
+    with tab4:
+        render_showcase_tab(df_products)
+
+    with tab5:
+        render_insights_explorer_tab()
 
 # -----------------------------------------------------------------------------
 # 4. 💬 CONSOLE DE INFERÊNCIA AUTÔNOMA (/chat - ISOLADO)
@@ -182,9 +205,10 @@ elif current_mode == "💬 Console de Inferência Autônoma (/chat)":
 # -----------------------------------------------------------------------------
 
 else:
-    tab0, tab_sk, tab_ins, tab1, tab2, tab3, tab4 = st.tabs([
+    tab0, tab_sk, tab_sp, tab_ins, tab1, tab2, tab3, tab4 = st.tabs([
         "Agentes",
         "Skills",
+        "Specs da Codebase",
         "Galeria de Insights",
         "1. Simulador de ROI",
         "2. Explorador Semântico",
@@ -197,6 +221,9 @@ else:
 
     with tab_sk:
         render_skills_tab()
+
+    with tab_sp:
+        render_specs_tab()
 
     with tab_ins:
         render_insights_explorer_tab()
@@ -212,6 +239,7 @@ else:
 
     with tab4:
         render_showcase_tab(df_products)
+
 
 # =============================================================================
 # 🧹 RODAPÉ CORPORATIVO (APENAS QUANDO FORA DO HUB INICIAL)

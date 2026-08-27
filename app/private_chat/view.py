@@ -91,7 +91,7 @@ def render_private_chat_page() -> None:
     st.markdown('</div>', unsafe_allow_html=True)
 
     # 3. Input do Usuário na Base da Página
-    user_input = st.chat_input("Pergunte sobre o projeto e seu desenvolvimento...")
+    user_input = st.chat_input("Pergunte ao Concierge Técnico sobre a implementação, regras de negócio ou decisões técnicas...")
 
     if user_input:
         active_api_key = st.session_state.get("private_chat_api_key") or None

@@ -54,6 +54,7 @@ IA e GenAI: Exploração de dados em linguagem natural e geração automática d
 
 
 como podemos agregar valor ao seu negocio complementando ou substituindo a infra
+OpenSearch , opensearch
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 Arquitetura Atual (AWS):
 A infraestrutura atual utiliza um pipeline clássico composto por:
@@ -62,10 +63,29 @@ Firehose: Embora gerenciado, adiciona latência de buffering.
 S3 Bucket: Atua como Data Lake, mas carece de imposição de schema (schema enforcement).
 Redis Cluster (ElastiCache): Operação complexa entre modos standalone e cluster; upgrades de plano podem causar 5-15 min de indisponibilidade
 como podemos agregar valor ao seu negocio complementando ou substituindo a infra
-Para fazer uma arquitetura baseada em nuvem própria (AWS DIY) funcionar ponta a ponta, a empresa é forçada a acoplar uma série de serviços periféricos, repositórios de suporte e arquivos de infraestrutura.
+
+1. Complexidade de serviços não gerenciados
+O óbvio pain point inicial é lidar com a complexidade de non-managed services e ter que lidar com alterações manuais após updates nos serviços e/ou mudanças no Para fazer uma arquitetura baseada em nuvem própria (AWS DIY) funcionar ponta a ponta, a empresa é forçada a acoplar uma série de serviços periféricos, repositórios de suporte e arquivos de infraestrutura.
+2. Estrutura e capacidade da equipe de TI
+A empresa possui setor de TI ou algo similar para realizar tais alterações quando necessárias? Qual seria o headcount? O headcount cresce proporcionalmente de acordo com o crescimento da empresa e/ou volume de dados?
+[Data Engineer
+Analytics Engineer
+Data Architect
+Data Platform Engineer]
+Impacto no negócio: Em operações sensíveis ao tempo — como disparos rápidos de promoções, campanhas de recuperação de carrinho ou decisões de elegibilidade — pequenos aumentos de latência podem atrasar a disponibilização do dado e reduzir a efetividade da ação. 
+
 Abaixo estão os principais exemplos práticos de como esses componentes aumentam o custo e o risco operacional:
 
 
+4 - Citar elasticidade citar valores mercado li3 
+explicar problema arquitetural
+citar valor ml
+grafico
+Dadosfera gerencia
+
+
+5. Custo da equipe vs. contratação da Dadosfera
+Manter uma equipe de TI para tratar os pontos propostos acima seria mais barato do que contratar a Dadosfera?
 
 
 
@@ -78,15 +98,10 @@ Ingestão de Eventos Brutos (Kinesis / S3)
 📬 Fila Dead-Letter (AWS SQS DLQ)
 🗄️ Repositório de Quarentena (DynamoDB / S3)
 Alertas & Monitoramento: 🚨 AWS CloudWatch Alarms & SNS + configuração da aplicação
-destino: 📦 Buckets S3 (Camada Bronze — Dados Brutos)
-
-
 📦 Buckets S3 (Camada Bronze — Dados Brutos)
 ⚡ AWS Glue Jobs / PySpark (Limpeza e Conformação) - gerenciamento de 
 Cada vez que um job é disparado, o Glue leva de 1 a 4 minutos apenas para alocar as máquinas (DPUs) e subir o cluster Spark, antes de processar uma única linha. Para ações rápidas como 
-Os módulos analíticos, steps de transformação e bibliotecas de Data Quality já vêm instalados e homologados no ambiente integrado.
 No AWS Glue / PySpark: Exige contratar Engenheiros de Dados de alta senioridade com conhecimento em infraestrutura e computação distribuída e não só com conhecimentos em analise
-Na Dadosfera: Um Analista de Dados, Analytics Engineer ou Cientista de Dados (que domina SQL e lógica de negócio) consegue performar anal ises e tratamentos nos dados
 
 
 
@@ -145,50 +160,24 @@ pipelines e saude de pipeline/aleetas integrados, self hosted
 sistema de alertas integrados. é possivel criar alertas sob anomalias em analises, notificações de campanha
 qualquer usuario de negocio consegue c riar alertas em poucos cliques na plaforma
 “se taxa de abandono aumentar, avise equipe de marketing”
-
-3 - citar grafico ou algo do tipo de numero de staff de acordo com evolção da arquitetura solta
-
-Em caso de migração ou implementação de data app, o cliente precisaria de:
-1 platform engineer (por se tratar de uma arquitetura solta);
-1 ou 2 pessoas para gestão e utilização de dados, isso supondo uma arquitetura enxuta, programática, com processos bem estruturados e bem documentados.
-A cada conexão com um novo data app ou ferramenta seriam necessárias configurações de conexões com fontes de dados e/ou múltiplas fontes de dados e múltiplas ferramentas, a depender do tipo de dado coletado, objetivo e/ou expansão para coletar outros tipos de dados e métricas.
-Seria necessária outra integração manual.
-Custo da equipe vs. contratação da Dadosfera
-—> Manter uma equipe de TI para tratar os pontos propostos acima seria mais barato do que contratar a Dadosfera?
-economia de trabalho em gestão
-4 - Citar elasticidade citar valores mercado li3 
-explicar problema arquitetural
-citar valor ml
-grafico
-Dadosfera gerencia
-
-
-
-
-
-
-
-
 5. Como simplisfica segurança e traz agilidade pro negoci o
 Parte de governança e segurança: a camada de segurança de serviços em nuvem possui alto grau de complexidade; a Dadosfera auxiliaria tornando processos de segurança e compliance relacionados a dados  mais simples e intuitivos.
 AWS DIY:
-• Segurança fragmentada e de alta complexidade: Exige configurar e auditar políticas IAM em JSON, Lake Formation, Bucket Policies no S3, KMS e VPCs.
-• Gargalo de TI / SecOps: Qualquer nova liberação de dado para Marketing ou CRM exige abrir cham ado técnico, gerando semanas de espera (Lead Time excessivo).
-• Risco de Vazamento e "Shadow IT": Devido à lentidão de TI, equipes de negócio acabam extraindo planilhas CSV com dados sensíveis de clientes (PII) sem controle ou auditoria LGPD.
+• Segurança fragmentada e de alta complexidade
+• Risco de Vazamento e "Shadow IT": 
 Dadosfera:
-• Governança e RBAC Centralizados: Controle de acessos intuitivo por perfis de negócio (Marketing, CRM, Produto, Diretoria) em poucos cliques, sem escrever código de infraestrutura
+Com a Dadosfera
+• Segurança centralizada e simplificada: Exige configurar e auditar políticas IAM em JSON, Lake Formation, Bucket Policies no S3, KMS e VPCs.
+• Redução de Vazamentos  e alta disponibilidade: Acesso aos dados é controlado e rastreável dentro da plataforma. Equipes possuem acesso rápido e simplificado aos dados com auxilio da governança
 Dicionários de Dados Descritivos: Cada métrica e coluna possui definição formal de negócio, lineage, departamentos de interesse
-Geração de piipelines que sigam arquitetura medallion (sendo otimo pra gerar xx)
-– Bronze (Raw): Ingestão bruta isolada e imutável. 
--- Silver (Qualify): Validação de Data Quality e quarentena automatizada (segrega anomalias como fretes negativos ou emails inválidos ant
- -- Gold (Curated): Modelagem dimensional pronta e confiável para consumo. es de impactar o negócio). 
-• Blindagem e Conformidade LGPD "By Design": Tags semânticas automáticas (ex: tag `pii_sensivel` em clientes) protegem dados sensíveis enquanto liberam métricas de negócio.
 
 
-• Compartilhamento Seguro de Data Views: Disponibilização de visões analíticas curadas (ex: `v_abandonment_summary`, `v_recovery_roi_by_channel`, matriz RFM) para os setores sem expor o banco transacional nem vazar PII.
-• Democratização com Autonomia: Equipes de CRM, Produto e Vendas ganham autonomia democratico aos dados
-• Time-to-Data Reduzido de Semanas para Minutos: A disponibilização de novas visões para os setores é imediata, acelerando o ciclo de testes e campanhas time sensitive .
-• Segurança como Habilitadora de Receita: Em vez de atuar como uma barreira burocrática ("não pode acessar"), a segurança simplificada vira a alavanca que destrava 
+
+
+
+
+
+
 
 
  punchline :
@@ -208,6 +197,7 @@ Explicar case carrinho
 [1] Por que carrinho
 
 
+
 [2] ingestão de dados
 ingestão plug e play
 camada bronze
@@ -225,12 +215,7 @@ pipelines de data quality automatizada, geração de artefatos
 
  {3.2} Governança e dados
 	Dicionario de dados seguindo melhos práticasOwnership e responsabilidade
-Definição de responsáveis pelos dados e pelos seus domínios.
-Clareza sobre quem produz, mantém, valida e consome cada dado.
-Evita o cenário de “o dado é de todo mundo, mas ninguém é responsável por ele”.
-
-
-	Blindagem LGDP as opt inSeparação entre dados operacionais, analíticos e sensíveis.
+lareza sobre quem produz, mantém, valida e consome cada dado.
 Controle de quem pode visualizar, alterar ou utilizar determinados dados.
 
 Objetivo business: reduzir risco jurídico, reputacional e operacional. 
@@ -242,18 +227,16 @@ etc
 
 
 
-
-
 [4] geração de insigts de diferentes tipos
+tentar apresentar em formato story teling inicio -> fim (o que aconteceu? o que fazer)
+faltou criar slides dos modelos de da dos (campos tipos etc)
 
 A Dadosfera transforma os dados do modelo Gold em 4 camadas de inteligência:
+so agora vi algumas menções a itens do case
 
 [Insight descritivos] --> Di["2. Diagnósticos: Por que aconteceu?"]
   Otimização de Timing: janela de +1h após o abandono concentra conversões observadas (gatilho ótimo para a primeira mensagem).
 Estratégia RFM & Preservação de Margem:
-Clientes Premium: Abandonam por dúvidas $\rightarrow$ recebem WhatsApp consultivo sem desconto (protegendo a margem de lucro da empresa).
-Clientes Novos: Abandonam por frete $\rightarrow$ recebem cupom na primeira compra.
-Insights de Oportunidade & Fila de Acionamento:
 Curva de Pareto: Matriz de priorização que separa os 20% de carrinhos que representam mais de 65% da receita recuperável.
 
 
@@ -296,21 +279,7 @@ O modelo gera em  tempo real análises e estratégias de resgate altamente perso
 cruza o valor do ticket, a chance de conversão
 o motivo do abandono
 perfil RFM do cliente
-tempo de disparo 
-tudo isso para definir a melhor abordagem e o canal ideal (WhatsApp humanizado para tickets altos vs. E-mail automatizado para escala). Dessa forma, a plataforma direciona os recursos da empresa apenas p
-Como a Dadosfera auxiliou nisso? Sem a plataforma, teríamos que contratar engenheiros para configurar instâncias AWS SageMaker, orquestrar filas de API no Lambda, criar bancos vetoriais isolados e gerenciar chaves de criptografia. Na Dadosfera, todo esse fluxo rodou de forma nativa e unificada: o pipeline extraiu as variáveis semânticas, treinou o modelo in-database no Snowflake/Snowpark e já disponibilizou os resultados diretamente para o nosso Data App em Streamlit e para as réguas de CRM do marketing em questão de minutos."
-1. MÓDULO DE INTELIGÊNCIA & PIPELINES (Stepsfera / Snowpark / ML)        
-    • Orquestração de DAGs e Steps modulares de Machine Learning         
-    • Execução in-database (Snowflake Cortex / Snowpark) ou distribuída  
-O LLM extraiu features estruturadas em JSON Schema (identificando atrito com frete ou dúvidas de voltagem elétrica 127V) e gerou copies de resgate personalizadas para WhatsApp/E-mail.
-
-
-uso no case
-Rrealizamos uma análise semântica e preditiva com IA para entender as reais causas de abandono e personalizar o resgate.
- 4. CONSUMO & DATA APPS (Streamlit Integrado)                            
-    • Deploy de aplicações inteligentes com modelos preditivos/prescritivos│
-Construímos um Data App em Streamlit com simulador prescritivo de ROI, exploração vetorial de similaridade de produtos (t-SNE/PCA) e copiloto de resgate.dd
-Como a Dadosfera auxiliou nisso? Sem a plataforma, teríamos que contratar engenheiros para configurar instâncias AWS SageMaker, orquestrar filas de API no Lambda, criar bancos vetoriais isolados e gerenciar chaves de criptografia. Na Dadosfera, todo esse fluxo rodou de forma nativa e unificada: o pipeline extraiu as variáveis semânticas, treinou o modelo in-database no Snowflake/Snowpark e já disponibilizou os resultados diretamente para o nosso Data App em Streamlit e para as réguas de CRM do marketing em questão de minutos."
+A Stepsfera permite transformar o que foi desenvolvido e analisado em um processo executável e recorrente, sem precisar montar manualmente toda a infraestrutura de orquestração.  "
     
 
 
