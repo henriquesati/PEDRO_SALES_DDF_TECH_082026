@@ -2,16 +2,12 @@
 """
 generate_chart.py
 Módulo: presentation/pitch/roteiro/views-streamlit
-Função: Renderização executiva consolidada do Data App Streamlit em 4 Telas Modulares (Item 9 & Bônus GenAI).
+Função: Renderização executiva master do Data App Dadosfera (Visão Geral Consolidada da Arquitetura & Módulos).
 Padrão Gráfico: Fundo Branco Puro (#FFFFFF), 16:9 Widescreen, 300 DPI, charts-maker standard.
 """
 
-from typing import Final, Tuple
-import os
-import sys
+from typing import Final
 from pathlib import Path
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
@@ -26,126 +22,215 @@ def get_base_dir() -> Path:
 BASE_DIR: Final[Path] = get_base_dir()
 OUTPUT_IMAGE_PATH: Final[Path] = Path(__file__).resolve().parent / "chart_streamlit_data_app_overview.png"
 
-# Paleta Semântica Corporativa Dadosfera
+# Paleta Semântica Corporativa Executiva
 COLOR_PRIMARY: Final[str] = "#0F172A"       # Slate 900
 COLOR_TEXT_MUTED: Final[str] = "#475569"    # Slate 600
-COLOR_BLUE: Final[str] = "#2563EB"          # Blue 600 (Simulador ROI)
-COLOR_GREEN: Final[str] = "#059669"         # Emerald 600 (Vitrine / Sucesso)
-COLOR_PURPLE: Final[str] = "#7C3AED"        # Violet 600 (Copiloto GenAI)
-COLOR_AMBER: Final[str] = "#D97706"         # Amber 600 (Explorador Vetorial)
-COLOR_CORAL: Final[str] = "#E11D48"         # Rose 600 (Alertas)
+COLOR_TEXT_LIGHT: Final[str] = "#64748B"    # Slate 500
+COLOR_BLUE: Final[str] = "#2563EB"          # Blue 600
+COLOR_GREEN: Final[str] = "#059669"         # Emerald 600
+COLOR_TEAL: Final[str] = "#0D9488"          # Teal 600
+COLOR_VIOLET: Final[str] = "#7C3AED"        # Violet 600
+COLOR_AMBER: Final[str] = "#D97706"         # Amber 600
 COLOR_BG_CARD: Final[str] = "#F8FAFC"       # Slate 50
 COLOR_BORDER: Final[str] = "#CBD5E1"        # Slate 300
-COLOR_SIDEBAR: Final[str] = "#F1F5F9"       # Slate 100
+COLOR_DARK_HEADER: Final[str] = "#0F172A"   # Slate 900
+
 
 def plot_streamlit_master_overview() -> plt.Figure:
-    """Renderiza a visão executiva consolidada do Data App Streamlit (4 Telas Modulares)."""
+    """Renderiza o overview executivo consolidado com arquitetura e os 5 módulos do Data App."""
     plt.rcParams["text.parse_math"] = False
-    plt.rcParams["font.sans-serif"] = ["Segoe UI", "DejaVu Sans", "Helvetica", "Arial", "sans-serif"]
+    plt.rcParams["font.sans-serif"] = ["DejaVu Sans", "Segoe UI", "Helvetica", "Arial", "sans-serif"]
     plt.rcParams["axes.edgecolor"] = COLOR_BORDER
     plt.rcParams["axes.linewidth"] = 1.1
 
     fig = plt.figure(figsize=(16.0, 9.0), facecolor="#FFFFFF")
-    
-    # Header Executivo
-    ax_top = fig.add_axes([0.04, 0.90, 0.92, 0.08])
+
+    # =========================================================================
+    # 0. HEADER SUPERIOR EXECUTIVO
+    # =========================================================================
+    ax_top = fig.add_axes([0.03, 0.90, 0.94, 0.08])
     ax_top.axis("off")
-    
-    ax_top.text(0.0, 0.70, "DADOSFERA DATA APPS  |  CONSUMO & ANALYTICS INTERATIVO (STREAMLIT)",
-                fontsize=13.5, fontweight="bold", color=COLOR_PRIMARY)
-    ax_top.text(0.0, 0.20, "Aplicação Modular em 4 Camadas (React/TS Pattern)  •  Conexão Nativa com Snowflake Lakehouse  •  Deploy Elástico SaaS",
-                fontsize=8.8, fontweight="normal", color=COLOR_TEXT_MUTED)
-    
-    # 4 Quadrantes Representando as 4 Abas do Data App
-    ax_grid = fig.add_axes([0.04, 0.08, 0.92, 0.78])
+
+    ax_top.text(0.0, 0.70, "Dadosfera Data App  |  Arquitetura de Consumo & Inteligência Analítica",
+                fontsize=14.0, fontweight="bold", color=COLOR_PRIMARY)
+    ax_top.text(0.0, 0.18, "Aplicação Modular em 5 Camadas (React/TypeScript Pattern)  •  Conexão Nativa com Snowflake Lakehouse  •  Deploy SaaS Elástico",
+                fontsize=9.0, color=COLOR_TEXT_MUTED)
+
+    # Badge de Governança no Topo Direito
+    gov_badge = patches.FancyBboxPatch(
+        (0.72, 0.25), 0.28, 0.60,
+        boxstyle="round,pad=0.0,rounding_size=0.015",
+        facecolor="#F1F5F9", edgecolor=COLOR_BORDER, linewidth=1.0,
+        transform=ax_top.transAxes
+    )
+    ax_top.add_patch(gov_badge)
+    ax_top.text(0.86, 0.55, "100% Ground Truth  •  Zero Local SQL (DEC-004)",
+                fontsize=7.8, fontweight="bold", color=COLOR_PRIMARY, ha="center", va="center", transform=ax_top.transAxes)
+
+    # =========================================================================
+    # 1. BARRA DE ARQUITETURA EM 5 CAMADAS (HORIZONTAL FLOW)
+    # =========================================================================
+    ax_flow = fig.add_axes([0.03, 0.815, 0.94, 0.065])
+    ax_flow.axis("off")
+
+    flow_bg = patches.FancyBboxPatch(
+        (0.0, 0.0), 1.0, 1.0,
+        boxstyle="round,pad=0.0,rounding_size=0.012",
+        facecolor="#0F172A", edgecolor="none",
+        transform=ax_flow.transAxes
+    )
+    ax_flow.add_patch(flow_bg)
+
+    layers = [
+        ("1. TYPES", "Contratos & Models Pydantic", 0.02),
+        ("2. CONSTANTS", "Imutabilidade MappingProxy", 0.22),
+        ("3. SERVICES", "Funções Puras & Simulação", 0.42),
+        ("4. COMPONENTS", "UI Modular & Desacoplada", 0.62),
+        ("5. VIEWS", "Orquestração das 5 Abas", 0.82),
+    ]
+
+    for title, sub, lx in layers:
+        ax_flow.text(lx + 0.08, 0.65, title, fontsize=8.2, fontfamily="monospace", fontweight="bold",
+                     color="#38BDF8", ha="center", va="center", transform=ax_flow.transAxes)
+        ax_flow.text(lx + 0.08, 0.28, sub, fontsize=7.0, color="#94A3B8",
+                     ha="center", va="center", transform=ax_flow.transAxes)
+
+    # Setas de fluxo
+    for ax_arrow in [0.185, 0.385, 0.585, 0.785]:
+        ax_flow.text(ax_arrow, 0.48, "➔", fontsize=10.0, color="#64748B",
+                     ha="center", va="center", transform=ax_flow.transAxes)
+
+    # =========================================================================
+    # 2. GRID DOS 5 MÓDULOS EXECUTIVOS (3 NO TOPO, 2 EMBAIXO COM DESIGN PREMIUM)
+    # =========================================================================
+    ax_grid = fig.add_axes([0.03, 0.14, 0.94, 0.65])
     ax_grid.axis("off")
-    
-    quadrants = [
+
+    modules = [
+        # Linha 1 (3 Módulos)
         (
-            "1. SIMULADOR DE ROI & SENSIBILIDADE",
-            "Simulação em tempo real de mix de canais (E-mail 85%, WhatsApp 12%, SMS 2%, Push 1%) com retorno de R$ 314,5k GMV resgatado (ROI 45.2x e 28.5% margem).",
-            "• Sliders interativos de budget e conversão\n• Curva de sensibilidade e saturação\n• Rebalanceamento orçamentário De -> Para",
-            "R$ 314.500 GMV | ROI 45.2x",
+            "00. Central de Agentes & Skills",
+            "Central de Engenharia Multi-Agente com 10 Especialistas autônomos. Inspeção fidedigna de arquivos .md, governança, decisões arquiteturais e rastreabilidade de código.",
+            "• Leitura direta dos arquivos de agentes e skills\n• Contextos e referências arquiteturais (DECs)\n• Governança de escopo e avaliação Outlier",
+            "10 Agentes  •  10 Skills Ativas",
+            "#0F172A",
+            0.0, 0.52, 0.315, 0.46
+        ),
+        (
+            "01. Simulador de ROI & Sensibilidade",
+            "Simulação dinâmica do mix de canais (E-mail, WhatsApp, SMS, Push) com retorno projetado de R$ 314,5k GMV resgatado, ROI de 45.2x e margem bruta preservada de 28.5%.",
+            "• Sliders interativos de budget e conversão\n• Curva de sensibilidade e saturação de canal\n• Preservação de margem sem queima de cupom",
+            "R$ 314.500 GMV  •  ROI 45.2x",
             COLOR_BLUE,
-            0.0, 0.52
+            0.342, 0.52, 0.315, 0.46
         ),
         (
-            "2. EXPLORADOR SEMÂNTICO (t-SNE / PCA)",
-            "Projeção vetorial 2D de 300 produtos do catálogo agrupados por afinidade semântica para recomendação automática de SKUs substitutos em carrinhos abandonados.",
-            "• Embeddings vetoriais em 2 dimensões\n• Similaridade de cosseno instantânea (>= 0.85)\n• Sugestão de itens similares com maior margem",
-            "300 SKUs Mapeados | Lift +18%",
-            COLOR_AMBER,
-            0.52, 0.52
+            "02. Explorador Semântico de Catálogo",
+            "Projeção vetorial 2D de 300 SKUs por afinidade semântica para recomendação automática de produtos substitutos com maior margem durante a recuperação de carrinhos.",
+            "• Embeddings vetoriais em 2 dimensões\n• Similaridade de cosseno instantânea (>= 0.85)\n• Trajetórias de cluster e busca interativa",
+            "300 SKUs  •  Lift +18% Conversão",
+            COLOR_TEAL,
+            0.685, 0.52, 0.315, 0.46
+        ),
+        # Linha 2 (2 Módulos Largos)
+        (
+            "03. Copiloto Prescritivo de Resgate",
+            "Assistente inteligente de IA Generativa conectado a LLMs. Cruza telemetria comportamental e feedbacks de clientes para diagnosticar a causa-raiz do abandono e gerar copies personalizadas com Pydantic JSON Schema.",
+            "• Diagnóstico causal de hesitação (dúvida técnica, frete, checkout)\n• Geração de copies persuasivas prontas para WhatsApp e E-mail\n• 100% Pydantic JSON Schema (zero alucinação e tipagem estrita)",
+            "100% Pydantic Schema  •  Latência < 2.5 ms",
+            COLOR_VIOLET,
+            0.0, 0.0, 0.485, 0.47
         ),
         (
-            "3. COPILOTO PRESCRITIVO DE RESGATE",
-            "Assistente inteligente de IA Generativa que cruza telemetria e feedbacks de clientes para diagnosticar a hesitação e gerar copies persuasivas validadas.",
-            "• Diagnóstico causal (dúvida de voltagem, frete)\n• Geração de copies prontas para WhatsApp/E-mail\n• 100% Pydantic JSON Schema (zero alucinação)",
-            "100% Pydantic | Latência 4.0 ms",
-            COLOR_PURPLE,
-            0.0, 0.0
-        ),
-        (
-            "4. VITRINE DE PRODUTOS ENRIQUECIDOS",
-            "Catálogo interativo conectado à camada Silver (PRODUTOS_ENRIQUECIDOS) com filtros semânticos e associação direta com métricas de conversão de CRM.",
-            "• Diferenciais técnicos extraídos por LLM\n• Normalização de voltagem e compatibilidade\n• Democratização de dados sem necessidade de SQL",
-            "Camada Silver | Zero Inconsistência",
+            "04. Vitrine de Produtos Enriquecidos",
+            "Catálogo analítico conectado à camada Silver (PRODUTOS_ENRIQUECIDOS) do Lakehouse. Normalização de atributos técnicos via IA, compatibilidade e cruzamento com métricas de conversão de CRM sem necessidade de SQL.",
+            "• Diferenciais técnicos e argumentos de venda extraídos por LLM\n• Normalização de especificações e filtros semânticos multidimensionais\n• Integração direta com a esteira Medallion do Snowflake Lakehouse",
+            "Camada Silver Curated  •  Zero Inconsistência",
             COLOR_GREEN,
-            0.52, 0.0
+            0.515, 0.0, 0.485, 0.47
         ),
     ]
-    
-    q_w = 0.46
-    q_h = 0.44
-    for q_title, q_desc, q_bullets, q_metric, q_col, q_x, q_y in quadrants:
+
+    for title, desc, bullets, metric, tag_color, mx, my, mw, mh in modules:
         # Container Card
-        q_box = patches.FancyBboxPatch(
-            (q_x, q_y), q_w, q_h,
-            boxstyle="round,pad=0.0,rounding_size=0.03",
-            facecolor=COLOR_BG_CARD, edgecolor=q_col, linewidth=1.6,
-            transform=ax_grid.transAxes
-        )
-        ax_grid.add_patch(q_box)
-        
-        # Header Tag
-        q_tag = patches.FancyBboxPatch(
-            (q_x, q_y + q_h - 0.08), q_w, 0.08,
+        card_box = patches.FancyBboxPatch(
+            (mx, my), mw, mh,
             boxstyle="round,pad=0.0,rounding_size=0.015",
-            facecolor=q_col, alpha=0.14, edgecolor="none",
+            facecolor=COLOR_BG_CARD, edgecolor=COLOR_BORDER, linewidth=1.1,
             transform=ax_grid.transAxes
         )
-        ax_grid.add_patch(q_tag)
-        
-        ax_grid.text(q_x + 0.02, q_y + q_h - 0.04, q_title, fontsize=9.2, fontweight="bold",
-                     color=q_col, va="center", transform=ax_grid.transAxes)
-        
-        # Descrição
-        ax_grid.text(q_x + 0.02, q_y + q_h - 0.12, q_desc, fontsize=8.2, color=COLOR_PRIMARY,
-                     wrap=True, va="top", transform=ax_grid.transAxes)
-        
+        ax_grid.add_patch(card_box)
+
+        # Header do Card com Tag Colorida
+        header_h = 0.080
+        head_box = patches.FancyBboxPatch(
+            (mx, my + mh - header_h), mw, header_h,
+            boxstyle="round,pad=0.0,rounding_size=0.012",
+            facecolor=tag_color, edgecolor="none",
+            transform=ax_grid.transAxes
+        )
+        ax_grid.add_patch(head_box)
+
+        ax_grid.text(mx + 0.02, my + mh - header_h/2.0, title, fontsize=8.8, fontweight="bold",
+                     color="#FFFFFF", va="center", transform=ax_grid.transAxes)
+
+        # Descrição do Módulo
+        ax_grid.text(mx + 0.02, my + mh - 0.105, desc, fontsize=7.6, color=COLOR_PRIMARY,
+                     wrap=True, va="top", linespacing=1.3, transform=ax_grid.transAxes)
+
         # Bullets Técnicos
-        ax_grid.text(q_x + 0.02, q_y + 0.18, q_bullets, fontsize=8.0, color=COLOR_TEXT_MUTED,
+        ax_grid.text(mx + 0.02, my + 0.17, bullets, fontsize=7.2, color=COLOR_TEXT_MUTED,
                      linespacing=1.35, va="top", transform=ax_grid.transAxes)
-        
-        # Footer Pill de Métrica
+
+        # Footer Pill de Métrica Executiva
+        pill_h = 0.055
         pill_box = patches.FancyBboxPatch(
-            (q_x + 0.02, q_y + 0.03), q_w - 0.04, 0.06,
-            boxstyle="round,pad=0.0,rounding_size=0.015",
-            facecolor=q_col, edgecolor="none",
+            (mx + 0.02, my + 0.025), mw - 0.04, pill_h,
+            boxstyle="round,pad=0.0,rounding_size=0.008",
+            facecolor="#0F172A", edgecolor="none",
             transform=ax_grid.transAxes
         )
         ax_grid.add_patch(pill_box)
-        ax_grid.text(q_x + q_w/2.0, q_y + 0.06, q_metric.upper(), fontsize=7.8, fontweight="bold",
-                     color="#FFFFFF", ha="center", va="center", transform=ax_grid.transAxes)
+        ax_grid.text(mx + mw/2.0, my + 0.025 + pill_h/2.0, metric, fontsize=7.4, fontfamily="monospace",
+                     fontweight="bold", color="#F8FAFC", ha="center", va="center", transform=ax_grid.transAxes)
+
+    # =========================================================================
+    # 3. FAIXA INFERIOR DE KPIs EXECUTIVOS CONSOLIDADOS
+    # =========================================================================
+    ax_bot = fig.add_axes([0.03, 0.035, 0.94, 0.075])
+    ax_bot.axis("off")
+
+    bot_bg = patches.FancyBboxPatch(
+        (0.0, 0.0), 1.0, 1.0,
+        boxstyle="round,pad=0.0,rounding_size=0.012",
+        facecolor="#F8FAFC", edgecolor=COLOR_BORDER, linewidth=1.1,
+        transform=ax_bot.transAxes
+    )
+    ax_bot.add_patch(bot_bg)
+
+    kpis = [
+        ("RECEITA AUDITADA", "R$ 2.618.420", COLOR_PRIMARY, 0.05),
+        ("GMV RESGATÁVEL", "R$ 314.500", COLOR_BLUE, 0.29),
+        ("ROI DO RESGATE", "45.2x", COLOR_GREEN, 0.53),
+        ("MARGEM PRESERVADA", "28.5%", COLOR_AMBER, 0.76),
+    ]
+
+    for label, val, col, kx in kpis:
+        ax_bot.text(kx + 0.09, 0.70, label, fontsize=7.0, fontfamily="monospace",
+                    fontweight="bold", color=COLOR_TEXT_LIGHT, ha="center", va="center", transform=ax_bot.transAxes)
+        ax_bot.text(kx + 0.09, 0.28, val, fontsize=11.5, fontweight="bold",
+                    color=col, ha="center", va="center", transform=ax_bot.transAxes)
 
     return fig
+
 
 def main() -> None:
     fig = plot_streamlit_master_overview()
     OUTPUT_IMAGE_PATH.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUTPUT_IMAGE_PATH, dpi=300, bbox_inches="tight", facecolor="#FFFFFF")
     plt.close(fig)
-    print(f"[SUCCESS] Painel Consolidado do Data App Streamlit gerado com sucesso em: {OUTPUT_IMAGE_PATH}")
+    print(f"[SUCCESS] Painel Master Consolidado do Data App gerado com sucesso em: {OUTPUT_IMAGE_PATH}")
+
 
 if __name__ == "__main__":
     main()

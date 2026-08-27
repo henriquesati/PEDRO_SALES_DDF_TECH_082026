@@ -44,12 +44,17 @@ presentation/pitch/roteiro/
     │   ├── similaridade-produtos/             # Embeddings, Espaço 2D (t-SNE) & Recomendação de SKUs (+12.4% resgate)
     │   └── data-app-simulador-roi/            # Data App Streamlit, Simulação de ROI (45x) & Waterfall Contábil
     │
-    └── views-streamlit/                       # 🛒 Módulo de Telas Executivas do Data App Streamlit (Item 9 & Bônus)
-        ├── 01-simulador-roi/                  # 📊 Aba 1: Simulador de ROI & Sensibilidade Orçamentária
-        ├── 02-explorador-catalogo/            # 🔍 Aba 2: Explorador Semântico & Projeção Vetorial 2D (t-SNE)
-        ├── 03-copiloto-resgate/               # 🤖 Aba 3: Copiloto Prescritivo de Resgate com IA Generativa
-        ├── 04-vitrine-produtos/               # 🎨 Aba 4: Vitrine de Produtos Enriquecidos (Camada Silver)
-        └── chart_streamlit_data_app_overview.png # 🖼️ Painel Executivo Consolidado do Data App Streamlit
+    ├── views-streamlit/                       # 🛒 Módulo de Telas Executivas do Data App Streamlit (Item 9 & Bônus)
+    │   ├── 01-simulador-roi/                  # 📊 Aba 1: Simulador de ROI & Sensibilidade Orçamentária
+    │   ├── 02-explorador-catalogo/            # 🔍 Aba 2: Explorador Semântico & Projeção Vetorial 2D (t-SNE)
+    │   ├── 03-copiloto-resgate/               # 🤖 Aba 3: Copiloto Prescritivo de Resgate com IA Generativa
+    │   ├── 04-vitrine-produtos/               # 🎨 Aba 4: Vitrine de Produtos Enriquecidos (Camada Silver)
+    │   └── chart_streamlit_data_app_overview.png # 🖼️ Painel Executivo Consolidado do Data App Streamlit
+    │
+    └── view-final/                            # 🎯 Slide de Fechamento: Consolidação de Ferramentas na Plataforma Dadosfera
+        ├── generate_chart.py                  # 🐍 Gerador do Trevo Orgânico / Hub Central Dadosfera
+        ├── spec.md                            # 📄 Especificação Técnica, Mapeamento de Satélites e Roteiro Falado
+        └── chart_view_final_consolidacao_dadosfera.png # 🖼️ Gráfico Executivo Master de Consolidação
 ```
 
 ---

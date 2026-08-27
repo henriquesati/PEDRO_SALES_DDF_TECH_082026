@@ -1,0 +1,162 @@
+/* =============================================================================
+   🎨 DADOSFERA PRIVATE CHAT - ISOLATED THEME (SCOPED CSS)
+   ============================================================================= */
+
+/* Container Principal Isolado */
+.private-chat-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #F8FAFC;
+    margin-top: -1rem;
+}
+
+/* Header do Chat */
+.private-chat-header {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 1.1rem 1.4rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.private-chat-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #F1F5F9;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    letter-spacing: -0.01em;
+}
+
+.private-chat-badge-online {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10B981;
+    border: 1px solid #059669;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.private-chat-badge-offline {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    border: 1px solid #DC2626;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+/* Card do Agente Ativo */
+.agent-active-card {
+    background: #0B0F19;
+    border: 1px solid #1E293B;
+    border-left: 4px solid #38BDF8;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.agent-active-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #38BDF8;
+    font-family: monospace;
+}
+
+.agent-active-desc {
+    font-size: 0.82rem;
+    color: #94A3B8;
+    margin-top: 0.25rem;
+    line-height: 1.4;
+}
+
+/* Feed de Mensagens */
+.chat-message-user {
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 12px 12px 2px 12px;
+    padding: 0.9rem 1.2rem;
+    margin-left: auto;
+    margin-bottom: 0.9rem;
+    max-width: 85%;
+    color: #F8FAFC;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chat-message-agent {
+    background: #0F172A;
+    border: 1px solid #1E293B;
+    border-left: 3px solid #6366F1;
+    border-radius: 12px 12px 12px 2px;
+    padding: 1.1rem 1.3rem;
+    margin-right: auto;
+    margin-bottom: 1.1rem;
+    max-width: 95%;
+    color: #E2E8F0;
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.chat-message-meta {
+    font-size: 0.72rem;
+    color: #64748B;
+    font-family: monospace;
+    margin-bottom: 0.45rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Chips de Sugestão */
+.suggestion-chip-btn {
+    background: #0B0F19;
+    border: 1px solid #334155;
+    color: #38BDF8;
+    border-radius: 20px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+/* Drawer / Box do OpenAPI Inspector */
+.openapi-card-box {
+    background: #080C14;
+    border: 1px solid #1E293B;
+    border-radius: 10px;
+    padding: 1.1rem;
+    margin-top: 1rem;
+    font-family: monospace;
+}
+
+.openapi-endpoint-pill {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+.pill-get {
+    background: #064E3B;
+    color: #34D399;
+}
+
+.pill-post {
+    background: #1E3A8A;
+    color: #60A5FA;
+}

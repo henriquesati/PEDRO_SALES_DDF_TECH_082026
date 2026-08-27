@@ -1,211 +1,306 @@
-/* Design System & Custom CSS - Dadosfera Data App (White Theme / charts-maker Standard) */
+/* =============================================================================
+   🌐 DADOSFERA DATA APP & BUSINESS BI EXECUTIVE DESIGN SYSTEM
+   Aesthetic: Executive Business Cockpit & Rich Lakehouse BI Intelligence
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --primary-navy: #0F172A;       /* Slate 900 */
-    --primary-blue: #2563EB;       /* Blue 600 */
-    --secondary-blue: #1E40AF;     /* Blue 800 */
-    --success-green: #059669;      /* Emerald 600 */
-    --success-emerald: #10B981;    /* Emerald 500 */
-    --warning-amber: #D97706;      /* Amber 600 */
-    --warning-yellow: #F59E0B;     /* Amber 500 */
-    --danger-red: #E11D48;         /* Rose 600 */
-    --accent-purple: #7C3AED;      /* Violet 600 */
-    --bg-canvas: #FFFFFF;          /* Pure White */
-    --bg-light: #F8FAFC;           /* Slate 50 */
-    --card-bg: #FFFFFF;
-    --text-main: #0F172A;          /* Slate 900 */
-    --text-secondary: #334155;     /* Slate 700 */
-    --text-muted: #64748B;         /* Slate 500 */
-    --border-color: #CBD5E1;       /* Slate 300 */
-    --border-subtle: #E2E8F0;      /* Slate 200 */
+    --bg-dark-root: #030712;
+    --bg-surface: #090D16;
+    --bg-surface-elevated: #0D1117;
+    --bg-surface-card: #161B22;
+    
+    --border-dark: #1E293B;
+    --border-slot: #30363D;
+    --border-cyan: #38BDF8;
+    --border-blue: #2563EB;
+    --border-emerald: #10B981;
+    --border-amber: #F59E0B;
+    --border-purple: #8B5CF6;
+    
+    --text-pure: #F8FAFC;
+    --text-primary: #E2E8F0;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    
+    --accent-cyan: #38BDF8;
+    --accent-blue: #2563EB;
+    --accent-emerald: #10B981;
+    --accent-amber: #F59E0B;
+    --accent-purple: #8B5CF6;
+    --accent-rose: #F43F5E;
 }
 
-/* Base Body & Container Adjustments */
-.stApp {
-    background-color: #FFFFFF;
-    color: var(--text-main);
-    font-family: "Segoe UI", "Inter", -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+/* =============================================================================
+   1. GLOBAL CANVAS & RESET
+   ============================================================================= */
+html, body, [data-testid="stAppViewContainer"], .stApp {
+    background-color: var(--bg-dark-root) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
-/* Header & Banner Executivo Dadosfera */
-.main-header {
-    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 65%, #2563EB 100%);
-    color: #FFFFFF;
-    padding: 1.6rem 2.0rem;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.10);
-    border: 1px solid #1E293B;
+header, .stAppHeader, [data-testid="stHeader"], [data-testid="stDecoration"] {
+    display: none !important;
+    height: 0px !important;
+    min-height: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    visibility: hidden !important;
 }
 
-.main-header h1 {
+[data-testid="stAppViewContainer"], .stApp {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.main, [data-testid="stMain"], section.main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+.block-container, [data-testid="stMainBlockContainer"], .stMainBlockContainer {
+    padding-top: 0rem !important;
+    padding-bottom: 2.0rem !important;
+    margin-top: 0 !important;
+    max-width: 98% !important;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #050811 !important;
+    border-right: 1px solid var(--border-dark) !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: var(--text-primary) !important;
+}
+
+/* =============================================================================
+   2. BUSINESS COCKPIT HEADER (CONTAINER UNIFICADO COM 5 BOTÕES)
+   ============================================================================= */
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.business-cockpit-marker) {
+    background: #0A101D !important;
+    border: 1px solid #1E293B !important;
+    border-top: 3px solid #2563EB !important;
+    border-radius: 8px !important;
+    padding: 0.35rem 0.65rem !important;
+    margin-bottom: 0.25rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.business-cockpit-marker) [data-testid="stVerticalBlock"] {
+    gap: 0rem !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.business-cockpit-marker) .stButton > button {
+    margin-bottom: 0 !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.74rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px !important;
+    border-radius: 6px !important;
+    padding: 0.2rem 0.4rem !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.business-cockpit-marker) .stButton > button * {
+    text-align: center !important;
+    align-self: center !important;
+    width: auto !important;
+    display: inline-block !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.business-cockpit-marker) .stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 100%) !important;
     color: #FFFFFF !important;
-    font-size: 1.85rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0;
+    border: 1px solid #60A5FA !important;
+    box-shadow: 0 0 12px rgba(37, 99, 235, 0.45) !important;
 }
 
-.main-header p {
-    color: #E2E8F0;
-    font-size: 0.98rem;
-    margin: 0.4rem 0 0 0;
-    font-weight: 400;
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.business-cockpit-marker) .stButton > button[kind="secondary"] {
+    background: #0F172A !important;
+    color: #94A3B8 !important;
+    border: 1px solid #1E293B !important;
 }
 
-/* KPI Cards Executivos */
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.business-cockpit-marker) .stButton > button[kind="secondary"]:hover {
+    background: #1E293B !important;
+    color: #F8FAFC !important;
+    border-color: #3B82F6 !important;
+}
+
+/* =============================================================================
+   3. KPI CARDS (METRICS & DELTAS SEMÂNTICOS)
+   ============================================================================= */
 .kpi-card {
-    background-color: #F8FAFC;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 1.1rem 1.3rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    margin-bottom: 0.5rem;
-}
-
-.kpi-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.07);
-    border-color: var(--primary-blue);
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1.0rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    min-height: 105px !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
 }
 
 .kpi-label {
-    font-size: 0.80rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    color: var(--text-secondary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
 }
 
 .kpi-value {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text-main);
-    letter-spacing: -0.02em;
-    margin: 0.25rem 0;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.45rem !important;
+    font-weight: 800 !important;
+    color: var(--text-pure) !important;
+    margin: 0.25rem 0 !important;
 }
 
 .kpi-delta {
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.70rem !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
 }
 
-.kpi-delta.positive {
-    color: var(--success-green);
+.delta-positive { color: var(--accent-emerald) !important; }
+.delta-negative { color: var(--accent-rose) !important; }
+.delta-neutral { color: var(--accent-cyan) !important; }
+.delta-purple { color: var(--accent-purple) !important; }
+
+/* =============================================================================
+   4. CHAT PREVIEWS & COPILOT BALLOONS
+   ============================================================================= */
+.chat-balloon-user {
+    background-color: #1E293B !important;
+    border: 1px solid #334155 !important;
+    border-radius: 12px 12px 2px 12px !important;
+    padding: 0.7rem 1.0rem !important;
+    margin-bottom: 0.6rem !important;
+    color: #F8FAFC !important;
+    font-size: 0.85rem !important;
+    align-self: flex-end !important;
 }
 
-.kpi-delta.negative {
-    color: var(--danger-red);
+.chat-balloon-assistant {
+    background-color: #0F172A !important;
+    border: 1px solid #1E3A8A !important;
+    border-left: 3px solid var(--accent-blue) !important;
+    border-radius: 12px 12px 12px 2px !important;
+    padding: 0.7rem 1.0rem !important;
+    margin-bottom: 0.6rem !important;
+    color: #F8FAFC !important;
+    font-size: 0.85rem !important;
+    align-self: flex-start !important;
 }
 
-.kpi-delta.neutral {
-    color: var(--primary-blue);
+/* =============================================================================
+   5. SEMANTIC BADGES & PILLS
+   ============================================================================= */
+.stButton > button {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.68rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px !important;
+    border-radius: 5px !important;
+    padding: 0.32rem 0.55rem !important;
+    text-align: left !important;
+    white-space: pre-line !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    line-height: 1.18 !important;
+    transition: all 0.18s ease-in-out !important;
+    margin-bottom: 0.18rem !important;
+    width: 100% !important;
 }
 
-.kpi-delta.purple {
-    color: var(--accent-purple);
+.stButton > button *,
+.stButton > button p,
+.stButton > button div,
+.stButton > button span,
+.stButton > button [data-testid="stMarkdownContainer"],
+.stButton > button [data-testid="stMarkdownContainer"] p {
+    text-align: left !important;
+    align-self: flex-start !important;
+    width: 100% !important;
+    display: block !important;
 }
 
-/* Pill Badges */
+/* Container do Header Unificado (Título + Botões dentro da mesma borda) */
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.evaluator-header-marker) {
+    background: #090D16 !important;
+    border: 1px solid #1E293B !important;
+    border-top: 3px solid #38BDF8 !important;
+    border-radius: 8px !important;
+    padding: 0.30rem 0.60rem !important;
+    margin-bottom: 0.15rem !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.evaluator-header-marker) [data-testid="stVerticalBlock"] {
+    gap: 0rem !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.evaluator-header-marker) .stButton > button {
+    margin-bottom: 0 !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    font-size: 0.72rem !important;
+}
+
+/* Secondary Button (Default Inactive Slot) */
+.stButton > button[kind="secondary"] {
+    background-color: var(--bg-surface-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-slot) !important;
+}
+
+.stButton > button[kind="secondary"]:hover {
+    background-color: #1E293B !important;
+    color: var(--text-pure) !important;
+    border-color: #64748B !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Primary Button (Active Selected Slot) */
+.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
+    color: #FFFFFF !important;
+    border: 1.2px solid var(--accent-cyan) !important;
+    border-left: 4px solid var(--accent-cyan) !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.30) !important;
+}
+
 .pill-badge {
-    display: inline-block;
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    padding: 0.2rem 0.5rem !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
 }
 
-.badge-substitute {
-    background-color: #EFF6FF;
-    color: #1D4ED8;
-    border: 1px solid #BFDBFE;
-}
-
-.badge-crosssell {
-    background-color: #F5F3FF;
-    color: #6D28D9;
-    border: 1px solid #DDD6FE;
-}
-
-.badge-accessory {
-    background-color: #FEF3C7;
-    color: #B45309;
-    border: 1px solid #FDE68A;
-}
-
-.badge-margin {
-    background-color: #ECFDF5;
-    color: #047857;
-    border: 1px solid #A7F3D0;
-}
-
-.badge-warning {
-    background-color: #FFF1F2;
-    color: #BE123C;
-    border: 1px solid #FECDD3;
-}
-
-/* Cards Comparativos de Decisão Executiva */
-.decision-card {
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.4rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-.decision-card-danger {
-    background-color: #FFF5F5;
-    border: 1.5px solid #FECDD3;
-    border-radius: 10px;
-    padding: 1.2rem;
-}
-
-.decision-card-success {
-    background-color: #F0FDF4;
-    border: 1.5px solid #BBF7D0;
-    border-radius: 10px;
-    padding: 1.2rem;
-}
-
-/* Chat & Previews */
-.chat-preview-wpp {
-    background-color: #EFEAE2;
-    border-radius: 12px;
-    padding: 1.2rem;
-    border: 1px solid #D1D5DB;
-}
-
-.chat-bubble-wpp {
-    background-color: #FFFFFF;
-    border-radius: 8px 8px 8px 0px;
-    padding: 0.9rem 1.1rem;
-    color: #111827;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-    max-width: 92%;
-}
-
-.email-preview-card {
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 1.4rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-}
-
-/* Showcase Card */
-.showcase-card {
-    background-color: #FFFFFF;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.4rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
+.badge-substitute { background-color: #064E3B !important; color: #6EE7B7 !important; border: 1px solid #059669 !important; }
+.badge-crosssell { background-color: #1E3A8A !important; color: #93C5FD !important; border: 1px solid #2563EB !important; }
+.badge-accessory { background-color: #4C1D95 !important; color: #DDD6FE !important; border: 1px solid #7C3AED !important; }

@@ -1,6 +1,6 @@
 # 🖥️ Módulo de Views: Data App Streamlit (`views-streamlit`)
 
-> **Momento do Roteiro**: **Ato 4 / Seção [5.4] — Consumo, Analytics & Data App Interativo (Streamlit Integrado)**  
+> **Momento do Roteiro**: **Ato 4 / Seção [5.4] — Consumo, Analytics & Data App Integrado**  
 > **Caminho da View**: `presentation/pitch/roteiro/views-streamlit/`  
 > **Arquitetura Master**: [`presentation/pitch/roteiro/README.md`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/presentation/pitch/roteiro/README.md)  
 > **Código da Aplicação Real**: [`app/app.py`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/app/app.py) • [`app/views/`](file:///c:/Users/pedro/OneDrive/Desktop/wheels/app/views/)  

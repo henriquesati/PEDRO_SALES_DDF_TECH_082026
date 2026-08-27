@@ -132,6 +132,12 @@ def task_bi_analysis() -> None:
     print("\n[TASK: bi-analysis] Executando gerador de BI e métricas (Item 7)...")
     subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
 
+def task_agent_server() -> None:
+    """Inicia o Antigravity Agent Web Server (FastAPI / Uvicorn) na porta 8000 com OpenAPI 3.1.0."""
+    script_path = os.path.join(BASE_DIR, "agent_server", "run.py")
+    print("\n[TASK: agent-server] Iniciando Antigravity Agent Server (FastAPI)...")
+    subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
+
 def print_help() -> None:
     print("""
 =============================================================================
@@ -139,6 +145,7 @@ def print_help() -> None:
 =============================================================================
 Comandos disponíveis:
 
+  python make.py agent-server               Inicia o servidor de Agentes FastAPI (Porta 8000)
   python make.py data-app                   Inicia o Data App Streamlit (Item 9 & Bônus)
   python make.py data-app-assets            Gera as imagens em 300 DPI do Data App
   python make.py push-read [MSG]            Commita e envia EXCLUSIVAMENTE o README.md
@@ -164,6 +171,7 @@ Atalhos diretos no Windows CLI:
 =============================================================================
 """)
 
+
 def main():
     if len(sys.argv) < 2 or sys.argv[1] in ("help", "-h", "--help"):
         print_help()
@@ -172,7 +180,9 @@ def main():
     command = sys.argv[1].lower().replace("-", "_")
     arg = sys.argv[2] if len(sys.argv) > 2 else None
 
-    if command in ("data_app", "dataapp", "app", "streamlit"):
+    if command in ("agent_server", "agentserver", "server", "api", "backend"):
+        task_agent_server()
+    elif command in ("data_app", "dataapp", "app", "streamlit"):
         task_data_app()
     elif command in ("data_app_assets", "dataapp_assets", "app_assets"):
         task_data_app_assets()

@@ -9,18 +9,25 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "
 
 def check_dependencies() -> bool:
     """Verifica se os pacotes essenciais estão instalados."""
-    required = ["streamlit", "plotly", "pandas", "pyarrow", "sklearn"]
-    missing = []
-    for pkg in required:
+    required = [
+        ("streamlit", "streamlit"),
+        ("plotly", "plotly"),
+        ("pandas", "pandas"),
+        ("pyarrow", "pyarrow"),
+        ("sklearn", "scikit-learn"),
+        ("matplotlib", "matplotlib"),
+    ]
+    missing_packages = []
+    for module_name, pip_name in required:
         try:
-            __import__(pkg)
+            __import__(module_name)
         except ImportError:
-            missing.append(pkg)
+            missing_packages.append(pip_name)
             
-    if missing:
-        print(f"⚠️ Dependências ausentes: {', '.join(missing)}")
+    if missing_packages:
+        print(f"⚠️ Dependências ausentes: {', '.join(missing_packages)}")
         print("Instalando dependências via pip...")
-        res = subprocess.run([sys.executable, "-m", "pip", "install", *missing])
+        res = subprocess.run([sys.executable, "-m", "pip", "install", *missing_packages])
         return res.returncode == 0
     return True
 
@@ -30,7 +37,7 @@ def main():
     print("=" * 70)
     
     if not check_dependencies():
-        print("[ERRO] Falha ao instalar dependências.", file=sys.stderr)
+        print("[ERRO] Falha ao verificar dependências.", file=sys.stderr)
         sys.exit(1)
         
     app_path = os.path.join(BASE_DIR, "app", "app.py")
@@ -39,7 +46,7 @@ def main():
         sys.exit(1)
         
     print(f"\n🚀 Iniciando Streamlit a partir de: {app_path}\n")
-    cmd = ["streamlit", "run", app_path]
+    cmd = [sys.executable, "-m", "streamlit", "run", app_path]
     try:
         subprocess.run(cmd, cwd=BASE_DIR)
     except KeyboardInterrupt:

@@ -9,7 +9,7 @@
 
 ---
 
-> ### 📝 Nota do Usuário
+> ###  Nota do Usuário
 > 
 > Para esse projeto optei por uma abordagem voltada a arquitetura mais orientada a agentes de IA.
 > 
@@ -17,17 +17,18 @@
 > 
 > Segui entao como parametro de dev uma abordagem 100% IA; infestando a codebase (o que tem beneficios e maleficios) documentos de normas e especificações em markdown. Após isso, em todo contexto eu especificava a nova tarefa e o agent ia fazendo scout nos documentos e especificações, coletando contexto e executando com quase 100% de accuracy.
 > 
-> Tive erros com a geração de graficos finais justamente porque não declarei um agent guardião de referencias visuais; o que aconteceu foi que fui alterando os scrips de geração e mesmo pedindo pra atualizar os contextos e referencias, alguns se perderam na etapa final de geração de artefatos.
 > 
 > A alta quantidade de markdowns, linhas, e tabulares assusta; mas é o melhor jeito dos agents se orientarem. Com antigravity, agents, historicos e skiils, quase todas as tarefas de refino funcionaram sem erro.
+
+Estou precisando usar uma adaptor wifi no meu desktop atualmente e tive que gravar tópico de video com a porta aberta pra não perder sinal e minha gata acabou interrompendo, peço desculpas.
 
 
 ---
 
 | Vídeo | Escopo da Apresentação | Link Principal (YouTube) | Link Adicional (Google Drive) |
 |:---:|---|:---:|:---:|
-| **Vídeo 1** | **Apresentação do Case — Visão Geral, Arquitetura, Governança, Qualidade & Lakehouse** | [▶️ Vídeo 1 (YouTube)](https://youtu.be/TZph9Lhy8VQ) | [▶️ Vídeo 1 (Google Drive)](https://docs.google.com/videos/d/112pY9SEehN1Ns9fc26lxhBGrNap2PwVtW1wBJ9UePBI/edit?usp=sharing) |
-| **Vídeo 2** | **Apresentação do Case — Demonstração Prática, BI, ML, Data App em Streamlit & Pitch** | [▶️ Vídeo 2 (YouTube)](https://youtu.be/XxtPzbOk8ZA) | [▶️ Vídeo 2 (Google Drive)](https://docs.google.com/videos/d/1qPEeDBeC4l_SROuQBE9rVmg7R4CiaTzznecoT_El7cM/edit?usp=sharing) |
+| **Vídeo 1** |https://youtu.be/oe3-SqyLCnQ
+
 
 ---
 
@@ -401,16 +402,19 @@ Esta seção consolida todos os **Itens Bônus oficiais** do case Dadosfera e os
 
 ---
 
-### 5.  Data App em Streamlit
-* **O que foi feito:** Aplicação analítica completa em Streamlit 
+### 5.  Data App em Streamlit (Item 9)
+* **O que foi feito:** Aplicação analítica modular e interativa em Streamlit estruturada em 5 camadas (Types, Constants, Services, Components e Views), integrando a Central do Avaliador (Roster de Agentes e Skills com dossiês técnicos), Cockpit de Negócios com 5 abas (Simulador de ROI, Busca Vetorial 2D, Copiloto Prescritivo, Vitrine de Produtos e Galeria de Insights Side-by-Side em 300 DPI) e roteamento dinâmico via query params.
 * **📁 Arquivos & Códigos:**
-  - [`app/app.py`](app/app.py) — *Entrypoint principal do Data App Streamlit*
-  - [`pipelines/case-item-09/core/simulation_engine.py`](pipelines/case-item-09/core/simulation_engine.py) — *Motor matemático de sensibilidade econômica*
-  - [`pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb`](pipelines/case-item-09/notebooks/streamlit_colab_runner.ipynb) — *Runner com suporte a túnel público no Google Colab*
-* **📊 Dashboards & Gráficos Gerados:**
-  - [`chart_data_app_simulador_roi.png`](presentation/pitch/roteiro/views-05-insights-ia/data-app-simulador-roi/chart_data_app_simulador_roi.png) — *Painel Executivo do Data App: Waterfall de Lucro Líquido e Curva de Sensibilidade*
-  - [`data_app_roi_simulation.png`](pipelines/case-item-09/outputs/assets/data_app_roi_simulation.png) — *Simulação de retorno econômico gerada pelo app*
-  - [`chart_08_simulador_roi_data_app.png`](presentation/pitch/08_data_app_simulador_prescritivo_genai/chart_08_simulador_roi_data_app.png) — *Visão integrada de ROI e inteligência prescritiva*
+  - [`app/app.py`](app/app.py) — *Entrypoint e roteador principal do Data App*
+  - [`app/views/`](app/views/) — *Módulos e abas desacopladas de negócio e avaliação*
+  - [`app/components/`](app/components/) — *Componentes visuais e seletores*
+
+![](presentation/pitch/roteiro/views-streamlit/00-roster-agentes/chart_streamlit_roster_agentes.png)
+![](presentation/pitch/roteiro/views-streamlit/01-simulador-roi/chart_streamlit_simulador_roi.png)
+![](presentation/pitch/roteiro/views-streamlit/02-explorador-catalogo/chart_streamlit_explorador_catalogo.png)
+![](presentation/pitch/roteiro/views-streamlit/03-copiloto-resgate/chart_streamlit_copiloto_resgate.png)
+![](presentation/pitch/roteiro/views-streamlit/04-vitrine-produtos/chart_streamlit_vitrine_produtos.png)
+![](presentation/pitch/roteiro/views-streamlit/05-galeria-insights/chart_streamlit_galeria_insights.png)
 
 ---
 
@@ -731,6 +735,7 @@ Para garantir contexto, alterações em cascata, rigor técnico, governança na 
 | **`platform-registry-consultant`** | [`platform-registry-consultant/SKILL.md`](.agents/skills/platform-registry-consultant/SKILL.md) | Manutenção do mapeamento oficial de ativos da Dadosfera em `output-mappers/`. |
 | **`project-context-specialist`** | [`project-context-specialist/SKILL.md`](.agents/skills/project-context-specialist/SKILL.md) | Memória técnica do projeto, marcos de entrega e alinhamento com especificações do case. |
 | **`scout`** | [`scout/SKILL.md`](.agents/skills/scout/SKILL.md) | Exploração rápida e mapeamento estrutural do repositório de código. |
+| **`streamlit-master`** | [`streamlit-master/SKILL.md`](.agents/skills/streamlit-master/SKILL.md) | Arquitetura do Data App em 5 camadas, navegação por query params, hot-reloading e design system. |
 
 ### 📜 Regras Operacionais (`.agents/rules/`)
 - [`python-execution.md`](.agents/rules/python-execution.md): Diretriz de execução autônoma, ciclo cirúrgico single-target e tratamento de erros em Python.
