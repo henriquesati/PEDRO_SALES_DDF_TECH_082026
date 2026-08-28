@@ -26,7 +26,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 def task_notebook_gen(chart_name: str | None = None) -> None:
     """Gera os artefatos de gráficos e views analíticas de insights e BI."""
-    script_path = os.path.join(BASE_DIR, "presentation", "insights", "run_all_insights_charts.py")
+    script_path = os.path.join(BASE_DIR, "insights", "run_all_insights_charts.py")
     print(f"\n[TASK: notebook-gen] Executando gerador de imagens de BI e Insights...")
     res = subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
     if res.returncode == 0:
@@ -73,7 +73,7 @@ def task_pitch_charts() -> None:
 
 def task_insights_charts() -> None:
     """Executa o orquestrador consolidado de gráficos de Insights."""
-    script_path = os.path.join(BASE_DIR, "presentation", "insights", "run_all_insights_charts.py")
+    script_path = os.path.join(BASE_DIR, "insights", "run_all_insights_charts.py")
     print("\n[TASK: insights-charts] Gerando gráficos de Insights...")
     subprocess.run([sys.executable, script_path], cwd=BASE_DIR)
 
