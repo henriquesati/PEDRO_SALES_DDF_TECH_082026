@@ -473,9 +473,9 @@ O projeto conta com notebooks reproduzíveis e um **Task Runner em Python puro (
 
 ---
 
-### 💻 Manual de Execução dos Pipelines e Gráficos (Python Multiplataforma)
+### 💻 Manual de Execução dos Pipelines e Gráficos 
 
-Todos os comandos de execução, auditoria, extração e geração visual utilizam o runner canônico em Python puro ([`make.py`](make.py)), garantindo compatibilidade total e idêntica em Windows, Linux e macOS:
+runner canônico em Python puro ([`make.py`](make.py)), garantindo compatibilidade total e idêntica em Windows, Linux e macOS:
 
 #### 1. Ingestão e Geração de Dados (Camada Bronze)
 ```bash
